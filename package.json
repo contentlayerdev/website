@@ -14,6 +14,8 @@
   },
   "devDependencies": {
     "@types/react": "17.0.21",
+    "contentlayer": "^0.0.22",
+    "next-contentlayer": "^0.0.22",
     "typescript": "4.4.3"
   }
 }
