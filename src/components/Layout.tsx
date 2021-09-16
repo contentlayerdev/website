@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 import type * as types from ".contentlayer/types";
 
 export const Layout: FC<{
-  doc: types.Doc;
+  doc: types.Doc | types.Page;
 }> = ({ doc, children, ...props }) => {
   return (
     <>

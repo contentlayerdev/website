@@ -3,9 +3,9 @@ import { defineDocumentType } from "contentlayer/source-files";
 // import { SEO } from '../nested/SEO'
 import { urlFromFilePath } from "../utils";
 
-export const Doc = defineDocumentType(() => ({
-  name: "Doc",
-  filePathPattern: `docs/**/*.md`,
+export const Page = defineDocumentType(() => ({
+  name: "Page",
+  filePathPattern: `pages/**/*.md`,
   fields: {
     title: {
       type: "string",
