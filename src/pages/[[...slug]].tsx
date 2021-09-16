@@ -1,7 +1,6 @@
 import type { InferGetStaticPropsType } from "next";
 import { useLiveReload } from "next-contentlayer/hooks";
 import type { FC } from "react";
-// import React from 'react'
 
 import { DocLayout } from "../layouts/DocLayout";
 
