@@ -1,0 +1,12 @@
+{
+  "nav_links": [
+    {
+      "label": "Home",
+      "url": "/"
+    },
+    {
+      "label": "Getting Started",
+      "url": "/docs/getting-started"
+    }
+  ]
+}
