@@ -1,7 +1,64 @@
 ---
-title: Getting Started with Contentlayer
+title: Getting Started
 ---
 
-Ad laborum minim et ipsum. Et sint ex irure reprehenderit veniam amet qui ea. Proident sint ex ullamco amet non culpa pariatur velit dolore eu sit. In pariatur id quis excepteur excepteur fugiat nostrud ullamco occaecat. Sunt occaecat proident officia esse aute.
+Using the [demo](https://github.com/vercel/next-learn-starter/tree/master/demo) from Next.js Learn tutorial. For this guide, we should start from scratch.
 
-Nisi culpa reprehenderit est voluptate consectetur nisi dolore occaecat consectetur velit exercitation. Laboris aute irure cupidatat do id tempor ipsum ex exercitation et consequat incididunt ad consectetur. Labore ut reprehenderit magna laboris quis. Ea velit cillum cupidatat dolor elit commodo proident tempor officia commodo sint. Cupidatat consectetur nisi consectetur dolor veniam culpa fugiat. Culpa commodo quis consequat proident adipisicing est laborum. Id id est proident tempor nisi voluptate.
+```jsx
+npx create-next # or whatever this command is
+```
+
+Install dependencies
+
+```
+npm install contentlayer --save-dev
+```
+
+Add markdown files to some directory.
+
+Add `contentlayer.config.js`
+
+```jsx
+import { defineDocumentType, makeSource } from "contentlayer/source-files";
+import highlight from "rehype-highlight";
+
+export const Post = defineDocumentType(() => ({
+  name: "Post",
+  filePathPattern: `**/*.md`,
+  fields: {
+    title: {
+      type: "string",
+      description: "The title of the post",
+      required: true,
+    },
+    date: {
+      type: "date",
+      description: "The date of the post",
+      required: true,
+    },
+  },
+}));
+
+export default makeSource({
+  contentDirPath: "posts",
+  documentTypes: [Post],
+});
+```
+
+Build content.
+
+```jsx
+./node_modules/.bin/contentlayer build
+```
+
+Look into the `node_modules/.contentlayer` directory and walk through some of the basics.
+
+Start next server
+
+```jsx
+npm run dev
+```
+
+1. Pull all posts into the home page
+1. Then render a page for every post
+1. Maybe add a markdown plugin?

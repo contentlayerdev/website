@@ -24,7 +24,19 @@
     @apply text-xl;
   }
 
-  p {
+  p,
+  pre,
+  ul,
+  ol {
     @apply mb-4;
+  }
+
+  li {
+    @apply mb-2;
+  }
+
+  ol {
+    @apply list-decimal
+      ml-4;
   }
 }

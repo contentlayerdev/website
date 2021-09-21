@@ -26,8 +26,8 @@ export const DocLayout: FC<{ doc: types.Doc }> = ({ doc }) => {
           <nav className="text-sm">
             {allDocs.map((doc, idx) => {
               return (
-                <span className="block mb-2">
-                  <Link key={idx} href={`/${doc.url_path}`}>
+                <span key={idx} className="block mb-2">
+                  <Link href={`/${doc.url_path}`}>
                     <a className={navLinkClassName(doc)}>{doc.title}</a>
                   </Link>
                 </span>
