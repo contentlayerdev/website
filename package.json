@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "./node_modules/.bin/contentlayer build && next build",
     "start": "next start"
   },
   "dependencies": {
