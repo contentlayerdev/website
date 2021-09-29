@@ -5,8 +5,12 @@
       "url": "/"
     },
     {
-      "label": "Getting Started",
-      "url": "/docs/getting-started"
+      "label": "Community",
+      "url": "/community"
+    },
+    {
+      "label": "Docs",
+      "url": "/docs"
     }
   ]
 }
