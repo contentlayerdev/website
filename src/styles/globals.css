@@ -24,6 +24,11 @@
     @apply text-xl;
   }
 
+  a {
+    @apply text-blue-600
+      underline;
+  }
+
   p,
   pre,
   ul,
@@ -31,12 +36,22 @@
     @apply mb-4;
   }
 
+  ol {
+    @apply list-decimal
+    ml-4;
+  }
+
+  ul {
+    @apply list-disc
+    ml-4;
+  }
+
   li {
     @apply mb-2;
   }
 
-  ol {
-    @apply list-decimal
-      ml-4;
+  li > ol,
+  li > ul {
+    @apply mt-2;
   }
 }

@@ -8,7 +8,7 @@ export const Header = () => {
   const router = useRouter();
 
   const navLinkClassName = (link: types.Link): string => {
-    let classes = "ml-3";
+    let classes = "ml-3 text-black no-underline";
     const currentPath = router?.asPath;
     if (
       currentPath === link.url ||
@@ -22,7 +22,7 @@ export const Header = () => {
   return (
     <header className="px-6 py-4 flex justify-between border-b">
       <Link href="/">
-        <a className="font-extrabold">Contentlayer</a>
+        <a className="text-black no-underline font-extrabold">Contentlayer</a>
       </Link>
 
       <nav className="text-sm flex">

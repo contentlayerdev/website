@@ -10,7 +10,14 @@ export const DocLayout: FC<{ doc: types.Doc }> = ({ doc }) => {
   const router = useRouter();
 
   const navLinkClassName = (doc: types.Doc): string => {
-    let classes = ["px-2", "py-2", "block", "rounded-md"];
+    let classes = [
+      "px-2",
+      "py-2",
+      "block",
+      "rounded-md",
+      "text-black",
+      "no-underline",
+    ];
     if (router?.asPath === `/${doc.url_path}`) {
       classes.push("bg-gray-200 font-semibold");
     } else {
