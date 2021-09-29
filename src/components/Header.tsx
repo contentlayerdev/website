@@ -9,7 +9,13 @@ export const Header = () => {
 
   const navLinkClassName = (link: types.Link): string => {
     let classes = "ml-3";
-    if (router?.asPath === link.url) classes += " font-bold";
+    const currentPath = router?.asPath;
+    if (
+      currentPath === link.url ||
+      (link.url !== "/" && currentPath.startsWith(link.url))
+    ) {
+      classes += " font-bold";
+    }
     return classes;
   };
 
