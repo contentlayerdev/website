@@ -2,7 +2,7 @@
 title: Docs
 ---
 
-[Getting Started](/docs/getting-started)
+- [Getting Started](/docs/getting-started)
 
 ## How-To Guides
 
@@ -13,7 +13,7 @@ title: Docs
 
 ## Concepts
 
-- How Contentlayer Works
+- [How Contentlayer Works](/docs/how-contentlayer-works)
 - Data Sources
   - Files
   - Contentful
@@ -24,4 +24,7 @@ title: Docs
   - Next.js (optimized for Next.js)
   - Astro
 
-[CLI](/docs/cli)
+## References
+
+- Configuration
+- [CLI](/docs/cli)

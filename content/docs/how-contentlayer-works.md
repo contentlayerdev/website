@@ -1,0 +1,41 @@
+---
+title: How Contentlayer Works
+---
+
+Contentlayer is the glue between your content and your code.
+
+For many years it's been commonplace to separate your website code from its content. This makes both content editing and developing more efficient and prone to fewer bugs. (And who can argue against code without bugs?)
+
+The _code_ for your website is often built on top of a front-end framework or static site generator, such as [Gatsby](https://www.gatsbyjs.com/) or [Next.js](https://nextjs.org/) (among many, many others). And the _content_ is often either housed in a headless content management system like [Contentful](https://www.contentful.com/) or [Sanity](https://www.sanity.io/) (also among many others), but can also be stored in local files.
+
+Some frameworks are opinionated about how your content should be loaded into your code. For instance, Gatsby has [a large marketplace of plugins](https://www.gatsbyjs.com/plugins) and [a GraphQL layer](https://www.gatsbyjs.com/docs/graphql/) that can be used together to load content into your code.
+
+Other frameworks like Next.js take no stance on content, and leave it up to you. _That_ is where Contentlayer shines.
+
+## Three Facets of Contentlayer
+
+There are three main uses for Contentlayer, each revolving around the primary purpose of transforming your content into data that can be easily consumed by your code. These pieces are:
+
+- Transformation Content into Data
+- Structuring Loose Data
+- Defining Data Types
+
+## Transformation Content into Data
+
+Regardless of the source of the data or how the data will be used in the code, the primary purpose for Contentlayer is to transform content in to data that your code can use.
+
+This process occurs by reading data from the data source, whether that source is external or a series of local files, and converting it into a format that your code can understand, as importable JavaScript files.
+
+This provides an array of benefits, but perhaps the greatest is that your content is suddenly treated as just more code, making it trivial for frameworks like Next.js to recognize when you've updated content and refresh the DOM almost immediately using hot module reloading (HMR).
+
+## Structuring Loose Data
+
+When data is defined in an external data source, that system (almost) always requires that the data have some _schema_ attached to it. That means that the structure of the data is predictable. So when your content source is external, Contentlayer already knows what that structure should be, and it responds accordingly.
+
+But when you're working with local files, there is no inherent structure to bind these files to your code. Thus, if you change the content with a file, you could quite easily break your site's code.
+
+When using local files as your data source, Contentlayer provides the ability to define the schema of those files. That way you can be confident in the shape of the data, and can write more solid code reflecting that shape.
+
+## Defining Data Types
+
+Contentlayer's _cherry on top_ is for all you TypeScript fans. When Contentlayer transforms content into data, it also creates type definitions for that data. That means you can introspect the structure of content in your code. This can provide you with a level of confidence that could really only be matched by writing programmatic tests.
