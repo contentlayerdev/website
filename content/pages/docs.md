@@ -23,6 +23,7 @@ title: Docs
 - Working with Frameworks
   - Next.js (optimized for Next.js)
   - Astro
+- [Comparison](/docs/comparison)
 
 ## References
 
