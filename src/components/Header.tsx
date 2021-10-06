@@ -1,39 +1,36 @@
-import Link from "next/link";
-import { useRouter } from "next/router";
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 
-import { headerConfig } from ".contentlayer/data";
-import type * as types from ".contentlayer/types";
+import { headerConfig } from '.contentlayer/data'
+import type * as types from '.contentlayer/types'
 
 export const Header = () => {
-  const router = useRouter();
+  const router = useRouter()
 
   const navLinkClassName = (link: types.Link): string => {
-    let classes = "ml-3 text-black no-underline";
-    const currentPath = router?.asPath;
-    if (
-      currentPath === link.url ||
-      (link.url !== "/" && currentPath.startsWith(link.url))
-    ) {
-      classes += " font-bold";
+    let classes = 'ml-3 text-black no-underline'
+    const currentPath = router?.asPath
+    if (currentPath === link.url || (link.url !== '/' && currentPath.startsWith(link.url))) {
+      classes += ' font-bold'
     }
-    return classes;
-  };
+    return classes
+  }
 
   return (
-    <header className="px-6 py-4 flex justify-between border-b">
+    <header className="flex justify-between px-6 py-4 border-b">
       <Link href="/">
-        <a className="text-black no-underline font-extrabold">Contentlayer</a>
+        <a className="font-extrabold text-black no-underline">Contentlayer</a>
       </Link>
 
-      <nav className="text-sm flex">
+      <nav className="flex text-sm">
         {(headerConfig.nav_links || []).map((item, idx: number) => {
           return (
             <Link key={idx} href={item.url}>
               <a className={navLinkClassName(item)}>{item.label}</a>
             </Link>
-          );
+          )
         })}
       </nav>
     </header>
-  );
-};
+  )
+}

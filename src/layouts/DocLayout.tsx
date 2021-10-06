@@ -1,35 +1,28 @@
-import Link from "next/link";
-import { useRouter } from "next/router";
-import type { FC } from "react";
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import type { FC } from 'react'
 
-import { Layout } from "../components/Layout";
-import { allDocs } from ".contentlayer/data";
-import type * as types from ".contentlayer/types";
+import { Layout } from '../components/Layout'
+import { allDocs } from '.contentlayer/data'
+import type * as types from '.contentlayer/types'
 
 export const DocLayout: FC<{ doc: types.Doc }> = ({ doc }) => {
-  const router = useRouter();
+  const router = useRouter()
 
   const navLinkClassName = (doc: types.Doc): string => {
-    let classes = [
-      "px-2",
-      "py-2",
-      "block",
-      "rounded-md",
-      "text-black",
-      "no-underline",
-    ];
+    let classes = ['px-2', 'py-2', 'block', 'rounded-md', 'text-black', 'no-underline']
     if (router?.asPath === `/${doc.url_path}`) {
-      classes.push("bg-gray-200 font-semibold");
+      classes.push('bg-gray-200 font-semibold')
     } else {
-      classes.push("hover:bg-gray-100 text-gray-700");
+      classes.push('hover:bg-gray-100 text-gray-700')
     }
-    return classes.join(" ");
-  };
+    return classes.join(' ')
+  }
 
   return (
     <Layout doc={doc}>
       <div className="flex">
-        <aside className="p-4 border-r w-64">
+        <aside className="w-64 p-4 border-r">
           <nav className="text-sm">
             {allDocs.map((doc, idx) => {
               return (
@@ -38,7 +31,7 @@ export const DocLayout: FC<{ doc: types.Doc }> = ({ doc }) => {
                     <a className={navLinkClassName(doc)}>{doc.title}</a>
                   </Link>
                 </span>
-              );
+              )
             })}
           </nav>
         </aside>
@@ -48,5 +41,5 @@ export const DocLayout: FC<{ doc: types.Doc }> = ({ doc }) => {
         </div>
       </div>
     </Layout>
-  );
-};
+  )
+}

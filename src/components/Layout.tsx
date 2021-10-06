@@ -1,12 +1,12 @@
-import type { FC } from "react";
-import { Helmet } from "react-helmet";
+import type { FC } from 'react'
+import { Helmet } from 'react-helmet'
 
-import type * as types from ".contentlayer/types";
+import type * as types from '.contentlayer/types'
 
-import { Header } from "./Header";
+import { Header } from './Header'
 
 export const Layout: FC<{
-  doc: types.Doc | types.Page;
+  doc: types.Doc | types.Page
 }> = ({ doc, children, ...props }) => {
   return (
     <>
@@ -24,5 +24,5 @@ export const Layout: FC<{
         <main>{children}</main>
       </div>
     </>
-  );
-};
+  )
+}

@@ -19,30 +19,30 @@ Add markdown files to some directory.
 Add `contentlayer.config.js`
 
 ```jsx
-import { defineDocumentType, makeSource } from "contentlayer/source-files";
-import highlight from "rehype-highlight";
+import { defineDocumentType, makeSource } from 'contentlayer/source-files'
+import highlight from 'rehype-highlight'
 
 export const Post = defineDocumentType(() => ({
-  name: "Post",
+  name: 'Post',
   filePathPattern: `**/*.md`,
   fields: {
     title: {
-      type: "string",
-      description: "The title of the post",
+      type: 'string',
+      description: 'The title of the post',
       required: true,
     },
     date: {
-      type: "date",
-      description: "The date of the post",
+      type: 'date',
+      description: 'The date of the post',
       required: true,
     },
   },
-}));
+}))
 
 export default makeSource({
-  contentDirPath: "posts",
+  contentDirPath: 'posts',
   documentTypes: [Post],
-});
+})
 ```
 
 Build content.
