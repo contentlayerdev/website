@@ -1,0 +1,9 @@
+nav:
+  - label: Home
+    url: /
+  - label: Docs
+    url: /docs
+  - label: Community
+    url: /community
+  - label: GitHub
+    url: https://github.com/schickling/contentlayer
