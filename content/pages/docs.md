@@ -27,5 +27,9 @@ title: Docs
 
 ## References
 
-- Configuration
+- [Configuration](/docs/configuration)
+- [`makeSource`](/docs/make-source)
+- [`defineDocumentType`](/docs/document-type)
+- [`defineNestedType`](/docs/nested-type)
+- [Field Definitions](/docs/field-definitions)
 - [CLI](/docs/cli)
