@@ -3,6 +3,7 @@ title: Docs
 ---
 
 - [Getting Started](/docs/getting-started)
+- [F.A.Q.](/docs/faq)
 
 ## How-To Guides
 
