@@ -2,7 +2,7 @@
 title: F.A.Q.
 ---
 
-## Why generates Contentlayer a `node_modules/.contentlayer` folder?
+## Why does Contentlayer generate a `node_modules/.contentlayer` folder?
 
 - Benefits
   - Most developers already have `node_modules` in their `.gitignore` file
