@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+body,
+#__next {
+  @apply h-full;
+}
+
 @layer base {
   h1,
   h2,
@@ -9,7 +15,7 @@
   h4,
   h5,
   h6 {
-    @apply mb-4;
+    @apply mb-4 font-semibold;
   }
 
   h1 {
@@ -25,8 +31,7 @@
   }
 
   a {
-    @apply text-blue-600
-      underline;
+    @apply text-blue-600 underline;
   }
 
   p,
@@ -37,13 +42,11 @@
   }
 
   ol {
-    @apply list-decimal
-    ml-4;
+    @apply ml-4 list-decimal;
   }
 
   ul {
-    @apply list-disc
-    ml-4;
+    @apply ml-4 list-disc;
   }
 
   li {

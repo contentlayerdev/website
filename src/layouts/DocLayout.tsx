@@ -1,9 +1,10 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import type { FC } from 'react'
+import type * as types from '.contentlayer/types'
+import classnames from 'classnames'
 
 import { Layout } from '../components/Layout'
-import type * as types from '.contentlayer/types'
 import { TreeRoot } from '../pages/docs/[[...docsSlug]]'
 
 export const DocLayout: FC<{ doc: types.Doc; tree: TreeRoot }> = ({ doc, tree }) => {
@@ -22,9 +23,9 @@ export const DocLayout: FC<{ doc: types.Doc; tree: TreeRoot }> = ({ doc, tree })
   return (
     <Layout doc={doc}>
       <div className="flex">
-        <aside className="w-64 p-4 border-r">
-          <nav className="text-sm">
-            <Tree tree={tree} level={0} />
+        <aside className="overflow-y-auto fixed w-80" style={{ height: 'calc(100vh - 57px)', top: 57 }}>
+          <div className="p-4 h-full border-r">
+            <Tree tree={tree} level={0} activeUrlPath={router.asPath} />
             {/* {allDocs.map((doc, idx) => {
               return (
                 <span key={idx} className="block mb-2">
@@ -34,25 +35,33 @@ export const DocLayout: FC<{ doc: types.Doc; tree: TreeRoot }> = ({ doc, tree })
                 </span>
               )
             })} */}
-          </nav>
+          </div>
         </aside>
-        <div className="flex-1 p-4">
+        <div className="flex-1 p-8 ml-80 max-w-2xl" style={{ marginTop: 57 }}>
           <h1>{doc.title}</h1>
-          <div dangerouslySetInnerHTML={{ __html: doc.body.html }} />
+          <div className="text-sm" dangerouslySetInnerHTML={{ __html: doc.body.html }} />
         </div>
       </div>
     </Layout>
   )
 }
 
-const Tree: FC<{ tree: TreeRoot; level: number }> = ({ tree, level }) => (
-  <div style={{ paddingLeft: level * 8 }} className="mb-2">
+const Tree: FC<{ tree: TreeRoot; level: number; activeUrlPath: string }> = ({ tree, level, activeUrlPath }) => (
+  <div style={{ paddingLeft: level * 12 }} className="mb-2 space-y-1">
     {tree.map((treeNode) => (
       <div key={treeNode.urlPath}>
         <Link href={treeNode.urlPath}>
-          <a>{treeNode.title}</a>
+          <a
+            className={classnames('p-2 no-underline text-sm block rounded-md text-gray-800 hover:bg-gray-50', {
+              'bg-gray-100 font-bold': activeUrlPath === treeNode.urlPath,
+            })}
+          >
+            {treeNode.title}
+          </a>
         </Link>
-        {treeNode.children.length > 0 && <Tree tree={treeNode.children} level={level + 1} />}
+        {treeNode.children.length > 0 && (
+          <Tree tree={treeNode.children} level={level + 1} activeUrlPath={activeUrlPath} />
+        )}
       </div>
     ))}
   </div>
