@@ -1,6 +1,8 @@
 nav:
   - label: Home
     url: /
+  - label: Examples
+    url: /examples
   - label: Docs
     url: /docs
   - label: Community
