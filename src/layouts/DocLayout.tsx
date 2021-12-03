@@ -5,41 +5,27 @@ import type * as types from '.contentlayer/types'
 import classnames from 'classnames'
 
 import { Layout } from '../components/Layout'
-import { TreeRoot } from '../pages/docs/[[...docsSlug]]'
+import { TreeRoot } from '../pages/docs/[[...slug]]'
 
 export const DocLayout: FC<{ doc: types.Doc; tree: TreeRoot }> = ({ doc, tree }) => {
   const router = useRouter()
-
-  const navLinkClassName = (doc: types.Doc): string => {
-    let classes = ['px-2', 'py-2', 'block', 'rounded-md', 'text-black', 'no-underline']
-    if (router?.asPath === `/${doc.url_path}`) {
-      classes.push('bg-gray-200 font-semibold')
-    } else {
-      classes.push('hover:bg-gray-100 text-gray-700')
-    }
-    return classes.join(' ')
-  }
+  const SIDEBAR_WIDTH = 320
+  const HEADER_HEIGHT = 60
 
   return (
     <Layout doc={doc}>
       <div className="flex">
-        <aside className="overflow-y-auto fixed w-80" style={{ height: 'calc(100vh - 57px)', top: 57 }}>
-          <div className="p-4 h-full border-r">
+        <aside
+          className="fixed"
+          style={{ height: `calc(100vh - ${HEADER_HEIGHT}px)`, width: SIDEBAR_WIDTH, top: HEADER_HEIGHT }}
+        >
+          <div className="h-full p-4 overflow-y-auto border-r">
             <Tree tree={tree} level={0} activeUrlPath={router.asPath} />
-            {/* {allDocs.map((doc, idx) => {
-              return (
-                <span key={idx} className="block mb-2">
-                  <Link href={`/${doc.url_path}`}>
-                    <a className={navLinkClassName(doc)}>{doc.title}</a>
-                  </Link>
-                </span>
-              )
-            })} */}
           </div>
         </aside>
-        <div className="flex-1 p-8 ml-80 max-w-2xl" style={{ marginTop: 57 }}>
+        <div className="flex-1 max-w-2xl px-12 py-8 markdown" style={{ marginLeft: SIDEBAR_WIDTH }}>
           <h1>{doc.title}</h1>
-          <div className="text-sm" dangerouslySetInnerHTML={{ __html: doc.body.html }} />
+          <div dangerouslySetInnerHTML={{ __html: doc.body.html }} />
         </div>
       </div>
     </Layout>

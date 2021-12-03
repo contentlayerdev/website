@@ -1,20 +1,20 @@
 ---
-title: defineDocumentType
+title: Document Type Definition
 ---
 
 ## Usage
 
 ```js
 const Doc = defineDocumentType(() => ({
-  name: "Doc",
-  filePathPattern: "**/*.md",
-  bodyType: "md",
+  name: 'Doc',
+  filePathPattern: '**/*.md',
+  bodyType: 'md',
   fields: {
     title: {
-      type: "string",
+      type: 'string',
     },
   },
-}));
+}))
 ```
 
 ## Options
@@ -40,22 +40,22 @@ They follow a similar pattern to `fields`, except that each field takes a requir
 Here's an example that introspects the document for its path and applies a `url_path` property to the document.
 
 ```js
-import { urlFromFilePath } from "../utils";
+import { urlFromFilePath } from '../utils'
 
 export const Page = defineDocumentType(() => ({
-  name: "Page",
+  name: 'Page',
   filePathPattern: `**/*.md`,
   fields: {
     // ...
   },
   computedFields: {
     url_path: {
-      type: "string",
-      resolve: (doc) => doc._raw.flattenedPath.replace(/pages\/?/, ""),
+      type: 'string',
+      resolve: (doc) => doc._raw.flattenedPath.replace(/pages\/?/, ''),
     },
   },
   extensions: {},
-}));
+}))
 ```
 
 ### `filePathPattern`
@@ -74,17 +74,17 @@ By default, Contentlayer will grab any files matching the `filePathPattern`. Set
 
 ```js
 defineDocumentType(() => ({
-  name: "GlobalConfig",
+  name: 'GlobalConfig',
   filePathPattern: `config/global.yaml`,
   isSingleton: true,
   fields: {
     title: {
-      type: "string",
-      description: "The title of the site",
+      type: 'string',
+      description: 'The title of the site',
       required: true,
     },
   },
-}));
+}))
 ```
 
 ### `extensions`

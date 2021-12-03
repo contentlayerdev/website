@@ -5,25 +5,25 @@ import { allDocs } from '.contentlayer/data'
 import { Doc } from '.contentlayer/types'
 
 import { DocLayout } from '../../layouts/DocLayout'
-import { defineStaticProps, toDocsParams } from '../../utils/next'
+import { defineStaticProps, toParams } from '../../utils/next'
 
 export const getStaticPaths = async () => {
-  const paths = allDocs.map((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join('/')).map(toDocsParams)
+  const paths = allDocs.map((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join('/')).map(toParams)
 
   return { paths, fallback: 'blocking' }
 }
 
 export const getStaticProps = defineStaticProps(async (context) => {
   const params = context.params as any
-  const pagePath = params.docsSlug?.join('/') ?? ''
+  const pagePath = params.slug?.join('/') ?? ''
 
-  const doc = allDocs.find((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join('/') === pagePath)
+  const doc = allDocs.find((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join('/') === pagePath)!
 
-  if (doc === undefined) {
-    return {
-      redirect: { destination: '/docs', statusCode: 301 },
-    } as never // return as `never` to not confuse `InferGetStaticPropsType`
-  }
+  // if (doc === undefined) {
+  //   return {
+  //     redirect: { destination: '/docs', statusCode: 301 },
+  //   } as never // return as `never` to not confuse `InferGetStaticPropsType`
+  // }
 
   const tree = buildTree(allDocs)
 

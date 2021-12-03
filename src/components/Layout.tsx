@@ -20,7 +20,7 @@ export const Layout: FC<{
 
       <Header />
 
-      <div id="page" className="h-full">
+      <div id="page" className="h-full pt-[57px]">
         {children}
       </div>
     </>

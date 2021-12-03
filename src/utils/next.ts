@@ -18,10 +18,6 @@ export function toParams(path: string): { params: { slug: string[] } } {
   return { params: { slug: path.replace(/^\//, '').split('/') } }
 }
 
-export function toDocsParams(path: string): { params: { docsSlug: string[] } } {
-  return { params: { docsSlug: path.replace(/^\//, '').split('/') } }
-}
-
 export function notUndefined<T>(_: T | undefined): _ is T {
   return _ !== undefined
 }
