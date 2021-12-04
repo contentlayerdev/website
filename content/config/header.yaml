@@ -2,7 +2,7 @@ nav:
   - label: Home
     url: /
   - label: Examples
-    url: /examples
+    url: https://github.com/contentlayerdev/contentlayer/tree/main/examples
   - label: Docs
     url: /docs
   - label: Community
