@@ -1,57 +1,14 @@
+@import url('./markdown.css');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+html,
+body,
+#__next {
+  @apply h-full;
+}
+
 @layer base {
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply mb-4;
-  }
-
-  h1 {
-    @apply text-4xl;
-  }
-
-  h2 {
-    @apply text-2xl;
-  }
-
-  h3 {
-    @apply text-xl;
-  }
-
-  a {
-    @apply text-blue-600
-      underline;
-  }
-
-  p,
-  pre,
-  ul,
-  ol {
-    @apply mb-4;
-  }
-
-  ol {
-    @apply list-decimal
-    ml-4;
-  }
-
-  ul {
-    @apply list-disc
-    ml-4;
-  }
-
-  li {
-    @apply mb-2;
-  }
-
-  li > ol,
-  li > ul {
-    @apply mt-2;
-  }
 }

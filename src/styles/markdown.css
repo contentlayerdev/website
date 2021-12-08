@@ -1,0 +1,77 @@
+.markdown {
+  @apply text-gray-800;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply mb-6 mt-12 font-semibold;
+  }
+
+  h1 {
+    @apply text-3xl font-bold mt-0;
+  }
+
+  h2 {
+    @apply text-2xl;
+  }
+
+  h3 {
+    @apply text-xl;
+  }
+
+  a {
+    @apply text-blue-500 border-b border-blue-500 no-underline hover:text-blue-700 hover:border-blue-700;
+  }
+
+  p,
+  pre,
+  ul,
+  ol {
+    @apply mb-4;
+  }
+
+  ol {
+    @apply ml-4 list-decimal;
+  }
+
+  ul {
+    @apply ml-4 list-disc;
+  }
+
+  li {
+    @apply mb-2;
+  }
+
+  li > ol,
+  li > ul {
+    @apply mt-2;
+  }
+
+  /* pre code {
+    @apply bg-gray-100;
+  } */
+
+  .hljs {
+    font-size: 13px;
+    @apply px-3 py-2 font-mono border border-gray-100 rounded-md bg-gray-50 block overflow-auto;
+  }
+
+  h1 code,
+  h2 code,
+  h3 code,
+  h4 code,
+  h5 code,
+  h6 code,
+  p code,
+  table code {
+    @apply px-1 py-px font-mono border border-gray-100 rounded bg-gray-50;
+  }
+
+  p code,
+  table code {
+    @apply text-sm;
+  }
+}

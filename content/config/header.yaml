@@ -1,9 +1,9 @@
 nav:
   - label: Home
     url: /
+  - label: Examples
+    url: https://github.com/contentlayerdev/contentlayer/tree/main/examples
   - label: Docs
     url: /docs
   - label: Community
     url: /community
-  - label: GitHub
-    url: https://github.com/schickling/contentlayer

@@ -1,5 +1,5 @@
 ---
-title: Getting Started
+title: Full tutorial
 ---
 
 Using the [demo](https://github.com/vercel/next-learn-starter/tree/master/demo) from Next.js Learn tutorial. For this guide, we should start from scratch.

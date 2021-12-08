@@ -20,8 +20,8 @@ export const Layout: FC<{
 
       <Header />
 
-      <div id="page" className="site">
-        <main>{children}</main>
+      <div id="page" className="h-full pt-[57px]">
+        {children}
       </div>
     </>
   )

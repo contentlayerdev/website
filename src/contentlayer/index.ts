@@ -1,4 +1,4 @@
-export { Doc } from "./models/Doc";
-export { GlobalConfig } from "./models/GlobalConfig";
-export { HeaderConfig } from "./models/HeaderConfig";
-export { Page } from "./models/Page";
+export { Doc } from "./document/Doc";
+export { GlobalConfig } from "./document/GlobalConfig";
+export { HeaderConfig } from "./document/HeaderConfig";
+export { Page } from "./document/Page";

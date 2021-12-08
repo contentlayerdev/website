@@ -1,6 +1,6 @@
 import { defineDocumentType } from "contentlayer/source-files";
 
-import { Link } from "../fragments/Link";
+import { Link } from "../nested/Link";
 
 export const HeaderConfig = defineDocumentType(() => ({
   name: "HeaderConfig",
