@@ -1,3 +1,11 @@
 ---
-title: 'Source: Local'
+title: "Source: Local Files"
 ---
+
+Contentlayer provides the foundation for building a structured content system using local data and content files (Markdown, JSON, YAML, etc.).
+
+There are three main facets to building this system:
+
+- [`makeSource`](/docs/reference/local-source/make-source) controls the entire schema definition for your application.
+- [`defineDocumentType`](/docs/reference/local-source/define-document-type) defines the schema top-level document types (also known as _models_ or _content types_).
+- [`defineNestedType`](/docs/reference/local-source/define-nested-type) defines the schema for data shapes that can be reused across multiple document type definitions.
