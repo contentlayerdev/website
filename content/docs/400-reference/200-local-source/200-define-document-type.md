@@ -1,6 +1,6 @@
 ---
 title: defineDocumentType (Local)
-label: defineDocumentType
+nav_title: defineDocumentType
 ---
 
 `defineDocumentType` defines the schema for one particular document type, often referred to as a model or content type.

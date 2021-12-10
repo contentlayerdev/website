@@ -1,6 +1,6 @@
 ---
 title: makeSource (Local)
-label: makeSource
+nav_title: makeSource
 ---
 
 `makeSource` provides Contentlayer with the schema and configuration for your application.

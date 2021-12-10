@@ -12,6 +12,10 @@ export const Doc = defineDocumentType(() => ({
       description: 'The title of the page',
       required: true,
     },
+    nav_title: {
+      type: 'string',
+      description: 'Override the title for display in nav',
+    },
     label: {
       type: 'string',
     },
