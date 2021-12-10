@@ -3,9 +3,34 @@ title: Field Types (Local)
 nav_title: Field Types
 ---
 
-Additional field type options are available based on the chosen type. Here are the expanded details.
+Field definitions specify the expected shape and behavior of your content. They tell Contentlayer how to parse each property in a content object into data that your application can use.
 
-### `boolean`
+All fields share the same basic options, while other options are available depending on the type of field. See below for more information.
+
+## Shared Options
+
+The name of the field is defined as the key of the definition object (see example). All field definitions have the following options available:
+
+- `type` (`string`, required): The name of the type.
+- `required` (`boolean`, default: `false`): Whether to validate the existence of the field when parsing content.
+- `description` (`string`): A short description to editors how the field is to be used.
+
+The field type then dictates all other available options. Look below for more information.
+
+**Example:**
+
+This is a type definition that defines a single field with the name `title` and of type `string` that is not required.
+
+```js
+defineDocumentType(() => ({
+  // ...
+  fields: {
+    title: { type: 'string' },
+  },
+}))
+```
+
+## `boolean`
 
 A boolean field can have either a `true` or `false` value.
 
@@ -27,7 +52,7 @@ defineDocumentType(() => ({
 }))
 ```
 
-### `date`
+## `date`
 
 Date fields return an instance of `Date`.
 
@@ -48,7 +73,7 @@ defineDocumentType(() => ({
 }))
 ```
 
-### `enum`
+## `enum`
 
 Enums are a specialized string field, where the string must match one of the defined options.
 
@@ -72,7 +97,7 @@ defineDocumentType(() => ({
 }))
 ```
 
-### `json`
+## `json`
 
 JSON fields are open-ended and can store data of any valid JSON structure.
 
@@ -93,7 +118,7 @@ defineDocumentType(() => ({
 }))
 ```
 
-### `list`
+## `list`
 
 TODO
 
@@ -115,7 +140,7 @@ defineDocumentType(() => ({
 }))
 ```
 
-### `markdown`
+## `markdown`
 
 TODO
 
@@ -137,7 +162,7 @@ defineDocumentType(() => ({
 }))
 ```
 
-### `mdx`
+## `mdx`
 
 TODO
 
@@ -159,7 +184,7 @@ defineDocumentType(() => ({
 }))
 ```
 
-### `nested`
+## `nested`
 
 TODO
 
@@ -181,7 +206,7 @@ defineDocumentType(() => ({
 }))
 ```
 
-### `number`
+## `number`
 
 **Options:**
 
@@ -201,7 +226,7 @@ defineDocumentType(() => ({
 }))
 ```
 
-### `reference`
+## `reference`
 
 TODO
 
@@ -223,7 +248,7 @@ defineDocumentType(() => ({
 }))
 ```
 
-### `string`
+## `string`
 
 **Options:**
 

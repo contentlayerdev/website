@@ -39,30 +39,7 @@ In the usage example, the `name` was `Doc`, which would generate a data object `
 
 ### `fields`
 
-Field definitions. This is what defines the shape of your document. See [field types](/docs/reference/local-source/field-types) for more information.
-
-**Options:**
-
-The name of the field is defined as the key of the definition object (see example). All field definitions have the following options available:
-
-- `type` (`string`, required): The name of the type.
-- `required` (`boolean`, default: `false`): Whether to validate the existence of the field when parsing content.
-- `description` (`string`): A short description to editors how the field is to be used.
-
-The field type then dictates all other available options. See _Field Types_ below for more information.
-
-**Example:**
-
-This is a type definition that defines a single field with the name `title` and of type `string` that is not required.
-
-```js
-defineDocumentType(() => ({
-  // ...
-  fields: {
-    title: { type: 'string' },
-  },
-}))
-```
+Field definitions determine the data shape for the document type. See [the field tyeps reference](./field-types) for more information.
 
 ### `description`
 
