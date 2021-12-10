@@ -42,6 +42,7 @@ export type TreeRoot = TreeNode[]
 
 export type TreeNode = {
   title: string
+  label: string | null
   urlPath: string
   children: TreeNode[]
 }
@@ -63,6 +64,7 @@ const buildTree = (docs: Doc[], parentPathNames: string[] = []): TreeNode[] => {
     .sort((a, b) => a.pathSegments[level].order - b.pathSegments[level].order)
     .map<TreeNode>((doc) => ({
       title: doc.title,
+      label: doc.label ?? null,
       urlPath: '/docs/' + doc.pathSegments.map((_: PathSegment) => _.pathName).join('/'),
       children: buildTree(
         docs,

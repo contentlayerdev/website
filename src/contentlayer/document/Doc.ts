@@ -12,6 +12,9 @@ export const Doc = defineDocumentType(() => ({
       description: 'The title of the page',
       required: true,
     },
+    label: {
+      type: 'string',
+    },
     // seo: { type: 'nested', of: SEO },
   },
   computedFields: {

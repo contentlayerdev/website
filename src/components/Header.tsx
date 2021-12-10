@@ -9,9 +9,14 @@ export const Header = () => {
 
   return (
     <header className="fixed z-10 flex justify-between w-full px-6 items-center bg-white border-b border-gray-100 dark:bg-gray-950 dark:border-gray-800 bg-opacity-90 backdrop-filter backdrop-blur-sm h-[60px]">
-      <Link href="/">
-        <a className="font-extrabold no-underline text-gray-950 dark:text-white">Contentlayer</a>
-      </Link>
+      <div className="flex items-center space-x-2.5">
+        <Link href="/">
+          <a className="font-extrabold no-underline text-gray-950 dark:text-white">Contentlayer</a>
+        </Link>
+        <span className="px-1.5 py-0.5 uppercase bg-blue-50 text-blue-400 border border-blue-100 dark:border-blue-900/90 dark:bg-blue-900/10 dark:text-blue-300 rounded-md tracking-wide [font-size:11px]">
+          Alpha
+        </span>
+      </div>
 
       <nav className="flex items-center space-x-3 text-sm">
         {(headerConfig.nav ?? []).map((link, idx) => {
