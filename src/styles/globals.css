@@ -1,4 +1,4 @@
-@import url('./markdown.css');
+@import url("./markdown.css");
 
 @tailwind base;
 @tailwind components;
@@ -7,7 +7,7 @@
 html,
 body,
 #__next {
-  @apply h-full;
+  @apply h-full bg-white dark:bg-gray-950 text-gray-950 dark:text-white;
 }
 
 @layer base {
