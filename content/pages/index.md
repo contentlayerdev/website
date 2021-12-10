@@ -1,5 +1,0 @@
----
-title: Contentlayer
----
-
-Contentlayer is a content toolkit making working with content in your Next.js app super easy.

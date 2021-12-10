@@ -1,10 +1,10 @@
-import { makeSource } from 'contentlayer/source-files'
-import highlight from 'rehype-highlight'
+import { makeSource } from "contentlayer/source-files";
+import highlight from "rehype-highlight";
 
-import * as documentTypes from './src/contentlayer'
+import * as documentTypes from "./src/contentlayer";
 
 export default makeSource({
-  contentDirPath: 'content',
+  contentDirPath: "content",
   documentTypes,
   markdown: { rehypePlugins: [highlight] },
-})
+});

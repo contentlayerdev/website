@@ -6,6 +6,7 @@ import classnames from 'classnames'
 
 import { Layout } from '../components/Layout'
 import { TreeRoot } from '../pages/docs/[[...slug]]'
+import React from 'react'
 
 export const DocLayout: FC<{ doc: types.Doc; tree: TreeRoot }> = ({ doc, tree }) => {
   const router = useRouter()
@@ -17,9 +18,13 @@ export const DocLayout: FC<{ doc: types.Doc; tree: TreeRoot }> = ({ doc, tree })
       <div className="flex">
         <aside
           className="fixed"
-          style={{ height: `calc(100vh - ${HEADER_HEIGHT}px)`, width: SIDEBAR_WIDTH, top: HEADER_HEIGHT }}
+          style={{
+            height: `calc(100vh - ${HEADER_HEIGHT}px)`,
+            width: SIDEBAR_WIDTH,
+            top: HEADER_HEIGHT,
+          }}
         >
-          <div className="h-full p-4 overflow-y-auto border-r">
+          <div className="h-full p-4 overflow-y-auto border-r border-gray-100 dark:border-gray-800">
             <Tree tree={tree} level={0} activeUrlPath={router.asPath} />
           </div>
         </aside>
@@ -35,20 +40,28 @@ export const DocLayout: FC<{ doc: types.Doc; tree: TreeRoot }> = ({ doc, tree })
 const Tree: FC<{ tree: TreeRoot; level: number; activeUrlPath: string }> = ({ tree, level, activeUrlPath }) => (
   <div style={{ paddingLeft: level * 12 }} className="mb-2 space-y-1">
     {tree.map((treeNode) => (
-      <div key={treeNode.urlPath}>
+      <React.Fragment key={treeNode.urlPath}>
         <Link href={treeNode.urlPath}>
           <a
-            className={classnames('p-2 no-underline text-sm block rounded-md text-gray-800 hover:bg-gray-50', {
-              'bg-gray-100 font-bold': activeUrlPath === treeNode.urlPath,
-            })}
+            className={classnames(
+              'py-2 px-4 no-underline text-sm rounded-md hover:bg-gray-50 dark:hover:bg-gray-850 flex items-center space-x-2.5',
+              activeUrlPath === treeNode.urlPath
+                ? 'bg-gray-100 text-black dark:bg-gray-800 dark:text-white'
+                : 'text-gray-500 dark:text-gray-400',
+            )}
           >
-            {treeNode.title}
+            <span>{treeNode.title}</span>
+            {treeNode.label && (
+              <div className="px-1.5 uppercase bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-gray-300 rounded-md [font-size:10px] tracking-wide">
+                {treeNode.label}
+              </div>
+            )}
           </a>
         </Link>
         {treeNode.children.length > 0 && (
           <Tree tree={treeNode.children} level={level + 1} activeUrlPath={activeUrlPath} />
         )}
-      </div>
+      </React.Fragment>
     ))}
   </div>
 )

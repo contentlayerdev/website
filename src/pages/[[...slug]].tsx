@@ -1,10 +1,10 @@
 import type { InferGetStaticPropsType } from 'next'
 import type { FC } from 'react'
+import { allPages } from '.contentlayer/data'
 
 import { PageLayout } from '../layouts/PageLayout'
-
 import { defineStaticProps, toParams } from '../utils/next'
-import { allPages } from '.contentlayer/data'
+import { useLiveReload } from 'next-contentlayer/hooks'
 
 export const getStaticPaths = async () => {
   const paths = allPages.map((_) => _.url_path).map(toParams)
@@ -22,6 +22,8 @@ export const getStaticProps = defineStaticProps(async (context) => {
 })
 
 const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ doc }) => {
+  useLiveReload()
+
   return <PageLayout page={doc} />
 }
 

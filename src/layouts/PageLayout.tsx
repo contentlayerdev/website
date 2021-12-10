@@ -2,13 +2,18 @@ import type { FC } from 'react'
 
 import { Layout } from '../components/Layout'
 import type * as types from '.contentlayer/types'
+import { useMDXComponent } from 'next-contentlayer/hooks'
+import { Playground } from '../components/Playground'
+
+const mdxComponents = { Playground }
 
 export const PageLayout: FC<{ page: types.Page }> = ({ page }) => {
+  const MDXContent = useMDXComponent(page.body.code)
   return (
     <Layout doc={page}>
-      <div className="max-w-2xl py-8 mx-auto">
+      <div className="justify-center max-w-2xl py-8 mx-auto markdown">
         <h1>{page.title}</h1>
-        <div dangerouslySetInnerHTML={{ __html: page.body.html }} />
+        <MDXContent components={mdxComponents} />
       </div>
     </Layout>
   )

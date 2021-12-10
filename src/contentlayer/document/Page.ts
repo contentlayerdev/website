@@ -5,7 +5,8 @@ import { urlFromFilePath } from '../utils'
 
 export const Page = defineDocumentType(() => ({
   name: 'Page',
-  filePathPattern: `pages/**/*.md`,
+  filePathPattern: `pages/**/*.mdx`,
+  bodyType: 'mdx',
   fields: {
     title: {
       type: 'string',

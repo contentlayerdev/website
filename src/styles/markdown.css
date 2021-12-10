@@ -1,5 +1,5 @@
 .markdown {
-  @apply text-gray-800;
+  @apply text-gray-800 dark:text-gray-100;
 
   h1,
   h2,
@@ -54,11 +54,6 @@
     @apply bg-gray-100;
   } */
 
-  .hljs {
-    font-size: 13px;
-    @apply px-3 py-2 font-mono border border-gray-100 rounded-md bg-gray-50 block overflow-auto;
-  }
-
   h1 code,
   h2 code,
   h3 code,
@@ -66,12 +61,25 @@
   h5 code,
   h6 code,
   p code,
+  pre code,
   table code {
-    @apply px-1 py-px font-mono border border-gray-100 rounded bg-gray-50;
+    @apply px-1 py-px font-mono border rounded border-gray-100 bg-gray-50;
   }
 
   p code,
   table code {
     @apply text-sm;
+  }
+
+  .hljs {
+    font-size: 13px;
+    @apply px-3 py-2 rounded-md block overflow-auto;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    code {
+      @apply text-gray-950 bg-gray-50;
+      filter: invert(90%) hue-rotate(180deg);
+    }
   }
 }
