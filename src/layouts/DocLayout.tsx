@@ -50,7 +50,7 @@ const Tree: FC<{ tree: TreeRoot; level: number; activeUrlPath: string }> = ({ tr
                 : 'text-gray-500 dark:text-gray-400',
             )}
           >
-            <span>{treeNode.title}</span>
+            <span>{treeNode.nav_title || treeNode.title}</span>
             {treeNode.label && (
               <div className="px-1.5 uppercase bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-gray-300 rounded-md [font-size:10px] tracking-wide">
                 {treeNode.label}
