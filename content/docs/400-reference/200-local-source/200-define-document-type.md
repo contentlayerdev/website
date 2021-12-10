@@ -39,7 +39,7 @@ In the usage example, the `name` was `Doc`, which would generate a data object `
 
 ### `fields`
 
-Field definitions determine the data shape for the document type. See [the field tyeps reference](./field-types) for more information.
+Field definitions determine the data shape for the document type. See [the field types reference](./field-types) for more information.
 
 ### `description`
 
