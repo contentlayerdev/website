@@ -30,6 +30,7 @@ export const Header = () => {
                     ? 'text-gray-950 dark:text-gray-100'
                     : 'text-gray-500 dark:text-gray-400 hover:text-gray-950 dark:hover:text-gray-100',
                 )}
+                target={link.isExternal ? '_blank' : undefined}
               >
                 <span>{link.label}</span>
                 {link.isExternal && <ExternalLinkIcon />}
