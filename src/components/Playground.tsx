@@ -2,7 +2,7 @@ import { FC } from 'react'
 
 export const Playground: FC = () => {
   return (
-    <div className="h-[700px] my-8 relative mx-[-50vw] right-1/2 left-1/2 w-screen px-5">
+    <div className="h-[800px] my-8 relative mx-[-50vw] right-1/2 left-1/2 w-screen px-5">
       <iframe
         className="w-full h-full"
         src="https://stackblitz.com/edit/github-nm2nxj-aekprc?devtoolsheight=33&embed=1&file=posts/pre-rendering.md"
