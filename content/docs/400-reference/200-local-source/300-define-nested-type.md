@@ -1,6 +1,6 @@
 ---
 title: defineNestedType (Local)
-nav_title: defineNestedType
+label: defineNestedType
 ---
 
 TODO

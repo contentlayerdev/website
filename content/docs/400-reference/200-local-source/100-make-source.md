@@ -1,6 +1,6 @@
 ---
 title: makeSource (Local)
-nav_title: makeSource
+label: makeSource
 ---
 
 `makeSource` provides Contentlayer with the schema and configuration for your application.
@@ -12,11 +12,11 @@ The code calling `makeSource` should be placed in `contentlayer.config.js`.
 ```ts
 // contentlayer.config.js
 
-import { makeSource } from "contentlayer/source-files";
+import { makeSource } from 'contentlayer/source-files'
 
 export default makeSource({
   /* options */
-});
+})
 ```
 
 ## Options
@@ -29,8 +29,8 @@ Path to where the content lives, relative to the root of your project.
 
 ```js
 export default makeSource({
-  contentDirPath: "content",
-});
+  contentDirPath: 'content',
+})
 ```
 
 This would load content from a `content` directory in your project.
@@ -53,13 +53,13 @@ Specify [remark](https://remark.js.org/) and [rehype](https://github.com/rehypej
 Here's an example that adds syntax highlighting.
 
 ```js
-import { makeSource } from "contentlayer/source-files";
-import highlight from "rehype-highlight";
+import { makeSource } from 'contentlayer/source-files'
+import highlight from 'rehype-highlight'
 
 export default makeSource({
   // ...
   markdown: { rehypePlugins: [highlight] },
-});
+})
 ```
 
 ### `mdx`
@@ -74,13 +74,13 @@ Follows the same pattern as the `markdown` option, but for MDX processing.
 **Example:**
 
 ```js
-import { makeSource } from "contentlayer/source-files";
-import highlight from "rehype-highlight";
+import { makeSource } from 'contentlayer/source-files'
+import highlight from 'rehype-highlight'
 
 export default makeSource({
   // ...
   mdx: { rehypePlugins: [highlight] },
-});
+})
 ```
 
 ### `fieldOptions`
@@ -97,10 +97,10 @@ Provides the ability to manipulate how fields are written when parsing the conte
 ```js
 export default makeSource({
   fieldOptions: {
-    bodyFieldName: "content",
-    typeFieldName: "__typename",
+    bodyFieldName: 'content',
+    typeFieldName: '__typename',
   },
-});
+})
 ```
 
 ### `date`

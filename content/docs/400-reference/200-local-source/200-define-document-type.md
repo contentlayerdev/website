@@ -1,6 +1,6 @@
 ---
 title: defineDocumentType (Local)
-nav_title: defineDocumentType
+label: defineDocumentType
 ---
 
 `defineDocumentType` defines the schema for one particular document type, often referred to as a model or content type.
@@ -11,15 +11,15 @@ Document type definitions are used within the options for [`makeSource`](/docs/r
 
 ```js
 const Doc = defineDocumentType(() => ({
-  name: "Doc",
-  filePathPattern: "**/*.md",
-  bodyType: "md",
+  name: 'Doc',
+  filePathPattern: '**/*.md',
+  bodyType: 'md',
   fields: {
     title: {
-      type: "string",
+      type: 'string',
     },
   },
-}));
+}))
 ```
 
 ## Options
@@ -59,9 +59,9 @@ This is a type definition that defines a single field with the name `title` and 
 defineDocumentType(() => ({
   // ...
   fields: {
-    title: { type: "string" },
+    title: { type: 'string' },
   },
-}));
+}))
 ```
 
 ### `description`
@@ -77,7 +77,7 @@ They follow a similar pattern to `fields` (see above), except that each field ta
 Here's an example that introspects the document for its path and applies a `url_path` property to the document.
 
 ```js
-import { urlFromFilePath } from "../utils";
+import { urlFromFilePath } from '../utils'
 
 export const Page = defineDocumentType(() => ({
   // ...
@@ -86,11 +86,11 @@ export const Page = defineDocumentType(() => ({
   },
   computedFields: {
     url_path: {
-      type: "string",
-      resolve: (doc) => doc._raw.flattenedPath.replace(/pages\/?/, ""),
+      type: 'string',
+      resolve: (doc) => doc._raw.flattenedPath.replace(/pages\/?/, ''),
     },
   },
-}));
+}))
 ```
 
 ### `filePathPattern`
@@ -105,14 +105,14 @@ This would recursively retrieve all files with a `.md` extension in the `content
 
 ```js
 const Doc = defineDocumentType(() => ({
-  filePathPattern: "**/*.md",
+  filePathPattern: '**/*.md',
   // ...
-}));
+}))
 
 export default makeSource({
-  contentDirPath: "content",
+  contentDirPath: 'content',
   documentTypes: [Doc],
-});
+})
 ```
 
 ### `bodyType` (default: `markdown`)
@@ -135,11 +135,11 @@ In this example, Contentlayer would export a `globalConfig` data object with the
 
 ```js
 defineDocumentType(() => ({
-  name: "GlobalConfig",
+  name: 'GlobalConfig',
   filePathPattern: `config/global.yaml`,
   isSingleton: true,
   // ...
-}));
+}))
 ```
 
 ## Field Types
@@ -159,11 +159,11 @@ defineDocumentType(() => ({
   // ...
   fields: {
     isActive: {
-      type: "boolean",
+      type: 'boolean',
       default: false,
     },
   },
-}));
+}))
 ```
 
 ### `date`
@@ -179,10 +179,10 @@ defineDocumentType(() => ({
   // ...
   fields: {
     publishAt: {
-      type: "date",
+      type: 'date',
     },
   },
-}));
+}))
 ```
 
 ### `enum`
@@ -199,12 +199,12 @@ defineDocumentType(() => ({
   // ...
   fields: {
     theme: {
-      type: "enum",
-      options: ["light", "dark"],
-      default: "dark",
+      type: 'enum',
+      options: ['light', 'dark'],
+      default: 'dark',
     },
   },
-}));
+}))
 ```
 
 ### `json`
@@ -220,10 +220,10 @@ defineDocumentType(() => ({
   // ...
   fields: {
     options: {
-      type: "json",
+      type: 'json',
     },
   },
-}));
+}))
 ```
 
 ### `list`
@@ -241,11 +241,11 @@ defineDocumentType(() => ({
   // ...
   fields: {
     title: {
-      type: "list",
+      type: 'list',
       required: true,
     },
   },
-}));
+}))
 ```
 
 ### `markdown`
@@ -263,11 +263,11 @@ defineDocumentType(() => ({
   // ...
   fields: {
     title: {
-      type: "markdown",
+      type: 'markdown',
       required: true,
     },
   },
-}));
+}))
 ```
 
 ### `mdx`
@@ -285,11 +285,11 @@ defineDocumentType(() => ({
   // ...
   fields: {
     title: {
-      type: "mdx",
+      type: 'mdx',
       required: true,
     },
   },
-}));
+}))
 ```
 
 ### `nested`
@@ -307,11 +307,11 @@ defineDocumentType(() => ({
   // ...
   fields: {
     title: {
-      type: "nested",
+      type: 'nested',
       required: true,
     },
   },
-}));
+}))
 ```
 
 ### `number`
@@ -327,11 +327,11 @@ defineDocumentType(() => ({
   // ...
   fields: {
     count: {
-      type: "number",
+      type: 'number',
       default: 0,
     },
   },
-}));
+}))
 ```
 
 ### `reference`
@@ -349,11 +349,11 @@ defineDocumentType(() => ({
   // ...
   fields: {
     title: {
-      type: "reference",
+      type: 'reference',
       required: true,
     },
   },
-}));
+}))
 ```
 
 ### `string`
@@ -369,9 +369,9 @@ defineDocumentType(() => ({
   // ...
   fields: {
     title: {
-      type: "string",
+      type: 'string',
       required: true,
     },
   },
-}));
+}))
 ```
