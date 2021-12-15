@@ -122,6 +122,13 @@ defineDocumentType(() => ({
 
 TODO
 
+## `markdown`
+
+Given a markdown string, this creates an object containing the following properties:
+
+- `raw`: The input string from the content file.
+- `html`: Output HTML to use in your components.
+
 **Options:**
 
 - `default` (`string`): A default value for the field if it is empty.
@@ -132,39 +139,39 @@ TODO
 defineDocumentType(() => ({
   // ...
   fields: {
-    title: {
-      type: 'list',
-      required: true,
+    // ...
+    description: {
+      type: 'markdown',
     },
   },
 }))
 ```
 
-## `markdown`
+If your content file has the following:
 
-TODO
+```yaml
+---
+description: Hello world
+---
+```
 
-**Options:**
+The result would be shaped like this:
 
-- `default` (`string`): A default value for the field if it is empty.
-
-**Example:**
-
-```js
-defineDocumentType(() => ({
-  // ...
-  fields: {
-    title: {
-      type: 'markdown',
-      required: true,
-    },
-  },
-}))
+```json
+{
+  "description": {
+    "raw": "Hello world",
+    "html": "<p>Hello world</p>"
+  }
+}
 ```
 
 ## `mdx`
 
-TODO
+Given an MDX string, this creates an object containing the following properties:
+
+- `raw`: The input string from the content file.
+- `code`: Output JavaScript code that can be loaded into your components.
 
 **Options:**
 
@@ -176,12 +183,31 @@ TODO
 defineDocumentType(() => ({
   // ...
   fields: {
-    title: {
+    // ...
+    description: {
       type: 'mdx',
-      required: true,
     },
   },
 }))
+```
+
+If your content file has the following:
+
+```yaml
+---
+description: Hello world
+---
+```
+
+The result would be shaped like this:
+
+```json
+{
+  "description": {
+    "raw": "Hello world",
+    "code": "var Component=(()=>{var m=Object.create ..."
+  }
+}
 ```
 
 ## `nested`
