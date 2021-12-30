@@ -87,13 +87,11 @@ This configuration specifies a single document type called `Post`. These documen
 - `body`: An object that contains the `raw` content from the markdown file and the converted `html` string. (This is built into Contentlayer by default and does not have to be defined.)
 - `url`: A string that takes the name of the file (without the extension) and prepends `/posts/` to it, thus defining that path at which that content will be available on your site. (More on this soon.)
 
-## 4. Add Post Layout
+## 4. Add Post Content
 
-Let's add some content and then build out a basic view for each post in the blog.
+Create a few markdown files in a `posts` directory and add some content to those files.
 
-### Add Post Content
-
-Create a few markdown files in a `posts` directory and add some content to those files. Here's an example of what a post file at `posts/lorem-ipsum.md` might look like:
+Here's an example of what a post file at `posts/post-01.md` might look like:
 
 ```md
 ---
@@ -106,17 +104,99 @@ Ullamco et nostrud magna commodo nostrud occaecat quis pariatur id ipsum. Ipsum 
 Mollit nisi cillum exercitation minim officia velit laborum non Lorem adipisicing dolore. Labore commodo consectetur commodo velit adipisicing irure dolore dolor reprehenderit aliquip. Reprehenderit cillum mollit eiusmod excepteur elit ipsum aute pariatur in. Cupidatat ex culpa velit culpa ad non labore exercitation irure laborum.
 ```
 
-### Build Post Layout
+The examples to follow will have three posts in this structure:
 
-Now let's build a layout for individual posts. We'll keep it super simple, though it'll still be quite a bit of code.
+```
+posts/
+├── post-01.md
+├── post-02.md
+└── post-03.md
+```
 
-Let's first add a library to help us with formatting the date.
+## 5. Add Post Feed
+
+Now we can tie it all together by bringing the data into our pages.
+
+### Date Formatting Helper
+
+Before we get into the pages, add a library to help us with formatting the date.
 
     npm install date-fns
 
-Then you can add the following code to `pages/posts/[slug].jsx`
+### Replace Home Page
+
+Replace the default home page (`pages/index.js`) with a listing of all the posts and links to the individual post pages.
 
 ```jsx
+// pages/index.js
+
+import Head from 'next/head'
+import Link from 'next/link'
+import { compareDesc, format, parseISO } from 'date-fns'
+import { allPosts } from '.contentlayer/data'
+
+export async function getStaticProps() {
+  const posts = allPosts.sort((a, b) => {
+    return compareDesc(new Date(a.date), new Date(b.date))
+  })
+  return { props: { posts } }
+}
+
+function PostCard(post) {
+  return (
+    <div className="mb-6">
+      <time dateTime={post.date} className="block text-sm text-gray-600">
+        {format(parseISO(post.date), 'LLLL d, yyyy')}
+      </time>
+      <h2 className="text-lg">
+        <Link href={post.url}>
+          <a className="text-blue-700 hover:text-blue-900">{post.title}</a>
+        </Link>
+      </h2>
+    </div>
+  )
+}
+
+export default function Home({ posts }) {
+  return (
+    <div className="max-w-2xl mx-auto py-16 text-center">
+      <Head>
+        <title>Contentlayer Blog Example</title>
+      </Head>
+
+      <h1 className="text-3xl font-bold mb-8">Contentlayer Blog Example</h1>
+
+      {posts.map((post, idx) => (
+        <PostCard key={idx} {...post} />
+      ))}
+    </div>
+  )
+}
+```
+
+Notice that the data was already available to us as `allPosts`, coming from `.contentlayer/data`. We used `allPosts` to sort the post in reverse chronological order, and then sent the posts to the home page as props.
+
+The home page then used the post data to map through the individual posts and render `PostCard` components. As your site grows, you'll want to break these components out into their own files. We're showing everything in the same file here to keep things simple.
+
+### Run the App
+
+Now you're ready to take it for a spin. Fire up the Next.js dev server.
+
+    npm run dev
+
+And visit localhost:3000 in your browser. You should see a listing of the posts you added to the `posts` directory!
+
+![Post Feed](/images/post-feed.png)
+
+## 6. Add Post Layout
+
+Notice that if you click on individual posts, you get a 404 error. That's because we haven't created the pages for these posts. Let's do that!
+
+Create the page at `pages/posts/[slug].js` and add the following code.
+
+```jsx
+// pages/posts/[slug].js
+
 import Head from 'next/head'
 import Link from 'next/link'
 import { format, parseISO } from 'date-fns'
@@ -166,30 +246,16 @@ const PostLayout = ({ post }) => {
 export default PostLayout
 ```
 
-Notice that we're importing data from `.contentlayer/data`. This is the beauty of Contentlayer. It has already loaded and shaped our date and keeps the logic in `getStaticPaths()` and `getStaticProps()` nice and simple.
+Notice again that we're importing data from `.contentlayer/data`. This is the beauty of Contentlayer. It has already loaded and shaped our date and keeps the logic in `getStaticPaths()` and `getStaticProps()` nice and simple.
 
-### Run the App
-
-Now you're ready to take it for a spin. Fire up the Next.js dev server.
-
-    npm run dev
-
-And visit localhost:3000 in your browser. You'll see the default Next.js landing page. But if you navigate directly to a post, you should see the post content.
-
-For example, if you had a file at `posts/lorem-ipsum.md`, you can navigate to localhost:3000/posts/lorem-ipsum and should see the content for that post.
+Now clicking on a post link from the home page should lead you to a working post page.
 
 ![Post Layout](/images/post-layout.png)
-
-## 5. Add Post Feed
-
-To wrap this up, let's replace the default home page with a listing of all the posts and links to the individual post pages.
-
-TODO
 
 ## Wrap Up
 
 🎉 You did it! 🎉
 
-You now have a simple blog site with Next.js and Contentlayer. Now you can dig in deeper to build great content with Contentlayer.
+You now have a simple blog site with Next.js and Contentlayer. But this is just the beginning. Now you can dig in and add all the bells and whistles necessary to build a site with great content using Contentlayer.
 
 Explore the rest of the docs or [join our community](/community) to get help and to keep up with all things Contentlayer.
