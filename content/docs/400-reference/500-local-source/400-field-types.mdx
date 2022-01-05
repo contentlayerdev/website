@@ -120,7 +120,69 @@ defineDocumentType(() => ({
 
 ## `list`
 
-TODO
+A list is an array of values that can be either strings or nested objects.
+
+**Options:**
+
+- `default` (`array`): A list of default values.
+- `of` (`NestedType`): A nested document type definition. [Learn more about nested types](./define-nested-types).
+
+**Example:**
+
+```js
+defineDocumentType(() => ({
+  // ...
+  fields: {
+    tags: {
+      type: 'list',
+    },
+  },
+}))
+```
+
+The default list type expects an array of strings, like this:
+
+```yaml
+---
+tags:
+  - My First Tag
+  - Another Tag
+---
+```
+
+### Nested Objects List
+
+To specify a list of nested objects, use the `of` option. Here's an example of the definition:
+
+```js
+const Tag = defineNestedType(() => ({
+  name: 'Tag',
+  fields: {
+    title: { type: 'string', required: true },
+  },
+}))
+
+defineDocumentType(() => ({
+  // ...
+  fields: {
+    // ...
+    tags: {
+      type: 'list',
+      of: Tag,
+    },
+  },
+}))
+```
+
+Now you could use the nested objects in your content files.
+
+```yaml
+---
+tags:
+  - title: My First Tag
+  - title: Another Tag
+---
+```
 
 ## `markdown`
 
@@ -183,7 +245,6 @@ Given an MDX string, this creates an object containing the following properties:
 defineDocumentType(() => ({
   // ...
   fields: {
-    // ...
     description: {
       type: 'mdx',
     },
@@ -212,24 +273,91 @@ The result would be shaped like this:
 
 ## `nested`
 
-TODO
+A nested field is a directly-embedded object that must match the shape of one or more types declared with the `of` option.
 
 **Options:**
 
 - `default` (`string`): A default value for the field if it is empty.
+- `of` (`NestedType` or `[NestedType]`): A nested document type definition. [Learn more about nested types](./define-nested-types).
 
 **Example:**
 
 ```js
+const Category = defineNestedType(() => ({
+  name: 'Category',
+  fields: {
+    title: { type: 'string', required: true },
+  },
+}))
+
 defineDocumentType(() => ({
   // ...
   fields: {
-    title: {
+    category: {
       type: 'nested',
-      required: true,
+      of: Category,
     },
   },
 }))
+```
+
+The shape of the content would then look like this:
+
+```yaml
+---
+category:
+  title: Sportsball
+---
+```
+
+This would produce a document where `category` was an embedded `object` with a `title` property.
+
+```json
+{
+  "category": {
+    "title": "Sportsball"
+  }
+}
+```
+
+### Polymorphic Nested Objects
+
+You can specify multiple nested field types by passing an array of nested types to the `of` option.
+
+```js
+const Tag = defineNestedType(() => ({
+  name: 'Tag',
+  fields: {
+    title: { type: 'string', required: true },
+  },
+}))
+
+const Category = defineNestedType(() => ({
+  name: 'Category',
+  fields: {
+    title: { type: 'string', required: true },
+  },
+}))
+
+defineDocumentType(() => ({
+  // ...
+  fields: {
+    category: {
+      type: 'nested',
+      of: [Category, Tag],
+    },
+  },
+}))
+```
+
+This requires that you specify the type of the object in your content using the `type` property.
+
+```yaml
+---
+category:
+  type: Tag
+  title: Hello World
+---
 ```
 
 ## `number`
@@ -254,24 +382,51 @@ defineDocumentType(() => ({
 
 ## `reference`
 
-TODO
+A path to another document file of a specific types. The path should be relative to the `contentDirPath` option passed to [`makeSource`](./make-source).
+
+<Callout>References are not currently transformed or embedded. They are simply passed through as strings.</Callout>
 
 **Options:**
 
 - `default` (`string`): A default value for the field if it is empty.
+- `of` (`DocumentType`): A document type definition.
 
 **Example:**
 
 ```js
+const Category = defineNestedType(() => ({
+  name: 'Category',
+  filePathPattern: 'categories/*.md',
+  fields: {
+    title: { type: 'string', required: true },
+  },
+}))
+
 defineDocumentType(() => ({
   // ...
   fields: {
-    title: {
+    category: {
       type: 'reference',
-      required: true,
+      of: Category,
     },
   },
 }))
+```
+
+Your content file would then point the referenced doc, using a path relative to the `contentDirPath` option passed to `makeSource`.
+
+```yaml
+---
+category: categories/hello-world.md
+---
+```
+
+This is presented as is in the output document at this time.
+
+```json
+{
+  "category": "categories/hello-world.md"
+}
 ```
 
 ## `string`
