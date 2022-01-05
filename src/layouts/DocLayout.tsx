@@ -2,16 +2,25 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import type { FC } from 'react'
 import type * as types from '.contentlayer/types'
+import { useMDXComponent } from 'next-contentlayer/hooks'
 import classnames from 'classnames'
 
 import { Layout } from '../components/Layout'
 import { TreeRoot } from '../pages/docs/[[...slug]]'
 import React from 'react'
 
+import { Callout } from '../components/Callout'
+
+const mdxComponents = {
+  Callout,
+}
+
 export const DocLayout: FC<{ doc: types.Doc; tree: TreeRoot }> = ({ doc, tree }) => {
   const router = useRouter()
   const SIDEBAR_WIDTH = 320
   const HEADER_HEIGHT = 60
+
+  const MDXContent = useMDXComponent(doc.body.code)
 
   return (
     <Layout doc={doc}>
@@ -30,7 +39,7 @@ export const DocLayout: FC<{ doc: types.Doc; tree: TreeRoot }> = ({ doc, tree })
         </aside>
         <div className="flex-1 max-w-2xl px-12 py-8 markdown" style={{ marginLeft: SIDEBAR_WIDTH }}>
           <h1>{doc.title}</h1>
-          <div dangerouslySetInnerHTML={{ __html: doc.body.html }} />
+          <MDXContent components={mdxComponents} />
         </div>
       </div>
     </Layout>

@@ -6,38 +6,48 @@ The Contentlayer CLI enables you to transform you content into data.
 
 ## Usage
 
-    contentlayer <command>
+```txt
+contentlayer <command>
+```
 
 To get a list of all commands, you can run `contentlayer` with the `--help` flag:
 
-    contentlayer --help
+```txt
+contentlayer --help
+```
 
 Which will produce an output that looks like this:
 
-    ━━━ Contentlayer CLI - 0.0.34 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```txt
+━━━ Contentlayer CLI - 0.0.34 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-      $ contentlayer <command>
+  $ contentlayer <command>
 
-    ━━━ General commands ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━ General commands ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-      contentlayer build [-c,--config #0] [--clearCache] [--verbose]
-        Transforms your content into static data
+  contentlayer build [-c,--config #0] [--clearCache] [--verbose]
+    Transforms your content into static data
 
-      contentlayer dev [-c,--config #0] [--clearCache] [--verbose]
-        Same as "contentlayer build" but with watch mode
+  contentlayer dev [-c,--config #0] [--clearCache] [--verbose]
+    Same as "contentlayer build" but with watch mode
 
-    You can also print more details about any of these commands by calling them
-    with the `-h,--help` flag right after the command name.
+You can also print more details about any of these commands by calling them
+with the `-h,--help` flag right after the command name.
+```
 
 ## Build
 
-    contentlayer build [options]
+```txt
+contentlayer build [options]
+```
 
 Transforms content into data objects that your pages and components can consume. These objects are written to files in the `node_modules/.contentlayer` directory.
 
 ## Dev
 
-    contentlayer build [options]
+```txt
+contentlayer build [options]
+```
 
 Runs a build, then listens for changes to your content files, rebuilding after each change.
 
