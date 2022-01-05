@@ -39,7 +39,14 @@ export const DocLayout: FC<{ doc: types.Doc; tree: TreeRoot }> = ({ doc, tree })
           </div>
         </aside>
         <div className="flex-1 max-w-2xl px-12 py-8 markdown" style={{ marginLeft: SIDEBAR_WIDTH }}>
-          <h1>{doc.title}</h1>
+          <h1>
+            {doc.title}{' '}
+            {doc.label && (
+              <span className="inline-block ml-2">
+                <Label text={doc.label} />
+              </span>
+            )}
+          </h1>
           <MDXContent components={mdxComponents} />
         </div>
       </div>
