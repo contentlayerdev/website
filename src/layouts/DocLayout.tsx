@@ -10,6 +10,7 @@ import { TreeRoot } from '../pages/docs/[[...slug]]'
 import React from 'react'
 
 import { Callout } from '../components/Callout'
+import { Label } from '../components/Label'
 
 const mdxComponents = {
   Callout,
@@ -60,11 +61,7 @@ const Tree: FC<{ tree: TreeRoot; level: number; activeUrlPath: string }> = ({ tr
             )}
           >
             <span>{treeNode.nav_title || treeNode.title}</span>
-            {treeNode.label && (
-              <div className="px-1.5 uppercase bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-gray-300 rounded-md [font-size:10px] tracking-wide">
-                {treeNode.label}
-              </div>
-            )}
+            {treeNode.label && <Label text={treeNode.label} />}
           </a>
         </Link>
         {treeNode.children.length > 0 && (
