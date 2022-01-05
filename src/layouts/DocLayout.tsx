@@ -21,7 +21,7 @@ export const DocLayout: FC<{ doc: types.Doc; tree: TreeRoot }> = ({ doc, tree })
   const SIDEBAR_WIDTH = 320
   const HEADER_HEIGHT = 60
 
-  const MDXContent = useMDXComponent(doc.body.code)
+  const MDXContent = doc?.body?.code ? useMDXComponent(doc.body.code) : null
 
   return (
     <Layout doc={doc}>
@@ -47,7 +47,7 @@ export const DocLayout: FC<{ doc: types.Doc; tree: TreeRoot }> = ({ doc, tree })
               </span>
             )}
           </h1>
-          <MDXContent components={mdxComponents} />
+          {MDXContent && <MDXContent components={mdxComponents} />}
         </div>
       </div>
     </Layout>
