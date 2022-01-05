@@ -1952,6 +1952,7 @@ __metadata:
     autoprefixer: ^10.4.0
     classnames: ^2.3.1
     contentlayer: ^0.0.34-dev.6
+    markdown-to-jsx: ^7.1.5
     next: 12.0.7
     next-contentlayer: ^0.0.34-dev.6
     postcss: ^8.4.4
@@ -4370,6 +4371,15 @@ __metadata:
   version: 1.1.1
   resolution: "markdown-extensions@npm:1.1.1"
   checksum: 8a6dd128be1c524049ea6a41a9193715c2835d3d706af4b8b714ff2043a82786dbcd4a8f1fa9ddd28facbc444426c97515aef2d1f3dd11d5e2d63749ba577b1e
+  languageName: node
+  linkType: hard
+
+"markdown-to-jsx@npm:^7.1.5":
+  version: 7.1.5
+  resolution: "markdown-to-jsx@npm:7.1.5"
+  peerDependencies:
+    react: ">= 0.14.0"
+  checksum: dad5c6f427fbd184467a6233a04501007beb8b92f71dfefb859442f6d9872b5e8024381ef41a2874ab8226befe3a0f1043e25af3f9df78b4a86b1b7160910326
   languageName: node
   linkType: hard
 

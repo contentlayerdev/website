@@ -1,3 +1,0 @@
----
-title: 'Source: Local'
----

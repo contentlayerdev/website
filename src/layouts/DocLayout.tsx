@@ -2,16 +2,26 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import type { FC } from 'react'
 import type * as types from '.contentlayer/types'
+import { useMDXComponent } from 'next-contentlayer/hooks'
 import classnames from 'classnames'
 
 import { Layout } from '../components/Layout'
 import { TreeRoot } from '../pages/docs/[[...slug]]'
 import React from 'react'
 
+import { Callout } from '../components/Callout'
+import { Label } from '../components/Label'
+
+const mdxComponents = {
+  Callout,
+}
+
 export const DocLayout: FC<{ doc: types.Doc; tree: TreeRoot }> = ({ doc, tree }) => {
   const router = useRouter()
   const SIDEBAR_WIDTH = 320
   const HEADER_HEIGHT = 60
+
+  const MDXContent = doc?.body?.code ? useMDXComponent(doc.body.code) : null
 
   return (
     <Layout doc={doc}>
@@ -29,8 +39,15 @@ export const DocLayout: FC<{ doc: types.Doc; tree: TreeRoot }> = ({ doc, tree })
           </div>
         </aside>
         <div className="flex-1 max-w-2xl px-12 py-8 markdown" style={{ marginLeft: SIDEBAR_WIDTH }}>
-          <h1>{doc.title}</h1>
-          <div dangerouslySetInnerHTML={{ __html: doc.body.html }} />
+          <h1>
+            {doc.title}{' '}
+            {doc.label && (
+              <span className="inline-block ml-2">
+                <Label text={doc.label} />
+              </span>
+            )}
+          </h1>
+          {MDXContent && <MDXContent components={mdxComponents} />}
         </div>
       </div>
     </Layout>
@@ -50,12 +67,8 @@ const Tree: FC<{ tree: TreeRoot; level: number; activeUrlPath: string }> = ({ tr
                 : 'text-gray-500 dark:text-gray-400',
             )}
           >
-            <span>{treeNode.title}</span>
-            {treeNode.label && (
-              <div className="px-1.5 uppercase bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-gray-300 rounded-md [font-size:10px] tracking-wide">
-                {treeNode.label}
-              </div>
-            )}
+            <span>{treeNode.nav_title || treeNode.title}</span>
+            {treeNode.label && <Label text={treeNode.label} />}
           </a>
         </Link>
         {treeNode.children.length > 0 && (

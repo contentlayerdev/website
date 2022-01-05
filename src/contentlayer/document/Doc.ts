@@ -5,12 +5,17 @@ import { urlFromFilePath } from '../utils'
 
 export const Doc = defineDocumentType(() => ({
   name: 'Doc',
-  filePathPattern: `docs/**/*.md`,
+  filePathPattern: `docs/**/*.mdx`,
+  bodyType: 'mdx',
   fields: {
     title: {
       type: 'string',
       description: 'The title of the page',
       required: true,
+    },
+    nav_title: {
+      type: 'string',
+      description: 'Override the title for display in nav',
     },
     label: {
       type: 'string',
