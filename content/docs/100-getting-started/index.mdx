@@ -1,6 +1,5 @@
 ---
-title: Getting started
-label: Coming Soon
+title: Getting Started
 ---
 
 This tutorial will get you comfortable with the basics of Contentlayer by showing how we can quickly build a blog site using Next.js.
@@ -11,9 +10,11 @@ If you'd like to dive right in and start playing with Contentlayer, you can open
 
 [![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-908a85?logo=gitpod)](http://gitpod.io/#https://github.com/contentlayerdev/next-contentlayer-example)
 
-## Tutorial Video [coming soon]
+## Example Project
 
-TODO: This video walks through the tutorial at a slower pace, with additional explanation for each step.
+[next-contentlayer-example](https://github.com/contentlayerdev/next-contentlayer-example) began as a working version of this tutorial. While it may drift over time, [this point in its history](https://github.com/contentlayerdev/next-contentlayer-example/tree/bca4b7884f5cad8963e631a2f24a19200c106495) is closest to what you will find below.
+
+See [the examples page](/docs/other/examples) for a full list of examples.
 
 ## 1. Setup Project
 
@@ -23,11 +24,15 @@ Just to demonstrate how quickly we can start working, let's start with a new bla
 
 Create a new Next.js project.
 
-    npx create-next-app contentlayer-example
+```
+npx create-next-app contentlayer-example
+```
 
 That command will place the project in a `contentlayer-example` directory. Change into that directory.
 
-    cd contentlayer-example
+```
+cd contentlayer-example
+```
 
 ### Add Tailwind
 
@@ -37,7 +42,9 @@ If you'd like to see some styling as we go without much extra effort, [follow th
 
 Install Contentlayer and the Next.js plugin.
 
-    npm install contentlayer next-contentlayer
+```
+npm install contentlayer next-contentlayer
+```
 
 To hook Contentlayer into the `next dev` and `next build` processes, you'll want to wrap the Next.js configuration using the `withContentlayer` method.
 
@@ -132,7 +139,9 @@ Now we can tie it all together by bringing the data into our pages.
 
 Before we get into the pages, add a library to help us with formatting the date.
 
-    npm install date-fns
+```
+npm install date-fns
+```
 
 ### Replace Home Page
 
@@ -193,7 +202,9 @@ The home page then used the post data to map through the individual posts and re
 
 Now you're ready to take it for a spin. Fire up the Next.js dev server.
 
-    npm run dev
+```
+npm run dev
+```
 
 And visit localhost:3000 in your browser. You should see a listing of the posts you added to the `posts` directory!
 
