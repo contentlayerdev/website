@@ -4,6 +4,8 @@ import { useRouter } from 'next/router'
 import { headerConfig } from '.contentlayer/data'
 import classNames from 'classnames'
 
+import { Label } from '../components/Label'
+
 export const Header = () => {
   const router = useRouter()
 
@@ -13,9 +15,7 @@ export const Header = () => {
         <Link href="/">
           <a className="font-extrabold no-underline text-gray-950 dark:text-white">Contentlayer</a>
         </Link>
-        <span className="px-1.5 py-0.5 uppercase bg-blue-50 text-blue-400 border border-blue-100 dark:border-blue-900/90 dark:bg-blue-900/10 dark:text-blue-300 rounded-md tracking-wide [font-size:11px]">
-          Alpha
-        </span>
+        <Label text="Alpha" theme="primary" />
       </div>
 
       <nav className="flex items-center space-x-3 text-sm">

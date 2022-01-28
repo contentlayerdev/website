@@ -1,3 +1,0 @@
----
-title: Generating a Sitemap
----
