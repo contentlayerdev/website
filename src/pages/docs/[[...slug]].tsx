@@ -48,6 +48,7 @@ export type TreeNode = {
   title: string
   nav_title: string | null
   label: string | null
+  excerpt: string | null
   urlPath: string
   children: TreeNode[]
 }
@@ -71,6 +72,7 @@ const buildTree = (docs: Doc[], parentPathNames: string[] = []): TreeNode[] => {
       nav_title: doc.nav_title ?? null,
       title: doc.title,
       label: doc.label ?? null,
+      excerpt: doc.excerpt ?? null,
       urlPath: '/docs/' + doc.pathSegments.map((_: PathSegment) => _.pathName).join('/'),
       children: buildTree(
         docs,
