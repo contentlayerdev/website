@@ -26,14 +26,18 @@ export const getStaticProps = defineStaticProps(async (context) => {
   // }
 
   const tree = buildTree(allDocs)
+  const childrenTree = buildTree(
+    allDocs,
+    doc.pathSegments.map((_: PathSegment) => _.pathName),
+  )
 
-  return { props: { doc, tree } }
+  return { props: { doc, tree, childrenTree } }
 })
 
-const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ doc, tree }) => {
+const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ doc, tree, childrenTree }) => {
   useLiveReload()
 
-  return <DocLayout {...{ doc, tree }} />
+  return <DocLayout {...{ doc, tree, childrenTree }} />
 }
 
 export default Page

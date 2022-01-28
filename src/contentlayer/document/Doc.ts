@@ -20,6 +20,10 @@ export const Doc = defineDocumentType(() => ({
     label: {
       type: 'string',
     },
+    show_child_cards: {
+      type: 'boolean',
+      default: false,
+    },
     // seo: { type: 'nested', of: SEO },
   },
   computedFields: {

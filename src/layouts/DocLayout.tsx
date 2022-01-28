@@ -6,17 +6,23 @@ import { useMDXComponent } from 'next-contentlayer/hooks'
 import classnames from 'classnames'
 
 import { Layout } from '../components/Layout'
-import { TreeRoot } from '../pages/docs/[[...slug]]'
+import { TreeRoot, TreeNode } from '../pages/docs/[[...slug]]'
 import React from 'react'
 
 import { Callout } from '../components/Callout'
+import { Card } from '../components/Card'
 import { Label } from '../components/Label'
 
 const mdxComponents = {
   Callout,
+  Card,
 }
 
-export const DocLayout: FC<{ doc: types.Doc; tree: TreeRoot }> = ({ doc, tree }) => {
+export const DocLayout: FC<{ doc: types.Doc; tree: TreeRoot; childrenTree: TreeNode[] }> = ({
+  doc,
+  tree,
+  childrenTree,
+}) => {
   const router = useRouter()
   const SIDEBAR_WIDTH = 320
   const HEADER_HEIGHT = 60
@@ -48,6 +54,7 @@ export const DocLayout: FC<{ doc: types.Doc; tree: TreeRoot }> = ({ doc, tree })
             )}
           </h1>
           {MDXContent && <MDXContent components={mdxComponents} />}
+          {doc.show_child_cards && <ChildCards tree={childrenTree} />}
         </div>
       </div>
     </Layout>
@@ -78,3 +85,17 @@ const Tree: FC<{ tree: TreeRoot; level: number; activeUrlPath: string }> = ({ tr
     ))}
   </div>
 )
+
+const ChildTreeItem: FC<{ item: TreeNode }> = ({ item }) => {
+  return <Card title={item.title} link={{ label: 'View Page', url: item.urlPath }} />
+}
+
+const ChildCards: FC<{ tree: TreeNode[] }> = ({ tree }) => {
+  return (
+    <div className="grid md:grid-cols-2 gap-4 mt-12">
+      {tree.map((item, idx) => (
+        <ChildTreeItem key={idx} {...{ item }} />
+      ))}
+    </div>
+  )
+}
