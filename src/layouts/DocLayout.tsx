@@ -38,7 +38,7 @@ export const DocLayout: FC<{ doc: types.Doc; tree: TreeRoot }> = ({ doc, tree })
             <Tree tree={tree} level={0} activeUrlPath={router.asPath} />
           </div>
         </aside>
-        <div className="flex-1 max-w-2xl px-12 py-8 markdown" style={{ marginLeft: SIDEBAR_WIDTH }}>
+        <div className="flex-1 max-w-3xl px-12 py-8 markdown" style={{ marginLeft: SIDEBAR_WIDTH }}>
           <h1>
             {doc.title}{' '}
             {doc.label && (
