@@ -1,8 +1,5 @@
+@import url('./tailwind.css');
 @import url('./markdown.css');
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 @layer base {
   html,
