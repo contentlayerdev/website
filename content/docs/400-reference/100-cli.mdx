@@ -42,7 +42,7 @@ with the `-h,--help` flag right after the command name.
 contentlayer build [options]
 ```
 
-Transforms content into data objects that your pages and components can consume. These objects are written to files in the `node_modules/.contentlayer` directory.
+Transforms content into data objects that your pages and components can consume. These objects are written to files in the `.contentlayer/generated` directory.
 
 ## Dev
 
@@ -62,7 +62,7 @@ Use a custom config file path. Both `contentlayer.config.ts` and `contentlayer.c
 
 ### `clearCache`
 
-Clears the `node_modules/.contentlayer` directory before running the specified command.
+Clears the `.contentlayer/generated` directory before running the specified command.
 
 ### `verbose`
 

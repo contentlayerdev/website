@@ -153,7 +153,7 @@ Replace the default home page (`pages/index.js`) with a listing of all the posts
 import Head from 'next/head'
 import Link from 'next/link'
 import { compareDesc, format, parseISO } from 'date-fns'
-import { allPosts } from '.contentlayer/data'
+import { allPosts } from 'contentlayer/generated'
 
 export async function getStaticProps() {
   const posts = allPosts.sort((a, b) => {
@@ -194,7 +194,7 @@ export default function Home({ posts }) {
 }
 ```
 
-Notice that the data was already available to us as `allPosts`, coming from `.contentlayer/data`. We used `allPosts` to sort the post in reverse chronological order, and then sent the posts to the home page as props.
+Notice that the data was already available to us as `allPosts`, coming from `contentlayer/generated`. We used `allPosts` to sort the post in reverse chronological order, and then sent the posts to the home page as props.
 
 The home page then used the post data to map through the individual posts and render `PostCard` components. As your site grows, you'll want to break these components out into their own files. We're showing everything in the same file here to keep things simple.
 
@@ -222,7 +222,7 @@ Create the page at `pages/posts/[slug].js` and add the following code.
 import Head from 'next/head'
 import Link from 'next/link'
 import { format, parseISO } from 'date-fns'
-import { allPosts } from '.contentlayer/data'
+import { allPosts } from 'contentlayer/generated'
 
 export async function getStaticPaths() {
   const paths = allPosts.map((post) => post.url)
@@ -268,7 +268,7 @@ const PostLayout = ({ post }) => {
 export default PostLayout
 ```
 
-Notice again that we're importing data from `.contentlayer/data`. This is the beauty of Contentlayer. It has already loaded and shaped our date and keeps the logic in `getStaticPaths()` and `getStaticProps()` nice and simple.
+Notice again that we're importing data from `contentlayer/generated`. This is the beauty of Contentlayer. It has already loaded and shaped our date and keeps the logic in `getStaticPaths()` and `getStaticProps()` nice and simple.
 
 Now clicking on a post link from the home page should lead you to a working post page.
 
