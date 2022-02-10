@@ -58,6 +58,24 @@ import { withContentlayer } from 'next-contentlayer'
 export default withContentlayer()({})
 ```
 
+Then add the following lines to your `tsconfig.json` or `jsconfig.json` file:
+
+```json
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "contentlayer/generated": ["./.contentlayer/generated"]
+      // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.tsx", "**/*.ts", ".contentlayer/generated"]
+  //                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+}
+```
+
+Contentlayer generates files in the `.contentlayer/generated` directory. This tells JavaScript (or TypeScript) to create an alias of `contentlayer/generated` to the generated files directory.
+
 ## 3. Define Post Schema
 
 Now that we have everything installed, we can begin to define our document schema. A document is an individual piece of content that Contentlayer transforms into data you can use in your components.
