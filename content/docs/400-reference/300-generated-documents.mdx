@@ -26,13 +26,13 @@ Generated JSON documents contain the data that was transformed from the content 
 They are placed in a type-specific directory within Contentlayer's data directory, following this pattern:
 
 ```txt
-.contentlayer/data/[DOCTYPE]/[ID].json
+.contentlayer/generated/[DOCTYPE]/[ID].json
 ```
 
 For example, if the document type was called `Page` and the ID of one object was `index.md`, then the path to that file would be:
 
 ```txt
-.contentlayer/data/Page/index.md.json
+.contentlayer/generated/Page/index.md.json
 ```
 
 ### Data Structure
@@ -97,13 +97,13 @@ The naming convention is to prepend the pluralized document type with "all". If 
 
 ### File Location
 
-The file is located in the main Contentlayer data directory and named according to its main export. In the example above where the document type name is `Page`, the file will live at `.contentlayer/data/allPages.mjs`.
+The file is located in the main Contentlayer data directory and named according to its main export. In the example above where the document type name is `Page`, the file will live at `.contentlayer/generated/allPages.mjs`.
 
 ## All Documents Manifest
 
 The main manifest file is responsible for exporting every document collection, as well as an `allDocuments` collection that is an array of every document across all document types.
 
-It it colocated with the collection manifest in the `.contentlayer/data` directory as `index.mjs`.
+It it colocated with the collection manifest in the `.contentlayer/generated` directory as `index.mjs`.
 
 Continuing the `Page` example, a simple version of the file may look like this:
 
@@ -131,7 +131,7 @@ allDocuments.filter((doc) => ['Page', 'Post'].includes(doc.type))
 You can do this instead:
 
 ```js
-import { isType, allDocuments } from '.contentlayer/data'
+import { isType, allDocuments } from 'contentlayer/generated'
 
 allDocuments.filter(isType(['Page', 'Post']))
 ```

@@ -1,6 +1,6 @@
 import type { InferGetStaticPropsType } from 'next'
 import type { FC } from 'react'
-import { allPages } from '.contentlayer/data'
+import { allPages } from 'contentlayer/generated'
 
 import { PageLayout } from '../layouts/PageLayout'
 import { defineStaticProps, toParams } from '../utils/next'

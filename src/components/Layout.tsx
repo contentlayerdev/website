@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 import { Helmet } from 'react-helmet'
 
-import type * as types from '.contentlayer/types'
+import type * as types from 'contentlayer/generated'
 
 import { Header } from './Header'
 

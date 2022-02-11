@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import type { FC } from 'react'
-import type * as types from '.contentlayer/types'
+import type * as types from 'contentlayer/generated'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import classnames from 'classnames'
 
@@ -63,8 +63,8 @@ export const DocLayout: FC<{ doc: types.Doc; tree: TreeRoot; childrenTree: TreeN
 
 const Tree: FC<{ tree: TreeRoot; level: number; activeUrlPath: string }> = ({ tree, level, activeUrlPath }) => (
   <div style={{ paddingLeft: level * 12 }} className="mb-2 space-y-1">
-    {tree.map((treeNode) => (
-      <React.Fragment key={treeNode.urlPath}>
+    {tree.map((treeNode, index) => (
+      <React.Fragment key={`${treeNode.urlPath}-${index}`}>
         <Link href={treeNode.urlPath}>
           <a
             className={classnames(

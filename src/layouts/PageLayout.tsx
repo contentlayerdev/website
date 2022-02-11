@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 
 import { Layout } from '../components/Layout'
-import type * as types from '.contentlayer/types'
+import type * as types from 'contentlayer/generated'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import { Playground } from '../components/Playground'
 

@@ -6,7 +6,7 @@ import { urlFromFilePath } from '../utils'
 export const Doc = defineDocumentType(() => ({
   name: 'Doc',
   filePathPattern: `docs/**/*.mdx`,
-  bodyType: 'mdx',
+  contentType: 'mdx',
   fields: {
     title: {
       type: 'string',
