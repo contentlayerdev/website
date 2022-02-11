@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-import { headerConfig } from '.contentlayer/data'
+import { headerConfig } from 'contentlayer/generated'
 import classNames from 'classnames'
 
 import { Label } from '../components/Label'

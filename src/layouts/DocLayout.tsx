@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import type { FC } from 'react'
-import type * as types from '.contentlayer/types'
+import type * as types from 'contentlayer/generated'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import classnames from 'classnames'
 
