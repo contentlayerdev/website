@@ -13,7 +13,7 @@ Document type definitions are used within the options for [`makeSource`](/docs/r
 const Doc = defineDocumentType(() => ({
   name: 'Doc',
   filePathPattern: '**/*.md',
-  bodyType: 'md',
+  contentType: 'md',
   fields: {
     title: {
       type: 'string',
@@ -92,7 +92,7 @@ export default makeSource({
 })
 ```
 
-### `bodyType` (default: `markdown`)
+### `contentType` (default: `markdown`)
 
 How the main content area of the file should be parsed. It is treated as markdown by default.
 
