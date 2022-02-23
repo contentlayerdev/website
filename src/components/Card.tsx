@@ -7,9 +7,10 @@ import { Label } from './Label'
 export const Card: FC<{
   title: string
   label: string | null
-  body: string | null
+  subtitle: string | null
+  children: React.ReactChildren | null
   link?: { label: string; url: string }
-}> = ({ title, label, body, link }) => {
+}> = ({ title, label, subtitle, children, link }) => {
   return (
     <div className="border p-4 rounded-md border-gray-500">
       <h2 className="m-0 mb-2 text-xl">
@@ -20,11 +21,12 @@ export const Card: FC<{
           </span>
         )}
       </h2>
-      {body && (
+      {subtitle && (
         <div className="text-sm">
-          <Markdown>{body}</Markdown>
+          <Markdown>{subtitle}</Markdown>
         </div>
       )}
+      {children && <div className="text-sm">{children}</div>}
       {link?.label && link?.url && (
         <Link href={link.url}>
           <a className="inline-block mt-4">{link.label}</a>
