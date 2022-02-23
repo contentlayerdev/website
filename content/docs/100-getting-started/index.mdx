@@ -30,13 +30,13 @@ Just to demonstrate how quickly we can start working, let's start with a new bla
 
 Create a new Next.js project.
 
-```
+```txt
 npx create-next-app contentlayer-example
 ```
 
 That command will place the project in a `contentlayer-example` directory. Change into that directory.
 
-```
+```txt
 cd contentlayer-example
 ```
 
@@ -48,7 +48,7 @@ If you'd like to see some styling as we go without much extra effort, [follow th
 
 Install Contentlayer and the Next.js plugin.
 
-```
+```txt
 npm install contentlayer next-contentlayer
 ```
 
@@ -135,20 +135,28 @@ Create a few markdown files in a `posts` directory and add some content to those
 
 Here's an example of what a post file at `posts/post-01.md` might look like:
 
-```md
+```txt
 ---
 title: Lorem Ipsum
 date: 2021-12-24
 ---
 
-Ullamco et nostrud magna commodo nostrud occaecat quis pariatur id ipsum. Ipsum consequat enim id excepteur consequat nostrud esse esse fugiat dolore. Reprehenderit occaecat exercitation non cupidatat in eiusmod laborum ex eu fugiat aute culpa pariatur. Irure elit proident consequat veniam minim ipsum ex pariatur.
+Ullamco et nostrud magna commodo nostrud occaecat quis pariatur id ipsum. Ipsum
+consequat enim id excepteur consequat nostrud esse esse fugiat dolore.
+Reprehenderit occaecat exercitation non cupidatat in eiusmod laborum ex eu
+fugiat aute culpa pariatur. Irure elit proident consequat veniam minim ipsum ex
+pariatur.
 
-Mollit nisi cillum exercitation minim officia velit laborum non Lorem adipisicing dolore. Labore commodo consectetur commodo velit adipisicing irure dolore dolor reprehenderit aliquip. Reprehenderit cillum mollit eiusmod excepteur elit ipsum aute pariatur in. Cupidatat ex culpa velit culpa ad non labore exercitation irure laborum.
+Mollit nisi cillum exercitation minim officia velit laborum non Lorem
+adipisicing dolore. Labore commodo consectetur commodo velit adipisicing irure
+dolore dolor reprehenderit aliquip. Reprehenderit cillum mollit eiusmod
+excepteur elit ipsum aute pariatur in. Cupidatat ex culpa velit culpa ad non
+labore exercitation irure laborum.
 ```
 
 The examples to follow will have three posts in this structure:
 
-```
+```txt
 posts/
 ├── post-01.md
 ├── post-02.md
@@ -163,7 +171,7 @@ Now we can tie it all together by bringing the data into our pages.
 
 Before we get into the pages, add a library to help us with formatting the date.
 
-```
+```txt
 npm install date-fns
 ```
 
@@ -226,7 +234,7 @@ The home page then used the post data to map through the individual posts and re
 
 Now you're ready to take it for a spin. Fire up the Next.js dev server.
 
-```
+```txt
 npm run dev
 ```
 
@@ -308,3 +316,7 @@ This is just the beginning. Now you can dig in and add all the bells and whistle
 - [Join our Discord community](https://discord.gg/rytFErsARm) to ask questions, stay up to date, and share your work.
 - Check out [the examples](/docs/other/examples) for inspiration on what you can do with Contentlayer.
 - Explore [the guides](/docs/guides) for learning about specific techniques.
+
+```
+
+```
