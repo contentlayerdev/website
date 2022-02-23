@@ -75,6 +75,10 @@
     @apply text-sm;
   }
 
+  svg path {
+    fill: currentColor;
+  }
+
   @media (prefers-color-scheme: dark) {
     code {
       @apply text-gray-950 bg-gray-50;
