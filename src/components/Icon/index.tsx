@@ -1,10 +1,12 @@
 import { FC } from 'react'
 
+import { CodeIcon } from './Code'
 import { GitHubIcon } from './GitHub'
 
-export type IconName = 'github'
+export type IconName = 'code' | 'github'
 
 const iconMap = {
+  code: CodeIcon,
   github: GitHubIcon,
 }
 
