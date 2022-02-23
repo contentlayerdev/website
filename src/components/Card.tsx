@@ -2,18 +2,25 @@ import { FC } from 'react'
 import Markdown from 'markdown-to-jsx'
 import Link from 'next/link'
 
+import { Icon, IconName } from './Icon'
 import { Label } from './Label'
 
 export const Card: FC<{
   title: string
-  label: string | null
-  subtitle: string | null
-  children: React.ReactChildren | null
+  icon?: IconName | null
+  label?: string | null
+  subtitle?: string | null
+  children?: React.ReactChildren | null
   link?: { label: string; url: string }
-}> = ({ title, label, subtitle, children, link }) => {
+}> = ({ title, icon, label, subtitle, children, link }) => {
   return (
     <div className="border p-4 rounded-md border-gray-500">
-      <h2 className="m-0 mb-2 text-xl">
+      <h2 className="m-0 mb-2 text-xl flex">
+        {icon && (
+          <span className="w-6 inline-block mr-2">
+            <Icon name={icon} />
+          </span>
+        )}
         {title}{' '}
         {label && (
           <span className="inline-block ml-2">
