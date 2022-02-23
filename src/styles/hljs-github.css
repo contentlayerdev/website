@@ -10,8 +10,11 @@
 */
 
 .hljs {
+  font-size: 13px;
+  @apply px-3 py-2 rounded-md block overflow-auto;
+
   /* color: #24292e;
-  background: #ffffff; */
+    background: #ffffff; */
 }
 
 .hljs-doctag,
