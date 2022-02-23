@@ -13,7 +13,6 @@ Document type definitions are used within the options for [`makeSource`](/docs/r
 const Doc = defineDocumentType(() => ({
   name: 'Doc',
   filePathPattern: '**/*.md',
-  contentType: 'md',
   fields: {
     title: {
       type: 'string',
@@ -98,9 +97,9 @@ How the main content area of the file should be parsed. It is treated as markdow
 
 **Options:**
 
-- `markdown`
-- `mdx`
-- `none`
+- `markdown`: Parse the content area of the file as markdown.
+- `mdx`: Allows use of [MDX](https://mdxjs.com/) in the body of the file.
+- `data`: Ignores the file's body area.
 
 ### `isSingleton` (default: `false`)
 
