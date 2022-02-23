@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
 import type { FC } from 'react'
 import type * as types from 'contentlayer/generated'
@@ -16,6 +17,8 @@ import { Label } from '../components/Label'
 const mdxComponents = {
   Callout,
   Card,
+  Image,
+  Link,
 }
 
 export const DocLayout: FC<{ doc: types.Doc; tree: TreeRoot; childrenTree: TreeNode[] }> = ({
@@ -88,7 +91,12 @@ const Tree: FC<{ tree: TreeRoot; level: number; activeUrlPath: string }> = ({ tr
 
 const ChildTreeItem: FC<{ item: TreeNode }> = ({ item }) => {
   return (
-    <Card title={item.title} label={item.label} body={item.excerpt} link={{ label: 'View Page', url: item.urlPath }} />
+    <Card
+      title={item.title}
+      label={item.label}
+      subtitle={item.excerpt}
+      link={{ label: 'View Page', url: item.urlPath }}
+    />
   )
 }
 
