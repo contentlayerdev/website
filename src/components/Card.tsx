@@ -15,7 +15,7 @@ export const Card: FC<{
 }> = ({ title, icon, label, subtitle, children, link }) => {
   return (
     <div className="border p-4 rounded-md border-gray-500">
-      <h2 className="m-0 mb-2 text-xl flex">
+      <h2 className="m-0 mb-2 text-xl flex items-center">
         {icon && (
           <span className="w-6 inline-block mr-2">
             <Icon name={icon} />
