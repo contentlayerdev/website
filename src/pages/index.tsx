@@ -11,7 +11,7 @@ import {
 
 export default function HomePage() {
   return (
-    <div className="bg-cl-gray-925">
+    <div className="bg-cl-gray-925 min-h-full">
       <HomeHero />
       <HomeFeatures />
       <HomeTestimonial />
