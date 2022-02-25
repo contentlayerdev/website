@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import classNames from 'classnames'
 
 import { Icon, IconName } from '../components/Icon'
 import { Label } from '../components/Label'

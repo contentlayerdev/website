@@ -5,14 +5,25 @@ import type { FC } from 'react'
 import type * as types from 'contentlayer/generated'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import classnames from 'classnames'
+import { Helmet } from 'react-helmet'
 
-import { Layout } from '../components/Layout'
-import { TreeRoot, TreeNode } from '../pages/docs/[[...slug]]'
+// TODO: Fix the styling here. We should have sensible defaults in place, but
+// should be able to override those with Tailwind classes in this layout, rather
+// than needed a CSS module.
+//
+// After putting those defaults in place, clean up any necessary styling on the
+// home page.
+//
+// We should be left without any page-specific CSS files as much as possible.
+import styles from './styles.module.css'
+
+import { Header } from '../../components/Header'
+import { TreeRoot, TreeNode } from '../../pages/docs/[[...slug]]'
 import React from 'react'
 
-import { Callout } from '../components/Callout'
-import { Card } from '../components/Card'
-import { Label } from '../components/Label'
+import { Callout } from '../../components/Callout'
+import { Card } from '../../components/Card'
+import { Label } from '../../components/Label'
 
 const mdxComponents = {
   Callout,
@@ -33,8 +44,18 @@ export const DocLayout: FC<{ doc: types.Doc; tree: TreeRoot; childrenTree: TreeN
   const MDXContent = doc?.body?.code ? useMDXComponent(doc.body.code) : null
 
   return (
-    <Layout doc={doc}>
-      <div className="flex">
+    <div>
+      <Helmet>
+        <title>{doc.title}</title>
+        <link
+          rel="icon"
+          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🆑</text></svg>"
+        />
+      </Helmet>
+
+      <Header />
+
+      <div className="font-cl h-full pt-[57px] bg-white dark:bg-gray-950 text-gray-950 dark:text-white flex">
         <aside
           className="fixed"
           style={{
@@ -47,7 +68,10 @@ export const DocLayout: FC<{ doc: types.Doc; tree: TreeRoot; childrenTree: TreeN
             <Tree tree={tree} level={0} activeUrlPath={router.asPath} />
           </div>
         </aside>
-        <div className="flex-1 max-w-3xl px-12 py-8 markdown" style={{ marginLeft: SIDEBAR_WIDTH }}>
+        <div
+          className={classnames(styles.docBody, 'flex-1 max-w-3xl px-12 py-8 markdown')}
+          style={{ marginLeft: SIDEBAR_WIDTH }}
+        >
           <h1>
             {doc.title}{' '}
             {doc.label && (
@@ -60,7 +84,7 @@ export const DocLayout: FC<{ doc: types.Doc; tree: TreeRoot; childrenTree: TreeN
           {doc.show_child_cards && <ChildCards tree={childrenTree} />}
         </div>
       </div>
-    </Layout>
+    </div>
   )
 }
 
