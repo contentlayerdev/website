@@ -5,5 +5,9 @@
     a {
       @apply text-blue-500 border-b border-blue-500 no-underline hover:text-blue-700 hover:border-blue-700;
     }
+
+    p:last-child {
+      @apply mb-0;
+    }
   }
 }
