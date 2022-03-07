@@ -31,7 +31,7 @@ export const Support: FC = () => {
           <h2 className="text-gray-400 font-normal text-base my-0">{content.frameworks.label}</h2>
           <div className="flex items-center flex-wrap -mx-3">
             {content.frameworks.items.map(({ logo, label, supported }, index) => (
-              <div key={index} className={`p-3 ${supported ? 'opacity-100' : 'opacity-25'}`}>
+              <div key={index} className={`p-3 h-16 flex items-center ${supported ? 'opacity-100' : 'opacity-25'}`}>
                 <Image src={content.logosPath + logo.file} alt={label} width={logo.width} height={logo.height} />
               </div>
             ))}
@@ -41,7 +41,7 @@ export const Support: FC = () => {
           <h2 className="text-gray-400 font-normal text-base my-0">{content.contentSources.label}</h2>
           <div className="flex items-center flex-wrap -mx-3">
             {content.contentSources.items.map(({ logo, label, supported }, index) => (
-              <div key={index} className={`p-3 ${supported ? 'opacity-100' : 'opacity-25'}`}>
+              <div key={index} className={`p-3 h-16 flex items-center ${supported ? 'opacity-100' : 'opacity-25'}`}>
                 <Image src={content.logosPath + logo.file} alt={label} width={logo.width} height={logo.height} />
               </div>
             ))}
