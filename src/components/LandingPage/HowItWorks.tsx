@@ -1,7 +1,6 @@
 export const codeSnippets = {
   step1: {
     'contentlayer.config.ts': `\
-// @errors: 2307 7006 7031
 import { defineDocumentType, makeSource } from 'contentlayer/source-files'
 
 const Post = defineDocumentType(() => ({

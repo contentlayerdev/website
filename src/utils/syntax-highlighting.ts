@@ -4,7 +4,7 @@ type Highlighter = Awaited<ReturnType<typeof createShikiHighlighter>>
 let highlighter: Highlighter | undefined = undefined
 
 export const snippetToHtml = async (snippet: string) => {
-  const themeName = 'light-plus'
+  const themeName = 'github-light'
 
   if (!highlighter) {
     highlighter = await createShikiHighlighter({ theme: themeName })
@@ -12,7 +12,20 @@ export const snippetToHtml = async (snippet: string) => {
 
   const settings: UserConfigSettings = {
     includeJSDocInHover: true,
-    defaultCompilerOptions: { strict: false, noImplicitAny: false },
+    defaultCompilerOptions: {
+      strict: false,
+      noImplicitAny: false,
+      // paths: {
+      //   'contentlayer/generated': ['./.contentlayer/generated'],
+      // },
+    },
+
+    // TODO make `contentlayer/generated` work
+    // fsMap: new Map(
+    //   Object.entries({
+    //     'contentlayer/generated': generatedTypes,
+    //   }),
+    // ),
   }
 
   const twoslash = runTwoSlash(snippet, 'tsx', settings)
@@ -27,3 +40,15 @@ export const snippetToHtml = async (snippet: string) => {
 
   return html
 }
+
+const generatedTypes = `
+import { Doc, GlobalConfig, Page, DocumentTypes } from './types'
+
+export type * from './types'
+
+export declare const allDocs: Doc[]
+export declare const globalConfig: GlobalConfig
+export declare const allPages: Page[]
+
+export declare const allDocuments: DocumentTypes[]
+`
