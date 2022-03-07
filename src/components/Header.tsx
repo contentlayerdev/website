@@ -30,7 +30,7 @@ export const Header = () => {
         <Link href="/">
           <a className="font-extrabold no-underline text-gray-950 dark:text-white">Contentlayer</a>
         </Link>
-        <Label text="Alpha" theme="primary" />
+        <Label text="Beta" />
       </div>
 
       <nav className="flex items-center space-x-3 text-sm">
