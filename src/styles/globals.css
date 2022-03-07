@@ -1,4 +1,6 @@
 @import url('./tailwind.css');
+@import url('./twoslash-shiki.css');
+/* TODO remove */
 @import url('./hljs-github.css');
 @import url('./markdown.css');
 
@@ -58,6 +60,11 @@
     @apply mt-2;
   }
 
+  svg path {
+    fill: currentColor;
+  }
+
+  /*
   h1 code,
   h2 code,
   h3 code,
@@ -75,14 +82,11 @@
     @apply text-sm;
   }
 
-  svg path {
-    fill: currentColor;
-  }
-
   @media (prefers-color-scheme: dark) {
     code {
       @apply text-gray-950 bg-gray-50;
       filter: invert(90%) hue-rotate(180deg);
     }
   }
+  */
 }
