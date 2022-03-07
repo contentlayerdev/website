@@ -26,8 +26,7 @@ export default makeSource({
   },
   step3: {
     'pages/posts/[slug].tsx': `\
-// @errors: 2307
-import { allPages, type Page } from 'contentlayer/generated'
+import { allPages, type Page } from './assets/contentlayer-generated'
 
 export async function getStaticPaths() {
   const paths = allPages.map((page) => page.urlPath)
@@ -35,7 +34,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const page = allPages.find((page) => page.UrlPath === params.slug)
+  const page = allPages.find((page) => page.urlPath === params.slug)
 
   return { props: { page } }
 }
