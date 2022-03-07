@@ -1001,6 +1001,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ansi-styles@npm:^2.2.1":
+  version: 2.2.1
+  resolution: "ansi-styles@npm:2.2.1"
+  checksum: ebc0e00381f2a29000d1dac8466a640ce11943cef3bda3cd0020dc042e31e1058ab59bf6169cd794a54c3a7338a61ebc404b7c91e004092dd20e028c432c9c2c
+  languageName: node
+  linkType: hard
+
 "ansi-styles@npm:^3.2.1":
   version: 3.2.1
   resolution: "ansi-styles@npm:3.2.1"
@@ -1016,6 +1023,13 @@ __metadata:
   dependencies:
     color-convert: ^2.0.1
   checksum: 513b44c3b2105dd14cc42a19271e80f386466c4be574bccf60b627432f9198571ebf4ab1e4c3ba17347658f4ee1711c163d574248c0c1cdc2d5917a0ad582ec4
+  languageName: node
+  linkType: hard
+
+"ansi-styles@npm:~1.0.0":
+  version: 1.0.0
+  resolution: "ansi-styles@npm:1.0.0"
+  checksum: 6dd47dccb268b4cc1fd0dd6617067a7acd34ad2761f0438800fdd55c0d45f50a90787acd82806009c2bf467f4e2920166be03e19b23529038c1c4527d80f598b
   languageName: node
   linkType: hard
 
@@ -1319,6 +1333,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"chalk@npm:^1.1.1":
+  version: 1.1.3
+  resolution: "chalk@npm:1.1.3"
+  dependencies:
+    ansi-styles: ^2.2.1
+    escape-string-regexp: ^1.0.2
+    has-ansi: ^2.0.0
+    strip-ansi: ^3.0.0
+    supports-color: ^2.0.0
+  checksum: 9d2ea6b98fc2b7878829eec223abcf404622db6c48396a9b9257f6d0ead2acf18231ae368d6a664a83f272b0679158da12e97b5229f794939e555cc574478acd
+  languageName: node
+  linkType: hard
+
 "chalk@npm:^2.0.0":
   version: 2.4.2
   resolution: "chalk@npm:2.4.2"
@@ -1337,6 +1364,17 @@ __metadata:
     ansi-styles: ^4.1.0
     supports-color: ^7.1.0
   checksum: fe75c9d5c76a7a98d45495b91b2172fa3b7a09e0cc9370e5c8feb1c567b85c4288e2b3fded7cfdd7359ac28d6b3844feb8b82b8686842e93d23c827c417e83fc
+  languageName: node
+  linkType: hard
+
+"chalk@npm:~0.4.0":
+  version: 0.4.0
+  resolution: "chalk@npm:0.4.0"
+  dependencies:
+    ansi-styles: ~1.0.0
+    has-color: ~0.1.0
+    strip-ansi: ~0.1.0
+  checksum: e8f04f387b9fbf746fdce4b61a633f8a0d28224d8b022603db0f2d137471a18c5bc0bc33b243df09c361688f12bd3ab8a9dd1f8b4450d5a361bfe83aadbde739
   languageName: node
   linkType: hard
 
@@ -1585,6 +1623,7 @@ __metadata:
     autoprefixer: ^10.4.2
     classnames: ^2.3.1
     contentlayer: ^0.1.2
+    local-ssl-proxy: ^1.3.0
     markdown-to-jsx: ^7.1.6
     next: 12.1.0
     next-contentlayer: ^0.1.2
@@ -2114,7 +2153,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"escape-string-regexp@npm:^1.0.5":
+"escape-string-regexp@npm:^1.0.2, escape-string-regexp@npm:^1.0.5":
   version: 1.0.5
   resolution: "escape-string-regexp@npm:1.0.5"
   checksum: 6092fda75c63b110c706b6a9bfde8a612ad595b628f0bd2147eea1d3406723020810e591effc7db1da91d80a71a737a313567c5abb3813e8d9c71f4aa595b410
@@ -2209,6 +2248,13 @@ __metadata:
   version: 1.8.1
   resolution: "etag@npm:1.8.1"
   checksum: 571aeb3dbe0f2bbd4e4fadbdb44f325fc75335cd5f6f6b6a091e6a06a9f25ed5392f0863c5442acb0646787446e816f13cbfc6edce5b07658541dff573cab1ff
+  languageName: node
+  linkType: hard
+
+"eventemitter3@npm:^4.0.0":
+  version: 4.0.7
+  resolution: "eventemitter3@npm:4.0.7"
+  checksum: 1875311c42fcfe9c707b2712c32664a245629b42bb0a5a84439762dd0fd637fc54d078155ea83c2af9e0323c9ac13687e03cfba79b03af9f40c89b4960099374
   languageName: node
   linkType: hard
 
@@ -2313,6 +2359,16 @@ __metadata:
   dependencies:
     to-regex-range: ^5.0.1
   checksum: cc283f4e65b504259e64fd969bcf4def4eb08d85565e906b7d36516e87819db52029a76b6363d0f02d0d532f0033c9603b9e2d943d56ee3b0d4f7ad3328ff917
+  languageName: node
+  linkType: hard
+
+"follow-redirects@npm:^1.0.0":
+  version: 1.14.9
+  resolution: "follow-redirects@npm:1.14.9"
+  peerDependenciesMeta:
+    debug:
+      optional: true
+  checksum: f5982e0eb481818642492d3ca35a86989c98af1128b8e1a62911a3410621bc15d2b079e8170b35b19d3bdee770b73ed431a257ed86195af773771145baa57845
   languageName: node
   linkType: hard
 
@@ -2594,6 +2650,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"has-ansi@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "has-ansi@npm:2.0.0"
+  dependencies:
+    ansi-regex: ^2.0.0
+  checksum: 1b51daa0214440db171ff359d0a2d17bc20061164c57e76234f614c91dbd2a79ddd68dfc8ee73629366f7be45a6df5f2ea9de83f52e1ca24433f2cc78c35d8ec
+  languageName: node
+  linkType: hard
+
+"has-color@npm:~0.1.0":
+  version: 0.1.7
+  resolution: "has-color@npm:0.1.7"
+  checksum: 5753d76b1330bc1f5a07171f222ed0718f5ec2d64d5677800e434f183a99f7042f5cda43c9625a2d0f0204063aa03499a66f1c15283d789773b3544f18f93f58
+  languageName: node
+  linkType: hard
+
 "has-flag@npm:^3.0.0":
   version: 3.0.0
   resolution: "has-flag@npm:3.0.0"
@@ -2728,6 +2800,17 @@ __metadata:
     agent-base: 6
     debug: 4
   checksum: c6a5da5a1929416b6bbdf77b1aca13888013fe7eb9d59fc292e25d18e041bb154a8dfada58e223fc7b76b9b2d155a87e92e608235201f77d34aa258707963a82
+  languageName: node
+  linkType: hard
+
+"http-proxy@npm:^1.13.1":
+  version: 1.18.1
+  resolution: "http-proxy@npm:1.18.1"
+  dependencies:
+    eventemitter3: ^4.0.0
+    follow-redirects: ^1.0.0
+    requires-port: ^1.0.0
+  checksum: f5bd96bf83e0b1e4226633dbb51f8b056c3e6321917df402deacec31dd7fe433914fc7a2c1831cf7ae21e69c90b3a669b8f434723e9e8b71fd68afe30737b6a5
   languageName: node
   linkType: hard
 
@@ -3253,6 +3336,19 @@ __metadata:
     open: ^8.0.5
     selfsigned: ^2.0.0
   checksum: 2cbf4e125f08be29c5d89289e340c77f393bedbe60d7b2b0374c807989f6b091b704181aebe08ab7322072cdebfcd049c3b06570399d8de69005b06c83423235
+  languageName: node
+  linkType: hard
+
+"local-ssl-proxy@npm:^1.3.0":
+  version: 1.3.0
+  resolution: "local-ssl-proxy@npm:1.3.0"
+  dependencies:
+    chalk: ^1.1.1
+    http-proxy: ^1.13.1
+    nomnom: ^1.8.1
+  bin:
+    local-ssl-proxy: bin/local-ssl-proxy
+  checksum: 23950f8df0dae8efd03ea709ee539db6b0a6c87defc318eb1e7dd9e81defdc20dd4be3c7a219b43d7a3b34dddbc7815eb81d04378d9574252f8e90b7ded3ae18
   languageName: node
   linkType: hard
 
@@ -4296,6 +4392,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"nomnom@npm:^1.8.1":
+  version: 1.8.1
+  resolution: "nomnom@npm:1.8.1"
+  dependencies:
+    chalk: ~0.4.0
+    underscore: ~1.6.0
+  checksum: cc6f538062741e8914b65352499c444a754d18a95f8c4b336b9183367c44335f00a9d3beb54648f6a76d5434702a3d71bf37c23ef4c960d39595ed72d376c6fd
+  languageName: node
+  linkType: hard
+
 "nopt@npm:^5.0.0":
   version: 5.0.0
   resolution: "nopt@npm:5.0.0"
@@ -5039,6 +5145,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"requires-port@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "requires-port@npm:1.0.0"
+  checksum: eee0e303adffb69be55d1a214e415cf42b7441ae858c76dfc5353148644f6fd6e698926fc4643f510d5c126d12a705e7c8ed7e38061113bdf37547ab356797ff
+  languageName: node
+  linkType: hard
+
 "resolve-alpn@npm:^1.0.0":
   version: 1.2.1
   resolution: "resolve-alpn@npm:1.2.1"
@@ -5439,6 +5552,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"strip-ansi@npm:~0.1.0":
+  version: 0.1.1
+  resolution: "strip-ansi@npm:0.1.1"
+  bin:
+    strip-ansi: cli.js
+  checksum: 31f1d4d3b86e6d968aa568bf47d712626dd748aff7d576a98ba2ed378dd60dfb1475898254b62479779231e50a38f0b7ea0b66d3b22d14cde38b769c1c747d33
+  languageName: node
+  linkType: hard
+
 "strip-bom-string@npm:^1.0.0":
   version: 1.0.0
   resolution: "strip-bom-string@npm:1.0.0"
@@ -5480,6 +5602,13 @@ __metadata:
     babel-plugin-macros:
       optional: true
   checksum: 4958238ac8b8e90ac7d906aca3821e3ffb0c70c34c78b87d27f0f11c830c8237c8f4c0e7952dc51373d6fa097b16a023dcc7c9ededd402d8483b5ed2d8cefda9
+  languageName: node
+  linkType: hard
+
+"supports-color@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "supports-color@npm:2.0.0"
+  checksum: 602538c5812b9006404370b5a4b885d3e2a1f6567d314f8b4a41974ffe7d08e525bf92ae0f9c7030e3b4c78e4e34ace55d6a67a74f1571bc205959f5972f88f0
   languageName: node
   linkType: hard
 
@@ -5690,6 +5819,13 @@ __metadata:
   version: 0.7.10
   resolution: "ufo@npm:0.7.10"
   checksum: 2a013149b603b912ff5fef79f08c243f805806069191c2ac1e6a1660b3b4d86d5a22550e1889c2e8f27ef5cea2345147fe70c689a13420e157ce18e9837e8812
+  languageName: node
+  linkType: hard
+
+"underscore@npm:~1.6.0":
+  version: 1.6.0
+  resolution: "underscore@npm:1.6.0"
+  checksum: bfb837d95164077bd2751247dd9797546287c060d86c3a730f590948dbc132b426238e37df7bea28f39d3e3abf571de5b974809ee3c32d309280fed851588ef9
   languageName: node
   linkType: hard
 
