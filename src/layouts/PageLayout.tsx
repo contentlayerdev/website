@@ -3,10 +3,11 @@ import type { FC } from 'react'
 import { Layout } from '../components/Layout'
 import type * as types from 'contentlayer/generated'
 import { useMDXComponent } from 'next-contentlayer/hooks'
-import { Playground } from '../components/Playground'
+import { Playground } from '../components/LandingPage/Playground'
 
 const mdxComponents = { Playground }
 
+// NOTE this is currently not used and should possibly be removed in the future
 export const PageLayout: FC<{ page: types.Page }> = ({ page }) => {
   const MDXContent = useMDXComponent(page.body.code)
   return (

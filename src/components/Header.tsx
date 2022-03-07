@@ -11,14 +11,14 @@ function isExternalUrl(link: string): boolean {
 }
 
 const navLinks: Array<{ label: string; url: string }> = [
-  { label: 'Quickstart', url: '/docs/getting-started' },
   { label: 'Docs', url: '/docs' },
+  { label: 'Blog', url: '/blog' },
   { label: 'Examples', url: 'https://github.com/contentlayerdev/contentlayer/tree/main/examples' },
 ]
 
 const iconLinks: Array<{ name: IconName; url: string }> = [
-  { name: 'discord', url: 'https://discord.gg/rytFErsARm' },
   { name: 'github', url: 'https://github.com/contentlayerdev/contentlayer' },
+  { name: 'discord', url: 'https://discord.gg/rytFErsARm' },
 ]
 
 export const Header = () => {
@@ -31,7 +31,6 @@ export const Header = () => {
           <a className="font-extrabold no-underline text-gray-950 dark:text-white">Contentlayer</a>
         </Link>
         <Label text="Alpha" theme="primary" />
-        {allDocs[0].title}
       </div>
 
       <nav className="flex items-center space-x-3 text-sm">
@@ -50,6 +49,8 @@ export const Header = () => {
             </a>
           </Link>
         ))}
+
+        {/* TODO search box */}
 
         <div className="flex">
           {iconLinks.map((link, idx) => (
