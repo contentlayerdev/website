@@ -46,9 +46,9 @@ export interface ContentlayerGenTypes {
   allTypeNames: AllTypeNames
 }
 
-declare global {
-  interface ContentlayerGen extends ContentlayerGenTypes {}
-}
+// declare global {
+//   interface ContentlayerGen extends ContentlayerGenTypes {}
+// }
 
 export type DocumentTypeMap = {
   Page: Page
