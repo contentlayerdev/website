@@ -4,6 +4,7 @@ import classNames from 'classnames'
 
 import { Icon, IconName } from '../components/Icon'
 import { Label } from '../components/Label'
+import { allDocs, allPages } from 'contentlayer/generated'
 
 function isExternalUrl(link: string): boolean {
   return !link.startsWith('/')
@@ -30,6 +31,7 @@ export const Header = () => {
           <a className="font-extrabold no-underline text-gray-950 dark:text-white">Contentlayer</a>
         </Link>
         <Label text="Alpha" theme="primary" />
+        {allDocs[0].title}
       </div>
 
       <nav className="flex items-center space-x-3 text-sm">
