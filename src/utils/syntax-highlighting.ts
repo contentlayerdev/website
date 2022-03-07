@@ -38,17 +38,5 @@ export const snippetToHtml = async (snippet: string) => {
     twoslash,
   )
 
-  return html
+  return html.replace('./assets/contentlayer-generated', 'contentlayer/generated')
 }
-
-const generatedTypes = `
-import { Doc, GlobalConfig, Page, DocumentTypes } from './types'
-
-export type * from './types'
-
-export declare const allDocs: Doc[]
-export declare const globalConfig: GlobalConfig
-export declare const allPages: Page[]
-
-export declare const allDocuments: DocumentTypes[]
-`
