@@ -8,13 +8,13 @@ import { snippetToHtml } from '../utils/syntax-highlighting'
 import { getUsedByCount } from 'src/utils/used-by-count'
 
 export const getStaticProps = defineStaticProps(async (context) => {
-  const codeSnippetsHtml: CodeSnippets = {
-    step1: {
-      'contentlayer.config.ts': await snippetToHtml(codeSnippets.step1['contentlayer.config.ts']),
-    },
-    step3: {
-      'pages/posts/[slug].tsx': await snippetToHtml(codeSnippets.step3['pages/posts/[slug].tsx']),
-    },
+  let codeSnippetsHtml = []
+  for (let snippet of codeSnippets) {
+    const html = await snippetToHtml(snippet.content)
+    codeSnippetsHtml.push({
+      file: snippet.file,
+      content: html,
+    })
   }
 
   const usedByCount = await getUsedByCount()

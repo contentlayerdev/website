@@ -75,7 +75,7 @@ export const Testimonials: FC<{ usedByCount: number }> = ({ usedByCount }) => {
             ))}
           </div>
           <div className="absolute inset-0 flex flex-col justify-end p-8 lg:p-16 bg-gradient-to-b from-violet-50/50 via-violet-50/95 to-violet-50 dark:from-gray-900/30 dark:via-gray-900/95 dark:to-gray-900">
-            <p className="text-xl font-bold text-center text-violet-600 mb-2 dark:text-violet-500">
+            <p className="text-xl font-semibold text-center text-violet-600 mb-2 dark:text-violet-500">
               {content.projects.heading.replace('0', usedByCount.toString())}
             </p>
             <Link href={content.projects.cta.url}>

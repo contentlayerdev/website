@@ -41,7 +41,7 @@ export const Features: FC = () => {
             <div className="w-12 text-violet-600 bg-violet-200 rounded-full p-2 dark:bg-violet-900/50">
               <Icon name={icon} />
             </div>
-            <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200 mt-8">{heading}</h3>
+            <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200 mt-8">{heading}</h3>
             <p className="text-gray-500 dark:text-gray-400 leading-relaxed mb-6">{text}</p>
             <ul className="text-gray-700 dark:text-gray-300 ml-0 mb-8">
               {features.map((feature, index) => (

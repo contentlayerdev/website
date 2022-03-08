@@ -64,6 +64,10 @@
     fill: currentColor;
   }
 
+  code {
+    @apply bg-gray-200 rounded py-0.5 px-1 text-sm dark:bg-gray-800;
+  }
+
   .g-docs h1 code,
   .g-docs h2 code,
   .g-docs h3 code,

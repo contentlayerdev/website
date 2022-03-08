@@ -8,6 +8,8 @@
     "start": "next start"
   },
   "dependencies": {
+    "@radix-ui/react-toggle-group": "^0.1.5",
+    "@radix-ui/react-tooltip": "^0.1.7",
     "@stackblitz/sdk": "^1.6.0",
     "cheerio": "^1.0.0-rc.10",
     "classnames": "^2.3.1",

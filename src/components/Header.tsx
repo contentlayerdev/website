@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import classNames from 'classnames'
 
 import { Icon, IconName } from '../components/Icon'
 import { Label } from '../components/Label'
+import { Logo } from './Logo'
 import { allDocs, allPages } from 'contentlayer/generated'
 
 function isExternalUrl(link: string): boolean {
@@ -28,7 +28,10 @@ export const Header = () => {
     <header className="fixed z-10 flex justify-between w-full px-6 items-center bg-white border-b border-gray-100 dark:bg-gray-950 dark:border-gray-800 bg-opacity-90 backdrop-filter backdrop-blur-sm h-[60px]">
       <div className="flex items-center space-x-2.5">
         <Link href="/">
-          <a className="font-extrabold no-underline text-gray-950 dark:text-white">Contentlayer</a>
+          <a className="flex items-center space-x-2.5 font-bold no-underline text-gray-950 dark:text-white">
+            <Logo />
+            <span>Contentlayer</span>
+          </a>
         </Link>
         <Label text="Beta" />
       </div>

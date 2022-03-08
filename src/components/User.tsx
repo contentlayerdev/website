@@ -10,7 +10,7 @@ export const User: FC<{ name: string; position: string; avatar: string }> = ({ n
         </div>
       </div>
       <div>
-        <p className="font-bold text-gray-700 mb-0 dark:text-gray-300">{name}</p>
+        <p className="font-semibold text-gray-700 mb-0 dark:text-gray-300">{name}</p>
         <p className="text-gray-500 text-sm dark:text-gray-400">{position}</p>
       </div>
     </div>

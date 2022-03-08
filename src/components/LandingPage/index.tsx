@@ -4,7 +4,7 @@ import { Hero } from './Hero'
 import { Support } from './Support'
 import { Testimonials } from './Testimonials'
 import { Features } from './Features'
-import { CodeSnippets } from './HowItWorks'
+import { HowItWorks, type CodeSnippets } from './HowItWorks'
 import { Playground } from './Playground'
 
 export const LandingPage: React.FC<{ codeSnippetsHtml: CodeSnippets; usedByCount: number }> = ({
@@ -19,13 +19,14 @@ export const LandingPage: React.FC<{ codeSnippetsHtml: CodeSnippets; usedByCount
         <Support />
         <Testimonials usedByCount={usedByCount} />
         <Features />
+        <HowItWorks codeSnippetsHtml={codeSnippetsHtml} />
         <hr className="my-64" />
-        <div dangerouslySetInnerHTML={{ __html: codeSnippetsHtml.step1['contentlayer.config.ts'] }} />
+        {/* <div dangerouslySetInnerHTML={{ __html: codeSnippetsHtml.step1['contentlayer.config.ts'] }} />
         <div dangerouslySetInnerHTML={{ __html: codeSnippetsHtml.step3['pages/posts/[slug].tsx'] }} />
         <div className="max-w-xl" style={{ fontSize: 13 }}>
           <div dangerouslySetInnerHTML={{ __html: codeSnippetsHtml.step1['contentlayer.config.ts'] }} />
           <div dangerouslySetInnerHTML={{ __html: codeSnippetsHtml.step3['pages/posts/[slug].tsx'] }} />
-        </div>
+        </div> */}
         <Playground />
       </div>
     </div>
