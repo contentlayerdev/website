@@ -3,7 +3,7 @@ import classnames from 'classnames'
 
 const themeClasses = {
   default: 'text-gray-400 dark:text-gray-500 border border-gray-300 dark:border-gray-600',
-  primary: 'text-blue-400 dark:text-blue-600 border border-blue-300 dark:border-blue-800',
+  primary: 'text-purple-400 dark:text-purple-600 border border-purple-300 dark:border-purple-800',
 }
 
 export const Label: FC<{ text: string; theme?: 'default' | 'primary' }> = ({ text, theme = 'default' }) => {

@@ -90,14 +90,7 @@ const Tree: FC<{ tree: TreeRoot; level: number; activeUrlPath: string }> = ({ tr
 )
 
 const ChildTreeItem: FC<{ item: TreeNode }> = ({ item }) => {
-  return (
-    <Card
-      title={item.title}
-      label={item.label}
-      subtitle={item.excerpt}
-      link={{ label: 'View Page', url: item.urlPath }}
-    />
-  )
+  return <Card title={item.title} label={item.label} subtitle={item.excerpt} link={{ url: item.urlPath }} />
 }
 
 const ChildCards: FC<{ tree: TreeNode[] }> = ({ tree }) => {
