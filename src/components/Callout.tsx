@@ -1,5 +1,5 @@
 import { FC } from 'react'
 
 export const Callout: FC = ({ children }) => {
-  return <div className="mb-4 border-l-4 border-purple-400 p-4 bg-gray-800 rounded-sm">{children}</div>
+  return <div className="mb-4 border-l-4 border-purple-400 p-4 bg-gray-100 dark:bg-gray-800 rounded-sm">{children}</div>
 }
