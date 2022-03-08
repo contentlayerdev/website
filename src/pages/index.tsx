@@ -5,6 +5,7 @@ import { defineStaticProps } from '../utils/next'
 import { LandingPage } from '../components/LandingPage'
 import { type CodeSnippets, codeSnippets } from '../components/LandingPage/HowItWorks'
 import { snippetToHtml } from '../utils/syntax-highlighting'
+import { getUsedByCount } from 'src/utils/used-by-count'
 
 export const getStaticProps = defineStaticProps(async (context) => {
   const codeSnippetsHtml: CodeSnippets = {
@@ -16,11 +17,13 @@ export const getStaticProps = defineStaticProps(async (context) => {
     },
   }
 
-  return { props: { codeSnippetsHtml } }
+  const usedByCount = await getUsedByCount()
+
+  return { props: { codeSnippetsHtml, usedByCount } }
 })
 
-const Page: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ codeSnippetsHtml }) => {
-  return <LandingPage {...{ codeSnippetsHtml }} />
+const Page: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ codeSnippetsHtml, usedByCount }) => {
+  return <LandingPage {...{ codeSnippetsHtml, usedByCount }} />
 }
 
 export default Page

@@ -14,7 +14,7 @@ const content = {
     },
   },
   projects: {
-    heading: 'Used in 210 projects',
+    heading: 'Used in 0 projects', // 0 gets replaced with actual count
     cta: {
       label: (
         <span className="inline-flex items-center space-x-2">
@@ -47,7 +47,7 @@ const content = {
   },
 }
 
-export const Testimonials: FC = () => {
+export const Testimonials: FC<{ usedByCount: number }> = ({ usedByCount }) => {
   return (
     <div className="w-full max-w-screen-xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 pt-16 md:pt-24">
       <div className="md:col-span-2 bg-gray-50/25 border border-gray-100 rounded-2xl p-8 md:p-12 lg:p-16 space-y-8 dark:bg-gray-900/25 dark:border-gray-900">
@@ -76,7 +76,7 @@ export const Testimonials: FC = () => {
           </div>
           <div className="absolute inset-0 flex flex-col justify-end p-8 lg:p-16 bg-gradient-to-b from-violet-50/50 via-violet-50/95 to-violet-50 dark:from-gray-900/30 dark:via-gray-900/95 dark:to-gray-900">
             <p className="text-xl font-bold text-center text-violet-600 mb-2 dark:text-violet-500">
-              {content.projects.heading}
+              {content.projects.heading.replace('0', usedByCount.toString())}
             </p>
             <Link href={content.projects.cta.url}>
               <a className="text-gray-500 hover:text-gray-700 text-center dark:text-gray-400" rel="noreferrer">
