@@ -28,7 +28,7 @@ export const Support: FC = () => {
     <div className="w-full max-w-screen-xl mx-auto px-4 md:px-8 pt-16 md:pt-24">
       <div className="flex flex-col space-y-8 md:flex-row md:space-y-0 md:space-x-16 justify-center">
         <div>
-          <h2 className="text-gray-400 font-normal text-base my-0">{content.frameworks.label}</h2>
+          <h2 className="text-gray-500 font-normal text-sm md:text-center my-0">{content.frameworks.label}</h2>
           <div className="flex items-center flex-wrap -mx-3">
             {content.frameworks.items.map(({ logo, label, supported }, index) => (
               <div key={index} className={`p-3 h-16 flex items-center ${supported ? 'opacity-100' : 'opacity-25'}`}>
@@ -38,7 +38,7 @@ export const Support: FC = () => {
           </div>
         </div>
         <div>
-          <h2 className="text-gray-400 font-normal text-base my-0">{content.contentSources.label}</h2>
+          <h2 className="text-gray-500 font-normal text-sm md:text-center my-0">{content.contentSources.label}</h2>
           <div className="flex items-center flex-wrap -mx-3">
             {content.contentSources.items.map(({ logo, label, supported }, index) => (
               <div key={index} className={`p-3 h-16 flex items-center ${supported ? 'opacity-100' : 'opacity-25'}`}>
