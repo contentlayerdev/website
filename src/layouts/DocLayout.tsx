@@ -34,7 +34,7 @@ export const DocLayout: FC<{ doc: types.Doc; tree: TreeRoot; childrenTree: TreeN
 
   return (
     <Layout doc={doc}>
-      <div className="flex">
+      <div className="flex g-docs">
         <aside
           className="fixed"
           style={{

@@ -64,29 +64,27 @@
     fill: currentColor;
   }
 
-  /*
-  h1 code,
-  h2 code,
-  h3 code,
-  h4 code,
-  h5 code,
-  h6 code,
-  p code,
-  pre code,
-  table code {
+  .g-docs h1 code,
+  .g-docs h2 code,
+  .g-docs h3 code,
+  .g-docs h4 code,
+  .g-docs h5 code,
+  .g-docs h6 code,
+  .g-docs p code,
+  .g-docs pre code,
+  .g-docs table code {
     @apply px-1 py-px font-mono border rounded border-gray-100 bg-gray-50;
   }
 
-  p code,
-  table code {
+  .g-docs p code,
+  .g-docs table code {
     @apply text-sm;
   }
 
   @media (prefers-color-scheme: dark) {
-    code {
+    .g-docs code {
       @apply text-gray-950 bg-gray-50;
       filter: invert(90%) hue-rotate(180deg);
     }
   }
-  */
 }
