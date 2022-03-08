@@ -21,12 +21,10 @@ export const LandingPage: React.FC<{ codeSnippetsHtml: CodeSnippets; usedByCount
         <Features />
         <HowItWorks codeSnippetsHtml={codeSnippetsHtml} />
         <hr className="my-64" />
-        {/* <div dangerouslySetInnerHTML={{ __html: codeSnippetsHtml.step1['contentlayer.config.ts'] }} />
-        <div dangerouslySetInnerHTML={{ __html: codeSnippetsHtml.step3['pages/posts/[slug].tsx'] }} />
         <div className="max-w-xl" style={{ fontSize: 13 }}>
-          <div dangerouslySetInnerHTML={{ __html: codeSnippetsHtml.step1['contentlayer.config.ts'] }} />
-          <div dangerouslySetInnerHTML={{ __html: codeSnippetsHtml.step3['pages/posts/[slug].tsx'] }} />
-        </div> */}
+          <div dangerouslySetInnerHTML={{ __html: codeSnippetsHtml[0].content }} />
+          <div dangerouslySetInnerHTML={{ __html: codeSnippetsHtml[1].content }} />
+        </div>
         <Playground />
       </div>
     </div>

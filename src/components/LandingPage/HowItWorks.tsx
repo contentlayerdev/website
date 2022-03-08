@@ -1,7 +1,10 @@
 import { IconName } from '../Icon'
 import { FC, useState } from 'react'
-import { Root as ToggleGroup, Item as ToggleItem } from '@radix-ui/react-toggle-group'
-import { Root as Tooltip, Trigger as TooltipTrigger, Content as TooltipContent } from '@radix-ui/react-tooltip'
+import Image from 'next/image'
+import { useRouter } from 'next/router'
+import { ToggleGroup } from '../ToggleGroup'
+import { Button } from '../Button'
+import { CodeWindow } from '../CodeWindow'
 
 export const codeSnippets = [
   {
@@ -58,7 +61,8 @@ export default function Page({ page }: { page: Page }) {
   },
 ]
 
-export type CodeSnippets = typeof codeSnippets
+export type CodeSnippet = { file: string; content: string }
+export type CodeSnippets = CodeSnippet[]
 
 const content = {
   heading: 'How Contentlayer works with...',
@@ -76,116 +80,119 @@ const content = {
             </p>
           ),
           cta: {
+            label: 'Explore Example',
             theme: 'primary',
             icon: 'github' as IconName,
             url: '/',
           },
-          codeSnippet: 0, // index of code snippet in codeSnippets array
+          codeSnippets: [0], // index of code snippet in codeSnippets array
         },
         {
-          heading: 'Configure your content source',
+          heading: 'Your content is transformed into data',
           text: (
-            <p>
-              When working with local markdown or MDX files, you tell Contentlayer the expected shape of your data
-              (document type definitions).
-            </p>
+            <>
+              <p>
+                Run Contentlayer to process your content. Do this as part of the Next.js dev server, or using the
+                Contentlayer CLI.
+              </p>
+              <p>
+                This validates the content, then generates types definitions and outputs data objects ready to be
+                imported as a ESM module.
+              </p>
+            </>
           ),
-          cta: {
-            theme: 'primary',
-            icon: 'github' as IconName,
-            url: '/',
-          },
           image: {
             url: '/images/local-data-transformation.png',
             alt: 'Data transformation',
+            width: 561,
+            height: 275,
           },
         },
         {
-          heading: 'Configure your content source',
+          heading: 'Import data into your application',
           text: (
-            <p>
-              When working with local markdown or MDX files, you tell Contentlayer the expected shape of your data
-              (document type definitions).
-            </p>
+            <>
+              <p>
+                Import the data just like you would any other JavaScript library. Use it to render pages, and pass down
+                as props to the components on those pages.
+              </p>
+              <p>
+                Keep the development bundle small with tree-shaking and improve the development experience by using the
+                generated type definitions.
+              </p>
+            </>
           ),
-          cta: {
-            theme: 'primary',
-            icon: 'github' as IconName,
-            url: '/',
-          },
-          codeSnippet: 1, // index of code snippet in codeSnippets array
+          codeSnippets: [1], // index of code snippet in codeSnippets array
         },
       ],
     },
     {
       title: 'Contentful',
       active: false,
-      tooltip: 'Coming soon!',
+      steps: [],
     },
     {
       title: 'Notion',
       active: false,
-      tooltip: 'Coming soon!',
+      steps: [],
     },
   ],
 }
 
 export const HowItWorks: FC<{ codeSnippetsHtml: CodeSnippets }> = ({ codeSnippetsHtml }) => {
-  const [selectedTab, setSelectedTab] = useState(content.tabs[0].title)
+  const router = useRouter()
+  const [selectedTab, setSelectedTab] = useState('0')
 
   return (
     <div className="w-full max-w-screen-xl mx-auto px-4 md:px-8 py-16 md:py-24">
       <div className="flex flex-col items-center">
         <h2 className="text-gray-800 font-semibold text-3xl dark:text-gray-200 mb-8">{content.heading}</h2>
         <ToggleGroup
-          type="single"
-          defaultValue={content.tabs[0].title}
-          value={selectedTab}
-          onValueChange={(value) => {
-            if (value) setSelectedTab(value)
-          }}
-          aria-label="Text alignment"
-          className="inline-block"
-        >
-          {content.tabs.map(({ title, active, tooltip }, index) => (
-            <ToggleItem
-              key={index}
-              value={title}
-              disabled={!active}
-              aria-label={title}
-              className={`relative overflow-hidden font-semibold focus:outline-none focus:ring-2 focus:ring-violet-300 dark:focus:ring-violet-900 border focus:z-20 ${
-                index == 0 ? 'rounded-l-md' : index == content.tabs.length - 1 ? 'rounded-r-md' : '-mx-px'
-              } ${
-                title == selectedTab
-                  ? 'border-violet-300 dark:border-violet-900 z-20'
-                  : 'border-gray-200 dark:border-gray-800'
-              }`}
-            >
-              {active ? (
-                <div
-                  className={`py-2 px-4 ${
-                    title == selectedTab
-                      ? 'bg-violet-100 text-violet-600 hover:bg-violet-200 dark:text-violet-500 dark:bg-violet-600/20 dark:hover:bg-violet-600/30'
-                      : 'text-gray-600 bg-gray-50 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-300 dark:hover:bg-gray-800'
-                  }`}
-                >
-                  {title}
-                </div>
-              ) : (
-                <Tooltip>
-                  <TooltipTrigger className="py-2 px-4 font-semibold bg-gray-50 text-gray-400 focus:outline-none dark:bg-gray-900 dark:text-gray-500">
-                    {title}
-                  </TooltipTrigger>
-                  <TooltipContent className="bg-gray-700 rounded text-gray-100 text-sm px-1.5 py-0.5 shadow-md">
-                    {tooltip || 'Coming soon!'}
-                  </TooltipContent>
-                </Tooltip>
-              )}
-            </ToggleItem>
-          ))}
-        </ToggleGroup>
+          tabs={content.tabs.map(({ title, active }) => {
+            return { label: title, disabled: !active }
+          })}
+          selectedTab={selectedTab}
+          setSelectedTab={setSelectedTab}
+        />
       </div>
-      <p>{selectedTab}</p>
+      {content.tabs[parseInt(selectedTab)].steps.map(({ heading, text, cta, codeSnippets, image }, index) => (
+        <div key={index} className="grid grid-cols-1 md:grid-cols-2 gap-16 mt-16">
+          <div className="flex space-x-8">
+            <div className="shrink-0 w-12 h-12 flex justify-center items-center text-violet-600 font-semibold text-xl rounded-full border border-violet-600">
+              {index + 1}
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200 mt-2.5">{heading}</h3>
+              <div className="text-gray-500 dark:text-gray-400 max-w-md">{text}</div>
+              {cta && (
+                <Button
+                  label={cta.label}
+                  action={() => router.push(cta.url)}
+                  theme="secondary"
+                  icon={cta?.icon ?? ''}
+                />
+              )}
+            </div>
+          </div>
+          {image && (
+            <div>
+              <Image
+                src={image.url}
+                alt={image.alt}
+                width={image.width}
+                height={image.height}
+                placeholder="blur"
+                blurDataURL={image.url}
+              />
+            </div>
+          )}
+          {codeSnippets && (
+            <div>
+              <CodeWindow snippets={codeSnippetsHtml} ids={codeSnippets} />
+            </div>
+          )}
+        </div>
+      ))}
     </div>
   )
 }

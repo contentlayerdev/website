@@ -9,7 +9,7 @@ export const Playground: FC = () => {
 
   const [currentFiles, setCurrentFiles] = useState(['posts/post-01.md'])
 
-  console.log(vm)
+  //console.log(vm)
 
   useEffect(() => {
     if (ref.current) {
