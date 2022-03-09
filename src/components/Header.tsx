@@ -13,7 +13,7 @@ function isExternalUrl(link: string): boolean {
 const navLinks: Array<{ label: string; url: string }> = [
   { label: 'Docs', url: '/docs' },
   { label: 'Blog', url: '/blog' },
-  { label: 'Examples', url: 'https://github.com/contentlayerdev/contentlayer/tree/main/examples' },
+  { label: 'Examples', url: '/docs/other/examples' },
 ]
 
 const iconLinks: Array<{ name: IconName; url: string }> = [
