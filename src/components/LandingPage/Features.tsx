@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import { FC } from 'react'
-import { Icon } from '../Icon'
-import { IconName } from '../Icon'
+import { Icon, IconName } from '../Icon'
 
 const content = {
   blocks: [

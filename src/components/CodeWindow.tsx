@@ -1,16 +1,16 @@
 import { FC, useState } from 'react'
-import { CodeSnippets } from './LandingPage/HowItWorks'
+import { type CodeSnippet } from './LandingPage/HowItWorks'
 
 export const CodeWindow: FC<{
-  snippets: CodeSnippets
-  ids: number[]
-}> = ({ snippets, ids }) => {
-  const [selectedFile, setSelectedFile] = useState(ids[0])
+  snippets: readonly CodeSnippet[]
+}> = ({ snippets }) => {
+  const [selectedFileIndex, setSelectedFileIndex] = useState(0)
+
   return (
     <div>
       {/* TODO: Window layout & file tabs */}
       <div className="max-w-xl" style={{ fontSize: 13 }}>
-        <div dangerouslySetInnerHTML={{ __html: snippets[selectedFile].content }} />
+        <div dangerouslySetInnerHTML={{ __html: snippets[selectedFileIndex].content }} />
       </div>
     </div>
   )

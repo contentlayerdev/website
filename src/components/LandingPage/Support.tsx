@@ -7,6 +7,7 @@ const content = {
   frameworks: {
     label: 'Supported Frameworks',
     items: [
+      // TODO add links to docs
       { logo: { file: 'nextjs.svg', width: 81, height: 48 }, label: 'Next.js', supported: true },
       { logo: { file: 'remix.svg', width: 28, height: 32 }, label: 'Remix', supported: false },
       { logo: { file: 'vite.svg', width: 36, height: 36 }, label: 'Vite', supported: false },
@@ -16,6 +17,7 @@ const content = {
   contentSources: {
     label: 'Supported Content Sources',
     items: [
+      // TODO add links to docs
       { logo: { file: 'mdx.svg', width: 77, height: 32 }, label: 'MDX', supported: true },
       { logo: { file: 'contentful.svg', width: 33, height: 38 }, label: 'Contentful', supported: true },
       { logo: { file: 'notion.svg', width: 39, height: 38 }, label: 'Notion', supported: false },
@@ -33,7 +35,7 @@ export const Support: FC = () => {
           <div className="flex items-center flex-wrap -mx-3">
             {content.frameworks.items.map(({ logo, label, supported }, index) => (
               <div key={index} className="p-3 h-16 flex items-center dark:filter dark:brightness-150">
-                <Tooltip>
+                <Tooltip delayDuration={100}>
                   <TooltipTrigger>
                     <Image
                       src={content.logosPath + logo.file}
@@ -43,7 +45,10 @@ export const Support: FC = () => {
                       className={`${supported ? 'opacity-100' : 'opacity-25'}`}
                     />
                   </TooltipTrigger>
-                  <TooltipContent className="bg-gray-700 rounded text-gray-100 text-sm px-1.5 py-0.5 shadow-md">
+                  <TooltipContent
+                    sideOffset={10}
+                    className="bg-gray-700 rounded text-gray-100 text-sm px-1.5 py-0.5 shadow-md"
+                  >
                     {`${label}${supported ? '' : ' – Coming soon!'}`}
                   </TooltipContent>
                 </Tooltip>
@@ -56,7 +61,7 @@ export const Support: FC = () => {
           <div className="flex items-center flex-wrap -mx-3">
             {content.contentSources.items.map(({ logo, label, supported }, index) => (
               <div key={index} className="p-3 h-16 flex items-center dark:filter dark:brightness-150">
-                <Tooltip>
+                <Tooltip delayDuration={100}>
                   <TooltipTrigger>
                     <Image
                       src={content.logosPath + logo.file}
@@ -66,7 +71,10 @@ export const Support: FC = () => {
                       className={`${supported ? 'opacity-100' : 'opacity-25'}`}
                     />
                   </TooltipTrigger>
-                  <TooltipContent className="bg-gray-700 rounded text-gray-100 text-sm px-1.5 py-0.5 shadow-md">
+                  <TooltipContent
+                    sideOffset={10}
+                    className="bg-gray-700 rounded text-gray-100 text-sm px-1.5 py-0.5 shadow-md"
+                  >
                     {`${label}${supported ? '' : ' – Coming soon!'}`}
                   </TooltipContent>
                 </Tooltip>

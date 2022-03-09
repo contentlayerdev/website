@@ -5,11 +5,13 @@ import { useRouter } from 'next/router'
 import { ToggleGroup } from '../ToggleGroup'
 import { Button } from '../Button'
 import { CodeWindow } from '../CodeWindow'
+import { ColorScheme } from '../../utils/syntax-highlighting'
 
-export const codeSnippets = [
-  {
-    file: 'contentlayer.config.ts',
-    content: `\
+export const codeSnippets = {
+  howItWorksStep1: [
+    {
+      file: 'contentlayer.config.ts',
+      content: `\
 import { defineDocumentType, makeSource } from 'contentlayer/source-files'
 
 const Post = defineDocumentType(() => ({
@@ -32,10 +34,12 @@ export default makeSource({
   documentTypes: [Post]
 })\
 `,
-  },
-  {
-    file: 'pages/posts/[slug].tsx',
-    content: `\
+    },
+  ],
+  howItWorksStep3: [
+    {
+      file: 'pages/posts/[slug].tsx',
+      content: `\
 import { allPages, type Page } from './assets/contentlayer-generated'
 
 export async function getStaticPaths() {
@@ -58,11 +62,16 @@ export default function Page({ page }: { page: Page }) {
   )
 }\
 `,
-  },
-]
+    },
+  ],
+} as const
 
 export type CodeSnippet = { file: string; content: string }
-export type CodeSnippets = CodeSnippet[]
+export type CodeSnippets = typeof codeSnippets
+
+export type PreprocessedCodeSnippets = Record<ColorScheme, CodeSnippets>
+
+const codesnippetKey = (k: keyof CodeSnippets) => k
 
 const content = {
   heading: 'How Contentlayer works with...',
@@ -85,7 +94,7 @@ const content = {
             icon: 'github' as IconName,
             url: '/',
           },
-          codeSnippets: [0], // index of code snippet in codeSnippets array
+          codeSnippetsKey: codesnippetKey('howItWorksStep1'),
         },
         {
           heading: 'Your content is transformed into data',
@@ -122,7 +131,7 @@ const content = {
               </p>
             </>
           ),
-          codeSnippets: [1], // index of code snippet in codeSnippets array
+          codeSnippetsKey: codesnippetKey('howItWorksStep3'),
         },
       ],
     },
@@ -139,7 +148,7 @@ const content = {
   ],
 }
 
-export const HowItWorks: FC<{ codeSnippetsHtml: CodeSnippets }> = ({ codeSnippetsHtml }) => {
+export const HowItWorks: FC<{ codeSnippets: CodeSnippets }> = ({ codeSnippets }) => {
   const router = useRouter()
   const [selectedTab, setSelectedTab] = useState('0')
 
@@ -155,7 +164,7 @@ export const HowItWorks: FC<{ codeSnippetsHtml: CodeSnippets }> = ({ codeSnippet
           setSelectedTab={setSelectedTab}
         />
       </div>
-      {content.tabs[parseInt(selectedTab)].steps.map(({ heading, text, cta, codeSnippets, image }, index) => (
+      {content.tabs[parseInt(selectedTab)].steps.map(({ heading, text, cta, codeSnippetsKey, image }, index) => (
         <div key={index} className="grid grid-cols-1 md:grid-cols-2 gap-16 mt-16">
           <div className="flex space-x-8">
             <div className="shrink-0 w-12 h-12 flex justify-center items-center text-violet-600 font-semibold text-xl rounded-full border border-violet-600">
@@ -186,9 +195,9 @@ export const HowItWorks: FC<{ codeSnippetsHtml: CodeSnippets }> = ({ codeSnippet
               />
             </div>
           )}
-          {codeSnippets && (
+          {codeSnippetsKey && (
             <div>
-              <CodeWindow snippets={codeSnippetsHtml} ids={codeSnippets} />
+              <CodeWindow snippets={codeSnippets[codeSnippetsKey]} />
             </div>
           )}
         </div>

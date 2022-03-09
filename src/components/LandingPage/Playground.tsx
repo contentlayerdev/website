@@ -20,7 +20,7 @@ export const Playground: FC = () => {
         })
         .then((_) => setVm(_))
     }
-  }, [ref])
+  }, [ref, currentFiles])
 
   return (
     <div className="h-[800px] my-8 relative mx-[-50vw] right-1/2 left-1/2 w-screen px-5">

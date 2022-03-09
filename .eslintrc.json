@@ -1,0 +1,3 @@
+{
+  "extends": ["plugin:import/recommended", "next/core-web-vitals"]
+}

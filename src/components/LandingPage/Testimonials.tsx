@@ -69,7 +69,7 @@ export const Testimonials: FC<{ usedByCount: number }> = ({ usedByCount }) => {
                 `}
               >
                 <div className="relative w-8 h-8 rounded-full overflow-hidden">
-                  <Image src={url} layout="fill" placeholder="blur" blurDataURL={url} />
+                  <Image src={url} alt={'Profile image'} layout="fill" placeholder="blur" blurDataURL={url} />
                 </div>
               </div>
             ))}
