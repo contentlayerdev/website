@@ -12,6 +12,7 @@ function isExternalUrl(link: string): boolean {
 
 const navLinks: Array<{ label: string; url: string }> = [
   { label: 'Docs', url: '/docs' },
+  { label: 'Why Contentlayer?', url: '/docs/concepts/why-contentlayer' },
   { label: 'Blog', url: '/blog' },
   { label: 'Examples', url: '/docs/other/examples' },
 ]

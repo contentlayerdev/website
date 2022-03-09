@@ -4,11 +4,11 @@ import { Hero } from './Hero'
 import { Support } from './Support'
 import { Testimonials } from './Testimonials'
 import { Features } from './Features'
-import { HowItWorks, type CodeSnippets } from './HowItWorks'
+import { type CodeSnippets, HowItWorks } from './HowItWorks'
 import { Playground } from './Playground'
 
-export const LandingPage: React.FC<{ codeSnippetsHtml: CodeSnippets; usedByCount: number }> = ({
-  codeSnippetsHtml,
+export const LandingPage: React.FC<{ codeSnippets: CodeSnippets; usedByCount: number }> = ({
+  codeSnippets,
   usedByCount,
 }) => {
   return (
@@ -19,12 +19,8 @@ export const LandingPage: React.FC<{ codeSnippetsHtml: CodeSnippets; usedByCount
         <Support />
         <Testimonials usedByCount={usedByCount} />
         <Features />
-        <HowItWorks codeSnippetsHtml={codeSnippetsHtml} />
+        <HowItWorks codeSnippets={codeSnippets} />
         <hr className="my-64" />
-        <div className="max-w-xl" style={{ fontSize: 13 }}>
-          <div dangerouslySetInnerHTML={{ __html: codeSnippetsHtml[0].content }} />
-          <div dangerouslySetInnerHTML={{ __html: codeSnippetsHtml[1].content }} />
-        </div>
         <Playground />
       </div>
     </div>

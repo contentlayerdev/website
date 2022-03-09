@@ -17,7 +17,7 @@ const content = {
   ),
   features: ['Lightweight & easy to use', 'Great developer experience', 'Blazing fast build & page performance'],
   primaryAction: { label: 'Get started', url: '/' },
-  secondaryAction: { label: 'Read the docs', url: '/docs' },
+  secondaryAction: { label: 'Why Contentlayer?', url: '/docs/concepts/why-contentlayer' },
   thumbnail: { url: '/images/intro-thumbnail.jpg', alt: 'Intro to Contentlayer Video Thumbnail' },
 }
 

@@ -22,10 +22,10 @@ pre.shiki {
   padding: 12px;
 
   /* All code samples get a grey border, twoslash ones get a different color */
-  border-left: 1px solid #999;
-  border-bottom: 1px solid #999;
+  /* border-left: 1px solid #999; */
+  /* border-bottom: 1px solid #999; */
 
-  margin-bottom: 3rem;
+  /* margin-bottom: 3rem; */
 
   /* Important to allow the code to move horizontally; */
   overflow-x: auto;
@@ -51,6 +51,11 @@ pre.shiki div.highlight {
 }
 pre.shiki div.line {
   min-height: 1rem;
+}
+
+pre.shiki code {
+  border: 0;
+  background: none;
 }
 
 /** Don't show the language identifiers */
