@@ -33,7 +33,7 @@ export const Support: FC = () => {
           <div className="flex items-center flex-wrap -mx-3">
             {content.frameworks.items.map(({ logo, label, supported }, index) => (
               <div key={index} className="p-3 h-16 flex items-center dark:filter dark:brightness-150">
-                <Tooltip>
+                <Tooltip delayDuration={100}>
                   <TooltipTrigger>
                     <Image
                       src={content.logosPath + logo.file}
@@ -43,7 +43,10 @@ export const Support: FC = () => {
                       className={`${supported ? 'opacity-100' : 'opacity-25'}`}
                     />
                   </TooltipTrigger>
-                  <TooltipContent className="bg-gray-700 rounded text-gray-100 text-sm px-1.5 py-0.5 shadow-md">
+                  <TooltipContent
+                    sideOffset={10}
+                    className="bg-gray-700 rounded text-gray-100 text-sm px-1.5 py-0.5 shadow-md"
+                  >
                     {`${label}${supported ? '' : ' – Coming soon!'}`}
                   </TooltipContent>
                 </Tooltip>
@@ -56,7 +59,7 @@ export const Support: FC = () => {
           <div className="flex items-center flex-wrap -mx-3">
             {content.contentSources.items.map(({ logo, label, supported }, index) => (
               <div key={index} className="p-3 h-16 flex items-center dark:filter dark:brightness-150">
-                <Tooltip>
+                <Tooltip delayDuration={100}>
                   <TooltipTrigger>
                     <Image
                       src={content.logosPath + logo.file}
@@ -66,7 +69,10 @@ export const Support: FC = () => {
                       className={`${supported ? 'opacity-100' : 'opacity-25'}`}
                     />
                   </TooltipTrigger>
-                  <TooltipContent className="bg-gray-700 rounded text-gray-100 text-sm px-1.5 py-0.5 shadow-md">
+                  <TooltipContent
+                    sideOffset={10}
+                    className="bg-gray-700 rounded text-gray-100 text-sm px-1.5 py-0.5 shadow-md"
+                  >
                     {`${label}${supported ? '' : ' – Coming soon!'}`}
                   </TooltipContent>
                 </Tooltip>
