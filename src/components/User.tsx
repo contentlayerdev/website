@@ -6,7 +6,7 @@ export const User: FC<{ name: string; position: string; avatar: string }> = ({ n
     <div className="flex space-x-4">
       <div className="flex-shrink-0">
         <div className="relative w-12 h-12 rounded-full overflow-hidden">
-          <Image src={avatar} layout="fill" placeholder="blur" blurDataURL={avatar} />
+          <Image src={avatar} alt={name} layout="fill" placeholder="blur" blurDataURL={avatar} />
         </div>
       </div>
       <div>

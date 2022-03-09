@@ -20,5 +20,5 @@ export const ColorSchemeProvider: React.FC = ({ children }) => {
       .addEventListener('change', (e) => setColorScheme(e.matches ? 'dark' : 'light'))
   }, [setColorScheme])
 
-  return <ColorSchemeContext.Provider value={colorScheme} children={children} />
+  return <ColorSchemeContext.Provider value={colorScheme}>{children}</ColorSchemeContext.Provider>
 }

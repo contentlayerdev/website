@@ -1,4 +1,4 @@
-import { renderCodeToHTML, runTwoSlash, createShikiHighlighter, UserConfigSettings } from 'shiki-twoslash'
+import { renderCodeToHTML, runTwoSlash, createShikiHighlighter, type UserConfigSettings } from 'shiki-twoslash'
 import { getHighlighter } from 'shiki'
 type Highlighter = Awaited<ReturnType<typeof createShikiHighlighter>>
 

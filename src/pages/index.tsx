@@ -6,8 +6,7 @@ import { LandingPage } from '../components/LandingPage'
 import { CodeSnippets, codeSnippets, type PreprocessedCodeSnippets } from '../components/LandingPage/HowItWorks'
 import { ColorScheme, snippetToHtml } from '../utils/syntax-highlighting'
 import { getUsedByCount } from '../utils/used-by-count'
-import { promiseAllProperties } from '../utils/object'
-import { mapObjectValues } from '../utils/object'
+import { promiseAllProperties, mapObjectValues } from '../utils/object'
 import { useColorScheme } from '../ColorSchemeContext'
 
 export const getStaticProps = defineStaticProps(async (_context) => {

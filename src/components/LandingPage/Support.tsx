@@ -7,6 +7,7 @@ const content = {
   frameworks: {
     label: 'Supported Frameworks',
     items: [
+      // TODO add links to docs
       { logo: { file: 'nextjs.svg', width: 81, height: 48 }, label: 'Next.js', supported: true },
       { logo: { file: 'remix.svg', width: 28, height: 32 }, label: 'Remix', supported: false },
       { logo: { file: 'vite.svg', width: 36, height: 36 }, label: 'Vite', supported: false },
@@ -16,6 +17,7 @@ const content = {
   contentSources: {
     label: 'Supported Content Sources',
     items: [
+      // TODO add links to docs
       { logo: { file: 'mdx.svg', width: 77, height: 32 }, label: 'MDX', supported: true },
       { logo: { file: 'contentful.svg', width: 33, height: 38 }, label: 'Contentful', supported: true },
       { logo: { file: 'notion.svg', width: 39, height: 38 }, label: 'Notion', supported: false },

@@ -1,8 +1,9 @@
 import type { InferGetStaticPropsType } from 'next'
+// TODO remove eslint-disable when fixed https://github.com/import-js/eslint-plugin-import/issues/1810
+// eslint-disable-next-line import/no-unresolved
 import { useLiveReload } from 'next-contentlayer/hooks'
 import type { FC } from 'react'
-import { allDocs } from 'contentlayer/generated'
-import { Doc } from 'contentlayer/generated'
+import { allDocs, Doc } from 'contentlayer/generated'
 
 import { DocLayout } from '../../layouts/DocLayout'
 import { defineStaticProps, toParams } from '../../utils/next'
