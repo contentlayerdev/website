@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@radix-ui/react-tabs": "^0.1.5",
     "@radix-ui/react-toggle-group": "^0.1.5",
     "@radix-ui/react-tooltip": "^0.1.7",
     "@stackblitz/sdk": "^1.6.0",
@@ -18,7 +19,8 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-helmet": "^6.1.0",
-    "shiki-twoslash": "^3.0.2"
+    "shiki-twoslash": "^3.0.2",
+    "tailwindcss-radix": "^1.6.0"
   },
   "devDependencies": {
     "@netlify/plugin-nextjs": "^4.2.7",

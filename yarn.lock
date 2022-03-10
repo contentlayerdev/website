@@ -869,6 +869,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@radix-ui/react-tabs@npm:^0.1.5":
+  version: 0.1.5
+  resolution: "@radix-ui/react-tabs@npm:0.1.5"
+  dependencies:
+    "@babel/runtime": ^7.13.10
+    "@radix-ui/primitive": 0.1.0
+    "@radix-ui/react-context": 0.1.1
+    "@radix-ui/react-id": 0.1.5
+    "@radix-ui/react-primitive": 0.1.4
+    "@radix-ui/react-roving-focus": 0.1.5
+    "@radix-ui/react-use-controllable-state": 0.1.0
+  peerDependencies:
+    react: ^16.8 || ^17.0
+  checksum: 323d8f669ec739e9f697df26edd5695536f648d5851d84a7f9e7d8bf9913504ce7c7bb12f99d7e2da07830e1f4ab05f5f74c0456989fe64acef35b4ed6aa4a42
+  languageName: node
+  linkType: hard
+
 "@radix-ui/react-toggle-group@npm:^0.1.5":
   version: 0.1.5
   resolution: "@radix-ui/react-toggle-group@npm:0.1.5"
@@ -2243,6 +2260,7 @@ __metadata:
   resolution: "contentlayer-docs@workspace:."
   dependencies:
     "@netlify/plugin-nextjs": ^4.2.7
+    "@radix-ui/react-tabs": ^0.1.5
     "@radix-ui/react-toggle-group": ^0.1.5
     "@radix-ui/react-tooltip": ^0.1.7
     "@stackblitz/sdk": ^1.6.0
@@ -2269,6 +2287,7 @@ __metadata:
     rehype-highlight: ^5.0.2
     shiki-twoslash: ^3.0.2
     tailwindcss: ^3.0.23
+    tailwindcss-radix: ^1.6.0
     typescript: 4.6.2
   languageName: unknown
   linkType: soft
@@ -7378,6 +7397,13 @@ __metadata:
   version: 1.0.0
   resolution: "supports-preserve-symlinks-flag@npm:1.0.0"
   checksum: 53b1e247e68e05db7b3808b99b892bd36fb096e6fba213a06da7fab22045e97597db425c724f2bbd6c99a3c295e1e73f3e4de78592289f38431049e1277ca0ae
+  languageName: node
+  linkType: hard
+
+"tailwindcss-radix@npm:^1.6.0":
+  version: 1.6.0
+  resolution: "tailwindcss-radix@npm:1.6.0"
+  checksum: 7b4c883c1c7ddf72ca2241faecc1cf201a674bbeb453c18b8a8522804cf19ce8c4e0c07b4e6f64e6dad73408ef3bc402df160e1fda8220d75dc8b4fb12cf4f8b
   languageName: node
   linkType: hard
 

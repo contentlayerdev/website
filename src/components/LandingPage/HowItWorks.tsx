@@ -11,6 +11,7 @@ export const codeSnippets = {
   howItWorksStep1: [
     {
       file: 'contentlayer.config.ts',
+      lines: 21,
       content: `\
 import { defineDocumentType, makeSource } from 'contentlayer/source-files'
 
@@ -39,6 +40,7 @@ export default makeSource({
   howItWorksStep3: [
     {
       file: 'pages/posts/[slug].tsx',
+      lines: 21,
       content: `\
 import { allPages, type Page } from './assets/contentlayer-generated'
 
@@ -66,7 +68,7 @@ export default function Page({ page }: { page: Page }) {
   ],
 } as const
 
-export type CodeSnippet = { file: string; content: string }
+export type CodeSnippet = { file: string; content: string; lines: number }
 export type CodeSnippets = typeof codeSnippets
 
 export type PreprocessedCodeSnippets = Record<ColorScheme, CodeSnippets>

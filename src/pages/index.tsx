@@ -42,7 +42,9 @@ const htmlForCodeSnippets = (colorScheme: ColorScheme): Promise<CodeSnippets> =>
       codeSnippets,
       (_key, snippets) =>
         Promise.all(
-          snippets.map(({ content, file }) => snippetToHtml(content, colorScheme).then((_) => ({ file, content: _ }))),
+          snippets.map(({ content, file, lines }) =>
+            snippetToHtml(content, colorScheme).then((_) => ({ file, lines, content: _ })),
+          ),
         ) as any, // TODO: fix type
     ),
   )
