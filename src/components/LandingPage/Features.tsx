@@ -37,7 +37,7 @@ export const Features: FC = () => {
       <div className="w-full max-w-screen-xl mx-auto px-4 md:px-8 py-16 md:py-24 grid grid-cols-1 lg:grid-cols-3 gap-16">
         {content.blocks.map(({ icon, heading, text, features }, index) => (
           <div key={index} className="max-w-xl md:mx-auto lg:mx-0">
-            <div className="w-12 text-violet-600 bg-violet-200 rounded-full p-2 dark:bg-violet-900/50">
+            <div className="w-12 text-violet-600 bg-violet-100 border border-violet-200 rounded-full p-2 dark:text-violet-500 dark:bg-violet-900/50 dark:border-violet-900">
               <Icon name={icon} />
             </div>
             <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200 mt-8">{heading}</h3>
