@@ -27,7 +27,7 @@ export const CodeWindow: FC<{
         </Tabs.List>
         {snippets.map(({ file, content, lines }, index) => (
           <Tabs.Content key={index} value={file} className="overflow-y-hidden flex">
-            <div className="w-8 shrink-0 grow-0 text-right py-[19px] leading-none text-sm text-gray-300 font-mono dark:text-gray-700">
+            <div className="w-8 shrink-0 grow-0 text-right py-[19px] bg-white leading-none text-sm text-gray-300 font-mono dark:bg-[#0d1116] dark:text-gray-700">
               {[...new Array(lines)].map((v, index) => (
                 <div key={index} className="px-2 h-[20px]">
                   {index + 1}
