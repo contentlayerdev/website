@@ -38,14 +38,9 @@ export const ToggleGroup: FC<{
           }`}
         >
           {disabled ? (
-            <Tooltip>
-              <TooltipTrigger className="py-2 px-4 font-semibold bg-gray-50 text-gray-400 focus:outline-none dark:bg-gray-900 dark:text-gray-500">
-                {label}
-              </TooltipTrigger>
-              <TooltipContent className="bg-gray-700 rounded text-gray-100 text-sm px-1.5 py-0.5 shadow-md">
-                Coming soon!
-              </TooltipContent>
-            </Tooltip>
+            <div className="py-2 px-4 font-semibold bg-gray-50 text-gray-400 focus:outline-none dark:bg-gray-900 dark:text-gray-500">
+              {label}
+            </div>
           ) : (
             <div
               className={`py-2 px-4 ${
