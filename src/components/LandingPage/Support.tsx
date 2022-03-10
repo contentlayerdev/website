@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { FC } from 'react'
-import { Root as Tooltip, Trigger as TooltipTrigger, Content as TooltipContent } from '@radix-ui/react-tooltip'
+import * as Tooltip from '@radix-ui/react-tooltip'
 
 const content = {
   logosPath: '/images/logos/',
@@ -35,8 +35,8 @@ export const Support: FC = () => {
           <div className="flex items-center flex-wrap -mx-3">
             {content.frameworks.items.map(({ logo, label, supported }, index) => (
               <div key={index} className="p-3 h-16 flex items-center dark:filter dark:brightness-150">
-                <Tooltip delayDuration={100}>
-                  <TooltipTrigger>
+                <Tooltip.Root delayDuration={100}>
+                  <Tooltip.Trigger>
                     <Image
                       src={content.logosPath + logo.file}
                       alt={label}
@@ -44,14 +44,15 @@ export const Support: FC = () => {
                       height={logo.height}
                       className={`${supported ? 'opacity-100' : 'opacity-25'}`}
                     />
-                  </TooltipTrigger>
-                  <TooltipContent
+                  </Tooltip.Trigger>
+                  <Tooltip.Content
                     sideOffset={10}
                     className="bg-gray-700 rounded text-gray-100 text-sm px-1.5 py-0.5 shadow-md"
                   >
                     {`${label}${supported ? '' : ' – Coming soon!'}`}
-                  </TooltipContent>
-                </Tooltip>
+                    <Tooltip.Arrow fill="#374151" />
+                  </Tooltip.Content>
+                </Tooltip.Root>
               </div>
             ))}
           </div>
@@ -61,8 +62,8 @@ export const Support: FC = () => {
           <div className="flex items-center flex-wrap -mx-3">
             {content.contentSources.items.map(({ logo, label, supported }, index) => (
               <div key={index} className="p-3 h-16 flex items-center dark:filter dark:brightness-150">
-                <Tooltip delayDuration={100}>
-                  <TooltipTrigger>
+                <Tooltip.Root delayDuration={100}>
+                  <Tooltip.TooltipTrigger>
                     <Image
                       src={content.logosPath + logo.file}
                       alt={label}
@@ -70,14 +71,15 @@ export const Support: FC = () => {
                       height={logo.height}
                       className={`${supported ? 'opacity-100' : 'opacity-25'}`}
                     />
-                  </TooltipTrigger>
-                  <TooltipContent
+                  </Tooltip.TooltipTrigger>
+                  <Tooltip.TooltipContent
                     sideOffset={10}
                     className="bg-gray-700 rounded text-gray-100 text-sm px-1.5 py-0.5 shadow-md"
                   >
                     {`${label}${supported ? '' : ' – Coming soon!'}`}
-                  </TooltipContent>
-                </Tooltip>
+                    <Tooltip.Arrow fill="#374151" />
+                  </Tooltip.TooltipContent>
+                </Tooltip.Root>
               </div>
             ))}
           </div>
