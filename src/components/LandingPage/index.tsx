@@ -5,6 +5,7 @@ import { Support } from './Support'
 import { Testimonials } from './Testimonials'
 import { Features } from './Features'
 import { type CodeSnippets, HowItWorks } from './HowItWorks'
+import { Footer } from './Footer'
 import { Playground } from './Playground'
 
 export const LandingPage: React.FC<{ codeSnippets: CodeSnippets; usedByCount: number }> = ({
@@ -20,6 +21,7 @@ export const LandingPage: React.FC<{ codeSnippets: CodeSnippets; usedByCount: nu
         <Testimonials usedByCount={usedByCount} />
         <Features />
         <HowItWorks codeSnippets={codeSnippets} />
+        <Footer />
         <hr className="my-64" />
         <Playground />
       </div>
