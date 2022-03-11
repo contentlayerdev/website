@@ -154,7 +154,7 @@ export const HowItWorks: FC<{ codeSnippets: CodeSnippets }> = ({ codeSnippets })
   const router = useRouter()
 
   return (
-    <div className="w-full max-w-screen-xl mx-auto px-4 md:px-8 py-16 md:py-24">
+    <div className="w-full max-w-screen-xl mx-auto px-4 md:px-8 mt-16 md:mt-24">
       <Tabs.Root defaultValue={content.tabs[0].title}>
         <h2 className="text-gray-800 font-semibold text-3xl dark:text-gray-200 text-center mb-8 mt-0">
           {content.heading}
@@ -195,14 +195,16 @@ export const HowItWorks: FC<{ codeSnippets: CodeSnippets }> = ({ codeSnippets })
                     </div>
                     <div>
                       <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200 mt-2.5">{heading}</h3>
-                      <div className="text-gray-500 dark:text-gray-400 max-w-md">{text}</div>
+                      <div className="text-gray-500 dark:text-gray-400 leading-relaxed max-w-md">{text}</div>
                       {cta && (
-                        <Button
-                          label={cta.label}
-                          action={() => router.push(cta.url)}
-                          theme="secondary"
-                          icon={cta?.icon ?? ''}
-                        />
+                        <div className="mt-8">
+                          <Button
+                            label={cta.label}
+                            action={() => router.push(cta.url)}
+                            theme="secondary"
+                            icon={cta?.icon ?? ''}
+                          />
+                        </div>
                       )}
                     </div>
                   </div>

@@ -91,4 +91,17 @@
       filter: invert(90%) hue-rotate(180deg);
     }
   }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-560px * 4));
+    }
+  }
+
+  .animate-scroll {
+    animation: scroll 30s linear infinite;
+  }
 }
