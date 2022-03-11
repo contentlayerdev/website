@@ -23,11 +23,10 @@ export const LandingPage: React.FC<{ codeSnippets: CodeSnippets; usedByCount: nu
         <Testimonials usedByCount={usedByCount} />
         <Features />
         <HowItWorks codeSnippets={codeSnippets} />
+        <Playground />
         <FAQ />
         <Tweets />
         <Footer />
-        <hr className="my-64" />
-        <Playground />
       </div>
     </div>
   )

@@ -2,7 +2,7 @@ import { FC } from 'react'
 import classnames from 'classnames'
 
 const themeClasses = {
-  default: 'text-gray-400 dark:text-gray-500 border border-gray-300 dark:border-gray-600',
+  default: 'text-slate-400 dark:text-slate-500 border border-gray-300 dark:border-gray-600',
   primary: 'text-purple-400 dark:text-purple-600 border border-purple-300 dark:border-purple-800',
 }
 

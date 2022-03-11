@@ -17,7 +17,7 @@ export const Card: FC<{
   if (link) {
     return (
       <Link href={link.url}>
-        <a className="!text-gray-800 dark:!text-gray-100 !border-0 hover:bg-gray-50 hover:dark:bg-gray-850 flex">
+        <a className="!text-slate-800 dark:!text-slate-100 !border-0 hover:bg-gray-50 hover:dark:bg-gray-850 flex">
           {cardBody}
         </a>
       </Link>

@@ -8,7 +8,7 @@
   html,
   body,
   #__next {
-    @apply h-full bg-white dark:bg-gray-950 text-gray-950 dark:text-white;
+    @apply h-full bg-white dark:bg-gray-950 text-slate-800 dark:text-slate-200;
   }
 
   h1,
@@ -87,7 +87,7 @@
 
   @media (prefers-color-scheme: dark) {
     .g-docs code {
-      @apply text-gray-950 bg-gray-50;
+      @apply text-slate-900 bg-gray-50;
       filter: invert(90%) hue-rotate(180deg);
     }
   }

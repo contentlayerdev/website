@@ -51,7 +51,7 @@ export const Testimonials: FC<{ usedByCount: number }> = ({ usedByCount }) => {
   return (
     <div className="w-full max-w-screen-xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 pt-16 md:pt-24">
       <div className="md:col-span-2 bg-gray-50/50 border border-gray-100 rounded-2xl p-8 md:p-12 lg:p-16 space-y-8 dark:bg-gray-900/25 dark:border-gray-900">
-        <p className="text-gray-500 font-light md:text-lg italic text-center max-w-lg mx-auto dark:text-gray-400">
+        <p className="text-slate-500 font-light md:text-lg italic text-center max-w-lg mx-auto dark:text-slate-400">
           <q>{content.tweet.text}</q>
         </p>
         <div className="flex justify-center">
@@ -80,7 +80,7 @@ export const Testimonials: FC<{ usedByCount: number }> = ({ usedByCount }) => {
             </p>
             <Link href={content.projects.cta.url}>
               <a
-                className="text-gray-500 hover:text-gray-700 text-center dark:text-gray-400 dark:hover:text-gray-300"
+                className="text-slate-500 hover:text-slate-700 text-center dark:text-slate-400 dark:hover:text-slate-300"
                 rel="noreferrer"
               >
                 {content.projects.cta.label}

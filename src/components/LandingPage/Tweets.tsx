@@ -51,7 +51,7 @@ export const Tweets: FC = () => {
           >
             <div className="h-full bg-gray-50/50 border border-gray-100 rounded-2xl p-8 space-y-4 dark:bg-gray-900/25 dark:border-gray-900">
               <User {...user} />
-              <p className="text-gray-500 font-light italic dark:text-gray-400">
+              <p className="text-slate-500 font-light italic dark:text-slate-400">
                 <q>{text}</q>
               </p>
             </div>

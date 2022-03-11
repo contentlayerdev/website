@@ -31,7 +31,7 @@ export const Support: FC = () => {
     <div className="w-full max-w-screen-xl mx-auto px-4 md:px-8 pt-16 md:pt-24">
       <div className="flex flex-col space-y-8 md:flex-row md:space-y-0 md:space-x-16 justify-center">
         <div>
-          <h2 className="text-gray-500 font-normal text-sm md:text-center my-0">{content.frameworks.label}</h2>
+          <h2 className="text-slate-500 font-normal text-sm md:text-center my-0">{content.frameworks.label}</h2>
           <div className="flex items-center flex-wrap -mx-3">
             {content.frameworks.items.map(({ logo, label, supported }, index) => (
               <div key={index} className="p-3 h-16 flex items-center dark:filter dark:brightness-150">
@@ -47,7 +47,7 @@ export const Support: FC = () => {
                   </Tooltip.Trigger>
                   <Tooltip.Content
                     sideOffset={10}
-                    className="bg-gray-700 rounded text-gray-100 text-sm px-1.5 py-0.5 shadow-md"
+                    className="bg-gray-700 rounded text-slate-100 text-sm px-1.5 py-0.5 shadow-md"
                   >
                     {`${label}${supported ? '' : ' – Coming soon!'}`}
                     <Tooltip.Arrow fill="#374151" />
@@ -58,7 +58,7 @@ export const Support: FC = () => {
           </div>
         </div>
         <div>
-          <h2 className="text-gray-500 font-normal text-sm md:text-center my-0">{content.contentSources.label}</h2>
+          <h2 className="text-slate-500 font-normal text-sm md:text-center my-0">{content.contentSources.label}</h2>
           <div className="flex items-center flex-wrap -mx-3">
             {content.contentSources.items.map(({ logo, label, supported }, index) => (
               <div key={index} className="p-3 h-16 flex items-center dark:filter dark:brightness-150">
@@ -74,7 +74,7 @@ export const Support: FC = () => {
                   </Tooltip.TooltipTrigger>
                   <Tooltip.TooltipContent
                     sideOffset={10}
-                    className="bg-gray-700 rounded text-gray-100 text-sm px-1.5 py-0.5 shadow-md"
+                    className="bg-gray-700 rounded text-slate-100 text-sm px-1.5 py-0.5 shadow-md"
                   >
                     {`${label}${supported ? '' : ' – Coming soon!'}`}
                     <Tooltip.Arrow fill="#374151" />

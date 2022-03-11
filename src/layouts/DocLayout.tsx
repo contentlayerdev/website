@@ -74,7 +74,7 @@ const Tree: FC<{ tree: TreeRoot; level: number; activeUrlPath: string }> = ({ tr
               'py-2 px-4 no-underline text-sm rounded-md hover:bg-gray-50 dark:hover:bg-gray-850 flex items-center space-x-2.5',
               activeUrlPath === treeNode.urlPath
                 ? 'bg-gray-100 text-black dark:bg-gray-800 dark:text-white'
-                : 'text-gray-500 dark:text-gray-400',
+                : 'text-slate-500 dark:text-slate-400',
             )}
           >
             <span>{treeNode.nav_title || treeNode.title}</span>

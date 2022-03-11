@@ -197,7 +197,7 @@ export async function getStaticProps() {
 function PostCard(post) {
   return (
     <div className="mb-6">
-      <time dateTime={post.date} className="block text-sm text-gray-600">
+      <time dateTime={post.date} className="block text-sm text-slate-600">
         {format(parseISO(post.date), 'LLLL d, yyyy')}
       </time>
       <h2 className="text-lg">
@@ -287,7 +287,7 @@ const PostLayout = ({ post }) => {
         </div>
         <div className="text-center mb-6">
           <h1 className="text-3xl font-bold mb-1">{post.title}</h1>
-          <time dateTime={post.date} className="text-sm text-gray-600">
+          <time dateTime={post.date} className="text-sm text-slate-600">
             {format(parseISO(post.date), 'LLLL d, yyyy')}
           </time>
         </div>

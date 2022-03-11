@@ -156,7 +156,7 @@ export const HowItWorks: FC<{ codeSnippets: CodeSnippets }> = ({ codeSnippets })
   return (
     <div className="w-full max-w-screen-xl mx-auto px-4 md:px-8 mt-16 md:mt-24">
       <Tabs.Root defaultValue={content.tabs[0].title}>
-        <h2 className="text-gray-800 font-semibold text-3xl dark:text-gray-200 text-center mb-8 mt-0">
+        <h2 className="text-slate-800 font-semibold text-3xl dark:text-slate-200 text-center mb-8 mt-0">
           {content.heading}
         </h2>
         <Tabs.List
@@ -174,8 +174,8 @@ export const HowItWorks: FC<{ codeSnippets: CodeSnippets }> = ({ codeSnippets })
               dark:bg-gray-900 dark:border-gray-800 dark:radix-state-active:bg-violet-600/20 dark:radix-state-active:text-violet-500 dark:radix-state-active:border-violet-900
               ${
                 active
-                  ? 'hover:bg-gray-100 text-gray-600 dark:hover:bg-gray-800 dark:text-gray-300'
-                  : 'text-gray-400 dark:text-gray-500'
+                  ? 'hover:bg-gray-100 text-slate-600 dark:hover:bg-gray-800 dark:text-slate-300'
+                  : 'text-slate-400 dark:text-slate-500'
               }
               py-2 px-4 radix-state-active:z-20`}
             >
@@ -194,8 +194,8 @@ export const HowItWorks: FC<{ codeSnippets: CodeSnippets }> = ({ codeSnippets })
                       {index + 1}
                     </div>
                     <div>
-                      <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200 mt-2.5">{heading}</h3>
-                      <div className="text-gray-500 dark:text-gray-400 leading-relaxed max-w-md">{text}</div>
+                      <h3 className="text-xl font-semibold text-slate-800 dark:text-slate-200 mt-2.5">{heading}</h3>
+                      <div className="text-slate-500 dark:text-slate-400 leading-relaxed max-w-md">{text}</div>
                       {cta && (
                         <div className="mt-8">
                           <Button

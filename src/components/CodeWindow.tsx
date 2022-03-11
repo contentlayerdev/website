@@ -18,7 +18,7 @@ export const CodeWindow: FC<{
             <Tabs.Trigger
               key={index}
               value={file}
-              className="relative h-10 shrink-0 flex items-center px-4 text-gray-500 border-r border-b border-gray-100 radix-state-active:border-b-transparent radix-state-active:bg-white focus:outline-none focus:ring-2 focus:ring-violet-300 dark:focus:ring-violet-900 dark:border-gray-900 dark:text-gray-400 dark:radix-state-active:bg-[#0d1116]"
+              className="relative h-10 shrink-0 flex items-center px-4 text-slate-500 border-r border-b border-gray-100 radix-state-active:border-b-transparent radix-state-active:bg-white focus:outline-none focus:ring-2 focus:ring-violet-300 dark:focus:ring-violet-900 dark:border-gray-900 dark:text-slate-400 dark:radix-state-active:bg-[#0d1116]"
             >
               {file}
             </Tabs.Trigger>
@@ -27,7 +27,7 @@ export const CodeWindow: FC<{
         </Tabs.List>
         {snippets.map(({ file, content, lines }, index) => (
           <Tabs.Content key={index} value={file} className="overflow-y-hidden flex focus:outline-none">
-            <div className="w-8 shrink-0 grow-0 text-right py-[19px] bg-white leading-none text-sm text-gray-300 font-mono dark:bg-[#0d1116] dark:text-gray-700">
+            <div className="w-8 shrink-0 grow-0 text-right py-[19px] bg-white leading-none text-sm text-slate-300 font-mono dark:bg-[#0d1116] dark:text-slate-700">
               {[...new Array(lines)].map((v, index) => (
                 <div key={index} className="px-2 h-[20px]">
                   {index + 1}

@@ -27,9 +27,9 @@ export const Hero: FC = () => {
   return (
     <div className="w-full max-w-screen-xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-2 gap-16 pt-16 md:pt-24">
       <div className="sm:max-w-md">
-        <h1 className="text-gray-800 dark:text-gray-200 text-5xl font-semibold">{content.heading}</h1>
-        <p className="text-gray-500 md:text-lg dark:text-gray-400 leading-relaxed mb-6">{content.text}</p>
-        <ul className="text-gray-700 md:text-lg dark:text-gray-300 ml-0 mb-8">
+        <h1 className="text-slate-800 dark:text-slate-200 text-5xl font-semibold">{content.heading}</h1>
+        <p className="text-slate-500 md:text-lg dark:text-slate-400 leading-relaxed mb-6">{content.text}</p>
+        <ul className="text-slate-700 md:text-lg dark:text-slate-300 ml-0 mb-8">
           {content.features.map((feature, index) => (
             <li key={index} className="flex items-center space-x-3">
               <Icon name="check" />

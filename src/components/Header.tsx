@@ -4,7 +4,6 @@ import { useRouter } from 'next/router'
 import { Icon, IconName } from '../components/Icon'
 import { Label } from '../components/Label'
 import { Logo } from './Logo'
-import { allDocs, allPages } from 'contentlayer/generated'
 
 function isExternalUrl(link: string): boolean {
   return !link.startsWith('/')
@@ -29,7 +28,7 @@ export const Header = () => {
     <header className="fixed z-10 flex justify-between w-full px-6 items-center bg-white border-b border-gray-100 dark:bg-gray-950 dark:border-gray-800 bg-opacity-90 backdrop-filter backdrop-blur-sm h-[60px]">
       <div className="flex items-center space-x-2.5">
         <Link href="/">
-          <a className="flex items-center space-x-2.5 font-bold no-underline text-gray-950 dark:text-white">
+          <a className="flex items-center space-x-2.5 font-bold no-underline text-slate-800 dark:text-white">
             <Logo />
             <span>Contentlayer</span>
           </a>
@@ -41,7 +40,7 @@ export const Header = () => {
         {navLinks.map((link, idx) => (
           <Link key={idx} href={link.url}>
             <a
-              className="inline-flex items-center space-x-1 font-medium text-gray-500 dark:text-gray-300 hover:text-gray-950 dark:hover:text-gray-100"
+              className="inline-flex items-center space-x-1 font-medium text-slate-500 dark:text-slate-300 hover:text-slate-950 dark:hover:text-slate-100"
               target={isExternalUrl(link.url) ? '_blank' : undefined}
             >
               <span>{link.label}</span>
@@ -60,7 +59,7 @@ export const Header = () => {
           {iconLinks.map((link, idx) => (
             <Link href={link.url} key={idx}>
               <a
-                className="p-2 text-current inline-block w-10 dark:text-gray-300 dark:hover:text-gray-100"
+                className="p-2 text-current inline-block w-10 dark:text-slate-300 dark:hover:text-slate-100"
                 target={isExternalUrl(link.url) ? '_blank' : undefined}
               >
                 <Icon name={link.name} />

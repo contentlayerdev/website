@@ -1,6 +1,6 @@
 @layer components {
   .markdown {
-    @apply text-gray-800 dark:text-gray-100;
+    @apply text-slate-800 dark:text-slate-100;
 
     a {
       @apply text-purple-500 border-b border-purple-500 no-underline hover:text-purple-700 hover:border-purple-700;

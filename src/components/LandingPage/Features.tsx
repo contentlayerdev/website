@@ -40,9 +40,9 @@ export const Features: FC = () => {
             <div className="w-12 text-violet-600 bg-violet-100 border border-violet-200 rounded-full p-2 dark:text-violet-500 dark:bg-violet-900/50 dark:border-violet-900">
               <Icon name={icon} />
             </div>
-            <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200 mt-8">{heading}</h3>
-            <p className="text-gray-500 dark:text-gray-400 leading-relaxed mb-6">{text}</p>
-            <ul className="text-gray-700 dark:text-gray-300 ml-0 mb-8">
+            <h3 className="text-xl font-semibold text-slate-800 dark:text-slate-200 mt-8">{heading}</h3>
+            <p className="text-slate-500 dark:text-slate-400 leading-relaxed mb-6">{text}</p>
+            <ul className="text-slate-700 dark:text-slate-300 ml-0 mb-8">
               {features.map((feature, index) => (
                 <li key={index} className="flex items-center space-x-3">
                   <Icon name="check" />

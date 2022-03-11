@@ -50,7 +50,7 @@ export const Footer: FC = () => {
       <div className="w-full max-w-screen-xl mx-auto px-4 md:px-8 py-16 md:py-24 space-y-16 lg:space-y-0 lg:flex lg:justify-between">
         <div>
           <Link href="/">
-            <a className="flex items-center space-x-2.5 font-bold no-underline text-gray-950 dark:text-white">
+            <a className="flex items-center space-x-2.5 font-bold no-underline text-slate-800 dark:text-white">
               <Logo />
               <span>Contentlayer</span>
             </a>

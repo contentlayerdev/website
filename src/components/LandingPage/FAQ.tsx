@@ -34,16 +34,16 @@ export const FAQ: FC = () => {
   const router = useRouter()
 
   return (
-    <div className="bg-gray-50 mt-16 md:mt-24 dark:md:bg-gray-900/50">
+    <div className="bg-gray-50 mt-16 md:mt-0 dark:bg-gray-900/50">
       <div className="w-full max-w-3xl mx-auto px-4 md:px-8 py-16 md:py-24">
-        <h2 className="text-gray-800 font-semibold text-3xl dark:text-gray-200 text-center mb-8 mt-0">
+        <h2 className="text-slate-800 font-semibold text-3xl dark:text-slate-200 text-center mb-8 mt-0">
           {content.heading}
         </h2>
         <ul className="list-none m-0">
           {content.elements.map(({ question, answer }, index) => (
             <li key={index}>
-              <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200">{question}</h3>
-              <p className="text-gray-500 dark:text-gray-400 leading-relaxed">{answer}</p>
+              <h3 className="text-xl font-semibold text-slate-800 dark:text-slate-200">{question}</h3>
+              <p className="text-slate-500 dark:text-slate-400 leading-relaxed">{answer}</p>
             </li>
           ))}
         </ul>
