@@ -1,13 +1,11 @@
 import { IconName } from '../Icon'
-import { FC, useState } from 'react'
+import { FC } from 'react'
 import Image from 'next/image'
-import router, { useRouter } from 'next/router'
-import { ToggleGroup } from '../ToggleGroup'
+import { useRouter } from 'next/router'
 import { Button } from '../Button'
 import { CodeWindow } from '../CodeWindow'
 import { ColorScheme } from '../../utils/syntax-highlighting'
 import * as Tabs from '@radix-ui/react-tabs'
-import * as Tooltip from '@radix-ui/react-tooltip'
 
 export const codeSnippets = {
   howItWorksStep1: [
@@ -188,7 +186,7 @@ export const HowItWorks: FC<{ codeSnippets: CodeSnippets }> = ({ codeSnippets })
         {content.tabs
           .filter((t) => t.active)
           .map(({ title, steps }, index) => (
-            <Tabs.Content value={title} className="focus:outline-none">
+            <Tabs.Content key={index} value={title} className="focus:outline-none">
               {steps.map(({ heading, text, cta, codeSnippetsKey, image }, index) => (
                 <div key={index} className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 mt-16">
                   <div className="space-y-6 sm:space-y-0 sm:flex sm:space-x-8">

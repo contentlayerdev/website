@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { FC } from 'react'
 import { Logo } from '../Logo'
-import { Icon, IconName } from '../Icon'
+import { Icon } from '../Icon'
 
 const isExternalUrl = (link: string): boolean => {
   return !link.startsWith('/')
@@ -12,7 +12,7 @@ const content = {
     <p>
       MIT Licenced - Copyright © 2022 Stackbit Inc
       <br />
-      Made with ❤️ by @schickling & community
+      Made with 💜 by @schickling & community
     </p>
   ),
   menus: [

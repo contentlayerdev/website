@@ -886,37 +886,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@radix-ui/react-toggle-group@npm:^0.1.5":
-  version: 0.1.5
-  resolution: "@radix-ui/react-toggle-group@npm:0.1.5"
-  dependencies:
-    "@babel/runtime": ^7.13.10
-    "@radix-ui/primitive": 0.1.0
-    "@radix-ui/react-context": 0.1.1
-    "@radix-ui/react-primitive": 0.1.4
-    "@radix-ui/react-roving-focus": 0.1.5
-    "@radix-ui/react-toggle": 0.1.4
-    "@radix-ui/react-use-controllable-state": 0.1.0
-  peerDependencies:
-    react: ^16.8 || ^17.0
-  checksum: e2a45b49f882e52c245da056833382b725307e308c1068f2ce323e72b09747730c70c3c43e0791d6f5b269128afd13c59eb91c96445252eae92ec54f15d8f793
-  languageName: node
-  linkType: hard
-
-"@radix-ui/react-toggle@npm:0.1.4":
-  version: 0.1.4
-  resolution: "@radix-ui/react-toggle@npm:0.1.4"
-  dependencies:
-    "@babel/runtime": ^7.13.10
-    "@radix-ui/primitive": 0.1.0
-    "@radix-ui/react-primitive": 0.1.4
-    "@radix-ui/react-use-controllable-state": 0.1.0
-  peerDependencies:
-    react: ^16.8 || ^17.0
-  checksum: 7725372ba730d804032d5d97a08c193500373de8f156ebd0e7b4833dad26306a0e2449ce012ec3ff4545956aa40eff81be9c8945425dca67d747c8dc920495a8
-  languageName: node
-  linkType: hard
-
 "@radix-ui/react-tooltip@npm:^0.1.7":
   version: 0.1.7
   resolution: "@radix-ui/react-tooltip@npm:0.1.7"
@@ -2261,7 +2230,6 @@ __metadata:
   dependencies:
     "@netlify/plugin-nextjs": ^4.2.7
     "@radix-ui/react-tabs": ^0.1.5
-    "@radix-ui/react-toggle-group": ^0.1.5
     "@radix-ui/react-tooltip": ^0.1.7
     "@stackblitz/sdk": ^1.6.0
     "@types/eslint": ^8

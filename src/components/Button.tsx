@@ -4,9 +4,9 @@ import { Icon, IconName } from '../components/Icon'
 
 const themeClasses = {
   primary:
-    'bg-violet-600 text-violet-100 border-violet-600 hover:bg-violet-500 hover:border-violet-500 dark:bg-violet-700 dark:border-violet-700 dark:hover:bg-violet-600 dark:hover:border-violet-600',
+    'bg-violet-600 text-violet-100 border-violet-700 hover:bg-violet-500 dark:bg-violet-700 dark:border-violet-700 dark:hover:bg-violet-600 dark:hover:border-violet-600',
   secondary:
-    'bg-transparent text-gray-600 border-gray-400 hover:bg-gray-100 dark:text-gray-400 dark:border-gray-500 dark:hover:bg-gray-900',
+    'bg-gray-50 text-gray-600 border-gray-200 hover:bg-gray-100 dark:text-gray-300 dark:border-gray-800 dark:hover:bg-gray-800',
 }
 
 export const Button: FC<{ label: string; action: () => void; theme?: 'primary' | 'secondary'; icon?: IconName }> = ({
