@@ -8,6 +8,8 @@ import { CheckIcon } from './Check'
 import { CodeLightIcon } from './CodeLight'
 import { CheckCircleIcon } from './CheckCircle'
 import { LightningIcon } from './Lightning'
+import { BarsIcon } from './Bars'
+import { CloseIcon } from './Close'
 
 export type IconName =
   | 'code'
@@ -18,6 +20,8 @@ export type IconName =
   | 'code-light'
   | 'check-circle'
   | 'lightning'
+  | 'bars'
+  | 'close'
 
 const iconMap = {
   code: CodeIcon,
@@ -28,6 +32,8 @@ const iconMap = {
   'code-light': CodeLightIcon,
   'check-circle': CheckCircleIcon,
   lightning: LightningIcon,
+  bars: BarsIcon,
+  close: CloseIcon,
 }
 
 export const Icon: FC<{ name: IconName }> = ({ name }) => {

@@ -33,8 +33,8 @@ const content = {
 
 export const Features: FC = () => {
   return (
-    <div className="bg-gray-50 mt-16 md:mt-24 dark:bg-gray-900/50">
-      <div className="w-full max-w-screen-xl mx-auto px-4 md:px-8 py-16 md:py-24 grid grid-cols-1 lg:grid-cols-3 gap-16">
+    <div className="bg-gray-50 mt-16 md:mt-24 lg:mt-32 dark:bg-gray-900/50">
+      <div className="w-full max-w-screen-xl mx-auto px-4 md:px-8 py-16 md:py-24 lg:py-32 grid grid-cols-1 lg:grid-cols-3 gap-16">
         {content.blocks.map(({ icon, heading, text, features }, index) => (
           <div key={index} className="max-w-xl md:mx-auto lg:mx-0">
             <div className="w-12 text-violet-600 bg-violet-100 border border-violet-200 rounded-full p-2 dark:text-violet-500 dark:bg-violet-900/50 dark:border-violet-900">

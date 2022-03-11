@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { useRouter } from 'next/router'
+import { useState } from 'react'
 
 import { Icon, IconName } from '../components/Icon'
 import { Label } from '../components/Label'
@@ -22,10 +22,10 @@ const iconLinks: Array<{ name: IconName; url: string }> = [
 ]
 
 export const Header = () => {
-  const router = useRouter()
+  const [open, setOpen] = useState(false)
 
   return (
-    <header className="fixed z-10 flex justify-between w-full px-6 items-center bg-white border-b border-gray-100 dark:bg-gray-950 dark:border-gray-800 bg-opacity-90 backdrop-filter backdrop-blur-sm h-[60px]">
+    <header className="fixed z-10 flex justify-between w-full px-4 md:px-8 items-center bg-white border-b border-gray-100 dark:bg-gray-950 dark:border-gray-800 bg-opacity-90 backdrop-filter backdrop-blur h-20">
       <div className="flex items-center space-x-2.5">
         <Link href="/">
           <a className="flex items-center space-x-2.5 font-bold no-underline text-slate-800 dark:text-white">
@@ -35,31 +35,73 @@ export const Header = () => {
         </Link>
         <Label text="Beta" />
       </div>
-
-      <nav className="flex items-center space-x-3 text-sm">
-        {navLinks.map((link, idx) => (
-          <Link key={idx} href={link.url}>
-            <a
-              className="inline-flex items-center space-x-1 font-medium text-slate-500 dark:text-slate-300 hover:text-slate-950 dark:hover:text-slate-100"
-              target={isExternalUrl(link.url) ? '_blank' : undefined}
-            >
-              <span>{link.label}</span>
-              {isExternalUrl(link.url) && (
-                <span className="inline-block w-4">
-                  <Icon name="external-link" />
-                </span>
-              )}
-            </a>
-          </Link>
-        ))}
-
+      <div className="md:hidden">
+        <button type="button" aria-label="Toggle menu" onClick={() => setOpen(!open)} className="flex items-center">
+          <span className="inline-block w-5">
+            <Icon name={open ? 'close' : 'bars'} />
+          </span>
+        </button>
+        {open && (
+          <div className="fixed z-50 inset-x-0 top-20 h-screen pb-20 bg-white dark:bg-gray-950 bg-opacity-90 backdrop-filter backdrop-blur">
+            <nav className="h-full flex flex-col justify-center items-center space-y-16">
+              <div className="flex flex-col items-center space-y-8">
+                {navLinks.map((link, idx) => (
+                  <Link key={idx} href={link.url}>
+                    <a
+                      className="inline-flex items-center space-x-1 font-semibold text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300"
+                      target={isExternalUrl(link.url) ? '_blank' : undefined}
+                    >
+                      <span>{link.label}</span>
+                      {isExternalUrl(link.url) && (
+                        <span className="inline-block w-4">
+                          <Icon name="external-link" />
+                        </span>
+                      )}
+                    </a>
+                  </Link>
+                ))}
+              </div>
+              {/* TODO search box */}
+              <div className="flex items-center space-x-4">
+                {iconLinks.map((link, idx) => (
+                  <Link href={link.url} key={idx}>
+                    <a
+                      className="inline-block w-5 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300"
+                      target={isExternalUrl(link.url) ? '_blank' : undefined}
+                    >
+                      <Icon name={link.name} />
+                    </a>
+                  </Link>
+                ))}
+              </div>
+            </nav>
+          </div>
+        )}
+      </div>
+      <nav className="hidden md:flex items-center space-x-16">
+        <div className="flex items-center space-x-4 lg:space-x-8">
+          {navLinks.map((link, idx) => (
+            <Link key={idx} href={link.url}>
+              <a
+                className="inline-flex items-center space-x-1 font-semibold text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300"
+                target={isExternalUrl(link.url) ? '_blank' : undefined}
+              >
+                <span>{link.label}</span>
+                {isExternalUrl(link.url) && (
+                  <span className="inline-block w-4">
+                    <Icon name="external-link" />
+                  </span>
+                )}
+              </a>
+            </Link>
+          ))}
+        </div>
         {/* TODO search box */}
-
-        <div className="flex">
+        <div className="flex items-center space-x-4">
           {iconLinks.map((link, idx) => (
             <Link href={link.url} key={idx}>
               <a
-                className="p-2 text-current inline-block w-10 dark:text-slate-300 dark:hover:text-slate-100"
+                className="inline-block w-5 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300"
                 target={isExternalUrl(link.url) ? '_blank' : undefined}
               >
                 <Icon name={link.name} />

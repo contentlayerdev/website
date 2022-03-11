@@ -40,7 +40,7 @@ const content = {
 
 export const Tweets: FC = () => {
   return (
-    <div className="relative w-full mt-16 md:mt-24 overflow-x-hidden">
+    <div className="relative w-full mt-16 md:mt-24 lg:mt-32 overflow-x-hidden">
       <ul className="list-none m-0 space-y-8 md:space-y-0 md:flex md:animate-scroll">
         {[...content.tweets, ...content.tweets].map(({ text, user }, index) => (
           <li
@@ -49,7 +49,7 @@ export const Tweets: FC = () => {
               index >= content.tweets.length ? 'hidden md:block' : 'block'
             }`}
           >
-            <div className="h-full bg-gray-50/50 border border-gray-100 rounded-2xl p-8 space-y-4 dark:bg-gray-900/25 dark:border-gray-900">
+            <div className="h-full bg-gray-50/50 border border-gray-100 rounded-2xl p-8 space-y-4 dark:bg-gray-900/50 dark:border-gray-900">
               <User {...user} />
               <p className="text-slate-500 font-light italic dark:text-slate-400">
                 <q>{text}</q>

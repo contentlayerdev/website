@@ -154,7 +154,7 @@ export const HowItWorks: FC<{ codeSnippets: CodeSnippets }> = ({ codeSnippets })
   const router = useRouter()
 
   return (
-    <div className="w-full max-w-screen-xl mx-auto px-4 md:px-8 mt-16 md:mt-24">
+    <div className="w-full max-w-screen-xl mx-auto px-4 md:px-8 mt-16 md:mt-24 lg:mt-32">
       <Tabs.Root defaultValue={content.tabs[0].title}>
         <h2 className="text-slate-800 font-semibold text-3xl dark:text-slate-200 text-center mb-8 mt-0">
           {content.heading}

@@ -25,7 +25,7 @@ export const Hero: FC = () => {
   const router = useRouter()
 
   return (
-    <div className="w-full max-w-screen-xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-2 gap-16 pt-16 md:pt-24">
+    <div className="w-full max-w-screen-xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-2 gap-16 pt-16 md:pt-24 lg:pt-32">
       <div className="sm:max-w-md">
         <h1 className="text-slate-800 dark:text-slate-200 text-5xl font-semibold">{content.heading}</h1>
         <p className="text-slate-500 md:text-lg dark:text-slate-400 leading-relaxed mb-6">{content.text}</p>

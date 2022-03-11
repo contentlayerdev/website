@@ -35,19 +35,19 @@ export const FAQ: FC = () => {
 
   return (
     <div className="bg-gray-50 mt-16 md:mt-0 dark:bg-gray-900/50">
-      <div className="w-full max-w-3xl mx-auto px-4 md:px-8 py-16 md:py-24">
-        <h2 className="text-slate-800 font-semibold text-3xl dark:text-slate-200 text-center mb-8 mt-0">
+      <div className="w-full max-w-screen-xl mx-auto px-4 md:px-8 py-16 md:py-24 lg:py-32">
+        <h2 className="text-slate-800 font-semibold text-3xl dark:text-slate-200 md:text-center mb-16 mt-0">
           {content.heading}
         </h2>
-        <ul className="list-none m-0">
+        <ul className="list-none m-0 space-y-8">
           {content.elements.map(({ question, answer }, index) => (
-            <li key={index}>
-              <h3 className="text-xl font-semibold text-slate-800 dark:text-slate-200">{question}</h3>
-              <p className="text-slate-500 dark:text-slate-400 leading-relaxed">{answer}</p>
+            <li key={index} className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8">
+              <h3 className="m-0 text-xl font-semibold text-slate-800 dark:text-slate-200">{question}</h3>
+              <p className="m-0 text-slate-500 dark:text-slate-400 leading-relaxed">{answer}</p>
             </li>
           ))}
         </ul>
-        <div className="flex flex-col space-y-4 mt-16 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
+        <div className="flex flex-col space-y-4 mt-16 sm:flex-row md:justify-center sm:space-y-0 sm:space-x-4">
           <Button
             label={content.primaryAction.label}
             action={() => router.push(content.primaryAction.url)}

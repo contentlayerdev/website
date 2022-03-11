@@ -50,7 +50,7 @@ const content = {
 export const Testimonials: FC<{ usedByCount: number }> = ({ usedByCount }) => {
   return (
     <div className="w-full max-w-screen-xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 pt-16 md:pt-24">
-      <div className="md:col-span-2 bg-gray-50/50 border border-gray-100 rounded-2xl p-8 md:p-12 lg:p-16 space-y-8 dark:bg-gray-900/25 dark:border-gray-900">
+      <div className="md:col-span-2 bg-gray-50/50 border border-gray-100 rounded-2xl p-8 md:p-12 lg:p-16 space-y-8 dark:bg-gray-900/50 dark:border-gray-900">
         <p className="text-slate-500 font-light md:text-lg italic text-center max-w-lg mx-auto dark:text-slate-400">
           <q>{content.tweet.text}</q>
         </p>
@@ -58,7 +58,7 @@ export const Testimonials: FC<{ usedByCount: number }> = ({ usedByCount }) => {
           <User {...content.tweet.user} />
         </div>
       </div>
-      <div className="bg-gray-50/50 border border-violet-100 rounded-2xl overflow-hidden h-64 md:h-auto dark:bg-gray-900/25 dark:border-gray-800">
+      <div className="bg-gray-50/50 border border-violet-100 rounded-2xl overflow-hidden h-64 md:h-auto dark:bg-gray-900/50 dark:border-gray-800">
         <div className="relative w-full h-full">
           <div className="absolute inset-x-3 -top-8 grid grid-cols-4 sm:grid-cols-5 md:grid-cols-3 lg:grid-cols-4 gap-x-3">
             {content.projects.avatars.map((url, index) => (
