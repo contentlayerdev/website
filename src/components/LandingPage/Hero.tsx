@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router'
+import { useState } from 'react'
 import Image from 'next/image'
 import { FC } from 'react'
 import { Dashed } from '../Dashed'
@@ -17,11 +18,15 @@ const content = {
   features: ['Lightweight & easy to use', 'Great developer experience', 'Blazing fast build & page performance'],
   primaryAction: { label: 'Get started', url: '/' },
   secondaryAction: { label: 'Why Contentlayer?', url: '/docs/concepts/why-contentlayer' },
-  thumbnail: { url: '/images/intro-thumbnail.jpg', alt: 'Intro to Contentlayer Video Thumbnail' },
+  video: {
+    thumbnail: { url: '/images/intro-thumbnail.jpg', alt: 'Intro to Contentlayer Video Thumbnail' },
+    youtubeId: 'jzwMjOl8Iyo',
+  },
 }
 
 export const Hero: FC = () => {
   const router = useRouter()
+  const [showVideo, setShowVideo] = useState(false)
 
   return (
     <div className="w-full max-w-screen-xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-2 gap-16 pt-16 md:pt-24 lg:pt-32">
@@ -49,19 +54,38 @@ export const Hero: FC = () => {
           />
         </div>
       </div>
-      <div className="relative flex items-center">
-        {/* TODO: Embed video */}
-        <div className="rounded-md overflow-hidden">
-          <div className="-mb-2">
-            <Image
-              src={content.thumbnail.url}
-              alt={content.thumbnail.alt}
-              width="800"
-              height="450"
-              placeholder="blur"
-              blurDataURL={content.thumbnail.url}
-            />
-          </div>
+      <div className="relative w-full flex items-center">
+        <div className="w-full rounded-md overflow-hidden shadow-lg shadow-gray-100 dark:shadow-gray-900">
+          {showVideo ? (
+            <div className="w-full aspect-video">
+              <iframe
+                width="100%"
+                height="100%"
+                src={`https://www.youtube-nocookie.com/embed/${content.video.youtubeId}`}
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              />
+            </div>
+          ) : (
+            <div className="relative -mb-2">
+              <Image
+                src={content.video.thumbnail.url}
+                alt={content.video.thumbnail.alt}
+                width="800"
+                height="450"
+                placeholder="blur"
+                blurDataURL={content.video.thumbnail.url}
+              />
+              <div
+                className="absolute inset-0 flex justify-center items-center cursor-pointer"
+                onClick={() => setShowVideo(true)}
+              >
+                <div className="relative w-16 text-violet-600 dark:text-violet-500">
+                  <Icon name="play-button" />
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

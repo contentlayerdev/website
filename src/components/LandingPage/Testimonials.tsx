@@ -61,18 +61,21 @@ export const Testimonials: FC<{ usedByCount: number }> = ({ usedByCount }) => {
       <div className="bg-gray-50/50 border border-violet-100 rounded-2xl overflow-hidden h-64 md:h-auto dark:bg-gray-900/50 dark:border-gray-800">
         <div className="relative w-full h-full">
           <div className="absolute inset-x-3 -top-8 grid grid-cols-4 sm:grid-cols-5 md:grid-cols-3 lg:grid-cols-4 gap-x-3">
-            {content.projects.avatars.map((url, index) => (
-              <div
-                key={index}
-                className={`bg-gray-100 rounded-lg aspect-square flex justify-center items-center dark:bg-gray-800
+            {content.projects.avatars
+              .map((url) => ({ url, sort: Math.random() }))
+              .sort((a, b) => a.sort - b.sort)
+              .map(({ url }, index) => (
+                <div
+                  key={index}
+                  className={`bg-gray-100 rounded-lg aspect-square flex justify-center items-center dark:bg-gray-800
                 ${index % 2 ? 'mt-3' : ''}
                 `}
-              >
-                <div className="relative w-8 h-8 rounded-full overflow-hidden">
-                  <Image src={url} alt={'Profile image'} layout="fill" placeholder="blur" blurDataURL={url} />
+                >
+                  <div className="relative w-8 h-8 rounded-full overflow-hidden">
+                    <Image src={url} alt={'Profile image'} layout="fill" placeholder="blur" blurDataURL={url} />
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
           <div className="absolute inset-0 flex flex-col justify-end p-8 lg:p-16 bg-gradient-to-b from-violet-50/50 via-violet-50/95 to-violet-50 dark:from-gray-900/30 dark:via-gray-900/95 dark:to-gray-900">
             <p className="text-xl font-semibold text-center text-violet-600 mb-2 dark:text-violet-500">

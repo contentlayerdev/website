@@ -6,6 +6,7 @@ import { Button } from '../Button'
 import { CodeWindow } from '../CodeWindow'
 import { ColorScheme } from '../../utils/syntax-highlighting'
 import * as Tabs from '@radix-ui/react-tabs'
+import * as Tooltip from '@radix-ui/react-tooltip'
 
 export const codeSnippets = {
   howItWorksStep1: [
@@ -139,7 +140,7 @@ const content = {
     },
     {
       title: 'Contentful',
-      active: false,
+      active: true,
       steps: [],
     },
     {
@@ -163,25 +164,39 @@ export const HowItWorks: FC<{ codeSnippets: CodeSnippets }> = ({ codeSnippets })
           aria-label="Select content source"
           className="flex justify-center flex-nowrap overflow-x-scroll py-0.5"
         >
-          {content.tabs.map(({ title, active }, index) => (
-            <Tabs.Trigger
-              key={index}
-              value={title}
-              disabled={!active}
-              className={`overflow-hidden font-semibold focus:outline-none focus:ring-2 focus:ring-violet-300 dark:focus:ring-violet-900 border ${
-                index == 0 ? 'rounded-l-md' : index == content.tabs.length - 1 ? 'rounded-r-md' : '-mx-px'
-              } bg-gray-50 border-gray-200 radix-state-active:bg-violet-100 radix-state-active:text-violet-600 radix-state-active:border-violet-300
+          {content.tabs.map(({ title, active }, index) =>
+            active ? (
+              <Tabs.Trigger
+                key={index}
+                value={title}
+                disabled={!active}
+                className={`overflow-hidden font-semibold focus:outline-none focus:ring-2 focus:ring-violet-300 dark:focus:ring-violet-900 border ${
+                  index == 0 ? 'rounded-l-md' : index == content.tabs.length - 1 ? 'rounded-r-md' : '-mx-px'
+                } bg-gray-50 border-gray-200 radix-state-active:bg-violet-100 radix-state-active:text-violet-600 radix-state-active:border-violet-300
               dark:bg-gray-900 dark:border-gray-800 dark:radix-state-active:bg-violet-600/20 dark:radix-state-active:text-violet-500 dark:radix-state-active:border-violet-900
-              ${
-                active
-                  ? 'hover:bg-gray-100 text-slate-600 dark:hover:bg-gray-800 dark:text-slate-300'
-                  : 'text-slate-400 dark:text-slate-500'
-              }
-              py-2 px-4 radix-state-active:z-20`}
-            >
-              {title}
-            </Tabs.Trigger>
-          ))}
+              hover:bg-gray-100 text-slate-600 dark:hover:bg-gray-800 dark:text-slate-300 py-2 px-4 radix-state-active:z-20`}
+              >
+                {title}
+              </Tabs.Trigger>
+            ) : (
+              <Tooltip.Root delayDuration={100}>
+                <Tooltip.Trigger
+                  className={`font-semibold border ${
+                    index == 0 ? 'rounded-l-md' : index == content.tabs.length - 1 ? 'rounded-r-md' : '-mx-px'
+                  } bg-gray-50 border-gray-200 dark:bg-gray-900 dark:border-gray-800 text-slate-400 dark:text-slate-500 py-2 px-4`}
+                >
+                  {title}
+                </Tooltip.Trigger>
+                <Tooltip.Content
+                  sideOffset={10}
+                  className="bg-gray-800 rounded text-slate-100 text-sm px-3 py-1.5 shadow-xl shadow-white dark:shadow-black"
+                >
+                  Coming soon
+                  <Tooltip.Arrow fill="#1f2937" />
+                </Tooltip.Content>
+              </Tooltip.Root>
+            ),
+          )}
         </Tabs.List>
         {content.tabs
           .filter((t) => t.active)
@@ -189,12 +204,14 @@ export const HowItWorks: FC<{ codeSnippets: CodeSnippets }> = ({ codeSnippets })
             <Tabs.Content key={index} value={title} className="focus:outline-none">
               {steps.map(({ heading, text, cta, codeSnippetsKey, image }, index) => (
                 <div key={index} className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 mt-16">
-                  <div className="space-y-6 sm:space-y-0 sm:flex sm:space-x-8">
-                    <div className="shrink-0 w-12 h-12 flex justify-center items-center text-violet-600 font-black text-xl rounded-full bg-violet-100 border border-violet-200 dark:text-violet-500 dark:bg-violet-900/50 dark:border-violet-900">
-                      {index + 1}
-                    </div>
-                    <div>
+                  <div>
+                    <div className="flex space-x-4 sm:space-x-8">
+                      <div className="shrink-0 w-12 h-12 flex justify-center items-center text-violet-600 font-black text-xl rounded-full bg-violet-100 border border-violet-200 dark:text-violet-500 dark:bg-violet-900/50 dark:border-violet-900">
+                        {index + 1}
+                      </div>
                       <h3 className="text-xl font-semibold text-slate-800 dark:text-slate-200 mt-2.5">{heading}</h3>
+                    </div>
+                    <div className="sm:pl-20">
                       <div className="text-slate-500 dark:text-slate-400 leading-relaxed max-w-md">{text}</div>
                       {cta && (
                         <div className="mt-8">
