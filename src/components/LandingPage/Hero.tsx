@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import { FC } from 'react'
+import { Dashed } from '../Dashed'
 import { Icon } from '../Icon'
 import { Button } from '../Button'
 
@@ -8,10 +9,8 @@ const content = {
   heading: 'Content made easy for developers',
   text: (
     <>
-      Contentlayer is a{' '}
-      <span className="border-b border-dashed border-gray-300 dark:border-gray-500">content preprocessor</span> that
-      validates and transforms your content into{' '}
-      <span className="border-b border-dashed border-gray-300 dark:border-gray-500">type-safe</span> JSON you can easily
+      Contentlayer is a <Dashed label="content preprocessor" tooltip="TODO: short explanation" /> that validates and
+      transforms your content into <Dashed label="type-safe" tooltip="TODO: short explanation" /> JSON you can easily
       import into your application.
     </>
   ),

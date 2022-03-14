@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import { type CodeSnippet } from './LandingPage/HowItWorks'
 import * as Tabs from '@radix-ui/react-tabs'
+import * as ScrollArea from '@radix-ui/react-scroll-area'
 
 export const CodeWindow: FC<{
   snippets: readonly CodeSnippet[]
@@ -27,14 +28,22 @@ export const CodeWindow: FC<{
         </Tabs.List>
         {snippets.map(({ file, content, lines }, index) => (
           <Tabs.Content key={index} value={file} className="overflow-y-hidden flex focus:outline-none">
-            <div className="w-8 shrink-0 grow-0 text-right py-[19px] bg-white leading-none text-sm text-slate-300 font-mono dark:bg-[#0d1116] dark:text-slate-700">
+            <div className="w-8 shrink-0 grow-0 text-right pt-[19px] pb-3 bg-white leading-none text-sm text-slate-300 font-mono dark:bg-[#0d1116] dark:text-slate-700">
               {[...new Array(lines)].map((v, index) => (
                 <div key={index} className="px-2 h-[20px]">
                   {index + 1}
                 </div>
               ))}
             </div>
-            <div className="text-[13] -mt-[20px] -mb-[36px]" dangerouslySetInnerHTML={{ __html: content }} />
+            <ScrollArea.Root className="w-full overflow-hidden bg-white dark:bg-[#0D1116]">
+              <ScrollArea.Viewport>
+                <div className="text-[13] -mt-[20px] -mb-[40px]" dangerouslySetInnerHTML={{ __html: content }} />
+              </ScrollArea.Viewport>
+              <ScrollArea.Scrollbar orientation="horizontal">
+                <ScrollArea.Thumb className="relative" />
+              </ScrollArea.Scrollbar>
+              <ScrollArea.Corner />
+            </ScrollArea.Root>
           </Tabs.Content>
         ))}
       </Tabs.Root>

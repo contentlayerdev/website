@@ -50,7 +50,7 @@ export const Playground: FC = () => {
                   : 'text-slate-300 border-gray-800 hover:bg-gray-800 bg-gray-900'
               }`}
             >
-              <span>{step}. </span>
+              <span>{`${step}. `}</span>
               <span>{label}</span>
             </button>
           ))}
