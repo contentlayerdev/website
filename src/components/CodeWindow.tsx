@@ -9,7 +9,7 @@ export const CodeWindow: FC<{
   return (
     <div className="bg-gray-50 border border-gray-100 shadow-lg shadow-gray-100 rounded-2xl overflow-hidden dark:bg-gray-900/50 dark:border-gray-900 dark:shadow-gray-900">
       <Tabs.Root defaultValue={snippets[0].file}>
-        <Tabs.List aria-label="Select file to view" className="flex flex-nowrap overflow-x-scroll">
+        <Tabs.List aria-label="Select file to view" className="flex flex-nowrap overflow-x-auto">
           <div className="h-10 flex items-center px-4 space-x-1.5 border-r border-b border-gray-100 dark:border-gray-900">
             <span className="w-3 h-3 rounded-full bg-red-400 dark:bg-slate-600" />
             <span className="w-3 h-3 rounded-full bg-amber-400 dark:bg-slate-600" />

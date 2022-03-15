@@ -162,7 +162,7 @@ export const HowItWorks: FC<{ codeSnippets: CodeSnippets }> = ({ codeSnippets })
         </h2>
         <Tabs.List
           aria-label="Select content source"
-          className="flex justify-center flex-nowrap overflow-x-scroll py-0.5"
+          className="flex sm:justify-center flex-nowrap overflow-x-auto py-0.5"
         >
           {content.tabs.map(({ title, active }, index) =>
             active ? (
@@ -170,7 +170,7 @@ export const HowItWorks: FC<{ codeSnippets: CodeSnippets }> = ({ codeSnippets })
                 key={index}
                 value={title}
                 disabled={!active}
-                className={`overflow-hidden font-semibold focus:outline-none focus:ring-2 focus:ring-violet-300 dark:focus:ring-violet-900 border ${
+                className={`shrink-0 overflow-hidden font-semibold focus:outline-none focus:ring-2 focus:ring-violet-300 dark:focus:ring-violet-900 border whitespace-nowrap ${
                   index == 0 ? 'rounded-l-md' : index == content.tabs.length - 1 ? 'rounded-r-md' : '-mx-px'
                 } bg-gray-50 border-gray-200 radix-state-active:bg-violet-100 radix-state-active:text-violet-600 radix-state-active:border-violet-300
               dark:bg-gray-900 dark:border-gray-800 dark:radix-state-active:bg-violet-600/20 dark:radix-state-active:text-violet-500 dark:radix-state-active:border-violet-900
