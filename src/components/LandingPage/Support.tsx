@@ -93,10 +93,10 @@ export const Support: FC = () => {
                     </Tooltip.Trigger>
                     <Tooltip.Content
                       sideOffset={10}
-                      className="bg-gray-800 rounded text-slate-100 text-sm px-3 py-1.5 shadow-xl shadow-white dark:shadow-black"
+                      className="bg-gray-800 rounded text-slate-100 text-sm px-3 py-1.5 shadow-xl shadow-white dark:bg-violet-200 dark:text-violet-900 dark:shadow-black"
                     >
                       {`${label}${supported ? '' : ' – Coming soon!'}`}
-                      <Tooltip.Arrow fill="#1f2937" />
+                      <Tooltip.Arrow className="mx-1 fill-current text-gray-800 dark:text-violet-200" />
                     </Tooltip.Content>
                   </Tooltip.Root>
                 </a>
@@ -123,10 +123,10 @@ export const Support: FC = () => {
                   </Tooltip.TooltipTrigger>
                   <Tooltip.Content
                     sideOffset={10}
-                    className="bg-gray-800 rounded text-slate-100 text-sm px-3 py-1.5 shadow-xl shadow-white dark:shadow-black"
+                    className="bg-gray-800 rounded text-slate-100 text-sm px-3 py-1.5 shadow-xl shadow-white dark:bg-violet-200 dark:text-violet-900 dark:shadow-black"
                   >
                     {`${label}${supported ? '' : ' – Coming soon!'}`}
-                    <Tooltip.Arrow fill="#1f2937" />
+                    <Tooltip.Arrow className="mx-1 fill-current text-gray-800 dark:text-violet-200" />
                   </Tooltip.Content>
                 </Tooltip.Root>
               </div>
