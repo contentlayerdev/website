@@ -19,7 +19,7 @@ export const CodeWindow: FC<{
             <Tabs.Trigger
               key={index}
               value={file}
-              className="relative h-10 shrink-0 flex items-center px-4 text-slate-500 border-r border-b border-gray-100 radix-state-active:border-b-transparent radix-state-active:bg-white focus:outline-none focus:ring-2 focus:ring-violet-300 dark:focus:ring-violet-900 dark:border-gray-900 dark:text-slate-400 dark:radix-state-active:bg-[#0d1116]"
+              className="relative h-10 shrink-0 flex items-center px-4 text-slate-500 text-sm border-r border-b border-gray-100 radix-state-active:border-b-transparent radix-state-active:bg-white focus:outline-none focus:ring-2 focus:ring-violet-300 dark:focus:ring-violet-900 dark:border-gray-900 dark:text-slate-400 dark:radix-state-active:bg-[#0d1116]"
             >
               {file}
             </Tabs.Trigger>

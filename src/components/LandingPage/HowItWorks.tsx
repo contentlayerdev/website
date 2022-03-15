@@ -179,7 +179,7 @@ export const HowItWorks: FC<{ codeSnippets: CodeSnippets }> = ({ codeSnippets })
                 {title}
               </Tabs.Trigger>
             ) : (
-              <Tooltip.Root delayDuration={100}>
+              <Tooltip.Root key={index} delayDuration={100}>
                 <Tooltip.Trigger
                   className={`font-semibold border ${
                     index == 0 ? 'rounded-l-md' : index == content.tabs.length - 1 ? 'rounded-r-md' : '-mx-px'
