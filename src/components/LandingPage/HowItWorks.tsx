@@ -201,12 +201,14 @@ export const HowItWorks: FC<{ codeSnippets: CodeSnippets }> = ({ codeSnippets })
         {content.tabs
           .filter((t) => t.active)
           .map(({ title, steps }, index) => (
-            <Tabs.Content key={index} value={title} className="focus:outline-none">
+            <Tabs.Content key={index} value={title} className="relative focus:outline-none">
+              <div className="absolute inset-y-0 left-6 w-0 border-l border-dashed border-slate-300 dark:border-slate-600" />
+              <div className="absolute h-48 w-2 left-5 bottom-0 bg-gradient-to-b from-white/0 to-white/100 dark:from-gray-950/0 dark:to-gray-950/100" />
               {steps.map(({ heading, text, cta, codeSnippetsKey, image }, index) => (
-                <div key={index} className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 mt-16">
+                <div key={index} className="relative grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 mt-16">
                   <div>
                     <div className="flex space-x-4 sm:space-x-8">
-                      <div className="shrink-0 w-12 h-12 flex justify-center items-center text-violet-600 font-black text-xl rounded-full bg-violet-100 border border-violet-200 dark:text-violet-500 dark:bg-violet-900/50 dark:border-violet-900">
+                      <div className="shrink-0 w-12 h-12 flex justify-center items-center text-violet-600 font-black text-xl rounded-full bg-violet-100 border border-violet-200 dark:text-violet-500 dark:bg-[#2C1657] dark:border-violet-900">
                         {index + 1}
                       </div>
                       <h3 className="text-xl font-semibold text-slate-800 dark:text-slate-200 mt-2.5">{heading}</h3>
