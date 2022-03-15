@@ -80,7 +80,7 @@ export const Hero: FC = () => {
                 className="absolute inset-0 flex justify-center items-center cursor-pointer"
                 onClick={() => setShowVideo(true)}
               >
-                <div className="relative w-16 text-violet-600 dark:text-violet-500">
+                <div className="relative w-16 text-violet-600 dark:text-violet-500 hover:text-violet-500 dark:hover:text-violet-400">
                   <Icon name="play-button" />
                 </div>
               </div>
