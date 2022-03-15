@@ -65,9 +65,9 @@ export const Playground: FC = () => {
         </div>
         <div className="overflow-hidden rounded-2xl bg-gray-900 border border-gray-800 shadow-gray-900">
           <div className="h-10 shrink-0 grow-0 flex items-center px-4 space-x-1.5 border-b border-gray-900">
-            <span className="w-3 h-3 rounded-full bg-red-400" />
-            <span className="w-3 h-3 rounded-full bg-amber-400" />
-            <span className="w-3 h-3 rounded-full bg-green-400" />
+            <span className="w-3 h-3 rounded-full bg-slate-600" />
+            <span className="w-3 h-3 rounded-full bg-slate-600" />
+            <span className="w-3 h-3 rounded-full bg-slate-600" />
             <h3 className="w-full text-center font-normal text-slate-500 leading-none m-0 text-sm">
               Contentlayer Playground
             </h3>

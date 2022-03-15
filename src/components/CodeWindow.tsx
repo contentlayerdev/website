@@ -11,9 +11,9 @@ export const CodeWindow: FC<{
       <Tabs.Root defaultValue={snippets[0].file}>
         <Tabs.List aria-label="Select file to view" className="flex flex-nowrap overflow-x-scroll">
           <div className="h-10 flex items-center px-4 space-x-1.5 border-r border-b border-gray-100 dark:border-gray-900">
-            <span className="w-3 h-3 rounded-full bg-red-400" />
-            <span className="w-3 h-3 rounded-full bg-amber-400" />
-            <span className="w-3 h-3 rounded-full bg-green-400" />
+            <span className="w-3 h-3 rounded-full bg-red-400 dark:bg-slate-600" />
+            <span className="w-3 h-3 rounded-full bg-amber-400 dark:bg-slate-600" />
+            <span className="w-3 h-3 rounded-full bg-green-400 dark:bg-slate-600" />
           </div>
           {snippets.map(({ file }, index) => (
             <Tabs.Trigger
