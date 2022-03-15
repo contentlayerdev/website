@@ -208,7 +208,7 @@ export const HowItWorks: FC<{ codeSnippets: CodeSnippets }> = ({ codeSnippets })
                 <div key={index} className="relative grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 mt-16">
                   <div>
                     <div className="flex space-x-4 sm:space-x-8">
-                      <div className="shrink-0 w-12 h-12 flex justify-center items-center text-violet-600 font-black text-xl rounded-full bg-violet-100 border border-violet-200 dark:text-violet-500 dark:bg-[#2C1657] dark:border-violet-900">
+                      <div className="shrink-0 w-12 h-12 flex justify-center items-center text-violet-600 font-black text-xl rounded-full bg-violet-100 border border-violet-200 ring-4 ring-white dark:ring-gray-950 dark:text-violet-500 dark:bg-[#2C1657] dark:border-violet-900">
                         {index + 1}
                       </div>
                       <h3 className="text-xl font-semibold text-slate-800 dark:text-slate-200 mt-2.5">{heading}</h3>
