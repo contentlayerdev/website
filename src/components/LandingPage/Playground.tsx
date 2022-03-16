@@ -17,7 +17,7 @@ const content = {
     },
     {
       label: 'How content is transformed into data',
-      file: 'posts/post-01.md',
+      file: '.contentlayer/generated/Post/post-01.md.json',
       hints: {
         editor: 'Try to edit some of the content below...',
         preview: '... the changes will update in real-time',
