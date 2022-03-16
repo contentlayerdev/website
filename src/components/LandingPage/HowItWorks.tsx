@@ -287,7 +287,7 @@ const content = {
 export const HowItWorks: FC<{ codeSnippets: CodeSnippets }> = ({ codeSnippets }) => {
   return (
     <div className="w-full max-w-screen-xl mx-auto px-4 md:px-8 mt-16 md:mt-24 lg:mt-32">
-      <Tabs.Root defaultValue={content.tabs[0].title.toLowerCase().replaceAll(' ', '-')}>
+      <Tabs.Root defaultValue={content.tabs[0].title.toLowerCase().replace(/ /g, '-')}>
         <h2 className="text-slate-800 font-semibold text-3xl dark:text-slate-200 sm:text-center mb-8 mt-0">
           {content.heading}
         </h2>
@@ -299,7 +299,7 @@ export const HowItWorks: FC<{ codeSnippets: CodeSnippets }> = ({ codeSnippets })
             active ? (
               <Tabs.Trigger
                 key={index}
-                value={title.toLowerCase().replaceAll(' ', '-')}
+                value={title.toLowerCase().replace(/ /g, '-')}
                 disabled={!active}
                 className={`shrink-0 overflow-hidden font-semibold focus:outline-none focus:ring-2 focus:ring-violet-300 dark:focus:ring-violet-900 border whitespace-nowrap ${
                   index == 0 ? 'rounded-l-md' : index == content.tabs.length - 1 ? 'rounded-r-md' : '-mx-px'
@@ -334,7 +334,7 @@ export const HowItWorks: FC<{ codeSnippets: CodeSnippets }> = ({ codeSnippets })
           .map(({ title, steps }, index) => (
             <Tabs.Content
               key={index}
-              value={title.toLowerCase().replaceAll(' ', '-')}
+              value={title.toLowerCase().replace(/ /g, '-')}
               className="relative focus:outline-none"
             >
               <div className="hidden sm:block absolute inset-y-0 left-6 w-0 border-l border-dashed border-slate-300 dark:border-slate-600" />
