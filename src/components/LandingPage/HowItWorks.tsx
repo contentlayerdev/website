@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { Button } from '../Button'
 import { CodeWindow } from '../CodeWindow'
+import { DataTransformation } from './DataTransformation'
 import { ColorScheme } from '../../utils/syntax-highlighting'
 import * as Tabs from '@radix-ui/react-tabs'
 import * as Tooltip from '@radix-ui/react-tooltip'
@@ -76,6 +77,124 @@ export type PreprocessedCodeSnippets = Record<ColorScheme, CodeSnippets>
 
 const codesnippetKey = (k: keyof CodeSnippets) => k
 
+const localStep2DataTransformation = {
+  from: {
+    type: 'fileTree',
+    data: {
+      type: 'folder',
+      name: 'content/',
+      children: [
+        {
+          type: 'folder',
+          name: 'pages/',
+          children: [
+            {
+              type: 'file',
+              name: 'index.md',
+              comment: '',
+              tooltip: 'TODO: Define file tooltip contents.',
+            },
+            {
+              type: 'file',
+              name: 'about.md',
+              comment: '',
+              tooltip: 'TODO: Define file tooltip contents.',
+            },
+            {
+              type: 'file',
+              name: 'blog.md',
+              comment: '',
+              tooltip: 'TODO: Define file tooltip contents.',
+            },
+          ],
+        },
+      ],
+    },
+  },
+  to: {
+    type: 'fileTree',
+    data: {
+      type: 'folder',
+      name: '.contentlayer/generated/',
+      children: [
+        {
+          type: 'folder',
+          name: 'Page/',
+          children: [
+            {
+              type: 'file',
+              name: 'index.md.json',
+              comment: '',
+              tooltip: 'TODO: Define file tooltip contents.',
+            },
+            {
+              type: 'folder',
+              name: 'Page/',
+              children: [
+                {
+                  type: 'file',
+                  name: 'index.md.json',
+                  comment: '',
+                  tooltip: 'TODO: Define file tooltip contents.',
+                },
+                {
+                  type: 'folder',
+                  name: 'Page/',
+                  children: [
+                    {
+                      type: 'file',
+                      name: 'index.md.json',
+                      comment: '',
+                      tooltip: 'TODO: Define file tooltip contents.',
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              type: 'file',
+              name: 'about.md.json',
+              comment: '',
+              tooltip: 'TODO: Define file tooltip contents.',
+            },
+            {
+              type: 'file',
+              name: 'blog.md.json',
+              comment: '',
+              tooltip: 'TODO: Define file tooltip contents.',
+            },
+            {
+              type: 'folder',
+              name: 'Page/',
+              children: [
+                {
+                  type: 'file',
+                  name: 'index.md.json',
+                  comment: '',
+                  tooltip: 'TODO: Define file tooltip contents.',
+                },
+              ],
+            },
+          ],
+        },
+        { type: 'file', name: 'allPages.mjs', comment: '', tooltip: 'TODO: Define file tooltip contents.' },
+        {
+          type: 'file',
+          name: 'index.d.ts',
+          comment: 'Type definitions',
+          tooltip: 'TODO: Define file tooltip contents.',
+        },
+        {
+          type: 'file',
+          name: 'index.mjs',
+          comment: 'Exports all data',
+          tooltip: 'TODO: Define file tooltip contents.',
+        },
+      ],
+    },
+  },
+}
+
 const content = {
   heading: 'How Contentlayer works with...',
   tabs: [
@@ -113,12 +232,13 @@ const content = {
               </p>
             </>
           ),
-          image: {
-            url: '/images/local-data-transformation.png',
-            alt: 'Data transformation',
-            width: 561,
-            height: 275,
-          },
+          // image: {
+          //   url: '/images/local-data-transformation.png',
+          //   alt: 'Data transformation',
+          //   width: 561,
+          //   height: 275,
+          // },
+          dataTransformation: localStep2DataTransformation,
         },
         {
           heading: 'Import data into your application',
@@ -204,7 +324,7 @@ export const HowItWorks: FC<{ codeSnippets: CodeSnippets }> = ({ codeSnippets })
             <Tabs.Content key={index} value={title} className="relative focus:outline-none">
               <div className="hidden sm:block absolute inset-y-0 left-6 w-0 border-l border-dashed border-slate-300 dark:border-slate-600" />
               <div className="hidden sm:block absolute h-48 w-2 left-5 bottom-0 bg-gradient-to-b from-white/0 to-white/100 dark:from-gray-950/0 dark:to-gray-950/100" />
-              {steps.map(({ heading, text, cta, codeSnippetsKey, image }, index) => (
+              {steps.map(({ heading, text, cta, codeSnippetsKey, dataTransformation }, index) => (
                 <div key={index} className="relative grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 mt-16">
                   <div>
                     <div className="flex space-x-4 sm:space-x-8">
@@ -227,16 +347,9 @@ export const HowItWorks: FC<{ codeSnippets: CodeSnippets }> = ({ codeSnippets })
                       )}
                     </div>
                   </div>
-                  {image && (
+                  {dataTransformation && (
                     <div>
-                      <Image
-                        src={image.url}
-                        alt={image.alt}
-                        width={image.width}
-                        height={image.height}
-                        placeholder="blur"
-                        blurDataURL={image.url}
-                      />
+                      <DataTransformation from={dataTransformation.from} to={dataTransformation.to} />
                     </div>
                   )}
                   {codeSnippetsKey && (

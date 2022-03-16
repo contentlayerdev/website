@@ -1,7 +1,6 @@
 import { FC, useEffect, useRef, useState } from 'react'
 import { type VM } from '@stackblitz/sdk/typings/VM'
 import stackblitz from '@stackblitz/sdk'
-import Image from 'next/image'
 import { Arrow } from '../Arrow'
 
 const content = {
@@ -64,7 +63,7 @@ export const Playground: FC = () => {
   }, [ref, currentFiles])
 
   return (
-    <div className="hidden md:block bg-gray-950 mt-24 lg:mt-32">
+    <div className="hidden md:block bg-gray-950 mt-24 lg:mt-32 dark:mt-0 dark:lg:mt-0">
       <div className="w-full max-w-screen-xl mx-auto px-4 md:px-8 py-24 lg:py-32 dark:pt-0">
         <h2 className="font-semibold text-3xl text-slate-200 text-center mb-16 mt-0">{content.heading}</h2>
         <div className="flex flex-wrap justify-center mb-8">
