@@ -10,13 +10,6 @@ import { promiseAllProperties, mapObjectValues } from '../utils/object'
 import { useColorScheme } from '../ColorSchemeContext'
 
 export const getStaticProps = defineStaticProps(async (_context) => {
-  // const preprocessedCodeSnippets: PreprocessedCodeSnippets = {
-  //   light: await htmlForCodeSnippets('light'),
-  //   dark: await htmlForCodeSnippets('dark'),
-  // } as any
-
-  // const usedByCount = await getUsedByCount()
-
   const { preprocessedCodeSnippets, usedByCount } = await promiseAllProperties({
     preprocessedCodeSnippets: promiseAllProperties<PreprocessedCodeSnippets>({
       light: htmlForCodeSnippets('light'),

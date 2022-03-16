@@ -2,12 +2,12 @@ import { FC, useState } from 'react'
 import * as Tooltip from '@radix-ui/react-tooltip'
 import { index } from 'cheerio/lib/api/traversing'
 
-const Folder: FC<{ name: string; level: number; lastItem?: boolean; parentLastItem?: boolean; children: any[] }> = ({
+const Folder: FC<{ name: string; level: number; lastItem?: boolean; parentLastItem?: boolean; childNodes: any[] }> = ({
   name,
   level,
   lastItem = false,
   parentLastItem = false,
-  children,
+  childNodes,
 }) => {
   return (
     <div className="font-mono text-slate-500 dark:text-slate-400 text-xs">
@@ -17,22 +17,22 @@ const Folder: FC<{ name: string; level: number; lastItem?: boolean; parentLastIt
         <span>{name}</span>
       </div>
       <ul className="list-none m-0">
-        {children.map((child, index) => (
+        {childNodes.map((child, index) => (
           <li key={index} className="m-0">
             {child.type == 'folder' && (
               <Folder
                 name={child.name}
                 level={level + 1}
-                lastItem={index == children.length - 1}
+                lastItem={index == childNodes.length - 1}
                 parentLastItem={lastItem}
-                children={child.children}
+                childNodes={child.children}
               />
             )}
             {child.type == 'file' && (
               <File
                 name={child.name}
                 level={level + 1}
-                lastItem={index == children.length - 1}
+                lastItem={index == childNodes.length - 1}
                 parentLastItem={lastItem}
                 comment={child.comment}
                 tooltip={child.tooltip}
@@ -85,7 +85,7 @@ export const FileTree: FC<{ contents: any }> = ({ contents }) => {
     <div className="grow">
       <div className="bg-gray-50 border border-gray-100 shadow-lg shadow-gray-100 rounded-2xl overflow-hidden p-4 dark:bg-gray-900/50 dark:border-gray-900 dark:shadow-gray-900">
         {contents.type == 'folder' && (
-          <Folder name={contents.name} level={1} lastItem={true} children={contents.children} />
+          <Folder name={contents.name} level={1} lastItem={true} childNodes={contents.children} />
         )}
       </div>
     </div>

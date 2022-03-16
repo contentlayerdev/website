@@ -64,7 +64,7 @@ export const Hero: FC = () => {
                 width="100%"
                 height="100%"
                 src={`https://www.youtube-nocookie.com/embed/${content.video.youtubeId}`}
-                title="YouTube video player"
+                title="Intro to Contentlayer"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               />
             </div>
