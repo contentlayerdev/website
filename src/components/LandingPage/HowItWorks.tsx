@@ -6,7 +6,6 @@ import { DataTransformation } from './DataTransformation'
 import { ColorScheme } from '../../utils/syntax-highlighting'
 import * as Tabs from '@radix-ui/react-tabs'
 import * as Tooltip from '@radix-ui/react-tooltip'
-import { slug } from 'src/utils/slug'
 
 export const codeSnippets = {
   howItWorksStep1: [
@@ -288,7 +287,7 @@ const content = {
 export const HowItWorks: FC<{ codeSnippets: CodeSnippets }> = ({ codeSnippets }) => {
   return (
     <div className="w-full max-w-screen-xl mx-auto px-4 md:px-8 mt-16 md:mt-24 lg:mt-32">
-      <Tabs.Root defaultValue={slug(content.tabs[0].title)}>
+      <Tabs.Root defaultValue={content.tabs[0].title.toLowerCase().replaceAll(' ', '-')}>
         <h2 className="text-slate-800 font-semibold text-3xl dark:text-slate-200 sm:text-center mb-8 mt-0">
           {content.heading}
         </h2>
@@ -300,7 +299,7 @@ export const HowItWorks: FC<{ codeSnippets: CodeSnippets }> = ({ codeSnippets })
             active ? (
               <Tabs.Trigger
                 key={index}
-                value={slug(title)}
+                value={title.toLowerCase().replaceAll(' ', '-')}
                 disabled={!active}
                 className={`shrink-0 overflow-hidden font-semibold focus:outline-none focus:ring-2 focus:ring-violet-300 dark:focus:ring-violet-900 border whitespace-nowrap ${
                   index == 0 ? 'rounded-l-md' : index == content.tabs.length - 1 ? 'rounded-r-md' : '-mx-px'
@@ -333,7 +332,11 @@ export const HowItWorks: FC<{ codeSnippets: CodeSnippets }> = ({ codeSnippets })
         {content.tabs
           .filter((t) => t.active)
           .map(({ title, steps }, index) => (
-            <Tabs.Content key={index} value={slug(title)} className="relative focus:outline-none">
+            <Tabs.Content
+              key={index}
+              value={title.toLowerCase().replaceAll(' ', '-')}
+              className="relative focus:outline-none"
+            >
               <div className="hidden sm:block absolute inset-y-0 left-6 w-0 border-l border-dashed border-slate-300 dark:border-slate-600" />
               <div className="hidden sm:block absolute h-96 w-2 left-5 bottom-0 bg-gradient-to-b from-white/0 via-white/100 to-white/100 dark:from-gray-950/0 dark:via-gray-950/100 dark:to-gray-950/100" />
               {steps.map(({ heading, text, cta, codeSnippetsKey, dataTransformation }, index) => (

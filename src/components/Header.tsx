@@ -69,6 +69,7 @@ export const Header = () => {
                       className="inline-block w-5 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300"
                       target={isExternalUrl(link.url) ? '_blank' : undefined}
                     >
+                      <span className="sr-only">{link.name}</span>
                       <Icon name={link.name} />
                     </a>
                   </Link>
