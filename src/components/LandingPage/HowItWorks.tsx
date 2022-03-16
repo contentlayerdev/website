@@ -111,6 +111,18 @@ const localStep2DataTransformation = {
       ],
     },
   },
+  /* You can also use an image on either side:
+
+  from: {
+    type: 'image',
+    data: {
+      url: '/images/local-data-transformation.png',
+      alt: 'Data transformation',
+      width: 561,
+      height: 275,
+    },
+  },
+  */
   to: {
     type: 'fileTree',
     data: {
@@ -232,12 +244,15 @@ const content = {
               </p>
             </>
           ),
-          // image: {
-          //   url: '/images/local-data-transformation.png',
-          //   alt: 'Data transformation',
-          //   width: 561,
-          //   height: 275,
-          // },
+          /* You can also use an image instead of a code snippet or data transformation graphic:
+
+          image: {
+            url: '/images/local-data-transformation.png',
+            alt: 'Data transformation',
+            width: 561,
+            height: 275,
+          },
+          */
           dataTransformation: localStep2DataTransformation,
         },
         {
