@@ -84,6 +84,7 @@ export const Testimonials: FC<{ usedByCount: number }> = ({ usedByCount }) => {
             <Link href={content.projects.cta.url}>
               <a
                 className="text-slate-500 hover:text-slate-700 text-center dark:text-slate-400 dark:hover:text-slate-300"
+                target="_blank"
                 rel="noreferrer"
               >
                 {content.projects.cta.label}

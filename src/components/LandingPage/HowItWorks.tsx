@@ -1,7 +1,5 @@
 import { IconName } from '../Icon'
 import { FC } from 'react'
-import Image from 'next/image'
-import { useRouter } from 'next/router'
 import { Button } from '../Button'
 import { CodeWindow } from '../CodeWindow'
 import { DataTransformation } from './DataTransformation'
@@ -226,7 +224,7 @@ const content = {
             label: 'Explore Example',
             theme: 'primary',
             icon: 'github' as IconName,
-            url: '/',
+            url: 'https://github.com/contentlayerdev/next-contentlayer-example',
           },
           codeSnippetsKey: codesnippetKey('howItWorksStep1'),
         },
@@ -287,8 +285,6 @@ const content = {
 }
 
 export const HowItWorks: FC<{ codeSnippets: CodeSnippets }> = ({ codeSnippets }) => {
-  const router = useRouter()
-
   return (
     <div className="w-full max-w-screen-xl mx-auto px-4 md:px-8 mt-16 md:mt-24 lg:mt-32">
       <Tabs.Root defaultValue={content.tabs[0].title}>
@@ -338,7 +334,7 @@ export const HowItWorks: FC<{ codeSnippets: CodeSnippets }> = ({ codeSnippets })
           .map(({ title, steps }, index) => (
             <Tabs.Content key={index} value={title} className="relative focus:outline-none">
               <div className="hidden sm:block absolute inset-y-0 left-6 w-0 border-l border-dashed border-slate-300 dark:border-slate-600" />
-              <div className="hidden sm:block absolute h-48 w-2 left-5 bottom-0 bg-gradient-to-b from-white/0 to-white/100 dark:from-gray-950/0 dark:to-gray-950/100" />
+              <div className="hidden sm:block absolute h-96 w-2 left-5 bottom-0 bg-gradient-to-b from-white/0 via-white/100 to-white/100 dark:from-gray-950/0 dark:via-gray-950/100 dark:to-gray-950/100" />
               {steps.map(({ heading, text, cta, codeSnippetsKey, dataTransformation }, index) => (
                 <div key={index} className="relative grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 mt-16">
                   <div>
@@ -354,7 +350,7 @@ export const HowItWorks: FC<{ codeSnippets: CodeSnippets }> = ({ codeSnippets })
                         <div className="mt-8">
                           <Button
                             label={cta.label}
-                            action={() => router.push(cta.url)}
+                            action={() => window.open(cta.url, '_ blank')}
                             theme="secondary"
                             icon={cta?.icon ?? ''}
                           />

@@ -1,6 +1,5 @@
 import { FC, useState } from 'react'
 import * as Tooltip from '@radix-ui/react-tooltip'
-import { index } from 'cheerio/lib/api/traversing'
 
 const Folder: FC<{ name: string; level: number; lastItem?: boolean; parentLastItem?: boolean; childNodes: any[] }> = ({
   name,
@@ -64,7 +63,12 @@ const File: FC<{
           ))}
         {lastItem ? <span>└── </span> : <span>├── </span>}
         <Tooltip.Trigger className="cursor-text">
-          <span onClick={() => setShowTooltip(true)}>{name}</span>
+          <span
+            onClick={() => setShowTooltip(true)}
+            className="rounded hover:bg-gray-200 dark:hover:bg-gray-800 hover:ring-4 hover:ring-gray-200 dark:hover:ring-gray-800"
+          >
+            {name}
+          </span>
         </Tooltip.Trigger>
         {comment && <span className="opacity-50">{` # ${comment}`}</span>}
       </div>
