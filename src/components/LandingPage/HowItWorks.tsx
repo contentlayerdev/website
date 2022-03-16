@@ -157,7 +157,7 @@ export const HowItWorks: FC<{ codeSnippets: CodeSnippets }> = ({ codeSnippets })
   return (
     <div className="w-full max-w-screen-xl mx-auto px-4 md:px-8 mt-16 md:mt-24 lg:mt-32">
       <Tabs.Root defaultValue={content.tabs[0].title}>
-        <h2 className="text-slate-800 font-semibold text-3xl dark:text-slate-200 text-center mb-8 mt-0">
+        <h2 className="text-slate-800 font-semibold text-3xl dark:text-slate-200 sm:text-center mb-8 mt-0">
           {content.heading}
         </h2>
         <Tabs.List
@@ -202,8 +202,8 @@ export const HowItWorks: FC<{ codeSnippets: CodeSnippets }> = ({ codeSnippets })
           .filter((t) => t.active)
           .map(({ title, steps }, index) => (
             <Tabs.Content key={index} value={title} className="relative focus:outline-none">
-              <div className="absolute inset-y-0 left-6 w-0 border-l border-dashed border-slate-300 dark:border-slate-600" />
-              <div className="absolute h-48 w-2 left-5 bottom-0 bg-gradient-to-b from-white/0 to-white/100 dark:from-gray-950/0 dark:to-gray-950/100" />
+              <div className="hidden sm:block absolute inset-y-0 left-6 w-0 border-l border-dashed border-slate-300 dark:border-slate-600" />
+              <div className="hidden sm:block absolute h-48 w-2 left-5 bottom-0 bg-gradient-to-b from-white/0 to-white/100 dark:from-gray-950/0 dark:to-gray-950/100" />
               {steps.map(({ heading, text, cta, codeSnippetsKey, image }, index) => (
                 <div key={index} className="relative grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 mt-16">
                   <div>
