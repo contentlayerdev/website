@@ -120,7 +120,7 @@ export const Playground: FC = () => {
           </div>
           <div className="overflow-hidden">
             <div className="-mt-10">
-              <div className="h-[700px] w-full" ref={ref} title="Try Cyontentlayer" />
+              <div className="h-[700px] w-full" ref={ref} />
             </div>
           </div>
         </div>
