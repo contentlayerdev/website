@@ -44,8 +44,10 @@ export const Features: FC = () => {
             <p className="text-slate-500 dark:text-slate-400 leading-relaxed mb-6">{text}</p>
             <ul className="text-slate-700 dark:text-slate-300 ml-0 mb-8">
               {features.map((feature, index) => (
-                <li key={index} className="flex items-center space-x-3">
-                  <Icon name="check" />
+                <li key={index} className="flex space-x-3">
+                  <div className="pt-0.5">
+                    <Icon name="check" />
+                  </div>
                   <span>{feature}</span>
                 </li>
               ))}

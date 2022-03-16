@@ -2,14 +2,47 @@ import { FC, useEffect, useRef, useState } from 'react'
 import { type VM } from '@stackblitz/sdk/typings/VM'
 import stackblitz from '@stackblitz/sdk'
 import Image from 'next/image'
+import { Arrow } from '../Arrow'
 
 const content = {
   heading: 'Give Contentlayer a try – right here',
   steps: [
-    { step: 1, label: "Let's edit some content", file: 'posts/post-01.md' },
-    { step: 2, label: 'How content is transformed into data', file: 'posts/post-01.md' },
-    { step: 3, label: 'How data is used from your app', file: 'pages/posts/[slug].jsx' },
-    { step: 4, label: 'Project setup', file: 'contentlayer.config.js' },
+    {
+      label: "Let's edit some content",
+      file: 'posts/post-01.md',
+      hints: {
+        editor: 'Try to edit some of the content below...',
+        preview: '... the changes will update in real-time',
+        console: 'Contentlayer runs as part of the Next.js dev server',
+      },
+    },
+    {
+      label: 'How content is transformed into data',
+      file: 'posts/post-01.md',
+      hints: {
+        editor: 'Try to edit some of the content below...',
+        preview: '... the changes will update in real-time',
+        console: 'Contentlayer runs as part of the Next.js dev server',
+      },
+    },
+    {
+      label: 'How data is used from your app',
+      file: 'pages/posts/[slug].jsx',
+      hints: {
+        editor: 'Try to edit some of the content below...',
+        preview: '... the changes will update in real-time',
+        console: 'Contentlayer runs as part of the Next.js dev server',
+      },
+    },
+    {
+      label: 'Project setup',
+      file: 'contentlayer.config.js',
+      hints: {
+        editor: 'Try to edit some of the content below...',
+        preview: '... the changes will update in real-time',
+        console: 'Contentlayer runs as part of the Next.js dev server',
+      },
+    },
   ],
 }
 
@@ -17,7 +50,7 @@ export const Playground: FC = () => {
   const ref = useRef<HTMLDivElement>(null)
   const [vm, setVm] = useState<VM | undefined>(undefined)
   const [currentFiles, setCurrentFiles] = useState(['posts/post-01.md'])
-  const [selectedStep, setSelectedStep] = useState(1)
+  const [selectedStep, setSelectedStep] = useState(0)
 
   useEffect(() => {
     if (ref.current) {
@@ -34,33 +67,47 @@ export const Playground: FC = () => {
     <div className="hidden md:block bg-gray-950 mt-24 lg:mt-32">
       <div className="w-full max-w-screen-xl mx-auto px-4 md:px-8 py-24 lg:py-32 dark:pt-0">
         <h2 className="font-semibold text-3xl text-slate-200 text-center mb-16 mt-0">{content.heading}</h2>
-        <div className="flex flex-wrap justify-center mb-4">
-          {content.steps.map(({ step, label, file }, index) => (
+        <div className="flex flex-wrap justify-center mb-8">
+          {content.steps.map(({ label, file }, index) => (
             <button
               key={index}
               type="button"
               aria-label={label}
               onClick={() => {
-                setSelectedStep(step)
+                setSelectedStep(index)
                 vm?.editor.openFile(file)
               }}
               className={`m-2 px-6 py-2 flex justify-center items-center rounded-md border font-medium focus:outline-none focus:ring-2 focus:ring-violet-900 ${
-                step == selectedStep
+                index == selectedStep
                   ? 'text-violet-500 border-violet-900 bg-violet-600/20'
                   : 'text-slate-300 border-gray-800 hover:bg-gray-800 bg-gray-900'
               }`}
             >
-              <span>{`${step}. `}</span>
+              <span>{`${index + 1}. `}</span>
               <span>{label}</span>
             </button>
           ))}
         </div>
         <div className="grid grid-cols-2 mb-4">
           <div className="px-8">
-            <Image src="/images/playground-hint-edit.png" width="550" height="75" className="opacity-50" />
+            {content.steps[selectedStep].hints?.editor && (
+              <div className="flex space-x-4">
+                <p className="font-handwritten lg:text-lg text-slate-600 pt-2">
+                  {content.steps[selectedStep].hints?.editor}
+                </p>
+                <Arrow type="curved-short" className="shrink-0 w-16 lg:w-24 text-slate-700" />
+              </div>
+            )}
           </div>
           <div className="px-8">
-            <Image src="/images/playground-hint-updates.png" width="550" height="75" className="opacity-50" />
+            {content.steps[selectedStep].hints?.preview && (
+              <div className="flex space-x-4 mb-2">
+                <p className="font-handwritten lg:text-lg text-slate-600 pt-2">
+                  {content.steps[selectedStep].hints?.preview}
+                </p>
+                <Arrow type="looped-long" className="shrink-0 w-28 lg:w-40 text-slate-700 rotate-12 mt-2" />
+              </div>
+            )}
           </div>
         </div>
         <div className="overflow-hidden rounded-2xl bg-gray-900 border border-gray-800 shadow-gray-900">
@@ -78,8 +125,15 @@ export const Playground: FC = () => {
             </div>
           </div>
         </div>
-        <div className="mt-4 px-8 flex justify-end">
-          <Image src="/images/playground-hint-dev-server.png" width="627" height="55" className="opacity-50" />
+        <div className="mt-8 px-8">
+          {content.steps[selectedStep].hints?.console && (
+            <div className="flex items-start space-x-4 pl-48 lg:pl-96">
+              <Arrow type="straight-dashed" className="shrink-0 w-32 lg:w-40 text-slate-700 rotate-180" />
+              <p className="font-handwritten lg:text-lg text-slate-600 pt-5">
+                {content.steps[selectedStep].hints?.console}
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </div>

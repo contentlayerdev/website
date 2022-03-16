@@ -33,15 +33,17 @@ export const Hero: FC = () => {
       <div className="sm:max-w-md">
         <h1 className="text-slate-800 dark:text-slate-200 text-5xl font-semibold">{content.heading}</h1>
         <p className="text-slate-500 md:text-lg dark:text-slate-400 leading-relaxed mb-6">{content.text}</p>
-        <ul className="text-slate-700 md:text-lg dark:text-slate-300 ml-0 mb-8">
+        <ul className="text-slate-700 md:text-lg dark:text-slate-300 ml-0">
           {content.features.map((feature, index) => (
-            <li key={index} className="flex items-center space-x-3">
-              <Icon name="check" />
+            <li key={index} className="flex space-x-3">
+              <div className="pt-1">
+                <Icon name="check" />
+              </div>
               <span>{feature}</span>
             </li>
           ))}
         </ul>
-        <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
+        <div className="flex flex-col space-y-4 mt-8 sm:flex-row md:flex-col lg:flex-row sm:space-y-0 md:space-y-4 lg:space-y-0 sm:space-x-4 md:space-x-0 lg:space-x-4">
           <Button
             label={content.primaryAction.label}
             action={() => router.push(content.primaryAction.url)}

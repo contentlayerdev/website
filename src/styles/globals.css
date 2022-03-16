@@ -5,6 +5,14 @@
 @import url('./markdown.css');
 
 @layer base {
+  @font-face {
+    font-family: 'Virgil';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local(''), url('/fonts/virgil.woff2') format('woff2');
+  }
+
   html,
   body,
   #__next {
