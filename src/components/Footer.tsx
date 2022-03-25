@@ -52,7 +52,7 @@ const content = {
 
 export const Footer: FC = () => {
   return (
-    <div className="bg-gray-50 mt-16 md:mt-24 lg:mt-32 border-t border-gray-100 dark:bg-gray-900/50 dark:border-gray-800">
+    <div className="bg-gray-50 mt-16 md:mt-24 lg:mt-32 border-t border-gray-200 dark:bg-gray-900/50 dark:border-gray-800">
       <div className="w-full max-w-screen-xl mx-auto px-4 md:px-8 py-16 md:py-24 lg:py-32 space-y-16 lg:space-y-0 lg:flex lg:justify-between">
         <div>
           <Link href="/">

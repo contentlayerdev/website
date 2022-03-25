@@ -16,7 +16,7 @@
   html,
   body,
   #__next {
-    @apply h-full bg-white dark:bg-gray-950 text-slate-800 dark:text-slate-200;
+    @apply h-full bg-white dark:bg-gray-950 text-slate-500 dark:text-slate-400;
   }
 
   /* h1,
