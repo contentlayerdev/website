@@ -31,12 +31,12 @@ const NavLink: FC<{ label?: string; hideLabel?: boolean; icon?: IconName; url: s
   return (
     <Link href={url}>
       <a
-        className="flex h-8 items-center rounded-md bg-transparent px-2.5 text-base font-medium leading-none text-slate-500 hover:bg-gray-50 hover:text-slate-600 md:text-sm lg:text-base"
+        className="group flex h-7 items-center rounded-md bg-transparent px-2.5 font-medium leading-none text-slate-600 hover:bg-gray-50 hover:text-slate-700 dark:text-slate-300 dark:hover:bg-gray-900 dark:hover:text-slate-200 md:text-sm"
         target={isExternalUrl(url) ? '_blank' : undefined}
         rel={isExternalUrl(url) ? 'noreferrer' : undefined}
       >
         {icon && (
-          <span className="block w-5">
+          <span className="block w-5 text-slate-400 group-hover:text-slate-500 dark:text-slate-500 dark:group-hover:text-slate-400">
             <Icon name={icon} />
           </span>
         )}
@@ -50,7 +50,7 @@ export const MainNavigation = () => {
   const [open, setOpen] = useState(false)
 
   return (
-    <header className="fixed z-10 flex h-20 w-full items-center justify-between border-b border-gray-200 bg-white bg-opacity-90 px-4 backdrop-blur backdrop-filter dark:border-gray-800 dark:bg-gray-950 md:px-8">
+    <header className="fixed z-10 flex h-16 w-full items-center justify-between border-b border-gray-200 bg-white bg-opacity-90 px-4 backdrop-blur backdrop-filter dark:border-gray-800 dark:bg-gray-950 md:h-20 md:px-8">
       <div className="flex items-center space-x-2.5">
         <Link href="/">
           <a className="flex items-center space-x-2.5 font-bold text-slate-800 no-underline dark:text-white">
@@ -65,14 +65,14 @@ export const MainNavigation = () => {
           type="button"
           aria-label="Toggle menu"
           onClick={() => setOpen(!open)}
-          className="flex items-center text-slate-800 dark:text-slate-200"
+          className="flex h-8 w-8 items-center justify-end text-slate-600 dark:text-slate-300"
         >
-          <span className="inline-block w-5">
+          <span className="inline-block w-4">
             <Icon name={open ? 'close' : 'bars'} />
           </span>
         </button>
         {open && (
-          <div className="fixed inset-0 top-20 z-50 h-screen bg-gray-950/10 pb-20 backdrop-blur-lg backdrop-filter dark:bg-gray-950/50">
+          <div className="fixed inset-0 top-16 z-50 h-screen bg-gray-950/10 pb-20 backdrop-blur-lg backdrop-filter dark:bg-gray-950/50">
             <nav className="absolute right-0 h-full divide-y divide-gray-200 border-l border-gray-200 bg-white p-8 dark:divide-gray-800 dark:border-gray-800 dark:bg-gray-950">
               <div className="flex flex-col items-end space-y-2 pb-8">
                 {navLinks.map(({ label, url }, index) => (
@@ -94,7 +94,7 @@ export const MainNavigation = () => {
           </div>
         )}
       </div>
-      <nav className="hidden items-center divide-x divide-gray-200 md:flex">
+      <nav className="hidden items-center divide-x divide-gray-200 dark:divide-gray-800 md:flex">
         <div className="flex items-center pr-2 lg:space-x-4 lg:pr-8">
           {navLinks.map(({ label, url }, index) => (
             <NavLink key={index} label={label} url={url} icon={isExternalUrl(url) ? 'external-link' : undefined} />
