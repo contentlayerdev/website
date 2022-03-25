@@ -45,7 +45,7 @@ const mdxComponents = { Callout, Card, Image, Link }
 
 const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ doc, tree, breadcrumbs, childrenTree }) => {
   useLiveReload()
-  const MDXContent = doc?.body?.code ? useMDXComponent(doc.body.code) : null
+  const MDXContent = useMDXComponent(doc.body.code || '')
 
   return (
     <Container title={doc.title + ' – Contentlayer'} description={doc.excerpt}>
