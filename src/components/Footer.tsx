@@ -12,7 +12,13 @@ const content = {
     <p>
       MIT Licenced - Copyright © 2022 Stackbit Inc
       <br />
-      Made with 💜 by @schickling & community
+      Made with 💜 by{' '}
+      <Link href="https://twitter.com/schickling">
+        <a className="hover:text-slate-700 dark:hover:text-slate-300" target="_blank" rel="noreferrer">
+          @schickling
+        </a>
+      </Link>{' '}
+      & community
     </p>
   ),
   menus: [
