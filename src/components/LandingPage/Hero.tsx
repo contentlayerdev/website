@@ -33,7 +33,7 @@ export const Hero: FC = () => {
   const router = useRouter()
 
   return (
-    <div className="mx-auto grid w-full max-w-screen-xl grid-cols-1 gap-16 px-4 pt-16 md:grid-cols-2 md:px-8 md:pt-24 lg:pt-32">
+    <div className="mx-auto grid w-full max-w-screen-xl grid-cols-1 gap-16 px-4 pt-8 md:grid-cols-2 md:px-8 md:pt-24 lg:pt-32">
       <div className="space-y-8 sm:max-w-md">
         <Heading level={1}>{content.heading}</Heading>
         <Paragraph className="text-lg">{content.text}</Paragraph>

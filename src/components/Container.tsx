@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { MainNavigation } from './MainNavigation'
 import { Footer } from './Footer'
 
-export const MainContainer: FC<any> = ({ children, ...customMeta }) => {
+export const Container: FC<any> = ({ children, ...customMeta }) => {
   const router = useRouter()
 
   const meta = {
@@ -44,7 +44,7 @@ export const MainContainer: FC<any> = ({ children, ...customMeta }) => {
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </Head>
       <MainNavigation />
-      <main className="pt-20">{children}</main>
+      <main className="pt-16">{children}</main>
       <Footer />
     </div>
   )

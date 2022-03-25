@@ -344,13 +344,11 @@ export const HowItWorks: FC<{ codeSnippets: CodeSnippets }> = ({ codeSnippets })
               {steps.map(({ heading, text, cta, codeSnippetsKey, dataTransformation }, index) => (
                 <div key={index} className="relative mt-16 grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-16">
                   <div className="space-y-4">
-                    <div className="flex space-x-4 sm:space-x-8">
+                    <div className="flex items-center space-x-4 sm:space-x-8">
                       <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-violet-200 bg-violet-100 text-xl font-black text-violet-600 ring-4 ring-white dark:border-violet-900 dark:bg-[#2C1657] dark:text-violet-500 dark:ring-gray-950">
                         {index + 1}
                       </div>
-                      <Heading level={3} className="mt-2.5">
-                        {heading}
-                      </Heading>
+                      <Heading level={3}>{heading}</Heading>
                     </div>
                     <div className="space-y-8 sm:pl-20">
                       <Paragraph className="max-w-md">{text}</Paragraph>

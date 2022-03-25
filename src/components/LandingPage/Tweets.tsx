@@ -53,9 +53,9 @@ const Tweet: FC<{ text: string; user: { name: string; position: string; avatar: 
   return (
     <Link href={url}>
       <a className="block h-full" rel="noreferrer" target="_blank">
-        <Card className="h-full p-8 space-y-4">
+        <Card className="h-full space-y-4 p-8">
           <User {...user} />
-          <p className="text-slate-500 font-light italic dark:text-slate-400">
+          <p className="font-light italic text-slate-500 dark:text-slate-400">
             <q>{text}</q>
           </p>
         </Card>
@@ -67,12 +67,12 @@ const Tweet: FC<{ text: string; user: { name: string; position: string; avatar: 
 export const Tweets: FC = () => {
   const [tweetsToShow, setTweetsToShow] = useState<number>(2)
   return (
-    <div className="relative w-full mt-16 md:mt-24 lg:mt-32 overflow-x-hidden">
-      <ul className="hidden md:flex list-none m-0 space-y-8 md:space-y-0 md:animate-scroll">
+    <div className="relative my-16 w-full overflow-x-hidden md:my-24 lg:my-32">
+      <ul className="md:animate-scroll m-0 hidden list-none space-y-8 md:flex md:space-y-0">
         {[...content.tweets, ...content.tweets, ...content.tweets].map((tweet, index) => (
           <li
             key={index}
-            className={`md:w-[560px] shrink-0 grow-0 px-4 m-0 ${
+            className={`m-0 shrink-0 grow-0 px-4 md:w-[560px] ${
               index >= content.tweets.length ? 'hidden md:block' : 'block'
             }`}
           >
@@ -81,11 +81,11 @@ export const Tweets: FC = () => {
         ))}
       </ul>
       <div className="md:hidden">
-        <ul className="list-none m-0 space-y-8 md:space-y-0 md:animate-scroll">
+        <ul className="md:animate-scroll m-0 list-none space-y-8 md:space-y-0">
           {content.tweets.slice(0, tweetsToShow).map((tweet, index) => (
             <li
               key={index}
-              className={`md:w-[560px] shrink-0 grow-0 px-4 ${
+              className={`shrink-0 grow-0 px-4 md:w-[560px] ${
                 index >= content.tweets.length ? 'hidden md:block' : 'block'
               }`}
             >
@@ -94,7 +94,7 @@ export const Tweets: FC = () => {
           ))}
         </ul>
         {tweetsToShow < content.tweets.length && (
-          <div className="w-full px-4 pt-8 flex justify-center">
+          <div className="flex w-full justify-center px-4 pt-8">
             <Button label="Show more" action={() => setTweetsToShow(tweetsToShow + 2)} theme="primary" />
           </div>
         )}

@@ -53,8 +53,8 @@ const content = {
 
 export const Footer: FC = () => {
   return (
-    <div className="mt-16 border-t border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-900/50 md:mt-24 lg:mt-32">
-      <div className="mx-auto w-full max-w-screen-xl space-y-16 px-4 py-16 md:px-8 md:py-24 lg:flex lg:justify-between lg:space-y-0 lg:py-32">
+    <div className="border-t border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-900/50">
+      <div className="mx-auto w-full max-w-screen-2xl space-y-8 px-4 py-8 md:p-8 md:pb-12 lg:flex lg:justify-between lg:space-y-0 lg:p-16 lg:pb-20">
         <div>
           <Link href="/">
             <a className="flex items-center space-x-2.5 font-bold text-slate-800 no-underline dark:text-white">
@@ -67,7 +67,9 @@ export const Footer: FC = () => {
         <div className="space-y-8 md:flex md:space-y-0 md:space-x-16">
           {content.menus.map(({ title, elements }, index) => (
             <div key={index}>
-              <Heading level={4}>{title}</Heading>
+              <h4 className="text-xs font-semibold uppercase tracking-wide text-slate-800 dark:text-slate-200">
+                {title}
+              </h4>
               <ul className="mx-0 mt-4 list-none space-y-2 text-sm">
                 {elements.map(({ label, url }, index) => (
                   <li key={index}>

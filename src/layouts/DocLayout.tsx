@@ -34,7 +34,7 @@ export const DocLayout: FC<{ doc: types.Doc; tree: TreeRoot; childrenTree: TreeN
 
   return (
     <Layout doc={doc}>
-      <div className="flex g-docs">
+      <div className="g-docs flex">
         <aside
           className="fixed"
           style={{
@@ -43,15 +43,15 @@ export const DocLayout: FC<{ doc: types.Doc; tree: TreeRoot; childrenTree: TreeN
             top: HEADER_HEIGHT,
           }}
         >
-          <div className="h-full p-4 overflow-y-auto border-r border-gray-100 dark:border-gray-800">
+          <div className="h-full overflow-y-auto border-r border-gray-100 p-4 dark:border-gray-800">
             <Tree tree={tree} level={0} activeUrlPath={router.asPath} />
           </div>
         </aside>
-        <div className="flex-1 max-w-3xl px-12 py-8 markdown" style={{ marginLeft: SIDEBAR_WIDTH }}>
+        <div className="markdown max-w-3xl flex-1 px-12 py-8" style={{ marginLeft: SIDEBAR_WIDTH }}>
           <h1>
             {doc.title}{' '}
             {doc.label && (
-              <span className="inline-block ml-2">
+              <span className="ml-2 inline-block">
                 <Label text={doc.label} />
               </span>
             )}
@@ -71,7 +71,7 @@ const Tree: FC<{ tree: TreeRoot; level: number; activeUrlPath: string }> = ({ tr
         <Link href={treeNode.urlPath}>
           <a
             className={classnames(
-              'py-2 px-4 no-underline text-sm rounded-md hover:bg-gray-50 dark:hover:bg-gray-850 flex items-center space-x-2.5',
+              'flex items-center space-x-2.5 rounded-md py-2 px-4 text-sm no-underline hover:bg-gray-50 dark:hover:bg-gray-850',
               activeUrlPath === treeNode.urlPath
                 ? 'bg-gray-100 text-black dark:bg-gray-800 dark:text-white'
                 : 'text-slate-500 dark:text-slate-400',
@@ -95,7 +95,7 @@ const ChildTreeItem: FC<{ item: TreeNode }> = ({ item }) => {
 
 const ChildCards: FC<{ tree: TreeNode[] }> = ({ tree }) => {
   return (
-    <div className="grid md:grid-cols-2 gap-4 mt-12">
+    <div className="mt-12 grid gap-4 md:grid-cols-2">
       {tree.map((item, idx) => (
         <ChildTreeItem key={idx} {...{ item }} />
       ))}

@@ -7,7 +7,8 @@ const themeClasses = {
 }
 
 export const Label: FC<{ text: string; theme?: 'default' | 'primary' }> = ({ text, theme = 'default' }) => {
-  const sharedClasses = 'inline-block leading-5 align-middle px-2 rounded tracking-wide [font-size:10px] font-medium '
+  const sharedClasses =
+    'inline-block align-middle px-1.5 leading-4 rounded tracking-wide [font-size:10px] font-medium whitespace-nowrap'
 
   return <div className={classnames(sharedClasses, themeClasses[theme])}>{text}</div>
 }
