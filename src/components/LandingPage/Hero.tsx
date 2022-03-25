@@ -5,6 +5,7 @@ import { FC } from 'react'
 import { Dashed } from '../Dashed'
 import { Icon } from '../Icon'
 import { Button } from '../Button'
+import { Card } from '../Card'
 
 const content = {
   heading: 'Content made easy for developers',
@@ -57,7 +58,7 @@ export const Hero: FC = () => {
         </div>
       </div>
       <div className="relative w-full flex items-center">
-        <div className="w-full rounded-md overflow-hidden shadow-lg shadow-gray-100 dark:shadow-gray-900">
+        <Card shadow className="w-full">
           {showVideo ? (
             <div className="w-full aspect-video">
               <iframe
@@ -89,7 +90,7 @@ export const Hero: FC = () => {
               </div>
             </div>
           )}
-        </div>
+        </Card>
       </div>
     </div>
   )

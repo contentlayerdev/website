@@ -1,10 +1,10 @@
 import { FC } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { Header } from './Header'
+import { MainNavigation } from './MainNavigation'
 import { Footer } from './Footer'
 
-export const Container: FC<any> = ({ children, ...customMeta }) => {
+export const MainContainer: FC<any> = ({ children, ...customMeta }) => {
   const router = useRouter()
 
   const meta = {
@@ -43,7 +43,7 @@ export const Container: FC<any> = ({ children, ...customMeta }) => {
         <link rel="icon" href="/favicon.ico" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </Head>
-      <Header />
+      <MainNavigation />
       <main className="pt-20">{children}</main>
       <Footer />
     </div>

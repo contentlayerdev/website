@@ -1,5 +1,6 @@
 import { FC, useState } from 'react'
 import * as Tooltip from '@radix-ui/react-tooltip'
+import { Card } from './Card'
 
 const Folder: FC<{ name: string; level: number; lastItem?: boolean; parentLastItem?: boolean; childNodes: any[] }> = ({
   name,
@@ -87,11 +88,11 @@ const File: FC<{
 export const FileTree: FC<{ contents: any }> = ({ contents }) => {
   return (
     <div className="grow">
-      <div className="bg-gray-50 border border-gray-100 shadow-lg shadow-gray-100 rounded-2xl overflow-hidden p-4 dark:bg-gray-900/50 dark:border-gray-900 dark:shadow-gray-900">
+      <Card shadow className="p-4">
         {contents.type == 'folder' && (
           <Folder name={contents.name} level={1} lastItem={true} childNodes={contents.children} />
         )}
-      </div>
+      </Card>
     </div>
   )
 }

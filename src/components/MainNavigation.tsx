@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import { useState } from 'react'
 
-import { Icon, IconName } from '../components/Icon'
-import { Label } from '../components/Label'
+import { Icon, IconName } from './Icon'
+import { Label } from './Label'
 import { Logo } from './Logo'
 
 function isExternalUrl(link: string): boolean {
@@ -10,7 +10,7 @@ function isExternalUrl(link: string): boolean {
 }
 
 const navLinks: Array<{ label: string; url: string }> = [
-  { label: 'Docs', url: '/docs' },
+  { label: 'Documentation', url: '/docs' },
   { label: 'Why Contentlayer?', url: '/docs/concepts/why-contentlayer' },
   { label: 'Blog', url: '/blog' },
   { label: 'Examples', url: '/docs/other/examples' },
@@ -21,7 +21,7 @@ const iconLinks: Array<{ name: IconName; url: string }> = [
   { name: 'discord', url: 'https://discord.gg/rytFErsARm' },
 ]
 
-export const Header = () => {
+export const MainNavigation = () => {
   const [open, setOpen] = useState(false)
 
   return (

@@ -2,12 +2,13 @@ import { FC } from 'react'
 import { type CodeSnippet } from './LandingPage/HowItWorks'
 import * as Tabs from '@radix-ui/react-tabs'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
+import { Card } from './Card'
 
 export const CodeWindow: FC<{
   snippets: readonly CodeSnippet[]
 }> = ({ snippets }) => {
   return (
-    <div className="bg-gray-50 border border-gray-100 shadow-lg shadow-gray-100 rounded-2xl overflow-hidden dark:bg-gray-900/50 dark:border-gray-900 dark:shadow-gray-900">
+    <Card shadow>
       <Tabs.Root defaultValue={snippets[0].file}>
         <Tabs.List aria-label="Select file to view" className="flex flex-nowrap overflow-x-auto">
           <div className="h-10 flex items-center px-4 space-x-1.5 border-r border-b border-gray-100 dark:border-gray-900">
@@ -47,6 +48,6 @@ export const CodeWindow: FC<{
           </Tabs.Content>
         ))}
       </Tabs.Root>
-    </div>
+    </Card>
   )
 }

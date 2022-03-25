@@ -2,6 +2,7 @@ import { FC, useState } from 'react'
 import Link from 'next/link'
 import { User } from '../User'
 import { Button } from '../Button'
+import { Card } from '../Card'
 
 const content = {
   tweets: [
@@ -51,15 +52,13 @@ const Tweet: FC<{ text: string; user: { name: string; position: string; avatar: 
 }) => {
   return (
     <Link href={url}>
-      <a
-        className="block h-full bg-gray-50/50 border border-gray-100 rounded-2xl p-8 space-y-4 dark:bg-gray-900/50 dark:border-gray-900"
-        rel="noreferrer"
-        target="_blank"
-      >
-        <User {...user} />
-        <p className="text-slate-500 font-light italic dark:text-slate-400">
-          <q>{text}</q>
-        </p>
+      <a className="block h-full" rel="noreferrer" target="_blank">
+        <Card className="h-full p-8 space-y-4">
+          <User {...user} />
+          <p className="text-slate-500 font-light italic dark:text-slate-400">
+            <q>{text}</q>
+          </p>
+        </Card>
       </a>
     </Link>
   )
@@ -73,7 +72,7 @@ export const Tweets: FC = () => {
         {[...content.tweets, ...content.tweets, ...content.tweets].map((tweet, index) => (
           <li
             key={index}
-            className={`md:w-[560px] shrink-0 grow-0 px-4 ${
+            className={`md:w-[560px] shrink-0 grow-0 px-4 m-0 ${
               index >= content.tweets.length ? 'hidden md:block' : 'block'
             }`}
           >

@@ -2,6 +2,7 @@ import { FC, useEffect, useRef, useState } from 'react'
 import { type VM } from '@stackblitz/sdk/typings/VM'
 import stackblitz from '@stackblitz/sdk'
 import { Arrow } from '../Arrow'
+import { Card } from '../Card'
 
 const content = {
   heading: 'Give Contentlayer a try – right here',
@@ -109,7 +110,7 @@ export const Playground: FC = () => {
             )}
           </div>
         </div>
-        <div className="overflow-hidden rounded-2xl bg-gray-900 border border-gray-800 shadow-gray-900">
+        <Card shadow dark>
           <div className="h-10 shrink-0 grow-0 flex items-center px-4 space-x-1.5 border-b border-gray-900">
             <span className="w-3 h-3 rounded-full bg-slate-600" />
             <span className="w-3 h-3 rounded-full bg-slate-600" />
@@ -123,7 +124,7 @@ export const Playground: FC = () => {
               <div className="h-[700px] w-full" ref={ref} />
             </div>
           </div>
-        </div>
+        </Card>
         <div className="mt-8 px-8">
           {content.steps[selectedStep].hints?.console && (
             <div className="flex items-start space-x-4 pl-48 lg:pl-96">

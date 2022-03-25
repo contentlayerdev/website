@@ -11,7 +11,7 @@ import { TreeRoot, TreeNode } from '../pages/docs/[[...slug]]'
 import React from 'react'
 
 import { Callout } from '../components/Callout'
-import { Card } from '../components/Card'
+import { Card } from '../components/DocsCard'
 import { Label } from '../components/Label'
 
 const mdxComponents = {

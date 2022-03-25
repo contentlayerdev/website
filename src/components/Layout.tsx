@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet'
 
 import type * as types from 'contentlayer/generated'
 
-import { Header } from './Header'
+import { MainNavigation } from './MainNavigation'
 
 export const Layout: FC<{
   doc: types.Doc | types.Page
@@ -18,7 +18,7 @@ export const Layout: FC<{
         />
       </Helmet>
 
-      <Header />
+      <MainNavigation />
 
       <div id="page" className="h-full pt-[57px]">
         {children}

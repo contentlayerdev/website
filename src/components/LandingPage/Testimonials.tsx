@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { FC } from 'react'
 import { Icon } from '../Icon'
 import { User } from '../User'
+import { Card } from '../Card'
 
 const content = {
   tweet: {
@@ -50,15 +51,15 @@ const content = {
 export const Testimonials: FC<{ usedByCount: number }> = ({ usedByCount }) => {
   return (
     <div className="w-full max-w-screen-xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 pt-16 md:pt-24">
-      <div className="md:col-span-2 bg-gray-50/50 border border-gray-100 rounded-2xl p-8 md:p-12 lg:p-16 space-y-8 dark:bg-gray-900/50 dark:border-gray-900">
+      <Card className="md:col-span-2 p-8 md:p-12 lg:p-16 space-y-8">
         <p className="text-slate-500 font-light md:text-lg italic text-center max-w-lg mx-auto dark:text-slate-400">
           <q>{content.tweet.text}</q>
         </p>
         <div className="flex justify-center">
           <User {...content.tweet.user} />
         </div>
-      </div>
-      <div className="bg-gray-50/50 border border-violet-100 rounded-2xl overflow-hidden h-64 md:h-auto dark:bg-gray-900/50 dark:border-gray-800">
+      </Card>
+      <Card className="h-64 md:h-auto border-violet-100">
         <div className="relative w-full h-full">
           <div className="absolute inset-x-3 -top-8 grid grid-cols-4 sm:grid-cols-5 md:grid-cols-3 lg:grid-cols-4 gap-x-3">
             {content.projects.avatars
@@ -77,7 +78,7 @@ export const Testimonials: FC<{ usedByCount: number }> = ({ usedByCount }) => {
                 </div>
               ))}
           </div>
-          <div className="absolute inset-0 flex flex-col justify-end p-8 lg:p-16 bg-gradient-to-b from-violet-50/50 via-violet-50/95 to-violet-50 dark:from-gray-900/30 dark:via-gray-900/95 dark:to-gray-900">
+          <div className="absolute inset-0 flex flex-col justify-end p-8 lg:p-16 bg-gradient-to-b from-violet-50/50 via-violet-50/95 to-violet-50 dark:from-gray-900/30 dark:via-gray-900/95 dark:to-gray-900/100">
             <p className="text-xl font-semibold text-center text-violet-600 mb-2 dark:text-violet-500">
               {content.projects.heading.replace('0', usedByCount.toString())}
             </p>
@@ -92,7 +93,7 @@ export const Testimonials: FC<{ usedByCount: number }> = ({ usedByCount }) => {
             </Link>
           </div>
         </div>
-      </div>
+      </Card>
     </div>
   )
 }

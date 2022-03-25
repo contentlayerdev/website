@@ -7,14 +7,14 @@ import { type CodeSnippets, HowItWorks } from './HowItWorks'
 import { FAQ } from './FAQ'
 import { Tweets } from './Tweets'
 import { Playground } from './Playground'
-import { Container } from '../Container'
+import { MainContainer } from '../MainContainer'
 
 export const LandingPage: React.FC<{ codeSnippets: CodeSnippets; usedByCount: number }> = ({
   codeSnippets,
   usedByCount,
 }) => {
   return (
-    <Container>
+    <MainContainer>
       <Hero />
       <Support />
       <Testimonials usedByCount={usedByCount} />
@@ -23,6 +23,6 @@ export const LandingPage: React.FC<{ codeSnippets: CodeSnippets; usedByCount: nu
       <Playground />
       <FAQ />
       <Tweets />
-    </Container>
+    </MainContainer>
   )
 }
