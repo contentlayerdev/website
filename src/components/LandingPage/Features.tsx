@@ -1,6 +1,9 @@
 import Image from 'next/image'
 import { FC } from 'react'
+import { Checklist } from '../Checklist'
+import { Heading } from '../Heading'
 import { Icon, IconName } from '../Icon'
+import { Paragraph } from '../Paragraph'
 
 const content = {
   blocks: [
@@ -33,25 +36,16 @@ const content = {
 
 export const Features: FC = () => {
   return (
-    <div className="bg-gray-50 mt-16 md:mt-24 lg:mt-32 dark:bg-gray-900/50">
-      <div className="w-full max-w-screen-xl mx-auto px-4 md:px-8 py-16 md:py-24 lg:py-32 grid grid-cols-1 lg:grid-cols-3 gap-16">
+    <div className="mt-16 bg-gray-50 dark:bg-gray-900/50 md:mt-24 lg:mt-32">
+      <div className="mx-auto grid w-full max-w-screen-xl grid-cols-1 gap-16 px-4 py-16 md:px-8 md:py-24 lg:grid-cols-3 lg:py-32">
         {content.blocks.map(({ icon, heading, text, features }, index) => (
-          <div key={index} className="max-w-xl md:mx-auto lg:mx-0">
-            <div className="w-12 text-violet-600 bg-violet-100 border border-violet-200 rounded-full p-2 dark:text-violet-500 dark:bg-violet-900/50 dark:border-violet-900">
+          <div key={index} className="max-w-xl space-y-4 md:mx-auto lg:mx-0">
+            <div className="w-12 rounded-full border border-violet-200 bg-violet-100 p-2 text-violet-600 dark:border-violet-900 dark:bg-violet-900/50 dark:text-violet-500">
               <Icon name={icon} />
             </div>
-            <h3 className="text-xl font-semibold text-slate-800 dark:text-slate-200 mt-8">{heading}</h3>
-            <p className="text-slate-500 dark:text-slate-400 leading-relaxed mb-6">{text}</p>
-            <ul className="text-slate-700 dark:text-slate-300 ml-0 mb-8">
-              {features.map((feature, index) => (
-                <li key={index} className="flex space-x-3">
-                  <div className="pt-0.5">
-                    <Icon name="check" />
-                  </div>
-                  <span>{feature}</span>
-                </li>
-              ))}
-            </ul>
+            <Heading level={3}>{heading}</Heading>
+            <Paragraph>{text}</Paragraph>
+            <Checklist items={features} />
           </div>
         ))}
       </div>

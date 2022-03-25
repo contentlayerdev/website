@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { FC } from 'react'
 import { Logo } from './Logo'
 import { Icon } from './Icon'
+import { Heading } from './Heading'
 
 const isExternalUrl = (link: string): boolean => {
   return !link.startsWith('/')
@@ -52,27 +53,27 @@ const content = {
 
 export const Footer: FC = () => {
   return (
-    <div className="bg-gray-50 mt-16 md:mt-24 lg:mt-32 border-t border-gray-200 dark:bg-gray-900/50 dark:border-gray-800">
-      <div className="w-full max-w-screen-xl mx-auto px-4 md:px-8 py-16 md:py-24 lg:py-32 space-y-16 lg:space-y-0 lg:flex lg:justify-between">
+    <div className="mt-16 border-t border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-900/50 md:mt-24 lg:mt-32">
+      <div className="mx-auto w-full max-w-screen-xl space-y-16 px-4 py-16 md:px-8 md:py-24 lg:flex lg:justify-between lg:space-y-0 lg:py-32">
         <div>
           <Link href="/">
-            <a className="flex items-center space-x-2.5 font-bold no-underline text-slate-800 dark:text-white">
+            <a className="flex items-center space-x-2.5 font-bold text-slate-800 no-underline dark:text-white">
               <Logo />
               <span>Contentlayer</span>
             </a>
           </Link>
-          <div className="text-sm text-slate-500 dark:text-slate-400 mt-4">{content.note}</div>
+          <div className="mt-4 text-sm text-slate-500 dark:text-slate-400">{content.note}</div>
         </div>
-        <div className="space-y-8 md:space-y-0 md:flex md:space-x-16">
+        <div className="space-y-8 md:flex md:space-y-0 md:space-x-16">
           {content.menus.map(({ title, elements }, index) => (
             <div key={index}>
-              <h4 className="my-0 text-slate-800 dark:text-slate-300 font-semibold text-base">{title}</h4>
-              <ul className="mt-4 list-none mx-0 space-y-2 text-sm">
+              <Heading level={4}>{title}</Heading>
+              <ul className="mx-0 mt-4 list-none space-y-2 text-sm">
                 {elements.map(({ label, url }, index) => (
                   <li key={index}>
                     <Link href={url}>
                       <a
-                        className="inline-flex items-center space-x-1 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300"
+                        className="inline-flex items-center space-x-1 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300"
                         target={isExternalUrl(url) ? '_blank' : undefined}
                       >
                         <span>{label}</span>

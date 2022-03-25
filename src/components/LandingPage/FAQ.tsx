@@ -1,7 +1,9 @@
 import { useRouter } from 'next/router'
 import { FC } from 'react'
 import { Button } from '../Button'
+import { Heading } from '../Heading'
 import { IconName } from '../Icon'
+import { Paragraph } from '../Paragraph'
 
 const content = {
   heading: 'Frequently Asked Questions',
@@ -36,12 +38,12 @@ export const FAQ: FC = () => {
   const router = useRouter()
 
   return (
-    <div className="bg-gray-50 mt-16 md:mt-0 dark:bg-gray-900/50">
-      <div className="w-full max-w-screen-xl mx-auto px-4 md:px-8 py-16 md:py-24 lg:py-32 grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="md:max-w-md">
-          <h2 className="text-slate-800 font-semibold text-3xl dark:text-slate-200 mt-0">{content.heading}</h2>
-          <p className="text-slate-500 dark:text-slate-400 leading-relaxed">{content.description}</p>
-          <div className="flex flex-col space-y-4 mt-8 sm:flex-row md:flex-col lg:flex-row sm:space-y-0 md:space-y-4 lg:space-y-0 sm:space-x-4 md:space-x-0 lg:space-x-4">
+    <div className="mt-16 bg-gray-50 dark:bg-gray-900/50 md:mt-0">
+      <div className="mx-auto grid w-full max-w-screen-xl grid-cols-1 gap-8 px-4 py-16 md:grid-cols-2 md:px-8 md:py-24 lg:py-32">
+        <div className="space-y-8 md:max-w-md">
+          <Heading level={2}>{content.heading}</Heading>
+          <Paragraph>{content.description}</Paragraph>
+          <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4 md:flex-col md:space-y-4 md:space-x-0 lg:flex-row lg:space-y-0 lg:space-x-4">
             <Button
               label={content.primaryAction.label}
               action={() => router.push(content.primaryAction.url)}
@@ -55,11 +57,11 @@ export const FAQ: FC = () => {
             />
           </div>
         </div>
-        <ul className="list-none m-0 space-y-8">
+        <ul className="m-0 list-none space-y-8">
           {content.elements.map(({ question, answer }, index) => (
-            <li key={index}>
-              <h3 className="m-0 text-xl font-semibold text-slate-800 dark:text-slate-200">{question}</h3>
-              <p className="mt-4 text-slate-500 dark:text-slate-400 leading-relaxed">{answer}</p>
+            <li key={index} className="space-y-4">
+              <Heading level={3}>{question}</Heading>
+              <Paragraph>{answer}</Paragraph>
             </li>
           ))}
         </ul>

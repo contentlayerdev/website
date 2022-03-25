@@ -6,6 +6,8 @@ import { DataTransformation } from './DataTransformation'
 import { ColorScheme } from '../../utils/syntax-highlighting'
 import * as Tabs from '@radix-ui/react-tabs'
 import * as Tooltip from '@radix-ui/react-tooltip'
+import { Heading } from '../Heading'
+import { Paragraph } from '../Paragraph'
 
 export const codeSnippets = {
   howItWorksStep1: [
@@ -286,49 +288,49 @@ const content = {
 
 export const HowItWorks: FC<{ codeSnippets: CodeSnippets }> = ({ codeSnippets }) => {
   return (
-    <div className="w-full max-w-screen-xl mx-auto px-4 md:px-8 mt-16 md:mt-24 lg:mt-32">
+    <div className="mx-auto mt-16 w-full max-w-screen-xl px-4 md:mt-24 md:px-8 lg:mt-32">
       <Tabs.Root defaultValue={content.tabs[0].title.toLowerCase().replace(/ /g, '-')}>
-        <h2 className="text-slate-800 font-semibold text-3xl dark:text-slate-200 sm:text-center mb-8 mt-0">
-          {content.heading}
-        </h2>
-        <Tabs.List
-          aria-label="Select content source"
-          className="flex sm:justify-center flex-nowrap overflow-x-auto py-0.5"
-        >
-          {content.tabs.map(({ title, active }, index) =>
-            active ? (
-              <Tabs.Trigger
-                key={index}
-                value={title.toLowerCase().replace(/ /g, '-')}
-                disabled={!active}
-                className={`shrink-0 overflow-hidden font-semibold focus:outline-none focus:ring-2 focus:ring-violet-300 dark:focus:ring-violet-900 border whitespace-nowrap ${
-                  index == 0 ? 'rounded-l-md' : index == content.tabs.length - 1 ? 'rounded-r-md' : '-mx-px'
-                } bg-gray-50 border-gray-200 radix-state-active:bg-violet-100 radix-state-active:text-violet-600 radix-state-active:border-violet-300
-              dark:bg-gray-900 dark:border-gray-800 dark:radix-state-active:bg-violet-600/20 dark:radix-state-active:text-violet-500 dark:radix-state-active:border-violet-900
-              hover:bg-gray-100 text-slate-600 dark:hover:bg-gray-800 dark:text-slate-300 py-2 px-4 radix-state-active:z-20`}
-              >
-                {title}
-              </Tabs.Trigger>
-            ) : (
-              <Tooltip.Root key={index} delayDuration={100}>
-                <Tooltip.Trigger
-                  className={`font-semibold border ${
+        <div className="space-y-8 sm:text-center">
+          <Heading level={2}>{content.heading}</Heading>
+          <Tabs.List
+            aria-label="Select content source"
+            className="flex flex-nowrap overflow-x-auto py-0.5 sm:justify-center"
+          >
+            {content.tabs.map(({ title, active }, index) =>
+              active ? (
+                <Tabs.Trigger
+                  key={index}
+                  value={title.toLowerCase().replace(/ /g, '-')}
+                  disabled={!active}
+                  className={`shrink-0 overflow-hidden whitespace-nowrap border font-semibold focus:outline-none focus:ring-2 focus:ring-violet-300 dark:focus:ring-violet-900 ${
                     index == 0 ? 'rounded-l-md' : index == content.tabs.length - 1 ? 'rounded-r-md' : '-mx-px'
-                  } bg-gray-50 border-gray-200 dark:bg-gray-900 dark:border-gray-800 text-slate-400 dark:text-slate-500 py-2 px-4`}
+                  } border-gray-200 bg-gray-50 py-2 px-4 text-slate-600
+              hover:bg-gray-100 radix-state-active:z-20 radix-state-active:border-violet-300 radix-state-active:bg-violet-100 radix-state-active:text-violet-600
+              dark:border-gray-800 dark:bg-gray-900 dark:text-slate-300 dark:hover:bg-gray-800 dark:radix-state-active:border-violet-900 dark:radix-state-active:bg-violet-600/20 dark:radix-state-active:text-violet-500`}
                 >
                   {title}
-                </Tooltip.Trigger>
-                <Tooltip.Content
-                  sideOffset={10}
-                  className="bg-gray-800 rounded text-slate-100 text-sm px-3 py-1.5 shadow-xl shadow-white dark:bg-violet-200 dark:text-violet-900 dark:shadow-black"
-                >
-                  Coming soon
-                  <Tooltip.Arrow className="mx-1 fill-current text-gray-800 dark:text-violet-200" />
-                </Tooltip.Content>
-              </Tooltip.Root>
-            ),
-          )}
-        </Tabs.List>
+                </Tabs.Trigger>
+              ) : (
+                <Tooltip.Root key={index} delayDuration={100}>
+                  <Tooltip.Trigger
+                    className={`border font-semibold ${
+                      index == 0 ? 'rounded-l-md' : index == content.tabs.length - 1 ? 'rounded-r-md' : '-mx-px'
+                    } border-gray-200 bg-gray-50 py-2 px-4 text-slate-400 dark:border-gray-800 dark:bg-gray-900 dark:text-slate-500`}
+                  >
+                    {title}
+                  </Tooltip.Trigger>
+                  <Tooltip.Content
+                    sideOffset={10}
+                    className="rounded bg-gray-800 px-3 py-1.5 text-sm text-slate-100 shadow-xl shadow-white dark:bg-violet-200 dark:text-violet-900 dark:shadow-black"
+                  >
+                    Coming soon
+                    <Tooltip.Arrow className="mx-1 fill-current text-gray-800 dark:text-violet-200" />
+                  </Tooltip.Content>
+                </Tooltip.Root>
+              ),
+            )}
+          </Tabs.List>
+        </div>
         {content.tabs
           .filter((t) => t.active)
           .map(({ title, steps }, index) => (
@@ -337,28 +339,28 @@ export const HowItWorks: FC<{ codeSnippets: CodeSnippets }> = ({ codeSnippets })
               value={title.toLowerCase().replace(/ /g, '-')}
               className="relative focus:outline-none"
             >
-              <div className="hidden sm:block absolute inset-y-0 left-6 w-0 border-l border-dashed border-slate-300 dark:border-slate-600" />
-              <div className="hidden sm:block absolute h-96 w-2 left-5 bottom-0 bg-gradient-to-b from-white/0 via-white/100 to-white/100 dark:from-gray-950/0 dark:via-gray-950/100 dark:to-gray-950/100" />
+              <div className="absolute inset-y-0 left-6 hidden w-0 border-l border-dashed border-slate-300 dark:border-slate-600 sm:block" />
+              <div className="absolute left-5 bottom-0 hidden h-96 w-2 bg-gradient-to-b from-white/0 via-white/100 to-white/100 dark:from-gray-950/0 dark:via-gray-950/100 dark:to-gray-950/100 sm:block" />
               {steps.map(({ heading, text, cta, codeSnippetsKey, dataTransformation }, index) => (
-                <div key={index} className="relative grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 mt-16">
-                  <div>
+                <div key={index} className="relative mt-16 grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-16">
+                  <div className="space-y-4">
                     <div className="flex space-x-4 sm:space-x-8">
-                      <div className="shrink-0 w-12 h-12 flex justify-center items-center text-violet-600 font-black text-xl rounded-full bg-violet-100 border border-violet-200 ring-4 ring-white dark:ring-gray-950 dark:text-violet-500 dark:bg-[#2C1657] dark:border-violet-900">
+                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-violet-200 bg-violet-100 text-xl font-black text-violet-600 ring-4 ring-white dark:border-violet-900 dark:bg-[#2C1657] dark:text-violet-500 dark:ring-gray-950">
                         {index + 1}
                       </div>
-                      <h3 className="text-xl font-semibold text-slate-800 dark:text-slate-200 mt-2.5">{heading}</h3>
+                      <Heading level={3} className="mt-2.5">
+                        {heading}
+                      </Heading>
                     </div>
-                    <div className="sm:pl-20">
-                      <div className="text-slate-500 dark:text-slate-400 leading-relaxed max-w-md">{text}</div>
+                    <div className="space-y-8 sm:pl-20">
+                      <Paragraph className="max-w-md">{text}</Paragraph>
                       {cta && (
-                        <div className="mt-8">
-                          <Button
-                            label={cta.label}
-                            action={() => window.open(cta.url, '_ blank')}
-                            theme="secondary"
-                            icon={cta?.icon ?? ''}
-                          />
-                        </div>
+                        <Button
+                          label={cta.label}
+                          action={() => window.open(cta.url, '_ blank')}
+                          theme="secondary"
+                          icon={cta?.icon ?? ''}
+                        />
                       )}
                     </div>
                   </div>
