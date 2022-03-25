@@ -9,6 +9,7 @@ import { Card } from '../Card'
 import { Heading } from '../Heading'
 import { Checklist } from '../Checklist'
 import { Paragraph } from '../Paragraph'
+import { Video } from '../Video'
 
 const content = {
   heading: 'Content made easy for developers',
@@ -30,7 +31,6 @@ const content = {
 
 export const Hero: FC = () => {
   const router = useRouter()
-  const [showVideo, setShowVideo] = useState(false)
 
   return (
     <div className="mx-auto grid w-full max-w-screen-xl grid-cols-1 gap-16 px-4 pt-16 md:grid-cols-2 md:px-8 md:pt-24 lg:pt-32">
@@ -52,39 +52,7 @@ export const Hero: FC = () => {
         </div>
       </div>
       <div className="relative flex w-full items-center">
-        <Card shadow className="w-full">
-          {showVideo ? (
-            <div className="aspect-video w-full">
-              <iframe
-                width="100%"
-                height="100%"
-                src={`https://www.youtube-nocookie.com/embed/${content.video.youtubeId}`}
-                loading="lazy"
-                title="Intro to Contentlayer"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              />
-            </div>
-          ) : (
-            <div className="relative -mb-2">
-              <Image
-                src={content.video.thumbnail.url}
-                alt={content.video.thumbnail.alt}
-                width="800"
-                height="450"
-                placeholder="blur"
-                blurDataURL={content.video.thumbnail.url}
-              />
-              <div
-                className="absolute inset-0 flex cursor-pointer items-center justify-center"
-                onClick={() => setShowVideo(true)}
-              >
-                <div className="relative w-16 text-violet-600 hover:text-violet-500 dark:text-violet-500 dark:hover:text-violet-400">
-                  <Icon name="play-button" />
-                </div>
-              </div>
-            </div>
-          )}
-        </Card>
+        <Video thumbnail={content.video.thumbnail} videoId={content.video.youtubeId} />
       </div>
     </div>
   )
