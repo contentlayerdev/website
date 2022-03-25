@@ -50,49 +50,45 @@ const content = {
 
 export const Testimonials: FC<{ usedByCount: number }> = ({ usedByCount }) => {
   return (
-    <div className="w-full max-w-screen-xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 pt-16 md:pt-24">
-      <Card className="md:col-span-2 p-8 md:p-12 lg:p-16 space-y-8">
-        <p className="text-slate-500 font-light md:text-lg italic text-center max-w-lg mx-auto dark:text-slate-400">
+    <div className="mx-auto grid w-full max-w-screen-xl grid-cols-1 gap-8 px-4 pt-16 md:grid-cols-3 md:px-8 md:pt-24">
+      <Card className="space-y-8 p-8 md:col-span-2 md:p-12 lg:p-16">
+        <p className="mx-auto max-w-lg text-center font-light italic text-slate-500 dark:text-slate-400 md:text-lg">
           <q>{content.tweet.text}</q>
         </p>
         <div className="flex justify-center">
           <User {...content.tweet.user} />
         </div>
       </Card>
-      <Card className="h-64 md:h-auto border-violet-100">
-        <div className="relative w-full h-full">
-          <div className="absolute inset-x-3 -top-8 grid grid-cols-4 sm:grid-cols-5 md:grid-cols-3 lg:grid-cols-4 gap-x-3">
-            {content.projects.avatars
-              .map((url) => ({ url, sort: Math.random() }))
-              .sort((a, b) => a.sort - b.sort)
-              .map(({ url }, index) => (
-                <div
-                  key={index}
-                  className={`bg-gray-100 rounded-lg aspect-square flex justify-center items-center dark:bg-gray-800
+      <Card className="h-64 border-violet-100 md:h-auto">
+        <Link href={content.projects.cta.url}>
+          <a className="relative block h-full w-full" target="_blank" rel="noreferrer">
+            <div className="absolute inset-x-3 -top-8 grid grid-cols-4 gap-x-3 sm:grid-cols-5 md:grid-cols-3 lg:grid-cols-4">
+              {content.projects.avatars
+                .map((url) => ({ url, sort: Math.random() }))
+                .sort((a, b) => a.sort - b.sort)
+                .map(({ url }, index) => (
+                  <div
+                    key={index}
+                    className={`flex aspect-square items-center justify-center rounded-lg bg-gray-200 dark:bg-gray-800
                 ${index % 2 ? 'mt-3' : ''}
                 `}
-                >
-                  <div className="relative w-8 h-8 rounded-full overflow-hidden">
-                    <Image src={url} alt={'Profile image'} layout="fill" placeholder="blur" blurDataURL={url} />
+                  >
+                    <div className="relative h-8 w-8 overflow-hidden rounded-full">
+                      <Image src={url} alt={'Profile image'} layout="fill" placeholder="blur" blurDataURL={url} />
+                    </div>
                   </div>
-                </div>
-              ))}
-          </div>
-          <div className="absolute inset-0 flex flex-col justify-end p-8 lg:p-16 bg-gradient-to-b from-violet-50/50 via-violet-50/95 to-violet-50 dark:from-gray-900/30 dark:via-gray-900/95 dark:to-gray-900/100">
-            <p className="text-xl font-semibold text-center text-violet-600 mb-2 dark:text-violet-500">
-              {content.projects.heading.replace('0', usedByCount.toString())}
-            </p>
-            <Link href={content.projects.cta.url}>
-              <a
-                className="text-slate-500 hover:text-slate-700 text-center dark:text-slate-400 dark:hover:text-slate-300"
-                target="_blank"
-                rel="noreferrer"
-              >
-                {content.projects.cta.label}
-              </a>
-            </Link>
-          </div>
-        </div>
+                ))}
+            </div>
+            <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-b from-violet-50/50 via-violet-50/95 to-violet-50 p-8 dark:from-gray-900/30 dark:via-gray-900/95 dark:to-gray-900/100 lg:p-16">
+              <p className="mb-2 text-center text-xl font-semibold text-violet-600 dark:text-violet-500">
+                {content.projects.heading.replace('0', usedByCount.toString())}
+              </p>
+              <Link href={content.projects.cta.url}>
+                <p className="text-center">{content.projects.cta.label}</p>
+              </Link>
+            </div>
+          </a>
+        </Link>
       </Card>
     </div>
   )
