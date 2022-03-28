@@ -12,6 +12,8 @@ import { BarsIcon } from './Bars'
 import { CloseIcon } from './Close'
 import { PlayButtonIcon } from './PlayButton'
 import { ChevronDownIcon } from './ChevronDown'
+import { GitpodIcon } from './Gitpod'
+import { ChevronRightIcon } from './ChevronRight'
 
 export type IconName =
   | 'code'
@@ -26,6 +28,8 @@ export type IconName =
   | 'close'
   | 'play-button'
   | 'chevron-down'
+  | 'gitpod'
+  | 'chevron-right'
 
 const iconMap = {
   code: CodeIcon,
@@ -40,6 +44,8 @@ const iconMap = {
   close: CloseIcon,
   'play-button': PlayButtonIcon,
   'chevron-down': ChevronDownIcon,
+  'chevron-right': ChevronRightIcon,
+  gitpod: GitpodIcon,
 }
 
 export const Icon: FC<{ name: IconName }> = ({ name }) => {

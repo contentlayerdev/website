@@ -66,26 +66,25 @@ const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ doc, tree, b
           <div className="p-4 py-8 md:px-8 lg:px-16">
             <div className="prose prose-slate prose-violet max-w-2xl prose-headings:font-semibold prose-headings:text-slate-800 prose-p:text-slate-500 prose-a:font-normal prose-code:font-normal prose-ul:text-slate-500 dark:prose-invert dark:prose-headings:text-slate-200 dark:prose-p:text-slate-400 dark:prose-ul:text-slate-400 lg:mb-8">
               {MDXContent && <MDXContent components={mdxComponents} />}
+              {doc.show_child_cards && (
+                <div className="grid max-w-2xl grid-cols-1 gap-8 md:grid-cols-2">
+                  {childrenTree.map((card, index) => (
+                    <Card
+                      key={index}
+                      title={card.title}
+                      label={card.label}
+                      subtitle={card.excerpt}
+                      link={{ url: card.urlPath, label: 'Learn more' }}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
-            {doc.show_child_cards && (
-              <div className="grid max-w-2xl grid-cols-1 gap-8 md:grid-cols-2">
-                {childrenTree.map((card, index) => (
-                  <Card
-                    key={index}
-                    title={card.title}
-                    label={card.label}
-                    subtitle={card.excerpt}
-                    link={{ url: card.urlPath }}
-                  />
-                ))}
-              </div>
-            )}
           </div>
         </div>
       </div>
     </Container>
   )
-  //return <DocLayout {...{ doc, tree, childrenTree }} />
 }
 
 export default Page
