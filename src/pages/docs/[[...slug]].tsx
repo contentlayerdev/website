@@ -70,7 +70,13 @@ const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ doc, tree, b
             {doc.show_child_cards && (
               <div className="grid max-w-2xl grid-cols-1 gap-8 md:grid-cols-2">
                 {childrenTree.map((card, index) => (
-                  <Card title={card.title} label={card.label} subtitle={card.excerpt} link={{ url: card.urlPath }} />
+                  <Card
+                    key={index}
+                    title={card.title}
+                    label={card.label}
+                    subtitle={card.excerpt}
+                    link={{ url: card.urlPath }}
+                  />
                 ))}
               </div>
             )}
