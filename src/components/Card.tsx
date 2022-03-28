@@ -10,8 +10,8 @@ export const Card: FC<{ children: ReactNode; className?: string; shadow?: boolea
   return (
     <div
       className={classNames(
-        'border rounded-2xl overflow-hidden',
-        dark ? 'bg-gray-900 border-gray-800' : 'bg-gray-50 border-gray-100 dark:bg-gray-900 dark:border-gray-800',
+        'overflow-hidden rounded-2xl border',
+        dark ? 'border-gray-800 bg-gray-900' : 'border-gray-100 bg-gray-50 dark:border-gray-800 dark:bg-gray-900',
         shadow && `shadow-lg ${dark ? 'shadow-gray-900' : 'shadow-gray-100 dark:shadow-gray-900'}`,
         className,
       )}

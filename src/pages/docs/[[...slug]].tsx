@@ -8,7 +8,7 @@ import { Container } from '../../components/Container'
 import { defineStaticProps, toParams } from '../../utils/next'
 import { DocsNavigation } from 'src/components/DocsNavigation'
 import { Callout } from '../../components/Callout'
-import { Card } from '../../components/DocsCard'
+import { DocsCard as Card } from '../../components/DocsCard'
 import Link from 'next/link'
 import Image from 'next/image'
 import { DocsHeader } from '../../components/DocsHeader'
@@ -38,6 +38,7 @@ export const getStaticProps = defineStaticProps(async (context) => {
     allDocs,
     doc.pathSegments.map((_: PathSegment) => _.pathName),
   )
+
   return { props: { doc, tree, breadcrumbs, childrenTree } }
 })
 
@@ -63,7 +64,16 @@ const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ doc, tree, b
         <div className="w-full lg:grow">
           <DocsHeader tree={tree} breadcrumbs={breadcrumbs} title={doc.title} />
           <div className="p-4 py-8 md:px-8 lg:px-16">
-            <div className="max-w-2xl">{MDXContent && <MDXContent components={mdxComponents} />}</div>
+            <div className="prose prose-slate prose-violet max-w-2xl prose-headings:font-semibold prose-headings:text-slate-800 prose-p:text-slate-500 prose-a:font-normal prose-code:font-normal prose-ul:text-slate-500 dark:prose-invert dark:prose-headings:text-slate-200 dark:prose-p:text-slate-400 dark:prose-ul:text-slate-400 lg:mb-8">
+              {MDXContent && <MDXContent components={mdxComponents} />}
+            </div>
+            {doc.show_child_cards && (
+              <div className="grid max-w-2xl grid-cols-1 gap-8 md:grid-cols-2">
+                {childrenTree.map((card, index) => (
+                  <Card title={card.title} label={card.label} subtitle={card.excerpt} link={{ url: card.urlPath }} />
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>

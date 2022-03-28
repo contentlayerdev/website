@@ -1,11 +1,12 @@
 import { FC } from 'react'
 import Markdown from 'markdown-to-jsx'
 import Link from 'next/link'
-
 import { Icon, IconName } from './Icon'
 import { Label } from './Label'
+import { Card } from './Card'
+import { Heading } from './Heading'
 
-export const Card: FC<{
+export const DocsCard: FC<{
   title: string
   icon?: IconName | null
   label?: string | null
@@ -13,18 +14,23 @@ export const Card: FC<{
   children?: React.ReactChildren | null
   link?: { url: string }
 }> = ({ title, icon, label, subtitle, children, link }) => {
-  const cardBody = <CardBody {...{ title, icon, label, subtitle, children }} />
   if (link) {
     return (
-      <Link href={link.url}>
-        <a className="!text-slate-800 dark:!text-slate-100 !border-0 hover:bg-gray-50 hover:dark:bg-gray-850 flex">
-          {cardBody}
-        </a>
-      </Link>
+      <Card>
+        <Link href={link.url}>
+          <a className="block">
+            <CardBody {...{ title, icon, label, subtitle, children }} />
+          </a>
+        </Link>
+      </Card>
+    )
+  } else {
+    return (
+      <Card>
+        <CardBody {...{ title, icon, label, subtitle, children }} />
+      </Card>
     )
   }
-
-  return cardBody
 }
 
 const CardBody: FC<{
@@ -34,25 +40,23 @@ const CardBody: FC<{
   subtitle?: string | null
   children?: React.ReactChildren | null
 }> = ({ title, icon, label, subtitle, children }) => (
-  <div className="border p-4 rounded-md border-gray-500 w-full">
-    <h2 className="m-0 mb-2 text-xl flex items-center">
-      {icon && (
-        <span className="w-6 inline-block mr-2">
-          <Icon name={icon} />
-        </span>
-      )}
-      {title}{' '}
-      {label && (
-        <span className="inline-block ml-2">
-          <Label text={label} />
-        </span>
-      )}
-    </h2>
-    {subtitle && (
-      <div className="text-sm">
-        <Markdown>{subtitle}</Markdown>
+  <div className="not-prose space-y-4 p-4 md:px-6">
+    <div className="space-y-2">
+      <div className="flex items-center space-x-2.5">
+        {icon && (
+          <span className="inline-block w-6 text-slate-400 dark:text-slate-500">
+            <Icon name={icon} />
+          </span>
+        )}
+        <Heading level={3}>{title}</Heading>
       </div>
-    )}
-    {children && <div className="text-sm">{children}</div>}
+      {label && <Label text={label} />}
+      {subtitle && (
+        <div className="text-sm text-slate-500 dark:text-slate-400">
+          <Markdown>{subtitle}</Markdown>
+        </div>
+      )}
+    </div>
+    {children && <div className="space-y-2 text-sm text-slate-500 dark:text-slate-400">{children}</div>}
   </div>
 )

@@ -1,7 +1,6 @@
 @import url('./tailwind.css');
 @import url('./twoslash-shiki.css');
-/* TODO remove */
-@import url('./hljs-github.css');
+@import url('./hljs-github-dark.css');
 @import url('./markdown.css');
 
 @layer base {
@@ -19,55 +18,6 @@
     @apply h-full bg-white text-slate-500 dark:bg-gray-950 dark:text-slate-400;
   }
 
-  /* h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply mb-6 mt-12 font-semibold;
-  }
-
-  h1 {
-    @apply text-3xl font-bold mt-0;
-  }
-
-  h2 {
-    @apply text-2xl;
-  }
-
-  h3 {
-    @apply text-xl;
-  }
-
-  a {
-    @apply text-purple-500;
-  }
-
-  p,
-  pre,
-  ul,
-  ol {
-    @apply mb-4;
-  }
-
-  ol {
-    @apply ml-4 list-decimal;
-  }
-
-  ul {
-    @apply ml-4 list-disc;
-  }
-
-  li {
-    @apply mb-2;
-  }
-
-  li > ol,
-  li > ul {
-    @apply mt-2;
-  } */
-
   svg path {
     fill: currentColor;
   }
@@ -76,28 +26,12 @@
     @apply rounded bg-gray-200 py-0.5 px-1 text-sm dark:bg-gray-800;
   }
 
-  .g-docs h1 code,
-  .g-docs h2 code,
-  .g-docs h3 code,
-  .g-docs h4 code,
-  .g-docs h5 code,
-  .g-docs h6 code,
-  .g-docs p code,
-  .g-docs pre code,
-  .g-docs table code {
-    @apply rounded border border-gray-100 bg-gray-50 px-1 py-px font-mono;
+  .prose code.hljs {
+    @apply bg-transparent;
   }
 
-  .g-docs p code,
-  .g-docs table code {
-    @apply text-sm;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .g-docs code {
-      @apply bg-gray-50 text-slate-900;
-      filter: invert(90%) hue-rotate(180deg);
-    }
+  .prose pre {
+    @apply rounded-lg border border-transparent dark:border-gray-900 dark:bg-black;
   }
 
   @keyframes scroll {
