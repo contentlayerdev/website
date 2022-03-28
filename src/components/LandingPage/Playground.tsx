@@ -50,7 +50,7 @@ const content = {
 export const Playground: FC = () => {
   const ref = useRef<HTMLDivElement>(null)
   const [vm, setVm] = useState<VM | undefined>(undefined)
-  const [currentFiles, setCurrentFiles] = useState(['posts/post-01.md'])
+  const [currentFiles, setCurrentFiles] = useState(['posts/change-me.md'])
   const [selectedStep, setSelectedStep] = useState(0)
 
   useEffect(() => {
