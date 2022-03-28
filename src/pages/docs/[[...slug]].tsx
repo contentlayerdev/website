@@ -49,10 +49,10 @@ const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ doc, tree, b
 
   return (
     <Container title={doc.title + ' – Contentlayer'} description={doc.excerpt}>
-      <div className="relative mx-auto flex w-full max-w-screen-2xl">
+      <div className="relative mx-auto w-full max-w-screen-2xl lg:flex">
         <div
           style={{ height: 'calc(100vh - 64px)' }}
-          className="sticky top-16 shrink-0 border-r border-gray-200 dark:border-gray-800"
+          className="sticky top-16 hidden shrink-0 border-r border-gray-200 dark:border-gray-800 lg:block"
         >
           <div className="-ml-3 h-full overflow-y-scroll p-8 pl-16">
             <DocsNavigation tree={tree} />
@@ -60,9 +60,11 @@ const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ doc, tree, b
           <div className="absolute inset-x-0 top-0 h-8 bg-gradient-to-t from-white/0 to-white/100 dark:from-gray-950/0 dark:to-gray-950/100" />
           <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-b from-white/0 to-white/100 dark:from-gray-950/0 dark:to-gray-950/100" />
         </div>
-        <div className="w-full grow">
+        <div className="w-full lg:grow">
           <DocsHeader tree={tree} breadcrumbs={breadcrumbs} title={doc.title} />
-          <div className="max-w-2xl p-8 px-16">{MDXContent && <MDXContent components={mdxComponents} />}</div>
+          <div className="p-4 py-8 md:px-8 lg:px-16">
+            <div className="max-w-2xl">{MDXContent && <MDXContent components={mdxComponents} />}</div>
+          </div>
         </div>
       </div>
     </Container>

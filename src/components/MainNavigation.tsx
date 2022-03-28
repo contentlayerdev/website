@@ -70,7 +70,7 @@ export const MainNavigation = () => {
             </span>
           </button>
           {open && (
-            <div className="fixed inset-0 top-16 z-50 h-screen bg-gray-950/10 pb-20 backdrop-blur-lg backdrop-filter dark:bg-gray-950/50">
+            <div className="fixed inset-0 top-[65px] z-50 h-screen bg-gray-950/10 pb-20 backdrop-blur-lg backdrop-filter dark:bg-gray-950/50">
               <nav className="absolute right-0 h-full divide-y divide-gray-200 border-l border-gray-200 bg-white p-8 dark:divide-gray-800 dark:border-gray-800 dark:bg-gray-950">
                 <div className="flex flex-col items-end space-y-2 pb-8">
                   {navLinks.map(({ label, url }, index) => (

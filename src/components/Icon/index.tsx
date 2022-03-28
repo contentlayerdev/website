@@ -11,6 +11,7 @@ import { LightningIcon } from './Lightning'
 import { BarsIcon } from './Bars'
 import { CloseIcon } from './Close'
 import { PlayButtonIcon } from './PlayButton'
+import { ChevronDownIcon } from './ChevronDown'
 
 export type IconName =
   | 'code'
@@ -24,6 +25,7 @@ export type IconName =
   | 'bars'
   | 'close'
   | 'play-button'
+  | 'chevron-down'
 
 const iconMap = {
   code: CodeIcon,
@@ -37,6 +39,7 @@ const iconMap = {
   bars: BarsIcon,
   close: CloseIcon,
   'play-button': PlayButtonIcon,
+  'chevron-down': ChevronDownIcon,
 }
 
 export const Icon: FC<{ name: IconName }> = ({ name }) => {
