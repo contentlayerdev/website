@@ -40,7 +40,7 @@ export const Features: FC = () => {
       <div className="mx-auto grid w-full max-w-screen-xl grid-cols-1 gap-16 px-4 py-16 md:px-8 md:py-24 lg:grid-cols-3 lg:py-32">
         {content.blocks.map(({ icon, heading, text, features }, index) => (
           <div key={index} className="max-w-xl space-y-4 md:mx-auto lg:mx-0">
-            <div className="w-12 rounded-full border border-violet-200 bg-violet-100 p-2 text-violet-600 dark:border-violet-900 dark:bg-violet-900/50 dark:text-violet-500">
+            <div className="w-12 rounded-full border border-violet-200 bg-violet-100 p-2.5 text-violet-600 dark:border-violet-900 dark:bg-violet-900/50 dark:text-violet-500">
               <Icon name={icon} />
             </div>
             <Heading level={3}>{heading}</Heading>

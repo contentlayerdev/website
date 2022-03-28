@@ -14,6 +14,10 @@ import { PlayButtonIcon } from './PlayButton'
 import { ChevronDownIcon } from './ChevronDown'
 import { GitpodIcon } from './Gitpod'
 import { ChevronRightIcon } from './ChevronRight'
+import { InfoIcon } from './Info'
+import { ExclamationIcon } from './Exclamation'
+import { RocketIcon } from './Rocket'
+import { SignIcon } from './Sign'
 
 export type IconName =
   | 'code'
@@ -30,6 +34,10 @@ export type IconName =
   | 'chevron-down'
   | 'gitpod'
   | 'chevron-right'
+  | 'info'
+  | 'exclamation'
+  | 'rocket'
+  | 'sign'
 
 const iconMap = {
   code: CodeIcon,
@@ -46,6 +54,10 @@ const iconMap = {
   'chevron-down': ChevronDownIcon,
   'chevron-right': ChevronRightIcon,
   gitpod: GitpodIcon,
+  info: InfoIcon,
+  exclamation: ExclamationIcon,
+  rocket: RocketIcon,
+  sign: SignIcon,
 }
 
 export const Icon: FC<{ name: IconName }> = ({ name }) => {
