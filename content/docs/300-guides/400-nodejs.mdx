@@ -1,0 +1,19 @@
+---
+title: Node.js
+label: Coming Soon
+---
+
+## Notes
+
+- Running node scripts currently requires the use of the `--experimental-json-modules` Node CLI flag.
+  - Example: `node --experimental-json-modules ./my-script.mjs`
+  - Otherwise you might see an error like `TypeError [ERR_UNKNOWN_FILE_EXTENSION]: Unknown file extension ".json" for ...`
+
+- Import resolution aliases aren't yet available natively in Node.js so you need to `import` like the following in your Node scripts
+
+	```js
+	import { allPosts } from './.contentlayer/generated/index.mjs'
+	//                       ^^^ notice the leading `./.` prefix
+
+	console.log(allPosts)
+	```
