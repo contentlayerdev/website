@@ -1,9 +1,6 @@
-import { FC, Fragment, useState, useEffect } from 'react'
-import { TreeRoot } from '../pages/docs/[[...slug]]'
+import { FC } from 'react'
 import Link from 'next/link'
-import { DocsNavigation } from './DocsNavigation'
 import { Icon } from './Icon'
-import { useRouter } from 'next/router'
 import { format } from 'date-fns'
 import { Doc } from 'contentlayer/generated'
 
@@ -11,7 +8,7 @@ export const DocsFooter: FC<{ doc: Doc }> = ({ doc }) => {
   return (
     <>
       <hr />
-      <div className="text-sm sm:flex sm:justify-between">
+      <div className="space-y-4 text-sm sm:flex sm:justify-between sm:space-y-0">
         <p className="m-0">
           Was this article helpful to you? <br />{' '}
           <Link href="/">
