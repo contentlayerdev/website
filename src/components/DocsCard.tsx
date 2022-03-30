@@ -36,7 +36,7 @@ export const DocsCard: FC<{
         {children && <div className="text-sm">{children}</div>}
       </div>
       {link && (
-        <div className="rounded-b-2xl border border-violet-100 bg-violet-50 p-6 py-4 dark:border-violet-900/50 dark:bg-violet-900/25">
+        <div className="rounded-b-2xl border border-violet-100 bg-violet-50 p-6 py-4 dark:border-violet-900/50 dark:bg-violet-900/20">
           <ChevronLink {...link} />
         </div>
       )}
