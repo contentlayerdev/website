@@ -79,8 +79,6 @@ const H4: React.FC = ({ children }) => {
 
 const mdxComponents = { Callout, Card, Image, Link, ChevronLink, Label, h2: H2, h3: H3, h4: H4 }
 
-export type DocHeading = { level: 1 | 2 | 3; title: string }
-
 const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ doc, tree, breadcrumbs, childrenTree }) => {
   useLiveReload()
   const MDXContent = useMDXComponent(doc.body.code || '')

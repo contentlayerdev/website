@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { DocHeading } from 'src/pages/docs/[[...slug]]'
+import { type DocHeading } from '../contentlayer/document/Doc'
 import { getNodeText, sluggifyTitle } from '../utils/sluggify'
 import { Icon } from './Icon'
 
@@ -7,9 +7,11 @@ export const PageNavigation: FC<{ headings: DocHeading[] }> = ({ headings }) => 
   return (
     <div className="text-sm">
       <ul className="space-y-2">
-        {headings.map(({ title, level }, index) => (
-          <li key={index}>
-            {level > 1 ? (
+        {headings
+          .filter((_) => _.level > 1)
+          .map(({ title, level }, index) => (
+            <li key={index}>
+              {/* {level > 1 ? ( */}
               <a
                 href={`#${sluggifyTitle(getNodeText(title))}`}
                 style={{ marginLeft: (level - 2) * 16 }}
@@ -20,11 +22,11 @@ export const PageNavigation: FC<{ headings: DocHeading[] }> = ({ headings }) => 
                 </span>
                 <span>{title}</span>
               </a>
-            ) : (
-              <h4 className="mb-4 font-medium text-slate-600 dark:text-slate-300">{title}</h4>
-            )}
-          </li>
-        ))}
+              {/* ) : (
+                <h4 className="mb-4 font-medium text-slate-600 dark:text-slate-300">{title}</h4>
+              )} */}
+            </li>
+          ))}
       </ul>
     </div>
   )
