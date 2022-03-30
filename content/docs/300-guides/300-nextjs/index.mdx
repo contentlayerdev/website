@@ -1,6 +1,7 @@
 ---
 title: Next.js
 label: Coming Soon
+last_edited: 2022-03-28
 ---
 
 <Callout>Coming Soon</Callout>
@@ -21,7 +22,7 @@ Use the following in your `next.config.js`
 ```js
 /** @type {import('next').NextConfig} */
 
-const { withContentlayer } = require('next-contentlayer');
+const { withContentlayer } = require('next-contentlayer')
 
 module.exports = withContentlayer()({
   reactStrictMode: true,
@@ -33,10 +34,10 @@ module.exports = withContentlayer()({
         react: 'preact/compat',
         'react-dom': 'preact/compat',
         'react-dom/test-utils': 'preact/test-utils',
-      });
+      })
     }
 
-    return config;
+    return config
   },
-});
+})
 ```

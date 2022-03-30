@@ -14,6 +14,7 @@ import Image from 'next/image'
 import { DocsHeader } from '../../components/DocsHeader'
 import { ChevronLink } from '../../components/ChevronLink'
 import { Label } from '../../components/Label'
+import { DocsFooter } from '../../components/DocsFooter'
 
 export const getStaticPaths = async () => {
   const paths = allDocs.map((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join('/')).map(toParams)
@@ -74,18 +75,22 @@ const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ doc, tree, b
             >
               {MDXContent && <MDXContent components={mdxComponents} />}
               {doc.show_child_cards && (
-                <div className="mt-16 grid max-w-2xl grid-cols-1 gap-6 md:grid-cols-2">
-                  {childrenTree.map((card, index) => (
-                    <Card
-                      key={index}
-                      title={card.title}
-                      label={card.label}
-                      subtitle={card.excerpt}
-                      link={{ url: card.urlPath, label: 'See ' + card.nav_title }}
-                    />
-                  ))}
-                </div>
+                <>
+                  <hr />
+                  <div className="mt-16 grid max-w-2xl grid-cols-1 gap-6 md:grid-cols-2">
+                    {childrenTree.map((card, index) => (
+                      <Card
+                        key={index}
+                        title={card.title}
+                        label={card.label}
+                        subtitle={card.excerpt}
+                        link={{ url: card.urlPath, label: 'See ' + card.nav_title }}
+                      />
+                    ))}
+                  </div>
+                </>
               )}
+              <DocsFooter doc={doc} />
             </div>
           </div>
         </div>

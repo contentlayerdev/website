@@ -29,6 +29,7 @@ export const Doc = defineDocumentType(() => ({
     },
     last_edited: {
       type: 'date',
+      required: true,
     },
     // seo: { type: 'nested', of: SEO },
   },
