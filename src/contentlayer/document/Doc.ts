@@ -4,7 +4,6 @@ import { toMarkdown } from 'mdast-util-to-markdown'
 import { mdxToMarkdown } from 'mdast-util-mdx'
 
 import { bundleMDX } from 'mdx-bundler'
-import type { BundleMDXOptions } from 'mdx-bundler/dist/types'
 
 // import { SEO } from '../nested/SEO'
 import { urlFromFilePath } from '../utils'
@@ -67,14 +66,13 @@ export const Doc = defineDocumentType(() => ({
       resolve: async (doc) => {
         const headings: DocHeading[] = []
 
-        const mdxOptions: BundleMDXOptions<any> = {
+        await bundleMDX({
+          source: doc.body.raw,
           xdmOptions: (opts) => {
             opts.remarkPlugins = [...(opts.remarkPlugins ?? []), tocPlugin(headings)]
             return opts
           },
-        }
-
-        await bundleMDX({ source: doc.body.raw, ...mdxOptions })
+        })
 
         return [{ level: 1, title: doc.title }, ...headings]
       },
