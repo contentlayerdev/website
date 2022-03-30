@@ -15,7 +15,7 @@ import { DocsHeader } from '../../components/DocsHeader'
 import { ChevronLink } from '../../components/ChevronLink'
 import { Label } from '../../components/Label'
 import { DocsFooter } from '../../components/DocsFooter'
-import { sluggifyTitle } from '../../utils/sluggify'
+import { getNodeText, sluggifyTitle } from '../../utils/sluggify'
 
 export const getStaticPaths = async () => {
   const paths = allDocs.map((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join('/')).map(toParams)
@@ -47,7 +47,7 @@ export const getStaticProps = defineStaticProps(async (context) => {
 })
 
 const H2: React.FC = ({ children }) => {
-  const slug = sluggifyTitle(children as string)
+  const slug = sluggifyTitle(getNodeText(children))
   return (
     <h2 id={slug}>
       <a href={`#${slug}`}>{children}</a>
@@ -56,7 +56,7 @@ const H2: React.FC = ({ children }) => {
 }
 
 const H3: React.FC = ({ children }) => {
-  const slug = sluggifyTitle(children as string)
+  const slug = sluggifyTitle(getNodeText(children))
   return (
     <h3 id={slug}>
       <a href={`#${slug}`}>{children}</a>
@@ -65,7 +65,7 @@ const H3: React.FC = ({ children }) => {
 }
 
 const H4: React.FC = ({ children }) => {
-  const slug = sluggifyTitle(children as string)
+  const slug = sluggifyTitle(getNodeText(children))
   return (
     <h4 id={slug}>
       <a href={`#${slug}`}>{children}</a>
