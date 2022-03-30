@@ -15,7 +15,7 @@ import { DocsHeader } from '../../components/DocsHeader'
 import { ChevronLink } from '../../components/ChevronLink'
 import { Label } from '../../components/Label'
 import { DocsFooter } from '../../components/DocsFooter'
-import { sluggifyTitle } from '../../utils/sluggify'
+import { getNodeText, sluggifyTitle } from '../../utils/sluggify'
 
 export const getStaticPaths = async () => {
   const paths = allDocs.map((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join('/')).map(toParams)
@@ -48,8 +48,8 @@ export const getStaticProps = defineStaticProps(async (context) => {
   return { props: { doc, tree, breadcrumbs, childrenTree } }
 })
 
-const H2: FC = ({ children }) => {
-  const slug = sluggifyTitle(children as string)
+const H2: React.FC = ({ children }) => {
+  const slug = sluggifyTitle(getNodeText(children))
   return (
     <h2 id={slug} onClick={() => (window.location.hash = `#${slug}`)} className="group relative cursor-pointer">
       <span className="absolute top-0 -left-6 hidden text-slate-400 group-hover:inline dark:text-slate-600">#</span>
@@ -58,8 +58,8 @@ const H2: FC = ({ children }) => {
   )
 }
 
-const H3: FC = ({ children }) => {
-  const slug = sluggifyTitle(children as string)
+const H3: React.FC = ({ children }) => {
+  const slug = sluggifyTitle(getNodeText(children))
   return (
     <h3 id={slug} onClick={() => (window.location.hash = `#${slug}`)} className="group relative cursor-pointer">
       <span className="absolute top-0 -left-6 hidden text-slate-400 group-hover:inline dark:text-slate-600">#</span>
@@ -68,8 +68,8 @@ const H3: FC = ({ children }) => {
   )
 }
 
-const H4: FC = ({ children }) => {
-  const slug = sluggifyTitle(children as string)
+const H4: React.FC = ({ children }) => {
+  const slug = sluggifyTitle(getNodeText(children))
   return (
     <h4 id={slug} onClick={() => (window.location.hash = `#${slug}`)} className="group relative cursor-pointer">
       <span className="absolute top-0 -left-6 hidden text-slate-400 group-hover:inline dark:text-slate-600">#</span>
