@@ -92,6 +92,8 @@ const tocPlugin =
             .trim()
             // removes MDX in headlines
             .replace(/<.*$/g, '')
+            // remove backslashes (e.g. from list items)
+            .replace(/\\/g, '')
             .trim()
 
           return headings.push({ level: heading.depth, title })
