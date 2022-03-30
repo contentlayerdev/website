@@ -13,6 +13,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { DocsHeader } from '../../components/DocsHeader'
 import { ChevronLink } from '../../components/ChevronLink'
+import { Label } from '../../components/Label'
 
 export const getStaticPaths = async () => {
   const paths = allDocs.map((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join('/')).map(toParams)
@@ -43,7 +44,7 @@ export const getStaticProps = defineStaticProps(async (context) => {
   return { props: { doc, tree, breadcrumbs, childrenTree } }
 })
 
-const mdxComponents = { Callout, Card, Image, Link, ChevronLink }
+const mdxComponents = { Callout, Card, Image, Link, ChevronLink, Label }
 
 const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ doc, tree, breadcrumbs, childrenTree }) => {
   useLiveReload()
@@ -65,7 +66,12 @@ const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ doc, tree, b
         <div className="w-full lg:grow">
           <DocsHeader tree={tree} breadcrumbs={breadcrumbs} title={doc.title} />
           <div className="p-4 py-8 md:px-8 lg:px-16">
-            <div className="prose prose-slate prose-violet max-w-2xl prose-headings:font-semibold prose-headings:text-slate-800 prose-p:text-slate-500 prose-a:font-normal prose-code:font-normal prose-ul:text-slate-500 dark:prose-invert dark:prose-headings:text-slate-200 dark:prose-p:text-slate-400 dark:prose-ul:text-slate-400 lg:mb-8">
+            <div
+              className="prose prose-slate prose-violet max-w-2xl prose-headings:font-semibold 
+            prose-headings:text-slate-800 prose-p:text-slate-500 prose-a:font-normal prose-code:font-normal
+            prose-ul:text-slate-500 prose-hr:border-gray-200 dark:prose-invert dark:prose-headings:text-slate-200
+            dark:prose-p:text-slate-400 dark:prose-ul:text-slate-400 dark:prose-hr:border-gray-800 lg:mb-8"
+            >
               {MDXContent && <MDXContent components={mdxComponents} />}
               {doc.show_child_cards && (
                 <div className="mt-16 grid max-w-2xl grid-cols-1 gap-6 md:grid-cols-2">
@@ -75,7 +81,7 @@ const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ doc, tree, b
                       title={card.title}
                       label={card.label}
                       subtitle={card.excerpt}
-                      link={{ url: card.urlPath, label: 'See ' + card.title }}
+                      link={{ url: card.urlPath, label: 'See ' + card.nav_title }}
                     />
                   ))}
                 </div>
