@@ -102,10 +102,11 @@ const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ doc, tree, b
           <div className="p-4 py-8 md:px-8 lg:px-16">
             <div
               className="prose prose-slate prose-violet mb-4 w-full max-w-full 
-            prose-headings:font-semibold prose-p:text-slate-500 prose-a:font-normal
-            prose-code:font-normal prose-code:before:content-none prose-code:after:content-none
-            prose-ul:text-slate-500 prose-hr:border-gray-200 dark:prose-invert dark:prose-p:text-slate-400
-            dark:prose-ul:text-slate-400 dark:prose-hr:border-gray-800 md:mb-8"
+            prose-headings:font-semibold prose-p:text-slate-500 prose-a:font-normal prose-code:font-normal
+            prose-code:before:content-none prose-code:after:content-none prose-ul:text-slate-500
+            prose-hr:border-gray-200 dark:prose-invert dark:prose-p:text-slate-400 dark:prose-a:text-violet-400
+            dark:prose-ul:text-slate-400 dark:prose-hr:border-gray-800
+            md:mb-8"
             >
               {MDXContent && <MDXContent components={mdxComponents} />}
               {doc.show_child_cards && (
