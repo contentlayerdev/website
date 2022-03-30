@@ -15,6 +15,7 @@ import { DocsHeader } from '../../components/DocsHeader'
 import { ChevronLink } from '../../components/ChevronLink'
 import { Label } from '../../components/Label'
 import { DocsFooter } from '../../components/DocsFooter'
+import { sluggifyTitle } from '../../utils/sluggify'
 
 export const getStaticPaths = async () => {
   const paths = allDocs.map((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join('/')).map(toParams)
@@ -45,7 +46,36 @@ export const getStaticProps = defineStaticProps(async (context) => {
   return { props: { doc, tree, breadcrumbs, childrenTree } }
 })
 
-const mdxComponents = { Callout, Card, Image, Link, ChevronLink, Label }
+const H2: React.FC = ({ children }) => {
+  const slug = sluggifyTitle(children as string)
+  return (
+    <h2 id={slug}>
+      <a href={`#${slug}`}>{children}</a>
+    </h2>
+  )
+}
+
+const H3: React.FC = ({ children }) => {
+  const slug = sluggifyTitle(children as string)
+  return (
+    <h3 id={slug}>
+      <a href={`#${slug}`}>{children}</a>
+    </h3>
+  )
+}
+
+const H4: React.FC = ({ children }) => {
+  const slug = sluggifyTitle(children as string)
+  return (
+    <h4 id={slug}>
+      <a href={`#${slug}`}>{children}</a>
+    </h4>
+  )
+}
+
+const mdxComponents = { Callout, Card, Image, Link, ChevronLink, Label, h2: H2, h3: H3, h4: H4 }
+
+export type DocHeading = { level: 1 | 2 | 3; title: string }
 
 const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ doc, tree, breadcrumbs, childrenTree }) => {
   useLiveReload()
@@ -66,6 +96,20 @@ const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ doc, tree, b
         </div>
         <div className="w-full lg:grow">
           <DocsHeader tree={tree} breadcrumbs={breadcrumbs} title={doc.title} />
+          {/* TODO refactor me START */}
+          <div className="space-y-2 p-4 lg:px-16">
+            {(doc.headings as DocHeading[]).map((heading) => (
+              <a
+                key={`${heading.title}-${heading.level}`}
+                className="block text-sm"
+                style={{ marginLeft: (heading.level - 1) * 12 }}
+                href={`#${sluggifyTitle(heading.title)}`}
+              >
+                {heading.title}
+              </a>
+            ))}
+          </div>
+          {/* TODO refactor me END */}
           <div className="p-4 py-8 md:px-8 lg:px-16">
             <div
               className="prose prose-slate prose-violet max-w-2xl prose-headings:font-semibold 
