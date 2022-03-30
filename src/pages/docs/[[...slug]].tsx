@@ -85,7 +85,7 @@ const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ doc, tree, b
 
   return (
     <Container title={doc.title + ' – Contentlayer'} description={doc.excerpt}>
-      <div className="relative mx-auto max-w-screen-2xl lg:flex">
+      <div className="relative mx-auto max-w-screen-2xl lg:flex lg:items-start">
         <div
           style={{ height: 'calc(100vh - 64px)' }}
           className="sticky top-16 hidden shrink-0 border-r border-gray-200 dark:border-gray-800 lg:block"
@@ -129,8 +129,8 @@ const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ doc, tree, b
           </div>
         </div>
 
-        <div style={{ height: 'calc(100vh - 64px)' }} className="sticky top-16 hidden 1.5xl:block">
-          <div className="h-full w-80 overflow-y-scroll p-8 pr-16">
+        <div style={{ maxHeight: 'calc(100vh - 64px)' }} className="sticky top-16 hidden 1.5xl:block">
+          <div className="w-80 overflow-y-scroll p-8 pr-16">
             <PageNavigation headings={doc.headings} />
           </div>
           <div className="absolute inset-x-0 top-0 h-8 bg-gradient-to-t from-white/0 to-white/100 dark:from-gray-950/0 dark:to-gray-950/100" />
