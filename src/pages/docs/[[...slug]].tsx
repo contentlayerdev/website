@@ -16,6 +16,7 @@ import { ChevronLink } from '../../components/ChevronLink'
 import { Label } from '../../components/Label'
 import { DocsFooter } from '../../components/DocsFooter'
 import { getNodeText, sluggifyTitle } from '../../utils/sluggify'
+import { PageNavigation } from 'src/components/PageNavigation'
 
 export const getStaticPaths = async () => {
   const paths = allDocs.map((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join('/')).map(toParams)
@@ -38,8 +39,6 @@ export const getStaticProps = defineStaticProps(async (context) => {
     breadcrumbs.push({ path: '/docs/' + path, slug, title: navTitle || title })
   }
   const tree = buildTree(allDocs)
-
-  console.log(doc.headings)
   const childrenTree = buildTree(
     allDocs,
     doc.pathSegments.map((_: PathSegment) => _.pathName),
@@ -88,7 +87,7 @@ const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ doc, tree, b
 
   return (
     <Container title={doc.title + ' – Contentlayer'} description={doc.excerpt}>
-      <div className="relative mx-auto w-full max-w-screen-2xl lg:flex">
+      <div className="relative mx-auto max-w-screen-2xl lg:flex">
         <div
           style={{ height: 'calc(100vh - 64px)' }}
           className="sticky top-16 hidden shrink-0 border-r border-gray-200 dark:border-gray-800 lg:block"
@@ -99,34 +98,22 @@ const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ doc, tree, b
           <div className="absolute inset-x-0 top-0 h-8 bg-gradient-to-t from-white/0 to-white/100 dark:from-gray-950/0 dark:to-gray-950/100" />
           <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-b from-white/0 to-white/100 dark:from-gray-950/0 dark:to-gray-950/100" />
         </div>
-        <div className="w-full lg:grow">
+
+        <div className="mx-auto w-full max-w-3xl">
           <DocsHeader tree={tree} breadcrumbs={breadcrumbs} title={doc.title} />
-          {/* TODO refactor me START */}
-          <div className="space-y-2 p-4 lg:px-16">
-            {(doc.headings as DocHeading[]).map((heading) => (
-              <a
-                key={`${heading.title}-${heading.level}`}
-                className="block text-sm"
-                style={{ marginLeft: (heading.level - 1) * 12 }}
-                href={`#${sluggifyTitle(heading.title)}`}
-              >
-                {heading.title}
-              </a>
-            ))}
-          </div>
-          {/* TODO refactor me END */}
           <div className="p-4 py-8 md:px-8 lg:px-16">
             <div
-              className="prose prose-slate prose-violet max-w-2xl prose-headings:font-semibold 
-            prose-p:text-slate-500 prose-a:font-normal prose-code:font-normal
-            prose-ul:text-slate-500 prose-hr:border-gray-200 dark:prose-invert
-            dark:prose-p:text-slate-400 dark:prose-ul:text-slate-400 dark:prose-hr:border-gray-800 lg:mb-8"
+              className="prose prose-slate prose-violet mb-4 w-full max-w-full 
+            prose-headings:font-semibold prose-p:text-slate-500 prose-a:font-normal
+            prose-code:font-normal prose-code:before:content-none prose-code:after:content-none
+            prose-ul:text-slate-500 prose-hr:border-gray-200 dark:prose-invert dark:prose-p:text-slate-400
+            dark:prose-ul:text-slate-400 dark:prose-hr:border-gray-800 md:mb-8"
             >
               {MDXContent && <MDXContent components={mdxComponents} />}
               {doc.show_child_cards && (
                 <>
                   <hr />
-                  <div className="mt-16 grid max-w-2xl grid-cols-1 gap-6 md:grid-cols-2">
+                  <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-2">
                     {childrenTree.map((card, index) => (
                       <Card
                         key={index}
@@ -142,6 +129,14 @@ const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ doc, tree, b
               <DocsFooter doc={doc} />
             </div>
           </div>
+        </div>
+
+        <div style={{ height: 'calc(100vh - 64px)' }} className="sticky top-16 hidden 1.5xl:block">
+          <div className="h-full w-80 overflow-y-scroll p-8 pr-16">
+            <PageNavigation headings={doc.headings} />
+          </div>
+          <div className="absolute inset-x-0 top-0 h-8 bg-gradient-to-t from-white/0 to-white/100 dark:from-gray-950/0 dark:to-gray-950/100" />
+          <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-b from-white/0 to-white/100 dark:from-gray-950/0 dark:to-gray-950/100" />
         </div>
       </div>
     </Container>

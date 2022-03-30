@@ -12,6 +12,10 @@
     src: local(''), url('/fonts/virgil.woff2') format('woff2');
   }
 
+  html {
+    scroll-padding-top: 96px;
+  }
+
   html,
   body,
   #__next {

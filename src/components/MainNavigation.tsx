@@ -99,7 +99,7 @@ export const MainNavigation = () => {
             ))}
           </div>
           {/* TODO search box */}
-          <div className="flex items-center pl-2 lg:space-x-4 lg:pl-8">
+          <div className="flex items-center pl-2 lg:space-x-2 lg:pl-8">
             {iconLinks.map(({ label, icon, url }, index) => (
               <NavLink key={index} label={label} hideLabel url={url} icon={icon} />
             ))}

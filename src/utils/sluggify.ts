@@ -2,7 +2,6 @@ import React from 'react'
 
 export const sluggifyTitle = (title: string) => {
   const re = /[^\w\s]/g
-
   return title.toLowerCase().replace(re, '').replace(/\s+/g, '-')
 }
 
@@ -13,6 +12,5 @@ export const getNodeText = (node: React.ReactNode): string => {
   if (typeof node === 'object' && node) return getNodeText((node as any).props.children)
 
   console.log(node)
-
   throw new Error(`Should be never reached`)
 }
