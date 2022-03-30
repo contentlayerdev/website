@@ -54,6 +54,19 @@ export const Doc = defineDocumentType(() => ({
             return { order, pathName }
           }),
     },
+    headings: {
+      type: 'json',
+      resolve: (doc) => {
+        const contentHeadings = doc.body.raw
+          .split('\n')
+          .filter((line) => line.match(/#{1,3}\s/))
+          .map((line) => {
+            const [, level, title] = line.match(/(#{1,3})\s(.*)/)!
+            return { level: level.length, title }
+          })
+        return [{ level: 1, title: doc.title }, ...contentHeadings]
+      },
+    },
   },
   extensions: {},
 }))

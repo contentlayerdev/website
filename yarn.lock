@@ -51,44 +51,44 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@contentlayer/cli@npm:0.1.2":
-  version: 0.1.2
-  resolution: "@contentlayer/cli@npm:0.1.2"
+"@contentlayer/cli@npm:0.1.3-dev.0":
+  version: 0.1.3-dev.0
+  resolution: "@contentlayer/cli@npm:0.1.3-dev.0"
   dependencies:
-    "@contentlayer/core": 0.1.2
-    "@contentlayer/utils": 0.1.2
-    clipanion: ^3.2.0-rc.6
+    "@contentlayer/core": 0.1.3-dev.0
+    "@contentlayer/utils": 0.1.3-dev.0
+    clipanion: ^3.2.0-rc.10
     typanion: ^3.7.1
-  checksum: 781ba1b1a4fdd0c77d438888f739b627eff5bcf3e5ede9d20501898eea2562621c5cc3c1754a3f49d4d327252aad0f03f85682f9375014574b7e36f934e1a57f
+  checksum: 118c70ccf61d26a4ed7fd9e6a1d7c35b8c639baab1fef7a621f486d13af10aca80d27cab13811e23c27d751765c828ee75b6486e6bd596d4b954a68219dd2505
   languageName: node
   linkType: hard
 
-"@contentlayer/client@npm:0.1.2":
-  version: 0.1.2
-  resolution: "@contentlayer/client@npm:0.1.2"
+"@contentlayer/client@npm:0.1.3-dev.0":
+  version: 0.1.3-dev.0
+  resolution: "@contentlayer/client@npm:0.1.3-dev.0"
   dependencies:
-    "@contentlayer/core": 0.1.2
-  checksum: 80fa774f14ce955e885e73ab7c2e432784c373e0afbb16b08ac47478ed7060af3d722564151a36156f2f9550eaf584e9f9af53113d852bac3f99e99aaf22957a
+    "@contentlayer/core": 0.1.3-dev.0
+  checksum: fe186b73d9e27a94f0685083e0bf58e9a4166151f3e7d7d9693e56959736c38ed11e857a5c945f99b4f03bb17b8e05a392b7224541f1b9693cf8273604c9d096
   languageName: node
   linkType: hard
 
-"@contentlayer/core@npm:0.1.2":
-  version: 0.1.2
-  resolution: "@contentlayer/core@npm:0.1.2"
+"@contentlayer/core@npm:0.1.3-dev.0":
+  version: 0.1.3-dev.0
+  resolution: "@contentlayer/core@npm:0.1.3-dev.0"
   dependencies:
-    "@contentlayer/utils": 0.1.2
+    "@contentlayer/utils": 0.1.3-dev.0
     camel-case: ^4.1.2
     date-fns: 2.x
     esbuild: 0.11.x || 0.12.x || 0.13.x || 0.14.x
     gray-matter: ^4.0.3
     mdx-bundler: ^8.0.1
-    rehype-stringify: ^9.0.2
+    rehype-stringify: ^9.0.3
     remark-frontmatter: ^4.0.1
     remark-parse: ^10.0.1
-    remark-rehype: ^10.0.1
+    remark-rehype: ^10.1.0
     source-map-support: ^0.5.21
-    type-fest: ^1.2.1
-    unified: ^10.1.1
+    type-fest: ^2.12.1
+    unified: ^10.1.2
   peerDependencies:
     date-fns: 2.x
     esbuild: 0.11.x || 0.12.x || 0.13.x
@@ -100,32 +100,32 @@ __metadata:
       optional: true
     markdown-wasm:
       optional: true
-  checksum: 1703242546b72b2f6411716d098ae708ea959b383b48953fdb505d429f55b9719c9e4002c227b114cdc370a76752fdd394cce8ba532491755056a3783b100d6d
+  checksum: e520ffe215e1dc2862bbfb969dce2bcc1df72d7bc5e5d0a79cce3550bb1888810004e363696a7a26dd5c927cb67a024d41797b88740cb7e429937f49a5898b20
   languageName: node
   linkType: hard
 
-"@contentlayer/source-files@npm:0.1.2":
-  version: 0.1.2
-  resolution: "@contentlayer/source-files@npm:0.1.2"
+"@contentlayer/source-files@npm:0.1.3-dev.0":
+  version: 0.1.3-dev.0
+  resolution: "@contentlayer/source-files@npm:0.1.3-dev.0"
   dependencies:
-    "@contentlayer/core": 0.1.2
-    "@contentlayer/utils": 0.1.2
+    "@contentlayer/core": 0.1.3-dev.0
+    "@contentlayer/utils": 0.1.3-dev.0
     chokidar: ^3.5.3
-    date-fns-tz: ^1.2.2
+    date-fns-tz: ^1.3.1
     glob: ^7.2.0
     glob-promise: ^4.2.2
     gray-matter: ^4.0.3
-    minimatch: ^3.0.4
-    ts-pattern: ^3.3.3
-    unified: ^10.1.1
+    minimatch: ^3.1.2
+    ts-pattern: ^4.0.1
+    unified: ^10.1.2
     yaml: ^1.10.2
-  checksum: 1f4aa7587fd66f5c681285115f31511f22778beb8c982dfbf79ca1d806293580bdf83af3e29f59e04241c80c45c45cace2a24ea46383368ebbb847e8165aa1e8
+  checksum: 2f2301ad8101b16b476419f2caa444e7d97d588a9f8dcd6bbdbcd9fb20e8595007039d7d30312c4a0fe8ee9ce7a5efed2557482295c7335de00f4a24f442daf8
   languageName: node
   linkType: hard
 
-"@contentlayer/utils@npm:0.1.2":
-  version: 0.1.2
-  resolution: "@contentlayer/utils@npm:0.1.2"
+"@contentlayer/utils@npm:0.1.3-dev.0":
+  version: 0.1.3-dev.0
+  resolution: "@contentlayer/utils@npm:0.1.3-dev.0"
   dependencies:
     "@effect-ts/core": ^0.58.0
     "@effect-ts/otel": ^0.13.0
@@ -140,10 +140,10 @@ __metadata:
     "@opentelemetry/semantic-conventions": ^1.0.0
     chokidar: ^3.5.3
     hash-wasm: ^4.9.0
-    inflection: ^1.13.1
-    oo-ascii-tree: ^1.36.0
-    ts-pattern: ^3.3.3
-    type-fest: ^1.2.1
+    inflection: ^1.13.2
+    oo-ascii-tree: ^1.55.1
+    ts-pattern: ^4.0.1
+    type-fest: ^2.12.1
   peerDependenciesMeta:
     "@effect-ts/core":
       optional: true
@@ -151,7 +151,7 @@ __metadata:
       optional: true
     "@effect-ts/otel-node":
       optional: true
-  checksum: 1997e62af371b055905ba41a6f6a752454d46b48d814e023cbface06d825f37a4df3d7bcb8666caa46b6810ead1f9bf5c82d1f29cbe35b6bf9a970ef0ffde1d1
+  checksum: 8410253da332a9f536b94816c08e83432e6327c194640be522a2c9ff60e8a6233405a2e30b0dbe7e97fd03365d4a37e405bd6d45356e05c935bde2b0461b7a52
   languageName: node
   linkType: hard
 
@@ -2131,7 +2131,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"clipanion@npm:^3.2.0-rc.6":
+"clipanion@npm:^3.2.0-rc.10":
   version: 3.2.0-rc.10
   resolution: "clipanion@npm:3.2.0-rc.10"
   dependencies:
@@ -2305,7 +2305,7 @@ __metadata:
     autoprefixer: ^10.4.2
     cheerio: ^1.0.0-rc.10
     classnames: ^2.3.1
-    contentlayer: ^0.1.2
+    contentlayer: dev
     date-fns: ^2.28.0
     eslint: 8.10.0
     eslint-config-next: 12.1.0
@@ -2314,7 +2314,7 @@ __metadata:
     local-ssl-proxy: ^1.3.0
     markdown-to-jsx: ^7.1.6
     next: 12.1.0
-    next-contentlayer: ^0.1.2
+    next-contentlayer: dev
     postcss: ^8.4.8
     postcss-import: ^14.0.2
     prettier: ^2.6.1
@@ -2330,18 +2330,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"contentlayer@npm:^0.1.2":
-  version: 0.1.2
-  resolution: "contentlayer@npm:0.1.2"
+"contentlayer@npm:dev":
+  version: 0.1.3-dev.0
+  resolution: "contentlayer@npm:0.1.3-dev.0"
   dependencies:
-    "@contentlayer/cli": 0.1.2
-    "@contentlayer/client": 0.1.2
-    "@contentlayer/core": 0.1.2
-    "@contentlayer/source-files": 0.1.2
-    "@contentlayer/utils": 0.1.2
+    "@contentlayer/cli": 0.1.3-dev.0
+    "@contentlayer/client": 0.1.3-dev.0
+    "@contentlayer/core": 0.1.3-dev.0
+    "@contentlayer/source-files": 0.1.3-dev.0
+    "@contentlayer/utils": 0.1.3-dev.0
   bin:
     contentlayer: ./bin/cli.cjs
-  checksum: d98e7176e5a251b3bde8995790f2d0a7ee768283f9d34af5418cce55209e5f47be33d981e6fa91c2e31c99b8216e919a38e773a6ade230b937e22059cc68f712
+  checksum: 89fedcf2a2f1cc4d899d86ac42e19c15bc0061d17cb2d90cb98e86a7fcce5a5047d827a7d0cf13f246bb4205c0d0f78111bc2175dba9dbae8379c137ec208d4d
   languageName: node
   linkType: hard
 
@@ -2440,12 +2440,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"date-fns-tz@npm:^1.2.2":
-  version: 1.3.0
-  resolution: "date-fns-tz@npm:1.3.0"
+"date-fns-tz@npm:^1.3.1":
+  version: 1.3.1
+  resolution: "date-fns-tz@npm:1.3.1"
   peerDependencies:
     date-fns: ">=2.0.0"
-  checksum: 12f3af15426f693aa5559c44d9fe4eb4bf57fdbb018ccc10975974e8fd32e78d706511c569a30ac7e78d23386cfd872434f835244faf8d8dc0ce3fc3209e917d
+  checksum: 64851644130d92e04b65321f4d3da79be45f6f6ab9259d7f6b78051631a1f9cd557b062e5ee512099617239202dfc4c1563e76c72ee7f7ef64597927111b7794
   languageName: node
   linkType: hard
 
@@ -4154,7 +4154,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"inflection@npm:^1.13.1":
+"inflection@npm:^1.13.2":
   version: 1.13.2
   resolution: "inflection@npm:1.13.2"
   checksum: e7ad0559384ed7c526813404bde843f8f17941d47625ad60fc3b09e46efde873dd9840818007c6bd4dbe388e6248fa033d5a8c405c5fc62738c51b118a0e940f
@@ -5673,18 +5673,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next-contentlayer@npm:^0.1.2":
-  version: 0.1.2
-  resolution: "next-contentlayer@npm:0.1.2"
+"next-contentlayer@npm:dev":
+  version: 0.1.3-dev.0
+  resolution: "next-contentlayer@npm:0.1.3-dev.0"
   dependencies:
-    "@contentlayer/core": 0.1.2
-    "@contentlayer/utils": 0.1.2
+    "@contentlayer/core": 0.1.3-dev.0
+    "@contentlayer/utils": 0.1.3-dev.0
     rxjs: ^7.1.0
   peerDependencies:
     next: ^12
     react: "*"
     react-dom: "*"
-  checksum: 0f1db97b9cbadc981d9356bb6d4a028359c7a41a252edbd038757339dba917718d98140d12da26305045f4c9e10145d9a76fb0e026c93e25ae2959a9365bc50d
+  checksum: d495f2c4082d16117a070e7d47fd55833ab82ecc205e085670858add6c808d3662790a6a5607d955a9d1efb5553467fefe21f0c96eeb7b736a1d25892ad3d4e3
   languageName: node
   linkType: hard
 
@@ -6077,7 +6077,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"oo-ascii-tree@npm:^1.36.0":
+"oo-ascii-tree@npm:^1.55.1":
   version: 1.55.1
   resolution: "oo-ascii-tree@npm:1.55.1"
   checksum: 3229c26792055157c91040a15242992235bd2bca1f745afe8daa98ea6abbd1bd8a46a996d08f0885e2d20eaad5d7454fcc0c3453385e7026b88c289a23098199
@@ -6732,7 +6732,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rehype-stringify@npm:^9.0.2":
+"rehype-stringify@npm:^9.0.3":
   version: 9.0.3
   resolution: "rehype-stringify@npm:9.0.3"
   dependencies:
@@ -6778,7 +6778,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"remark-rehype@npm:^10.0.0, remark-rehype@npm:^10.0.1":
+"remark-rehype@npm:^10.0.0, remark-rehype@npm:^10.1.0":
   version: 10.1.0
   resolution: "remark-rehype@npm:10.1.0"
   dependencies:
@@ -7528,10 +7528,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ts-pattern@npm:^3.3.3":
-  version: 3.3.5
-  resolution: "ts-pattern@npm:3.3.5"
-  checksum: c6f7b9b9014b3f1a7c896267c1b227c7bea46bdc323dd66ac990e3b81f385aeb8abe5de2e694351fe13ae03c2dccb0e0a6869e43007cbe8516762700b309f43d
+"ts-pattern@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "ts-pattern@npm:4.0.1"
+  checksum: be4b0d18bcd3877745d9474e35270d37524e58b5dffe622e16d17bd0e5e7a1811cf0bc597b0c63117df828bfd9a8166001e15895899e3193dc80550533fbc1e6
   languageName: node
   linkType: hard
 
@@ -7604,10 +7604,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"type-fest@npm:^1.2.1":
-  version: 1.4.0
-  resolution: "type-fest@npm:1.4.0"
-  checksum: b011c3388665b097ae6a109a437a04d6f61d81b7357f74cbcb02246f2f5bd72b888ae33631b99871388122ba0a87f4ff1c94078e7119ff22c70e52c0ff828201
+"type-fest@npm:^2.12.1":
+  version: 2.12.1
+  resolution: "type-fest@npm:2.12.1"
+  checksum: faac07668190b7709c16ba4696e42b6cc83b702fa11e8936ce94d9ed1415eb9034b157ae25bba23e222d755e031787f7b92552710704d55e39aadcc27f0ee1da
   languageName: node
   linkType: hard
 
@@ -7684,7 +7684,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"unified@npm:^10.0.0, unified@npm:^10.1.1":
+"unified@npm:^10.0.0, unified@npm:^10.1.2":
   version: 10.1.2
   resolution: "unified@npm:10.1.2"
   dependencies:
