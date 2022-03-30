@@ -97,45 +97,43 @@ const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ doc, tree, b
           <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-b from-white/0 to-white/100 dark:from-gray-950/0 dark:to-gray-950/100" />
         </div>
 
-        <div className="mx-auto w-full max-w-3xl">
+        <div className="w-full">
           <DocsHeader tree={tree} breadcrumbs={breadcrumbs} title={doc.title} />
-          <div className="p-4 py-8 md:px-8 lg:px-16">
-            <div
-              className="prose prose-slate prose-violet mb-4 w-full max-w-full 
-            prose-headings:font-semibold prose-p:text-slate-500 prose-a:font-normal prose-code:font-normal
-            prose-code:before:content-none prose-code:after:content-none prose-ul:text-slate-500
-            prose-hr:border-gray-200 dark:prose-invert dark:prose-p:text-slate-400 dark:prose-a:text-violet-400
-            dark:prose-ul:text-slate-400 dark:prose-hr:border-gray-800
-            md:mb-8"
-            >
-              {MDXContent && <MDXContent components={mdxComponents} />}
-              {doc.show_child_cards && (
-                <>
-                  <hr />
-                  <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-2">
-                    {childrenTree.map((card, index) => (
-                      <Card
-                        key={index}
-                        title={card.title}
-                        label={card.label}
-                        subtitle={card.excerpt}
-                        link={{ url: card.urlPath, label: 'See ' + card.nav_title }}
-                      />
-                    ))}
-                  </div>
-                </>
-              )}
-              <DocsFooter doc={doc} />
+
+          <div className="flex w-full items-start">
+            <div className="relative mx-auto w-full max-w-3xl">
+              <div className="p-4 py-8 md:px-8 lg:px-16">
+                <div className="prose prose-slate prose-violet mb-4 w-full max-w-full prose-headings:font-semibold prose-p:text-slate-500 prose-a:font-normal prose-code:font-normal prose-code:before:content-none prose-code:after:content-none prose-ul:text-slate-500 prose-hr:border-gray-200 dark:prose-invert dark:prose-p:text-slate-400 dark:prose-a:text-violet-400 dark:prose-ul:text-slate-400 dark:prose-hr:border-gray-800 md:mb-8">
+                  {MDXContent && <MDXContent components={mdxComponents} />}
+                  {doc.show_child_cards && (
+                    <>
+                      <hr />
+                      <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-2">
+                        {childrenTree.map((card, index) => (
+                          <Card
+                            key={index}
+                            title={card.title}
+                            label={card.label}
+                            subtitle={card.excerpt}
+                            link={{ url: card.urlPath, label: 'See ' + card.nav_title }}
+                          />
+                        ))}
+                      </div>
+                    </>
+                  )}
+                  <DocsFooter doc={doc} />
+                </div>
+              </div>
+            </div>
+
+            <div style={{ maxHeight: 'calc(100vh - 128px)' }} className="sticky top-32 hidden shrink-0 1.5xl:block">
+              <div className="w-80 overflow-y-scroll p-8 pr-16">
+                <PageNavigation headings={doc.headings} />
+              </div>
+              <div className="absolute inset-x-0 top-0 h-8 bg-gradient-to-t from-white/0 to-white/100 dark:from-gray-950/0 dark:to-gray-950/100" />
+              <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-b from-white/0 to-white/100 dark:from-gray-950/0 dark:to-gray-950/100" />
             </div>
           </div>
-        </div>
-
-        <div style={{ maxHeight: 'calc(100vh - 64px)' }} className="sticky top-16 hidden 1.5xl:block">
-          <div className="w-80 overflow-y-scroll p-8 pr-16">
-            <PageNavigation headings={doc.headings} />
-          </div>
-          <div className="absolute inset-x-0 top-0 h-8 bg-gradient-to-t from-white/0 to-white/100 dark:from-gray-950/0 dark:to-gray-950/100" />
-          <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-b from-white/0 to-white/100 dark:from-gray-950/0 dark:to-gray-950/100" />
         </div>
       </div>
     </Container>
