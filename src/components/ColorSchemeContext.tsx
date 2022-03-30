@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { ColorScheme } from './utils/syntax-highlighting'
+import { ColorScheme } from '../utils/syntax-highlighting'
 
 const ColorSchemeContext = React.createContext<ColorScheme>('light')
 

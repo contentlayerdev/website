@@ -7,7 +7,7 @@ import { CodeSnippets, codeSnippets, type PreprocessedCodeSnippets } from '../co
 import { ColorScheme, snippetToHtml } from '../utils/syntax-highlighting'
 import { getUsedByCount } from '../utils/used-by-count'
 import { promiseAllProperties, mapObjectValues } from '../utils/object'
-import { useColorScheme } from '../ColorSchemeContext'
+import { useColorScheme } from '../components/ColorSchemeContext'
 
 export const getStaticProps = defineStaticProps(async (_context) => {
   const { preprocessedCodeSnippets, usedByCount } = await promiseAllProperties({
