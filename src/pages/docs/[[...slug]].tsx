@@ -38,6 +38,8 @@ export const getStaticProps = defineStaticProps(async (context) => {
     breadcrumbs.push({ path: '/docs/' + path, slug, title: navTitle || title })
   }
   const tree = buildTree(allDocs)
+
+  console.log(doc.headings)
   const childrenTree = buildTree(
     allDocs,
     doc.pathSegments.map((_: PathSegment) => _.pathName),
@@ -46,29 +48,32 @@ export const getStaticProps = defineStaticProps(async (context) => {
   return { props: { doc, tree, breadcrumbs, childrenTree } }
 })
 
-const H2: React.FC = ({ children }) => {
+const H2: FC = ({ children }) => {
   const slug = sluggifyTitle(children as string)
   return (
-    <h2 id={slug}>
-      <a href={`#${slug}`}>{children}</a>
+    <h2 id={slug} onClick={() => (window.location.hash = `#${slug}`)} className="group relative cursor-pointer">
+      <span className="absolute top-0 -left-6 hidden text-slate-400 group-hover:inline dark:text-slate-600">#</span>
+      {children}
     </h2>
   )
 }
 
-const H3: React.FC = ({ children }) => {
+const H3: FC = ({ children }) => {
   const slug = sluggifyTitle(children as string)
   return (
-    <h3 id={slug}>
-      <a href={`#${slug}`}>{children}</a>
+    <h3 id={slug} onClick={() => (window.location.hash = `#${slug}`)} className="group relative cursor-pointer">
+      <span className="absolute top-0 -left-6 hidden text-slate-400 group-hover:inline dark:text-slate-600">#</span>
+      {children}
     </h3>
   )
 }
 
-const H4: React.FC = ({ children }) => {
+const H4: FC = ({ children }) => {
   const slug = sluggifyTitle(children as string)
   return (
-    <h4 id={slug}>
-      <a href={`#${slug}`}>{children}</a>
+    <h4 id={slug} onClick={() => (window.location.hash = `#${slug}`)} className="group relative cursor-pointer">
+      <span className="absolute top-0 -left-6 hidden text-slate-400 group-hover:inline dark:text-slate-600">#</span>
+      {children}
     </h4>
   )
 }
@@ -113,8 +118,8 @@ const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ doc, tree, b
           <div className="p-4 py-8 md:px-8 lg:px-16">
             <div
               className="prose prose-slate prose-violet max-w-2xl prose-headings:font-semibold 
-            prose-headings:text-slate-800 prose-p:text-slate-500 prose-a:font-normal prose-code:font-normal
-            prose-ul:text-slate-500 prose-hr:border-gray-200 dark:prose-invert dark:prose-headings:text-slate-200
+            prose-p:text-slate-500 prose-a:font-normal prose-code:font-normal
+            prose-ul:text-slate-500 prose-hr:border-gray-200 dark:prose-invert
             dark:prose-p:text-slate-400 dark:prose-ul:text-slate-400 dark:prose-hr:border-gray-800 lg:mb-8"
             >
               {MDXContent && <MDXContent components={mdxComponents} />}
