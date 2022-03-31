@@ -21,9 +21,9 @@ Use the following in your `next.config.js`
 ```js
 /** @type {import('next').NextConfig} */
 
-const { withContentlayer } = require('next-contentlayer');
+const { withContentlayer } = require('next-contentlayer')
 
-module.exports = withContentlayer()({
+module.exports = withContentlayer({
   reactStrictMode: true,
   swcMinify: true,
   webpack: (config, { dev, isServer }) => {
@@ -33,10 +33,10 @@ module.exports = withContentlayer()({
         react: 'preact/compat',
         'react-dom': 'preact/compat',
         'react-dom/test-utils': 'preact/test-utils',
-      });
+      })
     }
 
-    return config;
+    return config
   },
-});
+})
 ```
