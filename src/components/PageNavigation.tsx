@@ -16,11 +16,12 @@ export const PageNavigation: FC<{ headings: DocHeading[] }> = ({ headings }) => 
       }
       setActiveHeading(current)
     }
+    handleScroll()
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => {
       window.removeEventListener('scroll', handleScroll)
     }
-  }, [])
+  }, [headings])
 
   return (
     <div className="text-sm">
