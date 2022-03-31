@@ -19,7 +19,9 @@ const NavLink: FC<{ title: string; label?: string; url: string; level: number; a
         className={classNames(
           'group flex h-8 items-center space-x-2 rounded-md px-3 text-sm leading-none hover:bg-gray-50 dark:hover:bg-gray-900',
           url == activePath
-            ? 'bg-violet-50 font-semibold text-violet-600 hover:bg-violet-100 hover:text-violet-700 dark:bg-violet-500/20 dark:text-violet-500 dark:hover:bg-violet-500/25 dark:hover:text-violet-400'
+            ? `${
+                level == 0 ? 'font-medium' : 'font-normal'
+              } bg-violet-50 text-violet-600 hover:bg-violet-100 hover:text-violet-700 dark:bg-violet-500/20 dark:text-violet-300 dark:hover:bg-violet-500/25 dark:hover:text-violet-400`
             : level == 0
             ? 'font-medium text-slate-600 hover:text-slate-700 dark:text-slate-300 dark:hover:text-slate-200'
             : 'font-normal hover:text-slate-600 dark:hover:text-slate-300',
