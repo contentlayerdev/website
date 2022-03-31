@@ -35,6 +35,57 @@ export default makeSource({
 
 This would load content from a `content` directory in your project.
 
+### `contentDirInclude`
+
+An array of paths that Contentlayer should include, with the following conditions:
+
+- They can be either files or directories.
+- The paths need to be relative to `contentDirPath` or absolute.
+- An empty array means that all files in `contentDirPath` will be included.
+- Glob/wildcard patterns (e.g. using `*`) are not supported yet.
+
+This is useful when you have content spread across multiple directories in your project.
+
+**Default:** `[]`
+
+**Example:**
+
+This would target only content in the `docs` directory, while using the default for `contentDirExclude` (see below).
+
+```js
+export default makeSource({
+  // ...
+  contentDirPath: '.',
+  contentDirInclude: ['docs'],
+})
+```
+
+### `contentDirExclude`
+
+An array of paths that Contentlayer should explicitly exclude, with the following conditions:
+
+- **Setting this option completely overrides the defaults.**
+- They can be either files or directories.
+- The paths need to be relative to `contentDirPath` or absolute.
+- An empty array means that all files in `contentDirPath` will be included.
+- Glob/wildcard patterns (e.g. using `*`) are not supported yet.
+
+This is useful when you want to ignore a specific file or directory within your main content directory.
+
+**Default:** `['node_modules', '.git', '.yarn', '.cache', '.next', '.contentlayer', 'package.json', 'tsconfig.json']`
+
+**Example:**
+
+This ignores only the `content/internal-docs` directory, but targets all other content files in the `content` directory.
+
+```js
+export default makeSource({
+  // ...
+  contentDirPath: './content',
+  contentDirExclude: ['internal-docs'],
+})
+```
+
 ### `documentTypes` (required)
 
 Your schema definitions for your project. See [`defineDocumentType`](/docs/document-type) for usage.
