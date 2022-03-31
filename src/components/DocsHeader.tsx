@@ -24,7 +24,7 @@ export const DocsHeader: FC<{ tree: TreeRoot; breadcrumbs: any[]; title: string 
 
   return (
     <header
-      className={`relative flex w-full space-y-2 border-b border-gray-200 bg-white/90 backdrop-blur backdrop-filter dark:border-gray-800 lg:sticky lg:top-16 lg:z-20 ${
+      className={`relative flex w-full space-y-2 border-b border-gray-200 bg-white/90 backdrop-blur backdrop-filter dark:border-gray-800 dark:bg-gray-950/90 lg:sticky lg:top-16 lg:z-20 ${
         top ? '' : 'lg:mb-12 lg:h-16'
       }`}
     >
