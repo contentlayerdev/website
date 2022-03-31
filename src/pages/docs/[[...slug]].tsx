@@ -17,6 +17,7 @@ import { Label } from '../../components/Label'
 import { DocsFooter } from '../../components/DocsFooter'
 import { getNodeText, sluggifyTitle } from '../../utils/sluggify'
 import { PageNavigation } from 'src/components/PageNavigation'
+import { buildTree } from 'src/utils/build-tree'
 
 export const getStaticPaths = async () => {
   const paths = allDocs.map((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join('/')).map(toParams)
@@ -84,7 +85,7 @@ const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ doc, tree, b
   const MDXContent = useMDXComponent(doc.body.code || '')
 
   return (
-    <Container title={doc.title + ' – Contentlayer'} description={doc.excerpt}>
+    <Container title={doc.title + ' – Contentlayer'} description={doc.excerpt} tree={tree}>
       <div className="relative mx-auto max-w-screen-2xl lg:flex lg:items-start">
         <div
           style={{ height: 'calc(100vh - 64px)' }}
@@ -96,10 +97,8 @@ const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ doc, tree, b
           <div className="absolute inset-x-0 top-0 h-8 bg-gradient-to-t from-white/0 to-white/100 dark:from-gray-950/0 dark:to-gray-950/100" />
           <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-b from-white/0 to-white/100 dark:from-gray-950/0 dark:to-gray-950/100" />
         </div>
-
         <div className="w-full">
           <DocsHeader tree={tree} breadcrumbs={breadcrumbs} title={doc.title} />
-
           <div className="flex w-full items-start">
             <div className="relative mx-auto w-full max-w-3xl">
               <div className="p-4 py-8 md:px-8 lg:px-16">
@@ -125,7 +124,6 @@ const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ doc, tree, b
                 </div>
               </div>
             </div>
-
             <div style={{ maxHeight: 'calc(100vh - 128px)' }} className="sticky top-32 hidden shrink-0 1.5xl:block">
               <div className="w-80 overflow-y-scroll p-8 pr-16">
                 <PageNavigation headings={doc.headings} />
@@ -141,42 +139,3 @@ const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ doc, tree, b
 }
 
 export default Page
-
-export type TreeRoot = TreeNode[]
-
-export type TreeNode = {
-  title: string
-  nav_title: string | null
-  label: string | null
-  excerpt: string | null
-  urlPath: string
-  children: TreeNode[]
-}
-
-type PathSegment = { order: number; pathName: string }
-
-const buildTree = (docs: Doc[], parentPathNames: string[] = []): TreeNode[] => {
-  const level = parentPathNames.length
-
-  return docs
-    .filter(
-      (_) =>
-        _.pathSegments.length === level + 1 &&
-        _.pathSegments
-          .map((_: PathSegment) => _.pathName)
-          .join('/')
-          .startsWith(parentPathNames.join('/')),
-    )
-    .sort((a, b) => a.pathSegments[level].order - b.pathSegments[level].order)
-    .map<TreeNode>((doc) => ({
-      nav_title: doc.nav_title ?? null,
-      title: doc.title,
-      label: doc.label ?? null,
-      excerpt: doc.excerpt ?? null,
-      urlPath: '/docs/' + doc.pathSegments.map((_: PathSegment) => _.pathName).join('/'),
-      children: buildTree(
-        docs,
-        doc.pathSegments.map((_: PathSegment) => _.pathName),
-      ),
-    }))
-}

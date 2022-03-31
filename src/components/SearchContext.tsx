@@ -1,5 +1,6 @@
 import { FC, ReactNode } from 'react'
 import { KBarProvider, KBarPortal, KBarPositioner, KBarSearch, KBarAnimator, KBarResults, useMatches } from 'kbar'
+import { TreeNode } from 'types/TreeNode'
 
 const actions = [
   {
@@ -18,7 +19,7 @@ const actions = [
   },
 ]
 
-export const SearchProvider: FC<{ children: ReactNode }> = ({ children }) => {
+export const SearchProvider: FC<{ tree: TreeNode[]; children: ReactNode }> = ({ tree, children }) => {
   return (
     <KBarProvider actions={actions}>
       <KBarPortal>

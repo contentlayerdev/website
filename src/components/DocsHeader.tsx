@@ -12,6 +12,7 @@ export const DocsHeader: FC<{ tree: TreeRoot; breadcrumbs: any[]; title: string 
 
   useEffect(() => {
     const handleScroll = () => setTop(window.scrollY <= 36)
+    handleScroll()
     window.addEventListener('scroll', handleScroll)
     return () => {
       window.removeEventListener('scroll', handleScroll)

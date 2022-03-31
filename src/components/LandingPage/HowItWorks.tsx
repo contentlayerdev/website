@@ -70,10 +70,7 @@ export default function Page({ page }: { page: Page }) {
   ],
 } as const
 
-export type CodeSnippet = { file: string; content: string; lines: number }
 export type CodeSnippets = typeof codeSnippets
-
-export type PreprocessedCodeSnippets = Record<ColorScheme, CodeSnippets>
 
 const codesnippetKey = (k: keyof CodeSnippets) => k
 

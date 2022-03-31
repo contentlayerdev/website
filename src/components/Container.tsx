@@ -1,10 +1,11 @@
 import { FC } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import { SearchProvider } from '../components/SearchContext'
 import { MainNavigation } from './MainNavigation'
 import { Footer } from './Footer'
 
-export const Container: FC<any> = ({ children, ...customMeta }) => {
+export const Container: FC<any> = ({ tree, children, ...customMeta }) => {
   const router = useRouter()
 
   const meta = {
@@ -24,7 +25,7 @@ export const Container: FC<any> = ({ children, ...customMeta }) => {
   }
 
   return (
-    <div>
+    <>
       <Head>
         <title>{meta.title}</title>
         <meta name="robots" content="follow, index" />
@@ -42,9 +43,11 @@ export const Container: FC<any> = ({ children, ...customMeta }) => {
         <meta name="twitter:image" content={meta.image} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </Head>
-      <MainNavigation />
-      <main className="pt-16">{children}</main>
-      <Footer />
-    </div>
+      <SearchProvider tree={tree}>
+        <MainNavigation />
+        <main className="pt-16">{children}</main>
+        <Footer />
+      </SearchProvider>
+    </>
   )
 }
