@@ -58,4 +58,9 @@
   .animate-scroll:hover {
     animation-play-state: paused;
   }
+
+  reach-portal {
+    position: absolute;
+    z-index: 100;
+  }
 }

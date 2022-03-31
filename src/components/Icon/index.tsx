@@ -18,6 +18,7 @@ import { InfoIcon } from './Info'
 import { ExclamationIcon } from './Exclamation'
 import { RocketIcon } from './Rocket'
 import { SignIcon } from './Sign'
+import { SearchIcon } from './Search'
 
 export type IconName =
   | 'code'
@@ -38,6 +39,7 @@ export type IconName =
   | 'exclamation'
   | 'rocket'
   | 'sign'
+  | 'search'
 
 const iconMap = {
   code: CodeIcon,
@@ -58,6 +60,7 @@ const iconMap = {
   exclamation: ExclamationIcon,
   rocket: RocketIcon,
   sign: SignIcon,
+  search: SearchIcon,
 }
 
 export const Icon: FC<{ name: IconName }> = ({ name }) => {

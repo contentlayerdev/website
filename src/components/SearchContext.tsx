@@ -22,7 +22,7 @@ export const SearchProvider: FC<{ children: ReactNode }> = ({ children }) => {
   return (
     <KBarProvider actions={actions}>
       <KBarPortal>
-        <KBarPositioner>
+        <KBarPositioner className="bg-gray-300/50 backdrop-blur backdrop-filter dark:bg-gray-950/60">
           <KBarAnimator>
             <KBarSearch className="h-12" />
             <RenderResults />

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { FC, useState } from 'react'
-
+import { useKBar } from 'kbar'
 import { Icon, IconName } from './Icon'
 import { Label } from './Label'
 import { Logo } from './Logo'
@@ -9,7 +9,7 @@ const isExternalUrl = (link: string): boolean => !link.startsWith('/')
 
 const navLinks: Array<{ label: string; url: string }> = [
   { label: 'Documentation', url: '/docs' },
-  { label: 'Why Contentlayer?', url: '/docs/concepts/why-contentlayer' },
+  //{ label: 'Why Contentlayer?', url: '/docs/concepts/why-contentlayer' },
   { label: 'Blog', url: '/blog' },
   { label: 'Examples', url: '/docs/other/examples' },
 ]
@@ -43,6 +43,24 @@ const NavLink: FC<{ label?: string; hideLabel?: boolean; icon?: IconName; url: s
   )
 }
 
+export const SearchButton: FC<{ showShortcut?: boolean }> = ({ showShortcut = true }) => {
+  const { query } = useKBar()
+
+  return (
+    <button
+      aria-label="Search"
+      onClick={query.toggle}
+      className="flex h-8 cursor-text items-center rounded-md border border-gray-200 bg-gray-50 px-2 text-sm hover:border-gray-300 hover:bg-gray-100 dark:border-gray-800 dark:bg-gray-900 dark:hover:border-gray-700 dark:hover:bg-gray-800"
+    >
+      <span className="mr-2 block w-3">
+        <Icon name="search" />
+      </span>
+      <span className="mr-8 text-slate-400 dark:text-slate-500">Search...</span>
+      {showShortcut && <Label text="⌘K" />}
+    </button>
+  )
+}
+
 export const MainNavigation = () => {
   const [open, setOpen] = useState(false)
 
@@ -73,6 +91,9 @@ export const MainNavigation = () => {
             <div className="fixed inset-0 top-[65px] z-50 h-screen bg-gray-950/10 pb-20 backdrop-blur-lg backdrop-filter dark:bg-gray-950/50">
               <nav className="absolute right-0 h-full divide-y divide-gray-200 border-l border-gray-200 bg-white p-8 dark:divide-gray-800 dark:border-gray-800 dark:bg-gray-950">
                 <div className="flex flex-col items-end space-y-2 pb-8">
+                  <div className="mb-2">
+                    <SearchButton showShortcut={false} />
+                  </div>
                   {navLinks.map(({ label, url }, index) => (
                     <NavLink
                       key={index}
@@ -82,7 +103,6 @@ export const MainNavigation = () => {
                     />
                   ))}
                 </div>
-                {/* TODO search box */}
                 <div className="flex items-center justify-end space-x-4 pt-8">
                   {iconLinks.map(({ label, icon, url }, index) => (
                     <NavLink key={index} label={label} hideLabel url={url} icon={icon} />
@@ -97,8 +117,8 @@ export const MainNavigation = () => {
             {navLinks.map(({ label, url }, index) => (
               <NavLink key={index} label={label} url={url} icon={isExternalUrl(url) ? 'external-link' : undefined} />
             ))}
+            <SearchButton />
           </div>
-          {/* TODO search box */}
           <div className="flex items-center pl-2 lg:space-x-2 lg:pl-8">
             {iconLinks.map(({ label, icon, url }, index) => (
               <NavLink key={index} label={label} hideLabel url={url} icon={icon} />
