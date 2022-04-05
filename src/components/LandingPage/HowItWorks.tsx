@@ -348,7 +348,7 @@ export const HowItWorks: FC<{ codeSnippets: CodeSnippets }> = ({ codeSnippets })
                       <Heading level={3}>{heading}</Heading>
                     </div>
                     <div className="space-y-8 sm:pl-20">
-                      <Paragraph className="max-w-md">{text}</Paragraph>
+                      <div className="max-w-md leading-relaxed">{text}</div>
                       {cta && (
                         <Button
                           label={cta.label}

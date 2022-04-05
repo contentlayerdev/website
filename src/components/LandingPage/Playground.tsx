@@ -65,7 +65,7 @@ export const Playground: FC = () => {
   }, [ref, currentFiles])
 
   return (
-    <div className="mt-24 hidden bg-gray-950 dark:mt-0 md:block lg:mt-32 dark:lg:mt-0">
+    <div id="playground" className="mt-24 hidden bg-gray-950 dark:mt-0 md:block lg:mt-32 dark:lg:mt-0">
       <div className="mx-auto w-full max-w-screen-xl space-y-8 px-4 py-24 dark:pt-0 md:px-8 lg:py-32">
         <Heading level={2} className="text-center text-slate-200">
           {content.heading}
