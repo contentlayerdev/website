@@ -7,15 +7,15 @@ import { ColorScheme, snippetToHtml } from '../utils/syntax-highlighting'
 import { getUsedByCount } from '../utils/used-by-count'
 import { promiseAllProperties, mapObjectValues } from '../utils/object'
 import { useColorScheme } from '../components/ColorSchemeContext'
-import { Hero } from '../components/LandingPage/Hero'
-import { Support } from '../components/LandingPage/Support'
-import { Testimonials } from '../components/LandingPage/Testimonials'
-import { Features } from '../components/LandingPage/Features'
-import { type CodeSnippets, HowItWorks, codeSnippets } from '../components/LandingPage/HowItWorks'
-import { FAQ } from '../components/LandingPage/FAQ'
-import { Tweets } from '../components/LandingPage/Tweets'
-import { Playground } from '../components/LandingPage/Playground'
-import { Container } from '../components/Container'
+import { Hero } from '../components/landing-page/Hero'
+import { Support } from '../components/landing-page/Support'
+import { Testimonials } from '../components/landing-page/Testimonials'
+import { Features } from '../components/landing-page/Features'
+import { type CodeSnippets, HowItWorks, codeSnippets } from '../components/landing-page/HowItWorks'
+import { FAQ } from '../components/landing-page/FAQ'
+import { Tweets } from '../components/landing-page/Tweets'
+import { Playground } from '../components/landing-page/Playground'
+import { Container } from '../components/common/Container'
 import { PreprocessedCodeSnippets } from 'types/PreprocessedCodeSnippets'
 
 export const getStaticProps = defineStaticProps(async (_context) => {
@@ -27,7 +27,6 @@ export const getStaticProps = defineStaticProps(async (_context) => {
     usedByCount: getUsedByCount(),
   })
   const tree = buildTree(allDocs)
-
   return { props: { preprocessedCodeSnippets, usedByCount, tree } }
 })
 

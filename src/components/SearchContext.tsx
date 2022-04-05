@@ -11,9 +11,9 @@ import {
   Action,
 } from 'kbar'
 import { TreeNode } from 'types/TreeNode'
-import { Card } from './Card'
-import { Icon } from './Icon'
-import { Label } from './Label'
+import { Card } from './common/Card'
+import { Icon } from './common/Icon'
+import { Label } from './common/Label'
 
 export const SearchProvider: FC<{ tree: TreeNode[]; children: ReactNode }> = ({ tree, children }) => {
   const router = useRouter()
@@ -71,7 +71,7 @@ const RenderResults = () => {
         onRender={({ item, active }) => (
           <div>
             {typeof item === 'string' ? (
-              <div className="block border-t border-gray-100 px-4 py-4 text-xs font-semibold uppercase text-slate-400 dark:border-gray-800 dark:text-slate-500">
+              <div className="block border-t border-gray-100 px-4 pt-4 pb-2 text-xs font-semibold uppercase text-slate-400 dark:border-gray-800 dark:text-slate-500">
                 {item}
               </div>
             ) : (

@@ -4,20 +4,21 @@ import type { InferGetStaticPropsType } from 'next'
 import { useLiveReload, useMDXComponent } from 'next-contentlayer/hooks'
 import type { FC } from 'react'
 import { allDocs, Doc } from 'contentlayer/generated'
-import { Container } from '../../components/Container'
+import { Container } from '../../components/common/Container'
 import { defineStaticProps, toParams } from '../../utils/next'
-import { DocsNavigation } from 'src/components/DocsNavigation'
-import { Callout } from '../../components/Callout'
-import { DocsCard as Card } from '../../components/DocsCard'
+import { DocsNavigation } from 'src/components/docs/DocsNavigation'
+import { Callout } from '../../components/common/Callout'
+import { DocsCard as Card } from '../../components/docs/DocsCard'
 import Link from 'next/link'
 import Image from 'next/image'
-import { DocsHeader } from '../../components/DocsHeader'
-import { ChevronLink } from '../../components/ChevronLink'
-import { Label } from '../../components/Label'
-import { DocsFooter } from '../../components/DocsFooter'
+import { DocsHeader } from '../../components/docs/DocsHeader'
+import { ChevronLink } from '../../components/common/ChevronLink'
+import { Label } from '../../components/common/Label'
+import { DocsFooter } from '../../components/docs/DocsFooter'
 import { getNodeText, sluggifyTitle } from '../../utils/sluggify'
-import { PageNavigation } from 'src/components/PageNavigation'
+import { PageNavigation } from 'src/components/common/PageNavigation'
 import { buildTree } from 'src/utils/build-tree'
+import { H2, H3, H4 } from 'src/components/common/Headings'
 
 export const getStaticPaths = async () => {
   const paths = allDocs.map((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join('/')).map(toParams)
@@ -47,36 +48,6 @@ export const getStaticProps = defineStaticProps(async (context) => {
 
   return { props: { doc, tree, breadcrumbs, childrenTree } }
 })
-
-const H2: React.FC = ({ children }) => {
-  const slug = sluggifyTitle(getNodeText(children))
-  return (
-    <h2 id={slug} onClick={() => (window.location.hash = `#${slug}`)} className="group relative cursor-pointer">
-      <span className="absolute top-0 -left-6 hidden text-slate-400 group-hover:inline dark:text-slate-600">#</span>
-      {children}
-    </h2>
-  )
-}
-
-const H3: React.FC = ({ children }) => {
-  const slug = sluggifyTitle(getNodeText(children))
-  return (
-    <h3 id={slug} onClick={() => (window.location.hash = `#${slug}`)} className="group relative cursor-pointer">
-      <span className="absolute top-0 -left-6 hidden text-slate-400 group-hover:inline dark:text-slate-600">#</span>
-      {children}
-    </h3>
-  )
-}
-
-const H4: React.FC = ({ children }) => {
-  const slug = sluggifyTitle(getNodeText(children))
-  return (
-    <h4 id={slug} onClick={() => (window.location.hash = `#${slug}`)} className="group relative cursor-pointer">
-      <span className="absolute top-0 -left-6 hidden text-slate-400 group-hover:inline dark:text-slate-600">#</span>
-      {children}
-    </h4>
-  )
-}
 
 const mdxComponents = { Callout, Card, Image, Link, ChevronLink, Label, h2: H2, h3: H3, h4: H4 }
 
