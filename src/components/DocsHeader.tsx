@@ -1,11 +1,15 @@
 import { FC, Fragment, useState, useEffect } from 'react'
-import { TreeRoot } from '../pages/docs/[[...slug]]'
+import { TreeNode } from 'types/TreeNode'
 import Link from 'next/link'
 import { DocsNavigation } from './DocsNavigation'
 import { Icon } from './Icon'
 import { useRouter } from 'next/router'
 
-export const DocsHeader: FC<{ tree: TreeRoot; breadcrumbs: any[]; title: string }> = ({ tree, breadcrumbs, title }) => {
+export const DocsHeader: FC<{ tree: TreeNode[]; breadcrumbs: any[]; title: string }> = ({
+  tree,
+  breadcrumbs,
+  title,
+}) => {
   const { asPath } = useRouter()
   const [open, setOpen] = useState<boolean>(false)
   const [top, setTop] = useState<boolean>(false)

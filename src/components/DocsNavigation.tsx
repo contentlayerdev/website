@@ -2,7 +2,7 @@ import { FC, Fragment } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import classNames from 'classnames'
-import { TreeRoot } from '../pages/docs/[[...slug]]'
+import { TreeNode } from 'types/TreeNode'
 import React from 'react'
 import { Label } from '../components/Label'
 
@@ -34,7 +34,7 @@ const NavLink: FC<{ title: string; label?: string; url: string; level: number; a
   )
 }
 
-const Tree: FC<{ tree: TreeRoot; level: number; activePath: string }> = ({ tree, level, activePath }) => {
+const Tree: FC<{ tree: TreeNode[]; level: number; activePath: string }> = ({ tree, level, activePath }) => {
   return (
     <div
       className={classNames('ml-3 space-y-2 pl-3', level > 0 ? 'border-l border-gray-200 dark:border-gray-800' : '')}
@@ -55,7 +55,7 @@ const Tree: FC<{ tree: TreeRoot; level: number; activePath: string }> = ({ tree,
   )
 }
 
-export const DocsNavigation: FC<{ tree: TreeRoot }> = ({ tree }) => {
+export const DocsNavigation: FC<{ tree: TreeNode[] }> = ({ tree }) => {
   const router = useRouter()
 
   return (
