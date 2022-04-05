@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { type CodeSnippet } from './LandingPage/HowItWorks'
+import { CodeSnippet } from 'types/CodeSnippet'
 import * as Tabs from '@radix-ui/react-tabs'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { Card } from './Card'
@@ -11,16 +11,16 @@ export const CodeWindow: FC<{
     <Card shadow>
       <Tabs.Root defaultValue={snippets[0].file}>
         <Tabs.List aria-label="Select file to view" className="flex flex-nowrap overflow-x-auto">
-          <div className="h-10 flex items-center px-4 space-x-1.5 border-r border-b border-gray-100 dark:border-gray-900">
-            <span className="w-3 h-3 rounded-full bg-red-400 dark:bg-slate-600" />
-            <span className="w-3 h-3 rounded-full bg-amber-400 dark:bg-slate-600" />
-            <span className="w-3 h-3 rounded-full bg-green-400 dark:bg-slate-600" />
+          <div className="flex h-10 items-center space-x-1.5 border-r border-b border-gray-100 px-4 dark:border-gray-900">
+            <span className="h-3 w-3 rounded-full bg-red-400 dark:bg-slate-600" />
+            <span className="h-3 w-3 rounded-full bg-amber-400 dark:bg-slate-600" />
+            <span className="h-3 w-3 rounded-full bg-green-400 dark:bg-slate-600" />
           </div>
           {snippets.map(({ file }, index) => (
             <Tabs.Trigger
               key={index}
               value={file}
-              className="relative h-10 shrink-0 flex items-center px-4 text-slate-500 text-sm border-r border-b border-gray-100 radix-state-active:border-b-transparent radix-state-active:bg-white focus:outline-none focus:ring-2 focus:ring-violet-300 dark:focus:ring-violet-900 dark:border-gray-900 dark:text-slate-400 dark:radix-state-active:bg-[#0d1116]"
+              className="relative flex h-10 shrink-0 items-center border-r border-b border-gray-100 px-4 text-sm text-slate-500 focus:outline-none focus:ring-2 focus:ring-violet-300 radix-state-active:border-b-transparent radix-state-active:bg-white dark:border-gray-900 dark:text-slate-400 dark:focus:ring-violet-900 dark:radix-state-active:bg-[#0d1116]"
             >
               {file}
             </Tabs.Trigger>
@@ -28,10 +28,10 @@ export const CodeWindow: FC<{
           <div className="grow border-b border-gray-100 dark:border-gray-900"></div>
         </Tabs.List>
         {snippets.map(({ file, content, lines }, index) => (
-          <Tabs.Content key={index} value={file} className="overflow-y-hidden flex focus:outline-none">
-            <div className="w-8 shrink-0 grow-0 text-right pt-[19px] pb-3 bg-white leading-none text-sm text-slate-300 font-mono dark:bg-[#0d1116] dark:text-slate-700">
+          <Tabs.Content key={index} value={file} className="flex overflow-y-hidden focus:outline-none">
+            <div className="w-8 shrink-0 grow-0 bg-white pt-[19px] pb-3 text-right font-mono text-sm leading-none text-slate-300 dark:bg-[#0d1116] dark:text-slate-700">
               {[...new Array(lines)].map((v, index) => (
-                <div key={index} className="px-2 h-[20px]">
+                <div key={index} className="h-[20px] px-2">
                   {index + 1}
                 </div>
               ))}
