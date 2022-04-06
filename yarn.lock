@@ -51,33 +51,34 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@contentlayer/cli@npm:0.1.3-dev.0":
-  version: 0.1.3-dev.0
-  resolution: "@contentlayer/cli@npm:0.1.3-dev.0"
+"@contentlayer/cli@npm:0.2.1":
+  version: 0.2.1
+  resolution: "@contentlayer/cli@npm:0.2.1"
   dependencies:
-    "@contentlayer/core": 0.1.3-dev.0
-    "@contentlayer/utils": 0.1.3-dev.0
+    "@contentlayer/core": 0.2.1
+    "@contentlayer/utils": 0.2.1
     clipanion: ^3.2.0-rc.10
     typanion: ^3.7.1
-  checksum: 118c70ccf61d26a4ed7fd9e6a1d7c35b8c639baab1fef7a621f486d13af10aca80d27cab13811e23c27d751765c828ee75b6486e6bd596d4b954a68219dd2505
+  checksum: 7970454f0eb0968a85e35ece86506366074af2a81c72a88d2b51a6441e6f47d8bd560b9838296d013025d0be0af96f6b67d5a5b9bba30014807c16324b173a3a
   languageName: node
   linkType: hard
 
-"@contentlayer/client@npm:0.1.3-dev.0":
-  version: 0.1.3-dev.0
-  resolution: "@contentlayer/client@npm:0.1.3-dev.0"
+"@contentlayer/client@npm:0.2.1":
+  version: 0.2.1
+  resolution: "@contentlayer/client@npm:0.2.1"
   dependencies:
-    "@contentlayer/core": 0.1.3-dev.0
-  checksum: fe186b73d9e27a94f0685083e0bf58e9a4166151f3e7d7d9693e56959736c38ed11e857a5c945f99b4f03bb17b8e05a392b7224541f1b9693cf8273604c9d096
+    "@contentlayer/core": 0.2.1
+  checksum: 244ffd1f2b215438b56f80aca3be9175e483cf6888c7e34ea2f8a123b9ae9e5984ee9979f5fb0fc59ad88a6f0f4e6e841e28f7cc2b6552219beb662b1fb12f5f
   languageName: node
   linkType: hard
 
-"@contentlayer/core@npm:0.1.3-dev.0":
-  version: 0.1.3-dev.0
-  resolution: "@contentlayer/core@npm:0.1.3-dev.0"
+"@contentlayer/core@npm:0.2.1":
+  version: 0.2.1
+  resolution: "@contentlayer/core@npm:0.2.1"
   dependencies:
-    "@contentlayer/utils": 0.1.3-dev.0
+    "@contentlayer/utils": 0.2.1
     camel-case: ^4.1.2
+    comment-json: ^4.2.2
     date-fns: 2.x
     esbuild: 0.11.x || 0.12.x || 0.13.x || 0.14.x
     gray-matter: ^4.0.3
@@ -100,16 +101,16 @@ __metadata:
       optional: true
     markdown-wasm:
       optional: true
-  checksum: e520ffe215e1dc2862bbfb969dce2bcc1df72d7bc5e5d0a79cce3550bb1888810004e363696a7a26dd5c927cb67a024d41797b88740cb7e429937f49a5898b20
+  checksum: 7932a5bfeaeb6aefdd06a20c735ad6d3eb2adf3c71c0c11bd914f373d82ba2260760d9d7554627f76486326d8356da68c6bfef3b4e01e3a30f4946d4e33ff3e3
   languageName: node
   linkType: hard
 
-"@contentlayer/source-files@npm:0.1.3-dev.0":
-  version: 0.1.3-dev.0
-  resolution: "@contentlayer/source-files@npm:0.1.3-dev.0"
+"@contentlayer/source-files@npm:0.2.1":
+  version: 0.2.1
+  resolution: "@contentlayer/source-files@npm:0.2.1"
   dependencies:
-    "@contentlayer/core": 0.1.3-dev.0
-    "@contentlayer/utils": 0.1.3-dev.0
+    "@contentlayer/core": 0.2.1
+    "@contentlayer/utils": 0.2.1
     chokidar: ^3.5.3
     date-fns-tz: ^1.3.1
     glob: ^7.2.0
@@ -119,13 +120,13 @@ __metadata:
     ts-pattern: ^4.0.1
     unified: ^10.1.2
     yaml: ^1.10.2
-  checksum: 2f2301ad8101b16b476419f2caa444e7d97d588a9f8dcd6bbdbcd9fb20e8595007039d7d30312c4a0fe8ee9ce7a5efed2557482295c7335de00f4a24f442daf8
+  checksum: a42c0c13d6844cdb59e8cb76032329b99e7d51bf13e2ff9ef13d4b802ad422aa59f402b1aaf00e48e550a2a69b79aabb9a64ffbda6c23dc6aa18557b0a7b7920
   languageName: node
   linkType: hard
 
-"@contentlayer/utils@npm:0.1.3-dev.0":
-  version: 0.1.3-dev.0
-  resolution: "@contentlayer/utils@npm:0.1.3-dev.0"
+"@contentlayer/utils@npm:0.2.1":
+  version: 0.2.1
+  resolution: "@contentlayer/utils@npm:0.2.1"
   dependencies:
     "@effect-ts/core": ^0.58.0
     "@effect-ts/otel": ^0.13.0
@@ -151,7 +152,7 @@ __metadata:
       optional: true
     "@effect-ts/otel-node":
       optional: true
-  checksum: 8410253da332a9f536b94816c08e83432e6327c194640be522a2c9ff60e8a6233405a2e30b0dbe7e97fd03365d4a37e405bd6d45356e05c935bde2b0461b7a52
+  checksum: 436865e5c693f7a4adbfe3c4e10ee5c8befc2c4f9ea4688f81a5170abe7cf035d0ce1b38858fb4dae59f627f3c50ef888966f1c743e4f969ea9d987790f89242
   languageName: node
   linkType: hard
 
@@ -1726,6 +1727,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"array-timsort@npm:^1.0.3":
+  version: 1.0.3
+  resolution: "array-timsort@npm:1.0.3"
+  checksum: fd4b5b0911214bdc8b5699ed10d309685551b518b3819c611c967cff59b87aee01cf591a10e36a3f14dbff696984bd6682b845f6fdbf1217195e910f241a4f78
+  languageName: node
+  linkType: hard
+
 "array-union@npm:^2.1.0":
   version: 2.1.0
   resolution: "array-union@npm:2.1.0"
@@ -2267,6 +2275,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"comment-json@npm:^4.2.2":
+  version: 4.2.2
+  resolution: "comment-json@npm:4.2.2"
+  dependencies:
+    array-timsort: ^1.0.3
+    core-util-is: ^1.0.3
+    esprima: ^4.0.1
+    has-own-prop: ^2.0.0
+    repeat-string: ^1.6.1
+  checksum: eb77124bf048c69384ef3df4ae03ab01229118232527476411580ae5f101292849807f937da59efdcbf05945e10f4392837f66bb82f7d69cc85240e762b76805
+  languageName: node
+  linkType: hard
+
 "concat-map@npm:0.0.1":
   version: 0.0.1
   resolution: "concat-map@npm:0.0.1"
@@ -2305,7 +2326,7 @@ __metadata:
     autoprefixer: ^10.4.2
     cheerio: ^1.0.0-rc.10
     classnames: ^2.3.1
-    contentlayer: dev
+    contentlayer: 0.2.1
     date-fns: ^2.28.0
     eslint: 8.10.0
     eslint-config-next: 12.1.0
@@ -2316,7 +2337,7 @@ __metadata:
     mdast-util-mdx: ^2.0.0
     mdast-util-to-markdown: ^1.3.0
     next: 12.1.0
-    next-contentlayer: dev
+    next-contentlayer: 0.2.1
     postcss: ^8.4.8
     postcss-import: ^14.0.2
     prettier: ^2.6.1
@@ -2332,18 +2353,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"contentlayer@npm:dev":
-  version: 0.1.3-dev.0
-  resolution: "contentlayer@npm:0.1.3-dev.0"
+"contentlayer@npm:0.2.1":
+  version: 0.2.1
+  resolution: "contentlayer@npm:0.2.1"
   dependencies:
-    "@contentlayer/cli": 0.1.3-dev.0
-    "@contentlayer/client": 0.1.3-dev.0
-    "@contentlayer/core": 0.1.3-dev.0
-    "@contentlayer/source-files": 0.1.3-dev.0
-    "@contentlayer/utils": 0.1.3-dev.0
+    "@contentlayer/cli": 0.2.1
+    "@contentlayer/client": 0.2.1
+    "@contentlayer/core": 0.2.1
+    "@contentlayer/source-files": 0.2.1
+    "@contentlayer/utils": 0.2.1
   bin:
     contentlayer: ./bin/cli.cjs
-  checksum: 89fedcf2a2f1cc4d899d86ac42e19c15bc0061d17cb2d90cb98e86a7fcce5a5047d827a7d0cf13f246bb4205c0d0f78111bc2175dba9dbae8379c137ec208d4d
+  checksum: 83afb404868e3a74d85c2ba3029c32e9aabacd4c8e4ee6069c1b3dac4b719e87d598657859aab68ac10df3bea257f929a2f6dc2727121c8865fb6f080bc8457e
   languageName: node
   linkType: hard
 
@@ -2354,7 +2375,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"core-util-is@npm:~1.0.0":
+"core-util-is@npm:^1.0.3, core-util-is@npm:~1.0.0":
   version: 1.0.3
   resolution: "core-util-is@npm:1.0.3"
   checksum: 9de8597363a8e9b9952491ebe18167e3b36e7707569eed0ebf14f8bba773611376466ae34575bca8cfe3c767890c859c74056084738f09d4e4a6f902b2ad7d99
@@ -3270,7 +3291,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esprima@npm:^4.0.0":
+"esprima@npm:^4.0.0, esprima@npm:^4.0.1":
   version: 4.0.1
   resolution: "esprima@npm:4.0.1"
   bin:
@@ -3897,6 +3918,13 @@ __metadata:
   version: 4.0.0
   resolution: "has-flag@npm:4.0.0"
   checksum: 261a1357037ead75e338156b1f9452c016a37dcd3283a972a30d9e4a87441ba372c8b81f818cd0fbcd9c0354b4ae7e18b9e1afa1971164aef6d18c2b6095a8ad
+  languageName: node
+  linkType: hard
+
+"has-own-prop@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "has-own-prop@npm:2.0.0"
+  checksum: ca6336e85ead2295c9603880cbc199e2d3ff7eaea0e9035d68fbc79892e9cf681abc62c0909520f112c671dad9961be2173b21dff951358cc98425c560e789e0
   languageName: node
   linkType: hard
 
@@ -5675,18 +5703,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next-contentlayer@npm:dev":
-  version: 0.1.3-dev.0
-  resolution: "next-contentlayer@npm:0.1.3-dev.0"
+"next-contentlayer@npm:0.2.1":
+  version: 0.2.1
+  resolution: "next-contentlayer@npm:0.2.1"
   dependencies:
-    "@contentlayer/core": 0.1.3-dev.0
-    "@contentlayer/utils": 0.1.3-dev.0
+    "@contentlayer/core": 0.2.1
+    "@contentlayer/utils": 0.2.1
     rxjs: ^7.1.0
   peerDependencies:
     next: ^12
     react: "*"
     react-dom: "*"
-  checksum: d495f2c4082d16117a070e7d47fd55833ab82ecc205e085670858add6c808d3662790a6a5607d955a9d1efb5553467fefe21f0c96eeb7b736a1d25892ad3d4e3
+  checksum: 4c01874b69fd9b84541ff12a96239ce806c08f9c6438c558bc4d2027d498ba048c7e9f09ac7accd15678d41c3744fd39de5ca3f61cd3425cba752a3693c723da
   languageName: node
   linkType: hard
 
@@ -6789,6 +6817,13 @@ __metadata:
     mdast-util-to-hast: ^12.1.0
     unified: ^10.0.0
   checksum: b9ac8acff3383b204dfdc2599d0bdf86e6ca7e837033209584af2e6aaa6a9013e519a379afa3201299798cab7298c8f4b388de118c312c67234c133318aec084
+  languageName: node
+  linkType: hard
+
+"repeat-string@npm:^1.6.1":
+  version: 1.6.1
+  resolution: "repeat-string@npm:1.6.1"
+  checksum: 1b809fc6db97decdc68f5b12c4d1a671c8e3f65ec4a40c238bc5200e44e85bcc52a54f78268ab9c29fcf5fe4f1343e805420056d1f30fa9a9ee4c2d93e3cc6c0
   languageName: node
   linkType: hard
 
