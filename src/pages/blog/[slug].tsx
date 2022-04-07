@@ -46,46 +46,46 @@ const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ post, tree }
   return (
     <Container title={post.title + ' – Contentlayer'} description={post.excerpt} tree={tree}>
       <div className="relative mx-auto max-w-screen-2xl">
-        <div className="relative px-8 pt-16 w-full border-gray-200 dark:border-gray-800 lg:flex lg:border-b lg:pb-16">
-          <div className="hidden w-64 shrink-0 lg:block" />
+        <div className="relative w-full border-gray-200 px-8 pt-16 dark:border-gray-800 lg:flex lg:border-b lg:pb-16">
+          <div className="hidden w-64 shrink-0 lg:block xl:w-72 2xl:w-80" />
           <h1 className="text-2xl font-semibold text-slate-800 dark:text-slate-200 md:text-3xl lg:text-4xl">
             {post.title}
           </h1>
           <div className="hidden w-80 shrink-0 xl:block" />
-          <div className="hidden absolute right-0 -bottom-px w-80 h-px bg-gradient-to-r from-white/0 to-white/100 2xl:block" />
-          <div className="hidden absolute left-0 -bottom-px w-64 h-px bg-gradient-to-l from-white/0 to-white/100 2xl:block" />
+          <div className="absolute right-0 -bottom-px hidden h-px w-80 bg-gradient-to-r from-white/0 to-white/100 2xl:block" />
+          <div className="absolute left-0 -bottom-px hidden h-px w-64 bg-gradient-to-l from-white/0 to-white/100 2xl:block" />
         </div>
 
         <div className="lg:flex lg:items-start">
-          <div className="sticky top-16 p-8 w-full text-sm border-b border-gray-200 shrink-0 dark:border-gray-800 lg:w-64 lg:border-none lg:pl-16">
+          <div className="sticky top-16 w-full shrink-0 border-b border-gray-200 p-8 text-sm dark:border-gray-800 lg:w-64 lg:border-none lg:pl-16 xl:w-72 2xl:w-80">
             <Link href="/blog">
-              <a className="flex mb-4 font-medium text-slate-600 hover:text-slate-700 dark:text-slate-300 dark:hover:text-slate-200">
+              <a className="mb-4 flex font-medium text-slate-600 hover:text-slate-700 dark:text-slate-300 dark:hover:text-slate-200">
                 <span className="mr-2 mt-[5px] block w-1.5 shrink-0">
                   <Icon name="chevron-left" />
                 </span>
                 <span>Back to blog</span>
               </a>
             </Link>
-            <p className="flex mb-2">
-              <span className="block mt-1 mr-2 w-3 text-violet-600 shrink-0 dark:text-violet-400">
+            <p className="mb-2 flex">
+              <span className="mt-1 mr-2 block w-3 shrink-0 text-violet-600 dark:text-violet-400">
                 <Icon name="calendar" />
               </span>
               <span>{format(new Date(post.date), 'MMMM dd, yyyy')}</span>
             </p>
             <p className="flex">
-              <span className="block mt-1 mr-2 w-3 text-violet-600 shrink-0 dark:text-violet-400">
+              <span className="mt-1 mr-2 block w-3 shrink-0 text-violet-600 dark:text-violet-400">
                 <Icon name="users" />
               </span>
               <span>{post.authors}</span>
             </p>
           </div>
 
-          <div className="p-8 mb-4 max-w-full prose prose-slate prose-violet shrink prose-headings:font-semibold prose-p:text-slate-500 prose-a:font-normal prose-code:font-normal prose-code:before:content-none prose-code:after:content-none prose-ul:text-slate-500 prose-hr:border-gray-200 dark:prose-invert dark:prose-p:text-slate-400 dark:prose-a:text-violet-400 dark:prose-ul:text-slate-400 dark:prose-hr:border-gray-800 md:mb-8 lg:pr-16 xl:pr-8">
+          <div className="prose prose-slate prose-violet mb-4 max-w-full shrink p-8 prose-headings:font-semibold prose-p:text-slate-500 prose-a:font-normal prose-code:font-normal prose-code:before:content-none prose-code:after:content-none prose-ul:text-slate-500 prose-hr:border-gray-200 dark:prose-invert dark:prose-p:text-slate-400 dark:prose-a:text-violet-400 dark:prose-ul:text-slate-400 dark:prose-hr:border-gray-800 md:mb-8 lg:pr-16 xl:pr-8">
             {MDXContent && <MDXContent components={mdxComponents} />}
           </div>
 
-          <div style={{ maxHeight: 'calc(100vh - 64px)' }} className="hidden sticky top-16 shrink-0 xl:block">
-            <div className="overflow-y-scroll p-8 pr-16 w-80">
+          <div style={{ maxHeight: 'calc(100vh - 64px)' }} className="sticky top-16 hidden shrink-0 xl:block">
+            <div className="w-80 overflow-y-scroll p-8 pr-16">
               <PageNavigation headings={post.headings} />
             </div>
             <div className="absolute inset-x-0 top-0 h-8 bg-gradient-to-t from-white/0 to-white/100 dark:from-gray-950/0 dark:to-gray-950/100" />
