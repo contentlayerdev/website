@@ -39,19 +39,17 @@ const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ post, tree }
 
   return (
     <Container title={post.title + ' – Contentlayer'} description={post.excerpt} tree={tree}>
-      <div className="relative mx-auto max-w-screen-2xl pt-4 md:pt-8 lg:pt-16">
+      <div className="relative mx-auto max-w-screen-2xl md:pt-8 lg:pt-16">
         <div className="lg:flex lg:items-start">
           <div className="sticky top-32 mx-auto hidden w-full max-w-3xl shrink-0 border-b border-gray-200 p-8 dark:border-gray-800 lg:block lg:w-64 lg:border-none lg:pl-16 xl:w-72 2xl:w-80">
             <BlogDetails post={post} />
           </div>
-
           <div className="mx-auto mb-4 w-full max-w-3xl shrink p-4 py-8 md:mb-8 md:px-8 lg:mx-0 lg:mb-16 lg:max-w-full lg:pr-16 xl:pr-8">
             <BlogHeader post={post} />
             <div className="blog prose prose-slate prose-violet w-full max-w-3xl prose-headings:font-semibold prose-p:text-slate-500 prose-a:font-normal prose-code:font-normal prose-code:before:content-none prose-code:after:content-none prose-ul:text-slate-500 prose-hr:border-gray-200 dark:prose-invert dark:prose-p:text-slate-400 dark:prose-a:text-violet-400 dark:prose-ul:text-slate-400 dark:prose-hr:border-gray-800 lg:max-w-full">
               {MDXContent && <MDXContent components={mdxComponents} />}
             </div>
           </div>
-
           <div
             style={{ maxHeight: 'calc(100vh - 64px)' }}
             className="sticky top-32 hidden w-80 shrink-0 overflow-y-scroll p-8 pr-16 xl:block"
