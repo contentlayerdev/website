@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { Icon } from 'src/components/common/Icon'
 
 export const BlogHeader: FC<{ post: Post }> = ({ post }) => {
-  const [top, setTop] = useState<boolean>(false)
+  const [top, setTop] = useState<boolean>(true)
 
   useEffect(() => {
     const handleScroll = () => setTop(window.scrollY <= 50)

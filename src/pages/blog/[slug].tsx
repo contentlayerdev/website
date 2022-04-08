@@ -35,7 +35,7 @@ export const getStaticProps = defineStaticProps(async (context) => {
 
 const mdxComponents = { Callout, Card, Image, Link, ChevronLink, Label, h2: H2, h3: H3, h4: H4 }
 
-const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ post, tree }) => {
+const Post: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ post, tree }) => {
   useLiveReload()
   const MDXContent = useMDXComponent(post.body.code || '')
 
@@ -66,4 +66,4 @@ const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ post, tree }
   )
 }
 
-export default Page
+export default Post

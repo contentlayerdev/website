@@ -43,7 +43,11 @@ export const PageNavigation: FC<{ headings: DocHeading[] }> = ({ headings }) => 
                 <span className="mr-2 mt-[5px] block w-1.5 shrink-0">
                   <Icon name="chevron-right" />
                 </span>
-                <span>{title}</span>
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: title.replace('`', '<code style="font-size: 0.75rem;">').replace('`', '</code>'),
+                  }}
+                />
               </a>
             </li>
           ))}
