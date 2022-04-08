@@ -9,7 +9,6 @@ const isExternalUrl = (link: string): boolean => !link.startsWith('/')
 
 const navLinks: Array<{ label: string; url: string }> = [
   { label: 'Documentation', url: '/docs' },
-  //{ label: 'Why Contentlayer?', url: '/docs/concepts/why-contentlayer' },
   { label: 'Blog', url: '/blog' },
   { label: 'Examples', url: '/docs/other/examples' },
 ]

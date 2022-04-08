@@ -17,7 +17,7 @@ const NavLink: FC<{ title: string; label?: string; url: string; level: number; a
     <Link href={url}>
       <a
         className={classNames(
-          'group flex h-8 items-center space-x-2 rounded-md px-3 text-sm leading-none hover:bg-gray-50 dark:hover:bg-gray-900',
+          'group flex h-8 items-center space-x-2 whitespace-nowrap rounded-md px-3 text-sm leading-none hover:bg-gray-50 dark:hover:bg-gray-900',
           url == activePath
             ? `${
                 level == 0 ? 'font-medium' : 'font-normal'
@@ -59,7 +59,7 @@ export const DocsNavigation: FC<{ tree: TreeNode[] }> = ({ tree }) => {
   const router = useRouter()
 
   return (
-    <aside className="-ml-6 max-w-sm">
+    <aside className="-ml-6 w-80">
       <div>
         <Tree tree={tree} level={0} activePath={router.asPath} />
       </div>
