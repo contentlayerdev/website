@@ -41,10 +41,12 @@ export const Doc = defineDocumentType(() => ({
     collapsible: {
       type: 'boolean',
       required: false,
+      default: false,
     },
     collapsed: {
       type: 'boolean',
       required: false,
+      default: false,
     },
     // seo: { type: 'nested', of: SEO },
   },
