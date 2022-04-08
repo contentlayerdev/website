@@ -3,7 +3,7 @@ import type { InferGetStaticPropsType } from 'next'
 // eslint-disable-next-line import/no-unresolved
 import { useLiveReload, useMDXComponent } from 'next-contentlayer/hooks'
 import type { FC } from 'react'
-import { allDocs, Doc } from 'contentlayer/generated'
+import { allDocs } from 'contentlayer/generated'
 import { Container } from '../../components/common/Container'
 import { defineStaticProps, toParams } from '../../utils/next'
 import { DocsNavigation } from 'src/components/docs/DocsNavigation'
