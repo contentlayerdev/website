@@ -1,22 +1,15 @@
 import type { InferGetStaticPropsType } from 'next'
 // TODO remove eslint-disable when fixed https://github.com/import-js/eslint-plugin-import/issues/1810
 // eslint-disable-next-line import/no-unresolved
-import { useLiveReload, useMDXComponent } from 'next-contentlayer/hooks'
+import { useLiveReload } from 'next-contentlayer/hooks'
 import type { FC } from 'react'
 import { allDocs, allPosts } from 'contentlayer/generated'
 import { Container } from '../../components/common/Container'
 import { defineStaticProps } from '../../utils/next'
 import { Heading } from '../../components/landing-page/Heading'
 import { Paragraph } from '../../components/landing-page/Paragraph'
-import { Callout } from '../../components/common/Callout'
-import { DocsCard as Card } from '../../components/docs/DocsCard'
-import Link from 'next/link'
-import Image from 'next/image'
 import { ChevronLink } from '../../components/common/ChevronLink'
-import { Label } from '../../components/common/Label'
-import { PageNavigation } from 'src/components/common/PageNavigation'
 import { buildTree } from 'src/utils/build-tree'
-import { H2, H3, H4 } from 'src/components/common/Headings'
 import { BlogDetails } from 'src/components/blog/BlogDetails'
 
 const content = {

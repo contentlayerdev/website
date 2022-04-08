@@ -38,6 +38,14 @@ export const Doc = defineDocumentType(() => ({
       type: 'date',
       required: true,
     },
+    collapsible: {
+      type: 'boolean',
+      required: false,
+    },
+    collapsed: {
+      type: 'boolean',
+      required: false,
+    },
     // seo: { type: 'nested', of: SEO },
   },
   computedFields: {

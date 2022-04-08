@@ -5,4 +5,6 @@ export type TreeNode = {
   excerpt: string | null
   urlPath: string
   children: TreeNode[]
+  collapsible: boolean | null
+  collapsed: boolean | null
 }
