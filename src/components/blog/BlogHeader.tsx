@@ -31,14 +31,16 @@ export const BlogHeader: FC<{ post: Post }> = ({ post }) => {
           top ? 'opacity-0' : 'opacity-100'
         }`}
       >
-        <div className="ml-64 flex h-full items-center space-x-2 px-8 text-sm xl:ml-72 2xl:ml-80">
-          <Link href="/blog">
-            <a className="inline whitespace-nowrap hover:text-slate-600 dark:hover:text-slate-300">Blog</a>
-          </Link>
-          <span className="inline-block w-1.5 text-slate-400 dark:text-slate-500">
-            <Icon name="chevron-right" />
-          </span>
-          <h1 className="text-slate-800 dark:text-slate-200 ">{post.title}</h1>
+        <div className="mx-auto h-full max-w-screen-2xl">
+          <div className="ml-64 flex h-full items-center space-x-2 px-8 text-sm xl:ml-72 2xl:ml-80">
+            <Link href="/blog">
+              <a className="inline whitespace-nowrap hover:text-slate-600 dark:hover:text-slate-300">Blog</a>
+            </Link>
+            <span className="inline-block w-1.5 text-slate-400 dark:text-slate-500">
+              <Icon name="chevron-right" />
+            </span>
+            <h1 className="text-slate-800 dark:text-slate-200 ">{post.title}</h1>
+          </div>
         </div>
       </div>
     </>
