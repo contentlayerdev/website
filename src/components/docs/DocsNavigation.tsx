@@ -1,4 +1,4 @@
-import { FC, Fragment, useState, Dispatch, SetStateAction } from 'react'
+import { FC, Fragment, useState, Dispatch, SetStateAction, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import classNames from 'classnames'
@@ -6,6 +6,7 @@ import { TreeNode } from 'types/TreeNode'
 import React from 'react'
 import { Label } from '../common/Label'
 import { Icon } from '../common/Icon'
+import node from 'postcss/lib/node'
 
 const NavLink: FC<{
   title: string
@@ -46,32 +47,42 @@ const NavLink: FC<{
   )
 }
 
+const Node: FC<{ node: TreeNode; level: number; activePath: string }> = ({ node, level, activePath }) => {
+  const [collapsed, setCollapsed] = useState<boolean>(node.collapsed ?? false)
+  const toggleCollapsed = () => setCollapsed(!collapsed)
+
+  useEffect(() => {
+    if (activePath == node.urlPath || node.children.map((_) => _.urlPath).includes(activePath)) {
+      setCollapsed(false)
+    }
+  }, [activePath])
+
+  return (
+    <>
+      <NavLink
+        title={node.nav_title || node.title}
+        label={node.label || undefined}
+        url={node.urlPath}
+        level={level}
+        activePath={activePath}
+        collapsible={node.collapsible ?? false}
+        toggleCollapsed={toggleCollapsed}
+      />
+      {node.children.length > 0 && !collapsed && (
+        <Tree tree={node.children} level={level + 1} activePath={activePath} />
+      )}
+    </>
+  )
+}
+
 const Tree: FC<{ tree: TreeNode[]; level: number; activePath: string }> = ({ tree, level, activePath }) => {
   return (
     <div
       className={classNames('ml-3 space-y-2 pl-3', level > 0 ? 'border-l border-gray-200 dark:border-gray-800' : '')}
     >
-      {tree.map((treeNode, index) => {
-        const [collapsed, setCollapsed] = useState<boolean>(treeNode.collapsed ?? false)
-        const toggleCollapsed = () => setCollapsed(!collapsed)
-
-        return (
-          <Fragment key={`${level}-${index}`}>
-            <NavLink
-              title={treeNode.nav_title || treeNode.title}
-              label={treeNode.label || undefined}
-              url={treeNode.urlPath}
-              level={level}
-              activePath={activePath}
-              collapsible={treeNode.collapsible ?? false}
-              toggleCollapsed={toggleCollapsed}
-            />
-            {treeNode.children.length > 0 && !collapsed && (
-              <Tree tree={treeNode.children} level={level + 1} activePath={activePath} />
-            )}
-          </Fragment>
-        )
-      })}
+      {tree.map((treeNode, index) => (
+        <Node key={index} node={treeNode} level={level} activePath={activePath} />
+      ))}
     </div>
   )
 }
