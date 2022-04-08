@@ -87,7 +87,7 @@ export const DocsHeader: FC<{ tree: TreeNode[]; breadcrumbs: any[]; title: strin
         </div>
       )}
       <div
-        className={`fixed right-0 left-96 top-16 z-10 -ml-[3px] hidden h-16 w-screen border-b border-gray-200 bg-white bg-opacity-90 backdrop-blur backdrop-filter transition-opacity duration-200 dark:border-gray-800 dark:bg-gray-950 lg:block ${
+        className={`fixed top-16 z-10 hidden h-16 w-full border-b border-gray-200 bg-white bg-opacity-90 backdrop-blur backdrop-filter transition-opacity duration-200 dark:border-gray-800 dark:bg-gray-950 lg:block ${
           top ? 'opacity-0' : 'opacity-100'
         }`}
       >
