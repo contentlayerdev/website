@@ -53,3 +53,19 @@ export const getStaticProps = ({ params: { slug } }) => {
 ```
 
 For a more holistic view of using MDX in a project, refer to [the example Next.js project](https://github.com/contentlayerdev/next-contentlayer-example).
+
+## `createContentlayerPlugin`
+
+The `createContentlayerPlugin` function allows you to add non-default configuration options to the next-contentlayer plugin. This is not a common use. See [`withContentlayer`](#withContentlayer) for typical use.
+
+```js
+import { createContentlayerPlugin } from 'next-contentlayer'
+
+const withContentlayer = createContentlayerPlugin({
+  // Additional Contentlayer config options
+})
+
+export default withContentlayer({
+  // Your Next.js config...
+})
+```
