@@ -1,3 +1,7 @@
-const { withContentlayer } = require("next-contentlayer");
+const { withContentlayer } = require('next-contentlayer')
 
-module.exports = withContentlayer()({});
+module.exports = withContentlayer({
+  images: {
+    domains: ['pbs.twimg.com', 'avatars.githubusercontent.com'],
+  },
+})
