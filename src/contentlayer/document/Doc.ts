@@ -29,6 +29,7 @@ export const Doc = defineDocumentType(() => ({
     },
     excerpt: {
       type: 'string',
+      required: true,
     },
     show_child_cards: {
       type: 'boolean',
