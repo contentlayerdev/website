@@ -11,7 +11,12 @@ const isExternalUrl = (link: string): boolean => {
 const content = {
   note: (
     <>
-      <p>MIT Licenced - Copyright © 2022 Stackbit Inc</p>
+      <p>
+        MIT Licenced - Copyright © 2022{' '}
+        <a href="https://www.stackbit.com/" className="text-violet-600 underline dark:text-violet-400">
+          Stackbit
+        </a>
+      </p>
       <p className="mt-2">
         Made with 💜 by{' '}
         <Link href="https://twitter.com/schickling">
