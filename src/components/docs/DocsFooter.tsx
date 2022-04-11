@@ -14,7 +14,7 @@ export const DocsFooter: FC<{ doc: Doc }> = ({ doc }) => {
       <div className="space-y-4 text-sm sm:flex sm:justify-between sm:space-y-0">
         <p className="m-0">
           Was this article helpful to you? <br />{' '}
-          <Link href="/">
+          <Link href="https://discord.gg/rytFErsARm">
             <a className="inline-flex items-center space-x-1">
               <span className="inline-block w-4">
                 <Icon name="discord" />
