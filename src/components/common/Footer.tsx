@@ -29,7 +29,9 @@ const content = {
       elements: [
         { label: 'Getting Started', url: '/docs/getting-started' },
         { label: 'Concepts', url: '/docs/concepts' },
-        { label: 'API', url: '/docs/api' },
+        { label: 'Sources', url: '/docs/sources' },
+        { label: 'Environments', url: '/docs/environments' },
+        { label: 'API Reference', url: '/docs/reference' },
       ],
     },
     {
