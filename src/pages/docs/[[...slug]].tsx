@@ -9,7 +9,7 @@ import { defineStaticProps, toParams } from '../../utils/next'
 import { DocsNavigation } from 'src/components/docs/DocsNavigation'
 import { Callout } from '../../components/common/Callout'
 import { DocsCard as Card } from '../../components/docs/DocsCard'
-import Link from 'next/link'
+import { Link } from 'src/components/common/Link'
 import Image from 'next/image'
 import { DocsHeader } from '../../components/docs/DocsHeader'
 import { ChevronLink } from '../../components/common/ChevronLink'
@@ -59,6 +59,7 @@ const mdxComponents = {
   h2: H2,
   h3: H3,
   h4: H4,
+  a: Link,
   OptionsTable,
   OptionTitle,
   OptionDescription,
