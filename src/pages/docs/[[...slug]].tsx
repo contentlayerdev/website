@@ -89,7 +89,7 @@ const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ doc, tree, b
             {doc.show_child_cards && (
               <>
                 <hr />
-                <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-2">
+                <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
                   {childrenTree.map((card, index) => (
                     <Card
                       key={index}
