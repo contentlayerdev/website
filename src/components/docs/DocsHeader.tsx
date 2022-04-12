@@ -12,7 +12,7 @@ export const DocsHeader: FC<{ tree: TreeNode[]; breadcrumbs: any[]; title: strin
 }) => {
   const { asPath } = useRouter()
   const [open, setOpen] = useState<boolean>(false)
-  const [top, setTop] = useState<boolean>(false)
+  const [top, setTop] = useState<boolean>(true)
 
   useEffect(() => {
     const handleScroll = () => setTop(window.scrollY <= 30)

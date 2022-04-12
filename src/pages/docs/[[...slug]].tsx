@@ -18,6 +18,7 @@ import { DocsFooter } from '../../components/docs/DocsFooter'
 import { PageNavigation } from 'src/components/common/PageNavigation'
 import { buildTree } from 'src/utils/build-tree'
 import { H2, H3, H4 } from 'src/components/common/Headings'
+import { OptionsTable, OptionTitle, OptionDescription } from 'src/components/docs/OptionsTable'
 
 export const getStaticPaths = async () => {
   const paths = allDocs.map((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join('/')).map(toParams)
@@ -48,7 +49,20 @@ export const getStaticProps = defineStaticProps(async (context) => {
   return { props: { doc, tree, breadcrumbs, childrenTree } }
 })
 
-const mdxComponents = { Callout, Card, Image, Link, ChevronLink, Label, h2: H2, h3: H3, h4: H4 }
+const mdxComponents = {
+  Callout,
+  Card,
+  Image,
+  Link,
+  ChevronLink,
+  Label,
+  h2: H2,
+  h3: H3,
+  h4: H4,
+  OptionsTable,
+  OptionTitle,
+  OptionDescription,
+}
 
 const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ doc, tree, breadcrumbs, childrenTree }) => {
   useLiveReload()
