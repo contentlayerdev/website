@@ -21,14 +21,16 @@ const NavLink: FC<{
   return (
     <div
       className={classNames(
-        'group flex h-8 items-center justify-between space-x-2 whitespace-nowrap rounded-md px-3 text-sm leading-none hover:bg-gray-50 dark:hover:bg-gray-900',
+        'group flex h-8 items-center justify-between space-x-2 whitespace-nowrap rounded-md px-3 text-sm leading-none',
         url == activePath
           ? `${
               level == 0 ? 'font-medium' : 'font-normal'
-            } bg-violet-50 text-violet-600 hover:bg-violet-100 hover:text-violet-700 dark:bg-violet-500/20 dark:text-violet-300 dark:hover:bg-violet-500/25 dark:hover:text-violet-400`
-          : level == 0
-          ? 'font-medium text-slate-600 hover:text-slate-700 dark:text-slate-300 dark:hover:text-slate-200'
-          : 'font-normal hover:text-slate-600 dark:hover:text-slate-300',
+            } bg-violet-50 text-violet-900 dark:bg-violet-500/20 dark:text-violet-50`
+          : `hover:bg-gray-50 dark:hover:bg-gray-900 ${
+              level == 0
+                ? 'font-medium text-slate-600 hover:text-slate-700 dark:text-slate-300 dark:hover:text-slate-200'
+                : 'font-normal hover:text-slate-600 dark:hover:text-slate-300'
+            }`,
       )}
     >
       <Link href={url}>
