@@ -13,4 +13,4 @@ Open [https://localhost:3000](https://localhost:3000) with your browser to see t
 
 ## Live preview
 
-[https://website-git-new-landing-page-schick.vercel.app](Current Vercel Deployment)
+[Current Vercel Deployment](https://website-git-new-landing-page-schick.vercel.app)
