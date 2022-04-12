@@ -96,7 +96,7 @@ const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ doc, tree, b
                       title={card.title}
                       label={card.label}
                       subtitle={card.excerpt}
-                      link={{ url: card.urlPath, label: 'See ' + card.nav_title }}
+                      link={{ url: card.urlPath, label: 'See ' + (card.nav_title ?? card.title) }}
                     />
                   ))}
                 </div>

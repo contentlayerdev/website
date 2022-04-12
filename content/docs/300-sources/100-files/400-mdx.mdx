@@ -1,0 +1,37 @@
+---
+title: Processing MDX Files
+nav_title: MDX
+last_edited: 2022-04-08
+excerpt: How Contentlayer processes MDX when using local files as the content source.
+---
+
+MDX brings JSX components to markdown, which can provide power and flexibility to the main body area of a content piece.
+
+## MDX Content
+
+Contentlayer supports MDX processing via [`mdx-bundler`](https://github.com/kentcdodds/mdx-bundler). By default, Contentlayer processes the main content area of `.md` and `.mdx` files as markdown. You can enable this behavior using the `contentType` option in your document type definition.
+
+```js
+defineDocumentType(() => ({
+  name: 'Post',
+  filePathPattern: `**/*.mdx`,
+  contentType: 'mdx',
+  fields: {
+    // ...
+  },
+}))
+```
+
+## MDX Plugins (remark/rehype)
+
+You can add [remark](https://github.com/remarkjs/remark) and [rehype](https://github.com/rehypejs/rehype) plugins inside the `mdx` property when calling `makeSource` in your Contentlayer configuration.
+
+```js
+import { makeSource } from 'contentlayer/source-files'
+import highlight from 'rehype-highlight'
+
+export default makeSource({
+  // ...
+  mdx: { rehypePlugins: [highlight] },
+})
+```

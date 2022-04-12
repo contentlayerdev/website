@@ -1,7 +1,8 @@
 ---
-title: Field Types (Local)
+title: Field Types Reference
 nav_title: Field Types
 last_edited: 2022-03-28
+excerpt: Technical reference for field types when using the local files content source.
 ---
 
 Field definitions specify the expected shape and behavior of your content. They tell Contentlayer how to parse each property in a content object into data that your application can use.
@@ -126,7 +127,7 @@ A list is an array of values that can be either strings or nested objects.
 **Options:**
 
 - `default` (`array`): A list of default values.
-- `of` (`NestedType`): A nested document type definition. [Learn more about nested types](./define-nested-types).
+- `of` (`NestedType`): A nested document type definition. [Learn more about nested types](./define-nested-type).
 
 **Example:**
 
@@ -279,7 +280,7 @@ A nested field is a directly-embedded object that must match the shape of one or
 **Options:**
 
 - `default` (`string`): A default value for the field if it is empty.
-- `of` (`NestedType` or `[NestedType]`): A nested document type definition. [Learn more about nested types](./define-nested-types).
+- `of` (`NestedType` or `[NestedType]`): A nested document type definition. [Learn more about nested types](./define-nested-type).
 
 **Example:**
 

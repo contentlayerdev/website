@@ -1,9 +1,10 @@
 ---
-title: Documentation
-last_edited: 2022-03-28
+title: Contentlayer Documentation
+last_edited: 2022-04-11
+excerpt: Contentlayer is a content preprocessor that validates and transforms your content into type-safe JSON you can easily import into your application.
 ---
 
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+Contentlayer is a content preprocessor that validates and transforms your content into type-safe JSON you can easily import into your application.
 
 <div className="mt-8 grid gap-6 md:grid-cols-2">
   <Card
@@ -22,18 +23,41 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
 
 ---
 
-## Guides
+## Sources
 
 <div className="grid gap-6 md:grid-cols-2 -mt-4">
   <div>
-    Our Guides provide you with a great understanding of how Contentlayer can be used in specific scenarios to make your life easier.
-    <ChevronLink label="See all guides" url="/docs/guides"/>
+    Contentlayer lets you choose the source for your content. Currently only local file source is officially supported.
+    <ChevronLink label="See all guides" url="/docs/sources" />
+  </div>
+  <div>
+    Sources that are supported, planned, or being considered:
+
+    - <ChevronLink label="Local Files" url="/docs/sources/files" />
+    - <ChevronLink label="Contentful" url="/docs/sources/contentful" />
+    - <ChevronLink label="Sanity" url="/docs/sources/sanity" />
+    - <ChevronLink label="Notion" url="/docs/sources/notion" />
+
+  </div>
+</div>
+
+---
+
+## Environments
+
+<div className="grid gap-6 md:grid-cols-2 -mt-4">
+  <div>
+    Contentlayer supports a tight integration with Next.js. Other environment support is coming soon.
+    <ChevronLink label="See all guides" url="/docs/environments" />
 
   </div>
   <div>
-    These guides are a great starting point for you to get the best out of Contentlayer.
-    - <ChevronLink label="Content modeling" url="/docs/guides/content-modeling"/>
-    - <ChevronLink label="Mapping Documents to Types" url="/docs/guides/mapping-document-types"/>
+    Frameworks that are supported, planned, or being considered:
+
+    - <ChevronLink label="Local Files" url="/docs/environments/nextjs" />
+    - <ChevronLink label="Contentful" url="/docs/environments/remix" />
+    - <ChevronLink label="Sanity" url="/docs/environments/svelte" />
+    - <ChevronLink label="Notion" url="/docs/environments/astro" />
 
   </div>
 </div>
@@ -45,13 +69,12 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
 <div className="grid gap-6 md:grid-cols-2 -mt-4">
   <div>
     Technical API reference for Contentlayer, the CLI, and associated plugins.
-    <ChevronLink label="See reference" url="/docs/guides"/>
+    <ChevronLink label="See reference" url="/docs/reference" />
 
   </div>
   <div>
-    Read the following Articles to get familiar with the generated Documents and Types.
-    - <ChevronLink label="Content modeling" url="/docs/guides/content-modeling"/>
-    - <ChevronLink label="Mapping Documents to Types" url="/docs/guides/mapping-document-types"/>
-
+    - <ChevronLink label="Contentlayer CLI" url="/docs/reference/cli" />
+    - <ChevronLink label="contentlayer/source-files" url="/docs/reference/source-files" />
+    - <ChevronLink label="next-contentlayer" url="/docs/reference/next-contentlayer" />
   </div>
 </div>

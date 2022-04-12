@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev -p 3001 & local-ssl-proxy --source 3000 --target 3001",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "check-links": "blc \"http://localhost:3001\" -roe"
   },
   "dependencies": {
     "@radix-ui/react-scroll-area": "^0.1.4",
@@ -32,7 +33,8 @@
     "@types/react": "17.0.39",
     "@types/react-helmet": "^6.1.5",
     "autoprefixer": "^10.4.2",
-    "contentlayer": "0.2.1",
+    "broken-link-checker": "^0.7.8",
+    "contentlayer": "^0.2.1",
     "eslint": "8.10.0",
     "eslint-config-next": "12.1.0",
     "eslint-plugin-import": "^2.25.4",
