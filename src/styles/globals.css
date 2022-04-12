@@ -93,4 +93,14 @@
     position: absolute;
     z-index: 100;
   }
+
+  .options-table .option-title h2,
+  .options-table .option-title h3,
+  .options-table .option-title h4 {
+    @apply text-slate-900 dark:text-white;
+  }
+
+  .options-table .option-title p {
+    @apply text-sm text-slate-500 dark:text-slate-400;
+  }
 }
