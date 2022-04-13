@@ -24,32 +24,32 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@contentlayer/cli@npm:0.2.1":
-  version: 0.2.1
-  resolution: "@contentlayer/cli@npm:0.2.1"
+"@contentlayer/cli@npm:0.2.2":
+  version: 0.2.2
+  resolution: "@contentlayer/cli@npm:0.2.2"
   dependencies:
-    "@contentlayer/core": 0.2.1
-    "@contentlayer/utils": 0.2.1
+    "@contentlayer/core": 0.2.2
+    "@contentlayer/utils": 0.2.2
     clipanion: ^3.2.0-rc.10
     typanion: ^3.7.1
-  checksum: 7970454f0eb0968a85e35ece86506366074af2a81c72a88d2b51a6441e6f47d8bd560b9838296d013025d0be0af96f6b67d5a5b9bba30014807c16324b173a3a
+  checksum: b516218df543439cc2a865e973c893405c85315c1c30283910d86ccda051535d2ba2420f341802d7b5c4a09fa33aadd17e9b490aac848f0f782cdf386abb8454
   languageName: node
   linkType: hard
 
-"@contentlayer/client@npm:0.2.1":
-  version: 0.2.1
-  resolution: "@contentlayer/client@npm:0.2.1"
+"@contentlayer/client@npm:0.2.2":
+  version: 0.2.2
+  resolution: "@contentlayer/client@npm:0.2.2"
   dependencies:
-    "@contentlayer/core": 0.2.1
-  checksum: 244ffd1f2b215438b56f80aca3be9175e483cf6888c7e34ea2f8a123b9ae9e5984ee9979f5fb0fc59ad88a6f0f4e6e841e28f7cc2b6552219beb662b1fb12f5f
+    "@contentlayer/core": 0.2.2
+  checksum: 15c11271f427ae56886914375ccfeddd1fc1fa396a87e694bcab146d551aff7516923e1be474a6fbe49003e4e90eb17c5e6949dd7b65937b932b1efa93e4102b
   languageName: node
   linkType: hard
 
-"@contentlayer/core@npm:0.2.1":
-  version: 0.2.1
-  resolution: "@contentlayer/core@npm:0.2.1"
+"@contentlayer/core@npm:0.2.2":
+  version: 0.2.2
+  resolution: "@contentlayer/core@npm:0.2.2"
   dependencies:
-    "@contentlayer/utils": 0.2.1
+    "@contentlayer/utils": 0.2.2
     camel-case: ^4.1.2
     comment-json: ^4.2.2
     date-fns: 2.x
@@ -74,16 +74,16 @@ __metadata:
       optional: true
     markdown-wasm:
       optional: true
-  checksum: 7932a5bfeaeb6aefdd06a20c735ad6d3eb2adf3c71c0c11bd914f373d82ba2260760d9d7554627f76486326d8356da68c6bfef3b4e01e3a30f4946d4e33ff3e3
+  checksum: 6c2755ff88cb90f3868946168bf3e26b4ef33797e186b243ebd2ed192bc95436763ee37a36ac9ecbbe190395690823c5a2ed7204618b97c4b1c639d1e3bf2508
   languageName: node
   linkType: hard
 
-"@contentlayer/source-files@npm:0.2.1":
-  version: 0.2.1
-  resolution: "@contentlayer/source-files@npm:0.2.1"
+"@contentlayer/source-files@npm:0.2.2":
+  version: 0.2.2
+  resolution: "@contentlayer/source-files@npm:0.2.2"
   dependencies:
-    "@contentlayer/core": 0.2.1
-    "@contentlayer/utils": 0.2.1
+    "@contentlayer/core": 0.2.2
+    "@contentlayer/utils": 0.2.2
     chokidar: ^3.5.3
     date-fns-tz: ^1.3.1
     glob: ^7.2.0
@@ -93,13 +93,13 @@ __metadata:
     ts-pattern: ^4.0.1
     unified: ^10.1.2
     yaml: ^1.10.2
-  checksum: a42c0c13d6844cdb59e8cb76032329b99e7d51bf13e2ff9ef13d4b802ad422aa59f402b1aaf00e48e550a2a69b79aabb9a64ffbda6c23dc6aa18557b0a7b7920
+  checksum: ab067bb98dfc66afc460e9d3a89a6617598475059fc04b3537ee8133a6ae3d7377eca484e76412f3834d682cc0e7baf87f0f377d9ad95d17092163d0d68d1ad4
   languageName: node
   linkType: hard
 
-"@contentlayer/utils@npm:0.2.1":
-  version: 0.2.1
-  resolution: "@contentlayer/utils@npm:0.2.1"
+"@contentlayer/utils@npm:0.2.2":
+  version: 0.2.2
+  resolution: "@contentlayer/utils@npm:0.2.2"
   dependencies:
     "@effect-ts/core": ^0.58.0
     "@effect-ts/otel": ^0.13.0
@@ -125,7 +125,7 @@ __metadata:
       optional: true
     "@effect-ts/otel-node":
       optional: true
-  checksum: 436865e5c693f7a4adbfe3c4e10ee5c8befc2c4f9ea4688f81a5170abe7cf035d0ce1b38858fb4dae59f627f3c50ef888966f1c743e4f969ea9d987790f89242
+  checksum: b042594797cb146196e98a6fed4d5d98d1aacaa803dbda09887a3211859730e0977a09a8a85a72f14e820d9edbeb89bb1dae0d8cfcc59046d18fdd8ed98347ca
   languageName: node
   linkType: hard
 
@@ -1417,7 +1417,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:18.0.3":
+"@types/react@npm:^18.0.3":
   version: 18.0.3
   resolution: "@types/react@npm:18.0.3"
   dependencies:
@@ -2576,13 +2576,13 @@ __metadata:
     "@tailwindcss/typography": ^0.5.2
     "@types/eslint": ^8.4.1
     "@types/postcss-import": ^14.0.0
-    "@types/react": 18.0.3
+    "@types/react": ^18.0.3
     "@types/react-helmet": ^6.1.5
     autoprefixer: ^10.4.4
     broken-link-checker: ^0.7.8
     cheerio: ^1.0.0-rc.10
     classnames: ^2.3.1
-    contentlayer: ^0.2.1
+    contentlayer: ^0.2.2
     date-fns: ^2.28.0
     eslint: 8.13.0
     eslint-config-next: 12.1.5
@@ -2593,9 +2593,9 @@ __metadata:
     mdast-util-mdx: ^2.0.0
     mdast-util-to-markdown: ^1.3.0
     next: 12.1.5
-    next-contentlayer: 0.2.1
+    next-contentlayer: ^0.2.2
     postcss: ^8.4.12
-    postcss-import: ^14.0.2
+    postcss-import: ^14.1.0
     prettier: ^2.6.2
     prettier-plugin-tailwindcss: ^0.1.8
     react: 18.0.0
@@ -2609,18 +2609,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"contentlayer@npm:^0.2.1":
-  version: 0.2.1
-  resolution: "contentlayer@npm:0.2.1"
+"contentlayer@npm:^0.2.2":
+  version: 0.2.2
+  resolution: "contentlayer@npm:0.2.2"
   dependencies:
-    "@contentlayer/cli": 0.2.1
-    "@contentlayer/client": 0.2.1
-    "@contentlayer/core": 0.2.1
-    "@contentlayer/source-files": 0.2.1
-    "@contentlayer/utils": 0.2.1
+    "@contentlayer/cli": 0.2.2
+    "@contentlayer/client": 0.2.2
+    "@contentlayer/core": 0.2.2
+    "@contentlayer/source-files": 0.2.2
+    "@contentlayer/utils": 0.2.2
   bin:
     contentlayer: ./bin/cli.cjs
-  checksum: 83afb404868e3a74d85c2ba3029c32e9aabacd4c8e4ee6069c1b3dac4b719e87d598657859aab68ac10df3bea257f929a2f6dc2727121c8865fb6f080bc8457e
+  checksum: 162c1d6686290b660c8ae96e17ab481fb62359cfcb47e84ef589a2beba184dcdbd8915d19972530d423cc4e3162bda868545ed95da73e0e075f19bf5b6777419
   languageName: node
   linkType: hard
 
@@ -6292,18 +6292,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next-contentlayer@npm:0.2.1":
-  version: 0.2.1
-  resolution: "next-contentlayer@npm:0.2.1"
+"next-contentlayer@npm:^0.2.2":
+  version: 0.2.2
+  resolution: "next-contentlayer@npm:0.2.2"
   dependencies:
-    "@contentlayer/core": 0.2.1
-    "@contentlayer/utils": 0.2.1
+    "@contentlayer/core": 0.2.2
+    "@contentlayer/utils": 0.2.2
     rxjs: ^7.1.0
   peerDependencies:
     next: ^12
     react: "*"
     react-dom: "*"
-  checksum: 4c01874b69fd9b84541ff12a96239ce806c08f9c6438c558bc4d2027d498ba048c7e9f09ac7accd15678d41c3744fd39de5ca3f61cd3425cba752a3693c723da
+  checksum: 3827675452b6067e6a9c328638dfc400d4657ef80f3950be65cbf9b5e89bc13b7da9abb0a007b75074c45361557f55ee1638b5808ca8ff302fd71ee974fb64be
   languageName: node
   linkType: hard
 
@@ -7067,7 +7067,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-import@npm:^14.0.2":
+"postcss-import@npm:^14.1.0":
   version: 14.1.0
   resolution: "postcss-import@npm:14.1.0"
   dependencies:
