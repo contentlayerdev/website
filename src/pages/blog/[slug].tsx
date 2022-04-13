@@ -9,7 +9,7 @@ import { defineStaticProps } from '../../utils/next'
 import { Callout } from '../../components/common/Callout'
 import { DocsCard as Card } from '../../components/docs/DocsCard'
 import { Link } from 'src/components/common/Link'
-import Image from 'next/image'
+import NextImage from 'next/image'
 import { ChevronLink } from '../../components/common/ChevronLink'
 import { Label } from '../../components/common/Label'
 import { PageNavigation } from 'src/components/common/PageNavigation'
@@ -33,7 +33,17 @@ export const getStaticProps = defineStaticProps(async (context) => {
   return { props: { post, tree } }
 })
 
-const mdxComponents = { Callout, Card, Image, Link, ChevronLink, Label, h2: H2, h3: H3, h4: H4, a: Link }
+const Image: FC<{ src: string }> = ({ src }) => {
+  return (
+    <div className="overflow-hidden rounded-lg">
+      <div className="-mb-2">
+        <NextImage src={src} width="1600" height="900" />
+      </div>
+    </div>
+  )
+}
+
+const mdxComponents = { Callout, Card, Image, Link, ChevronLink, Label, h2: H2, h3: H3, h4: H4, a: Link, img: Image }
 
 const Post: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ post, tree }) => {
   useLiveReload()
