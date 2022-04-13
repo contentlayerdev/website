@@ -1,7 +1,7 @@
 import type { InferGetStaticPropsType } from 'next'
 import React from 'react'
 import { allDocs } from 'contentlayer/generated'
-import { buildTree } from 'src/utils/build-tree'
+import { buildDocsTree } from 'src/utils/build-docs-tree'
 import { defineStaticProps } from '../utils/next'
 import { ColorScheme, snippetToHtml } from '../utils/syntax-highlighting'
 import { getUsedByCount } from '../utils/used-by-count'
@@ -26,7 +26,7 @@ export const getStaticProps = defineStaticProps(async (_context) => {
     }),
     usedByCount: getUsedByCount(),
   })
-  const tree = buildTree(allDocs)
+  const tree = buildDocsTree(allDocs)
   return { props: { preprocessedCodeSnippets, usedByCount, tree } }
 })
 

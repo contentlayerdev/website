@@ -13,7 +13,7 @@ import Image from 'next/image'
 import { ChevronLink } from '../../components/common/ChevronLink'
 import { Label } from '../../components/common/Label'
 import { PageNavigation } from 'src/components/common/PageNavigation'
-import { buildTree } from 'src/utils/build-tree'
+import { buildDocsTree } from 'src/utils/build-docs-tree'
 import { H2, H3, H4 } from 'src/components/common/Headings'
 import { BlogDetails } from 'src/components/blog/BlogDetails'
 import { BlogHeader } from 'src/components/blog/BlogHeader'
@@ -28,7 +28,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = defineStaticProps(async (context) => {
   const params = context.params as any
   const post = allPosts.find((_) => _.slug === params.slug)!
-  const tree = buildTree(allDocs)
+  const tree = buildDocsTree(allDocs)
 
   return { props: { post, tree } }
 })

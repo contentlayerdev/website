@@ -2,7 +2,7 @@ import { children } from 'cheerio/lib/api/traversing'
 import { Doc } from 'contentlayer/generated'
 import { TreeNode } from 'types/TreeNode'
 
-export const buildTree = (docs: Doc[], parentPathNames: string[] = []): TreeNode[] => {
+export const buildDocsTree = (docs: Doc[], parentPathNames: string[] = []): TreeNode[] => {
   const level = parentPathNames.length
 
   return docs
@@ -23,7 +23,7 @@ export const buildTree = (docs: Doc[], parentPathNames: string[] = []): TreeNode
       urlPath: '/docs/' + doc.pathSegments.map((_: PathSegment) => _.pathName).join('/'),
       collapsible: doc.collapsible ?? null,
       collapsed: doc.collapsed ?? null,
-      children: buildTree(
+      children: buildDocsTree(
         docs,
         doc.pathSegments.map((_: PathSegment) => _.pathName),
       ),

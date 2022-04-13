@@ -10,7 +10,7 @@ const isExternalUrl = (link: string): boolean => !link.startsWith('/')
 const navLinks: Array<{ label: string; url: string }> = [
   { label: 'Documentation', url: '/docs' },
   { label: 'Blog', url: '/blog' },
-  { label: 'Examples', url: '/docs/other/examples' },
+  { label: 'Examples', url: '/examples' },
 ]
 
 const iconLinks: Array<{ label: string; icon: IconName; url: string }> = [

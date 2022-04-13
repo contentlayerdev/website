@@ -2,8 +2,10 @@ import type { InferGetStaticPropsType } from 'next'
 // TODO remove eslint-disable when fixed https://github.com/import-js/eslint-plugin-import/issues/1810
 // eslint-disable-next-line import/no-unresolved
 import { useLiveReload, useMDXComponent } from 'next-contentlayer/hooks'
-import type { FC } from 'react'
-import { allDocs } from 'contentlayer/generated'
+import { FC, useEffect, useRef, useState } from 'react'
+import { type VM } from '@stackblitz/sdk/typings/VM'
+import stackblitz from '@stackblitz/sdk'
+import { allExamples } from 'contentlayer/generated'
 import { Container } from '../../components/common/Container'
 import { defineStaticProps, toParams } from '../../utils/next'
 import { DocsNavigation } from 'src/components/docs/DocsNavigation'
@@ -16,37 +18,33 @@ import { ChevronLink } from '../../components/common/ChevronLink'
 import { Label } from '../../components/common/Label'
 import { DocsFooter } from '../../components/docs/DocsFooter'
 import { PageNavigation } from 'src/components/common/PageNavigation'
-import { buildDocsTree } from 'src/utils/build-docs-tree'
+import { buildExamplesTree } from 'src/utils/build-examples-tree'
 import { H2, H3, H4 } from 'src/components/common/Headings'
 import { OptionsTable, OptionTitle, OptionDescription } from 'src/components/docs/OptionsTable'
+import { ExamplesFooter } from 'src/components/examples/ExamplesFooter'
 
 export const getStaticPaths = async () => {
-  const paths = allDocs.map((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join('/')).map(toParams)
+  const paths = allExamples.map((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join('/')).map(toParams)
   return { paths, fallback: 'blocking' }
 }
 
 export const getStaticProps = defineStaticProps(async (context) => {
   const params = context.params as any
-  const pagePath = params.slug?.join('/') ?? ''
-  const doc = allDocs.find((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join('/') === pagePath)!
+  const pagePath = params.slug ? ['examples', params.slug].join('/') : 'examples'
+  const example = allExamples.find((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join('/') === pagePath)!
   let slugs = params.slug ? ['', ...params.slug] : []
-  let path = ''
+  let path = 'examples'
   let breadcrumbs: any = []
   for (const slug of slugs) {
-    path += path == '' ? slug : '/' + slug
-    const navTitle = allDocs.find(
+    path += slug ? '/' + slug : ''
+    const navTitle = allExamples.find(
       (_) => _.pathSegments.map((_: PathSegment) => _.pathName).join('/') === path,
     )?.nav_title
-    const title = allDocs.find((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join('/') === path)?.title
-    breadcrumbs.push({ path: '/docs/' + path, slug, title: navTitle || title })
+    const title = allExamples.find((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join('/') === path)?.title
+    breadcrumbs.push({ path: '/' + path, slug, title: navTitle || title })
   }
-  const tree = buildDocsTree(allDocs)
-  const childrenTree = buildDocsTree(
-    allDocs,
-    doc.pathSegments.map((_: PathSegment) => _.pathName),
-  )
-
-  return { props: { doc, tree, breadcrumbs, childrenTree } }
+  const tree = buildExamplesTree(allExamples)
+  return { props: { example, tree, breadcrumbs } }
 })
 
 const mdxComponents = {
@@ -65,12 +63,24 @@ const mdxComponents = {
   OptionDescription,
 }
 
-const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ doc, tree, breadcrumbs, childrenTree }) => {
+const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ example, tree, breadcrumbs }) => {
   useLiveReload()
-  const MDXContent = useMDXComponent(doc.body.code || '')
+  const MDXContent = useMDXComponent(example.body.code || '')
+  const ref = useRef<HTMLDivElement>(null)
+  const [vm, setVm] = useState<VM | undefined>(undefined)
+  useEffect(() => {
+    if (example.github_repo && ref.current) {
+      stackblitz
+        .embedGithubProject(ref.current, 'contentlayerdev/next-contentlayer-example/tree/stackblitz-demo', {
+          height: 700,
+          openFile: example.open_file,
+        })
+        .then((_) => setVm(_))
+    }
+  }, [ref, example.open_file])
 
   return (
-    <Container title={doc.title + ' – Contentlayer'} description={doc.excerpt} tree={tree}>
+    <Container title={example.title + ' – Contentlayer'} description={example.excerpt} tree={tree}>
       <div className="relative mx-auto w-full max-w-screen-2xl lg:flex lg:items-start">
         <div
           style={{ height: 'calc(100vh - 64px)' }}
@@ -82,37 +92,17 @@ const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ doc, tree, b
           <div className="absolute inset-x-0 top-0 h-8 bg-gradient-to-t from-white/0 to-white/100 dark:from-gray-950/0 dark:to-gray-950/100" />
           <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-b from-white/0 to-white/100 dark:from-gray-950/0 dark:to-gray-950/100" />
         </div>
-
         <div className="relative w-full grow">
-          <DocsHeader tree={tree} breadcrumbs={breadcrumbs} title={doc.title} />
+          <DocsHeader tree={tree} breadcrumbs={breadcrumbs} title={example.title} />
           <div className="docs prose prose-slate prose-violet mx-auto mb-4 w-full max-w-3xl shrink p-4 pb-8 prose-headings:font-semibold prose-p:text-slate-500 prose-a:font-normal prose-code:font-normal prose-code:before:content-none prose-code:after:content-none prose-ul:text-slate-500 prose-hr:border-gray-200 dark:prose-invert dark:prose-p:text-slate-400 dark:prose-a:text-violet-400 dark:prose-ul:text-slate-400 dark:prose-hr:border-gray-800 md:mb-8 md:px-8 lg:mx-0 lg:max-w-full lg:px-16">
             {MDXContent && <MDXContent components={mdxComponents} />}
-            {doc.show_child_cards && (
-              <>
-                <hr />
-                <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
-                  {childrenTree.map((card, index) => (
-                    <Card
-                      key={index}
-                      title={card.title}
-                      label={card.label}
-                      subtitle={card.excerpt}
-                      link={{ url: card.urlPath, label: 'See ' + (card.nav_title ?? card.title) }}
-                    />
-                  ))}
-                </div>
-              </>
+            {example.github_repo && (
+              <div className="mt-12 overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-900 md:mt-16">
+                <div className="h-[700px] w-full " ref={ref} />
+              </div>
             )}
-            <DocsFooter doc={doc} />
+            <ExamplesFooter example={example} />
           </div>
-        </div>
-        <div
-          style={{ maxHeight: 'calc(100vh - 128px)' }}
-          className="sticky top-32 hidden w-80 shrink-0 overflow-y-scroll p-8 pr-16 1.5xl:block"
-        >
-          <PageNavigation headings={doc.headings} />
-          <div className="absolute inset-x-0 top-0 h-8 bg-gradient-to-t from-white/0 to-white/100 dark:from-gray-950/0 dark:to-gray-950/100" />
-          <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-b from-white/0 to-white/100 dark:from-gray-950/0 dark:to-gray-950/100" />
         </div>
       </div>
     </Container>

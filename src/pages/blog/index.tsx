@@ -9,7 +9,7 @@ import { defineStaticProps } from '../../utils/next'
 import { Heading } from '../../components/landing-page/Heading'
 import { Paragraph } from '../../components/landing-page/Paragraph'
 import { ChevronLink } from '../../components/common/ChevronLink'
-import { buildTree } from 'src/utils/build-tree'
+import { buildDocsTree } from 'src/utils/build-docs-tree'
 import { BlogDetails } from 'src/components/blog/BlogDetails'
 
 const content = {
@@ -20,7 +20,7 @@ const content = {
 
 export const getStaticProps = defineStaticProps(async (context) => {
   const posts = allPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-  const tree = buildTree(allDocs)
+  const tree = buildDocsTree(allDocs)
 
   return { props: { posts, tree } }
 })

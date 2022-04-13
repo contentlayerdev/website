@@ -29,13 +29,13 @@ export const DocsHeader: FC<{ tree: TreeNode[]; breadcrumbs: any[]; title: strin
 
   return (
     <>
-      <header className="relative flex w-full space-y-2">
-        <div className="mx-auto w-full max-w-3xl px-4 py-8 md:px-8 lg:max-w-full lg:px-16">
-          <ul className="flex items-center space-x-2 text-sm">
+      <header className="relative w-full">
+        <div className="mx-auto w-full max-w-3xl space-y-2 px-4 py-8 md:px-8 lg:max-w-full lg:px-16">
+          <ul className="-mx-1 flex flex-wrap items-center text-sm">
             {breadcrumbs.map(({ path, title }, index) => (
               <Fragment key={index}>
                 {index < breadcrumbs.length - 1 && (
-                  <li className="flex items-center space-x-2">
+                  <li className="mx-1 flex items-center space-x-2">
                     <Link href={path}>
                       <a className="inline whitespace-nowrap hover:text-slate-600 dark:hover:text-slate-300">{title}</a>
                     </Link>
