@@ -25,7 +25,7 @@ const content = {
   secondaryAction: { label: 'Why Contentlayer?', url: '/docs/concepts/why-contentlayer' },
   video: {
     thumbnail: { url: '/images/intro-thumbnail.jpg', alt: 'Intro to Contentlayer Video Thumbnail' },
-    youtubeId: 'jzwMjOl8Iyo',
+    youtubeId: 'oC_96_U864o',
   },
 }
 
