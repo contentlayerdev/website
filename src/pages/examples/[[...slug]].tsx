@@ -16,15 +16,20 @@ import Image from 'next/image'
 import { DocsHeader } from '../../components/docs/DocsHeader'
 import { ChevronLink } from '../../components/common/ChevronLink'
 import { Label } from '../../components/common/Label'
-import { DocsFooter } from '../../components/docs/DocsFooter'
-import { PageNavigation } from 'src/components/common/PageNavigation'
 import { buildExamplesTree } from 'src/utils/build-examples-tree'
 import { H2, H3, H4 } from 'src/components/common/Headings'
 import { OptionsTable, OptionTitle, OptionDescription } from 'src/components/docs/OptionsTable'
 import { ExamplesFooter } from 'src/components/examples/ExamplesFooter'
 
 export const getStaticPaths = async () => {
-  const paths = allExamples.map((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join('/')).map(toParams)
+  const paths = allExamples
+    .map((_) =>
+      _.pathSegments
+        .map((_: PathSegment) => _.pathName)
+        .slice(1)
+        .join('/'),
+    )
+    .map(toParams)
   return { paths, fallback: 'blocking' }
 }
 
