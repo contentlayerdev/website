@@ -39,16 +39,19 @@ export const SearchProvider: FC<{ tree: TreeNode[]; children: ReactNode }> = ({ 
   }, [tree])
 
   return (
+    // @ts-expect-error https://github.com/timc1/kbar/issues/199
     <KBarProvider actions={actions}>
       <KBarPortal>
-        <KBarPositioner className="bg-gray-300/50 p-4 backdrop-blur backdrop-filter dark:bg-black/50">
+        {/* @ts-expect-error https://github.com/timc1/kbar/issues/199 */}
+        <KBarPositioner className="p-4 backdrop-filter backdrop-blur bg-gray-300/50 dark:bg-black/50">
+          {/* @ts-expect-error https://github.com/timc1/kbar/issues/199 */}
           <KBarAnimator className="w-full max-w-xl">
             <Card>
-              <div className="flex items-center space-x-4 p-4 ">
+              <div className="flex items-center p-4 space-x-4">
                 <span className="block w-5">
                   <Icon name="search" />
                 </span>
-                <KBarSearch className="h-8 w-full bg-transparent text-slate-600 placeholder-slate-400 focus:outline-none dark:text-slate-200 dark:placeholder-slate-500" />
+                <KBarSearch className="w-full h-8 bg-transparent text-slate-600 placeholder-slate-400 focus:outline-none dark:text-slate-200 dark:placeholder-slate-500" />
                 <Label text="ESC" />
               </div>
               <RenderResults />
@@ -71,7 +74,7 @@ const RenderResults = () => {
         onRender={({ item, active }) => (
           <div>
             {typeof item === 'string' ? (
-              <div className="block border-t border-gray-100 px-4 pt-4 pb-2 text-xs font-semibold uppercase text-slate-400 dark:border-gray-800 dark:text-slate-500">
+              <div className="block px-4 pt-4 pb-2 text-xs font-semibold uppercase border-t border-gray-100 text-slate-400 dark:border-gray-800 dark:text-slate-500">
                 {item}
               </div>
             ) : (
@@ -89,7 +92,7 @@ const RenderResults = () => {
     )
   } else {
     return (
-      <div className="block border-t border-gray-100 px-4 py-8 text-center text-slate-400 dark:border-gray-800 dark:text-slate-600">
+      <div className="block px-4 py-8 text-center border-t border-gray-100 text-slate-400 dark:border-gray-800 dark:text-slate-600">
         No results for your search...
       </div>
     )

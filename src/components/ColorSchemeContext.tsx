@@ -5,7 +5,7 @@ const ColorSchemeContext = React.createContext<ColorScheme>('light')
 
 export const useColorScheme = () => React.useContext(ColorSchemeContext)
 
-export const ColorSchemeProvider: React.FC = ({ children }) => {
+export const ColorSchemeProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
   const [colorScheme, setColorScheme] = React.useState<ColorScheme>('light')
 
   useEffect(() => {
