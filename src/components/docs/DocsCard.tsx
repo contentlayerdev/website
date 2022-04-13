@@ -18,7 +18,7 @@ export const DocsCard: React.FC<
         ${link ? 'rounded-t-2xl border-b-0' : 'rounded-2xl'} ${icon ? 'mt-6' : 'mt-0'}`}
       >
         {icon && (
-          <div className="block -mt-10 mb-4 w-12 bg-white rounded-full dark:bg-gray-950">
+          <div className="-mt-10 mb-4 block w-12 rounded-full bg-white dark:bg-gray-950">
             <div className="h-12 w-12 rounded-full border border-violet-200 bg-violet-100 p-2.5 text-violet-600 dark:border-violet-900 dark:bg-violet-900/50 dark:text-violet-500">
               <Icon name={icon} />
             </div>
@@ -34,7 +34,7 @@ export const DocsCard: React.FC<
         {children && <div className="text-sm">{children}</div>}
       </div>
       {link && (
-        <div className="p-6 py-4 bg-violet-50 rounded-b-2xl border border-violet-100 dark:border-violet-900/50 dark:bg-violet-900/20">
+        <div className="rounded-b-2xl border border-violet-100 bg-violet-50 p-6 py-4 dark:border-violet-900/50 dark:bg-violet-900/20">
           <ChevronLink {...link} />
         </div>
       )}

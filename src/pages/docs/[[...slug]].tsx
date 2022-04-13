@@ -8,7 +8,8 @@ import { Container } from '../../components/common/Container'
 import { defineStaticProps, toParams } from '../../utils/next'
 import { DocsNavigation } from 'src/components/docs/DocsNavigation'
 import { Callout } from '../../components/common/Callout'
-import { DocsCard as Card } from '../../components/docs/DocsCard'
+import { DocsCard as Card } from 'src/components/docs/DocsCard'
+import { Card as ChildCard } from '../../components/common/Card'
 import { Link } from 'src/components/common/Link'
 import Image from 'next/image'
 import { DocsHeader } from '../../components/docs/DocsHeader'
@@ -19,6 +20,7 @@ import { PageNavigation } from 'src/components/common/PageNavigation'
 import { buildDocsTree } from 'src/utils/build-docs-tree'
 import { H2, H3, H4 } from 'src/components/common/Headings'
 import { OptionsTable, OptionTitle, OptionDescription } from 'src/components/docs/OptionsTable'
+import { useRouter } from 'next/router'
 
 export const getStaticPaths = async () => {
   const paths = allDocs.map((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join('/')).map(toParams)
@@ -66,6 +68,7 @@ const mdxComponents = {
 }
 
 const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ doc, tree, breadcrumbs, childrenTree }) => {
+  const router = useRouter()
   useLiveReload()
   const MDXContent = useMDXComponent(doc.body.code || '')
 
@@ -92,13 +95,15 @@ const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ doc, tree, b
                 <hr />
                 <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
                   {childrenTree.map((card, index) => (
-                    <Card
-                      key={index}
-                      title={card.title}
-                      label={card.label}
-                      subtitle={card.excerpt}
-                      link={{ url: card.urlPath, label: 'See ' + (card.nav_title ?? card.title) }}
-                    />
+                    <div key={index} onClick={() => router.push(card.urlPath)} className="cursor-pointer">
+                      <ChildCard className="h-full p-6 py-4 hover:border-violet-100 hover:bg-violet-50 dark:hover:border-violet-900/50 dark:hover:bg-violet-900/20">
+                        <h3 className="mt-0 no-underline">{card.title}</h3>
+                        {card.label && <Label text={card.label} />}
+                        <div className="text-sm text-slate-500 dark:text-slate-400">
+                          <p>{card.excerpt}</p>
+                        </div>
+                      </ChildCard>
+                    </div>
                   ))}
                 </div>
               </>
