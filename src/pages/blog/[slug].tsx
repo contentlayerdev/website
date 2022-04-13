@@ -14,9 +14,10 @@ import { ChevronLink } from '../../components/common/ChevronLink'
 import { Label } from '../../components/common/Label'
 import { PageNavigation } from 'src/components/common/PageNavigation'
 import { buildDocsTree } from 'src/utils/build-docs-tree'
-import { H2, H3, H4 } from 'src/components/common/Headings'
 import { BlogDetails } from 'src/components/blog/BlogDetails'
 import { BlogHeader } from 'src/components/blog/BlogHeader'
+import { sluggifyTitle, getNodeText } from 'src/utils/sluggify'
+import { Playground } from 'src/components/blog/Playground'
 
 export const getStaticPaths = async () => {
   const paths = allPosts.map(({ slug }) => {
@@ -43,7 +44,35 @@ const Image: FC<{ src: string }> = ({ src }) => {
   )
 }
 
-const mdxComponents = { Callout, Card, Image, Link, ChevronLink, Label, h2: H2, h3: H3, h4: H4, a: Link, img: Image }
+export const H2: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
+  const slug = sluggifyTitle(getNodeText(children))
+  return <h2 id={slug}>{children}</h2>
+}
+
+export const H3: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
+  const slug = sluggifyTitle(getNodeText(children))
+  return <h3 id={slug}>{children}</h3>
+}
+
+export const H4: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
+  const slug = sluggifyTitle(getNodeText(children))
+  return <h4 id={slug}>{children}</h4>
+}
+
+const mdxComponents = {
+  Callout,
+  Card,
+  Image,
+  Link,
+  ChevronLink,
+  Label,
+  h2: H2,
+  h3: H3,
+  h4: H4,
+  a: Link,
+  img: Image,
+  Playground,
+}
 
 const Post: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ post, tree }) => {
   useLiveReload()
@@ -58,7 +87,7 @@ const Post: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ post, tree }
           </div>
           <div className="mx-auto mb-4 w-full max-w-3xl shrink p-4 py-8 md:mb-8 md:px-8 lg:mx-0 lg:mb-16 lg:max-w-full lg:pr-16 xl:pr-8">
             <BlogHeader post={post} />
-            <div className="blog prose prose-slate prose-violet w-full max-w-3xl prose-headings:font-semibold prose-p:text-slate-500 prose-a:font-normal prose-code:font-normal prose-code:before:content-none prose-code:after:content-none prose-ul:text-slate-500 prose-hr:border-gray-200 dark:prose-invert dark:prose-p:text-slate-400 dark:prose-a:text-violet-400 dark:prose-ul:text-slate-400 dark:prose-hr:border-gray-800 lg:max-w-full">
+            <div className="blog prose prose-slate prose-violet relative w-full max-w-3xl prose-headings:font-semibold prose-p:text-slate-500 prose-a:font-normal prose-code:font-normal prose-code:before:content-none prose-code:after:content-none prose-ul:text-slate-500 prose-hr:border-gray-200 dark:prose-invert dark:prose-p:text-slate-400 dark:prose-a:text-violet-400 dark:prose-ul:text-slate-400 dark:prose-hr:border-gray-800 lg:max-w-full">
               {MDXContent && <MDXContent components={mdxComponents} />}
             </div>
           </div>
