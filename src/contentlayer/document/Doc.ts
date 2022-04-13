@@ -6,7 +6,7 @@ import { mdxToMarkdown } from 'mdast-util-mdx'
 import { bundleMDX } from 'mdx-bundler'
 
 // import { SEO } from '../nested/SEO'
-import { urlFromFilePath } from '../utils'
+import { getLastEditedDate, urlFromFilePath } from '../utils'
 
 export type DocHeading = { level: 1 | 2 | 3; title: string }
 
@@ -34,10 +34,6 @@ export const Doc = defineDocumentType(() => ({
     show_child_cards: {
       type: 'boolean',
       default: false,
-    },
-    last_edited: {
-      type: 'date',
-      required: true,
     },
     collapsible: {
       type: 'boolean',
@@ -88,6 +84,7 @@ export const Doc = defineDocumentType(() => ({
         return [{ level: 1, title: doc.title }, ...headings]
       },
     },
+    last_edited: { type: 'date', resolve: getLastEditedDate },
   },
   extensions: {},
 }))
