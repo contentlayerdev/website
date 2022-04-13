@@ -37,7 +37,7 @@ const Image: FC<{ src: string }> = ({ src }) => {
   return (
     <div className="overflow-hidden rounded-lg">
       <div className="-mb-2">
-        <NextImage src={src} width="1600" height="900" />
+        <NextImage src={src} width="1600" height="900" placeholder="blur" blurDataURL={src} />
       </div>
     </div>
   )
