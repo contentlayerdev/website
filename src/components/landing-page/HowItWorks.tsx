@@ -272,7 +272,7 @@ const content = {
     },
     {
       title: 'Contentful',
-      active: true,
+      active: false,
       steps: [],
     },
     {
