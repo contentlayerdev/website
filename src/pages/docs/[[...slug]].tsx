@@ -24,7 +24,7 @@ import { useRouter } from 'next/router'
 
 export const getStaticPaths = async () => {
   const paths = allDocs.map((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join('/')).map(toParams)
-  return { paths, fallback: 'blocking' }
+  return { paths, fallback: false }
 }
 
 export const getStaticProps = defineStaticProps(async (context) => {

@@ -30,7 +30,7 @@ export const getStaticPaths = async () => {
         .join('/'),
     )
     .map(toParams)
-  return { paths, fallback: 'blocking' }
+  return { paths, fallback: false }
 }
 
 export const getStaticProps = defineStaticProps(async (context) => {

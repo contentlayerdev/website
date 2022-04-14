@@ -23,7 +23,7 @@ export const getStaticPaths = async () => {
   const paths = allPosts.map(({ slug }) => {
     return { params: { slug } }
   })
-  return { paths, fallback: 'blocking' }
+  return { paths, fallback: false }
 }
 
 export const getStaticProps = defineStaticProps(async (context) => {

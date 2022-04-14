@@ -22,6 +22,7 @@ import { SearchIcon } from './Search'
 import { ChevronLeftIcon } from './ChevronLeft'
 import { UsersIcon } from './Users'
 import { CalendarIcon } from './Calendar'
+import { BrokenLinkIcon } from './BrokenLink'
 
 export type IconName =
   | 'code'
@@ -46,6 +47,7 @@ export type IconName =
   | 'search'
   | 'users'
   | 'calendar'
+  | 'broken-link'
 
 const iconMap = {
   code: CodeIcon,
@@ -70,6 +72,7 @@ const iconMap = {
   search: SearchIcon,
   users: UsersIcon,
   calendar: CalendarIcon,
+  'broken-link': BrokenLinkIcon,
 }
 
 export const Icon: FC<{ name: IconName }> = ({ name }) => {
