@@ -88,12 +88,12 @@ Working with Contentlayer is a three-step process:
    ```jsx
    import { allPages, type Page } from 'contentlayer/generated'
 
-   export async function getStaticPaths() {
+   export function getStaticPaths() {
      const paths = allPages.map((page) => page.urlPath)
      return { paths }
    }
 
-   export async function getStaticProps({ params }) {
+   export function getStaticProps({ params }) {
      const page = allPages.find((page) => page.UrlPath === params.slug)
 
      return { props: { page } }
