@@ -19,6 +19,7 @@ import { BlogHeader } from 'src/components/blog/BlogHeader'
 import { sluggifyTitle, getNodeText } from 'src/utils/sluggify'
 import { Playground } from 'src/components/blog/Playground'
 import { RelatedPosts } from 'src/components/blog/RelatedPosts'
+import { BulletList } from 'src/components/blog/BulletList'
 
 export const getStaticPaths = async () => {
   const paths = allPosts.map(({ slug }) => {
@@ -72,6 +73,7 @@ const mdxComponents = {
   a: Link,
   img: Image,
   Playground,
+  BulletList,
 }
 
 const Post: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ post }) => {

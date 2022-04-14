@@ -26,6 +26,8 @@ import { BrokenLinkIcon } from './BrokenLink'
 import { SunIcon } from './Sun'
 import { MoonIcon } from './Moon'
 import { GearIcon } from './Gear'
+import { CheckCircleOutlineIcon } from './CheckCircleOutline'
+import { CrossCircleOutlineIcon } from './CrossCircleOutline'
 
 export type IconName =
   | 'code'
@@ -54,6 +56,8 @@ export type IconName =
   | 'sun'
   | 'moon'
   | 'gear'
+  | 'check-circle-outline'
+  | 'cross-circle-outline'
 
 const iconMap = {
   code: CodeIcon,
@@ -82,6 +86,8 @@ const iconMap = {
   sun: SunIcon,
   moon: MoonIcon,
   gear: GearIcon,
+  'check-circle-outline': CheckCircleOutlineIcon,
+  'cross-circle-outline': CrossCircleOutlineIcon,
 }
 
 export const Icon: FC<{ name: IconName }> = ({ name }) => {

@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router'
 import { FC } from 'react'
 import { Button } from '../common/Button'
 import { Heading } from './Heading'
@@ -35,8 +34,6 @@ const content = {
 }
 
 export const FAQ: FC = () => {
-  const router = useRouter()
-
   return (
     <div className="mt-16 bg-gray-50 dark:bg-gray-900/50 md:mt-0">
       <div className="mx-auto grid w-full max-w-screen-xl grid-cols-1 gap-8 px-4 py-16 md:grid-cols-2 md:px-8 md:py-24 lg:py-32">
