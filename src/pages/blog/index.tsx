@@ -8,9 +8,7 @@ import { Container } from '../../components/common/Container'
 import { defineStaticProps } from '../../utils/next'
 import { Heading } from '../../components/landing-page/Heading'
 import { Paragraph } from '../../components/landing-page/Paragraph'
-import { ChevronLink } from '../../components/common/ChevronLink'
-import { buildDocsTree } from 'src/utils/build-docs-tree'
-import { BlogDetails } from 'src/components/blog/BlogDetails'
+import { BlogPreview } from 'src/components/blog/BlogPreview'
 
 const content = {
   title: 'Contentlayer Blog',
@@ -36,12 +34,7 @@ const Blog: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ posts }) => 
         </div>
         <div className="space-y-12 md:space-y-16">
           {posts.map((post, index) => (
-            <div key={index} className="space-y-4">
-              <Heading level={3}>{post.title}</Heading>
-              <BlogDetails post={post} hideBackButton />
-              <Paragraph>{post.excerpt}</Paragraph>
-              <ChevronLink label="Read more" url={'/blog/' + post.slug} />
-            </div>
+            <BlogPreview key={index} post={post} />
           ))}
         </div>
       </div>

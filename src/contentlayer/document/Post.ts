@@ -1,4 +1,4 @@
-import { defineDocumentType } from 'contentlayer/source-files'
+import { defineDocumentType, defineNestedType } from 'contentlayer/source-files'
 import type * as unified from 'unified'
 import { mdxToMarkdown } from 'mdast-util-mdx'
 import { toMarkdown } from 'mdast-util-to-markdown'
@@ -6,6 +6,13 @@ import { bundleMDX } from 'mdx-bundler'
 import { urlFromFilePath } from '../utils'
 
 type PostHeading = { level: 1 | 2 | 3; title: string }
+
+const RelatedPost = defineNestedType(() => ({
+  name: 'RelatedPost',
+  fields: {
+    slug: { type: 'string', required: true },
+  },
+}))
 
 export const Post = defineDocumentType(() => ({
   name: 'Post',
@@ -28,6 +35,11 @@ export const Post = defineDocumentType(() => ({
     authors: {
       type: 'string',
       required: true,
+    },
+    related_posts: {
+      type: 'list',
+      of: RelatedPost,
+      required: false,
     },
   },
   computedFields: {
