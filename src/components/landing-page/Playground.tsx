@@ -23,7 +23,7 @@ const content: Content = {
       label: "Let's edit some content",
       ideState: {
         openFiles: ['posts/change-me.md'],
-        origin: '/',
+        url: '/',
         view: 'default',
       },
       hints: {
@@ -36,7 +36,7 @@ const content: Content = {
       label: 'How content is transformed into data',
       ideState: {
         openFiles: ['posts/change-me.md', '.contentlayer/generated/Post/change-me.md.json'],
-        origin: '/',
+        url: '/',
         view: 'editor',
       },
       hints: {
@@ -49,7 +49,7 @@ const content: Content = {
       label: 'How data is used from your app',
       ideState: {
         openFiles: ['pages/posts/[slug].tsx'],
-        origin: '/posts/change-me',
+        url: '/posts/change-me',
         view: 'default',
       },
       hints: {
@@ -62,7 +62,7 @@ const content: Content = {
       label: 'Project setup',
       ideState: {
         openFiles: ['contentlayer.config.ts', 'next.config.js'],
-        origin: '/',
+        url: '/',
         view: 'editor',
       },
       hints: {
@@ -79,7 +79,7 @@ export const Playground: FC = () => {
 
   const [stackblitzIDEState, setStackblitzIDEState] = useState<StackblitzIDEState>({
     openFiles: ['posts/change-me.md'],
-    origin: '',
+    url: '',
     view: 'default',
   })
 
@@ -177,7 +177,7 @@ type NonNil<T> = T extends null | undefined ? never : T
 
 type StackblitzIDEState = {
   openFiles: string[]
-  origin: string
+  url: string
   view: NonNil<Stackblitz.OpenOptions['view']>
 }
 
@@ -187,7 +187,7 @@ const StackblitzIDE: React.FC<
     repoSlug: string
     setEditorIsReady: (_: boolean) => void
   } & StackblitzIDEState
-> = ({ className, repoSlug, setEditorIsReady, openFiles, origin, view }) => {
+> = ({ className, repoSlug, setEditorIsReady, openFiles, url, view }) => {
   const ref = useRef<HTMLDivElement>(null)
   const [vm, setVm] = useState<Stackblitz.VM | undefined>(undefined)
 
@@ -200,6 +200,7 @@ const StackblitzIDE: React.FC<
     let timeout: number | undefined = undefined
 
     // TODO also poll for the website to be loaded
+    // TODO use `getUrl` for that
     const check = async () => {
       const files = await vm.getFsSnapshot()
       const fileNames = Object.keys(files ?? {})
@@ -216,10 +217,15 @@ const StackblitzIDE: React.FC<
   }, [vm, setEditorIsReady])
 
   useEffect(() => {
-    if (vm && vm.preview.origin !== origin) {
-      vm.preview.setUrl(origin)
+    if (vm && view !== 'editor') {
+      // TODO fix in Stackblitz SDK
+      vm.preview.getUrl().then(({ url: currentUrl }: any) => {
+        if (currentUrl && !currentUrl.endsWith(url)) {
+          vm.preview.setUrl(url)
+        }
+      })
     }
-  }, [vm, origin])
+  }, [vm, view, url])
 
   useEffect(() => {
     if (vm && currentView !== view) {
@@ -234,19 +240,19 @@ const StackblitzIDE: React.FC<
   }, [vm, currentFiles, openFiles])
 
   useEffect(() => {
-    if (ref.current) {
+    if (ref.current && vm === undefined) {
       stackblitz
         .embedGithubProject(ref.current, repoSlug, {
           height: 700,
           openFile: openFiles,
-          // origin,
+          // TODO open sidebar by default
           view,
           forceEmbedLayout: true,
         })
         .then((_) => setVm(_))
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ref, repoSlug])
+  }, [ref, vm, repoSlug])
 
   return <div className={className} ref={ref} />
 }
