@@ -23,6 +23,9 @@ import { ChevronLeftIcon } from './ChevronLeft'
 import { UsersIcon } from './Users'
 import { CalendarIcon } from './Calendar'
 import { BrokenLinkIcon } from './BrokenLink'
+import { SunIcon } from './Sun'
+import { MoonIcon } from './Moon'
+import { GearIcon } from './Gear'
 
 export type IconName =
   | 'code'
@@ -48,6 +51,9 @@ export type IconName =
   | 'users'
   | 'calendar'
   | 'broken-link'
+  | 'sun'
+  | 'moon'
+  | 'gear'
 
 const iconMap = {
   code: CodeIcon,
@@ -73,6 +79,9 @@ const iconMap = {
   users: UsersIcon,
   calendar: CalendarIcon,
   'broken-link': BrokenLinkIcon,
+  sun: SunIcon,
+  moon: MoonIcon,
+  gear: GearIcon,
 }
 
 export const Icon: FC<{ name: IconName }> = ({ name }) => {

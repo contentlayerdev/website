@@ -45,7 +45,9 @@ export const Container: FC<any> = ({ children, ...customMeta }) => {
       </Head>
       <SearchProvider>
         <MainNavigation />
-        <main className="pt-16">{children}</main>
+        <main className="relative pt-16" style={{ scrollPaddingTop: '150px' }}>
+          {children}
+        </main>
         <Footer />
       </SearchProvider>
     </>

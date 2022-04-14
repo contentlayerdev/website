@@ -1,24 +1,42 @@
-import React, { useEffect } from 'react'
+import { FC, useEffect, Dispatch, SetStateAction, createContext, useState, useContext } from 'react'
 import { ColorScheme } from '../utils/syntax-highlighting'
 
-const ColorSchemeContext = React.createContext<ColorScheme>('light')
+const ColorSchemeContext = createContext<'light' | 'dark' | 'system'>('light')
+const UpdateColorSchemeContext = createContext<(colorScheme: 'light' | 'dark' | 'system') => void>(() => {})
 
-export const useColorScheme = () => React.useContext(ColorSchemeContext)
+export const useColorScheme = () => useContext(ColorSchemeContext)
+export const useUpdateColorScheme = () => useContext(UpdateColorSchemeContext)
 
-export const ColorSchemeProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
-  const [colorScheme, setColorScheme] = React.useState<ColorScheme>('light')
+export const ColorSchemeProvider: FC<React.PropsWithChildren<{}>> = ({ children }) => {
+  const [colorScheme, setColorScheme] = useState<'light' | 'dark' | 'system'>('system')
 
-  useEffect(() => {
-    // needed for server-side rendering
-    if (typeof window === 'undefined') return
+  // useEffect(() => {
+  //   if (typeof window === 'undefined') return
+  //   const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+  //   setColorScheme(isDarkMode ? 'dark' : 'light')
+  //   window
+  //     .matchMedia('(prefers-color-scheme: dark)')
+  //     .addEventListener('change', (e) => setColorScheme(e.matches ? 'dark' : 'light'))
+  // }, [setColorScheme])
 
-    const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-    setColorScheme(isDarkMode ? 'dark' : 'light')
+  const updateColorScheme = (colorScheme: 'light' | 'dark' | 'system') => {
+    setColorScheme(colorScheme)
+    if (colorScheme === 'system') {
+      localStorage.removeItem('theme')
+      document.documentElement.classList.remove('dark')
+    } else {
+      if (colorScheme === 'dark') {
+        document.documentElement.classList.add('dark')
+      } else {
+        document.documentElement.classList.remove('dark')
+      }
+      localStorage.theme = colorScheme
+    }
+  }
 
-    window
-      .matchMedia('(prefers-color-scheme: dark)')
-      .addEventListener('change', (e) => setColorScheme(e.matches ? 'dark' : 'light'))
-  }, [setColorScheme])
-
-  return <ColorSchemeContext.Provider value={colorScheme}>{children}</ColorSchemeContext.Provider>
+  return (
+    <ColorSchemeContext.Provider value={colorScheme}>
+      <UpdateColorSchemeContext.Provider value={updateColorScheme}>{children}</UpdateColorSchemeContext.Provider>
+    </ColorSchemeContext.Provider>
+  )
 }

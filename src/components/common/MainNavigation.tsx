@@ -5,6 +5,7 @@ import { Icon, IconName } from './Icon'
 import { Label } from './Label'
 import { Logo } from './Logo'
 import { useRouter } from 'next/router'
+import { ColorSchemeSwitcher } from './ColorSchemeSwitcher'
 
 const isExternalUrl = (link: string): boolean => !link.startsWith('/')
 
@@ -129,6 +130,7 @@ export const MainNavigation = () => {
             </div>
           </div>
           <div className="flex items-center pl-2 lg:space-x-2 lg:pl-8">
+            <ColorSchemeSwitcher />
             {iconLinks.map(({ label, icon, url }, index) => (
               <NavLink key={index} label={label} hideLabel url={url} icon={icon} />
             ))}

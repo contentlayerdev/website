@@ -1,5 +1,5 @@
 import type { InferGetStaticPropsType } from 'next'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { allDocs, allExamples, allPosts } from 'contentlayer/generated'
 import { buildDocsTree } from 'src/utils/build-docs-tree'
 import { defineStaticProps } from '../utils/next'
@@ -34,7 +34,16 @@ export const getStaticProps = defineStaticProps(async (_context) => {
 })
 
 const Page: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ preprocessedCodeSnippets, usedByCount }) => {
-  const colorScheme = useColorScheme()
+  const preferredColorScheme = useColorScheme()
+  const [colorScheme, setColorScheme] = useState<'light' | 'dark'>('light')
+
+  useEffect(() => {
+    if (preferredColorScheme === 'system') {
+      setColorScheme(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+    } else {
+      setColorScheme(preferredColorScheme)
+    }
+  }, [preferredColorScheme])
 
   return (
     <Container>
