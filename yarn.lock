@@ -129,6 +129,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@corex/deepmerge@npm:^2.6.148":
+  version: 2.6.148
+  resolution: "@corex/deepmerge@npm:2.6.148"
+  checksum: b80b6b3e408901151de26e27b519a43cda1771a81e5390ff10cd6b47add0139bb315ca44112ff076d68ac887d7cfe237c9fb33868efb04839c4afb7c38864385
+  languageName: node
+  linkType: hard
+
 "@effect-ts/core@npm:^0.58.0":
   version: 0.58.1
   resolution: "@effect-ts/core@npm:0.58.1"
@@ -2594,6 +2601,7 @@ __metadata:
     mdast-util-to-markdown: ^1.3.0
     next: 12.1.5
     next-contentlayer: ^0.2.2
+    next-sitemap: ^2.5.20
     postcss: ^8.4.12
     postcss-import: ^14.1.0
     prettier: ^2.6.2
@@ -6304,6 +6312,20 @@ __metadata:
     react: "*"
     react-dom: "*"
   checksum: 3827675452b6067e6a9c328638dfc400d4657ef80f3950be65cbf9b5e89bc13b7da9abb0a007b75074c45361557f55ee1638b5808ca8ff302fd71ee974fb64be
+  languageName: node
+  linkType: hard
+
+"next-sitemap@npm:^2.5.20":
+  version: 2.5.20
+  resolution: "next-sitemap@npm:2.5.20"
+  dependencies:
+    "@corex/deepmerge": ^2.6.148
+    minimist: ^1.2.6
+  peerDependencies:
+    next: "*"
+  bin:
+    next-sitemap: bin/next-sitemap
+  checksum: b2a770575117d709bf0c90ca6f6e76a6602980472480cbaa1f60104dae01428ce2491e4e06a19365014dec32629b19b8d627c40df0137ee126390aa8da42c30e
   languageName: node
   linkType: hard
 

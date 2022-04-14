@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev -p 3001 & local-ssl-proxy --source 3000 --target 3001",
     "build": "next build",
+    "postbuild": "next-sitemap",
     "start": "next start",
     "check-links": "blc \"http://localhost:3001\" -roe"
   },
@@ -20,6 +21,7 @@
     "kbar": "^0.1.0-beta.33",
     "markdown-to-jsx": "^7.1.6",
     "next": "12.1.5",
+    "next-sitemap": "^2.5.20",
     "react": "18.0.0",
     "react-dom": "18.0.0",
     "react-helmet": "^6.1.0",
