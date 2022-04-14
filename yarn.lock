@@ -1212,10 +1212,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@stackblitz/sdk@npm:^1.6.0":
-  version: 1.6.0
-  resolution: "@stackblitz/sdk@npm:1.6.0"
-  checksum: 95f0cda58bee0887506a338e0789ed753b42da1b15b66be2b0e4177921d757ee51e2b47c6dfd27e5a0901adfe21d0823454ee0d09ec28eab060942021f76478d
+"@stackblitz/sdk@npm:^1.7.0-alpha.2":
+  version: 1.7.0-alpha.2
+  resolution: "@stackblitz/sdk@npm:1.7.0-alpha.2"
+  checksum: 60b87f16d7fd0636d6e7b153678bcea2c8f04b7e79148155aff8a3f8daa24f7338581db4a37f9039f0e98c18fdac0a342d5d8186d6dbd30eb756abef60ce4139
   languageName: node
   linkType: hard
 
@@ -2572,7 +2572,7 @@ __metadata:
     "@radix-ui/react-scroll-area": ^0.1.4
     "@radix-ui/react-tabs": ^0.1.5
     "@radix-ui/react-tooltip": ^0.1.7
-    "@stackblitz/sdk": ^1.6.0
+    "@stackblitz/sdk": ^1.7.0-alpha.2
     "@tailwindcss/typography": ^0.5.2
     "@types/eslint": ^8.4.1
     "@types/postcss-import": ^14.0.0
