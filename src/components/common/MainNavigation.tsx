@@ -4,6 +4,7 @@ import { useKBar } from 'kbar'
 import { Icon, IconName } from './Icon'
 import { Label } from './Label'
 import { Logo } from './Logo'
+import { useRouter } from 'next/router'
 
 const isExternalUrl = (link: string): boolean => !link.startsWith('/')
 
@@ -24,10 +25,17 @@ const NavLink: FC<{ label?: string; hideLabel?: boolean; icon?: IconName; url: s
   icon,
   url,
 }) => {
+  const router = useRouter()
+  const active = router.pathname.split('/')[1] == url.replace('/', '')
+
   return (
     <Link href={url}>
       <a
-        className="group flex h-8 items-center rounded-md bg-transparent px-3 text-sm font-medium leading-none text-slate-600 hover:bg-gray-50 hover:text-slate-700 dark:text-slate-300 dark:hover:bg-gray-900 dark:hover:text-slate-200"
+        className={`group flex h-8 items-center rounded-md bg-transparent px-3 text-sm font-medium leading-none ${
+          active
+            ? 'bg-violet-50 text-violet-900 dark:bg-violet-500/20 dark:text-violet-50'
+            : 'text-slate-600 hover:bg-gray-50 hover:text-slate-700 dark:text-slate-300 dark:hover:bg-gray-900 dark:hover:text-slate-200'
+        }`}
         target={isExternalUrl(url) ? '_blank' : undefined}
         rel={isExternalUrl(url) ? 'noreferrer' : undefined}
       >

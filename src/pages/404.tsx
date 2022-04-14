@@ -9,7 +9,7 @@ const NotFound = () => {
   return (
     <Container>
       <div style={{ minHeight: 'calc(100vh - 64px)' }} className="relative overflow-hidden">
-        <div className="background-grain absolute -inset-8">
+        <div className="background-grain absolute -inset-8 w-full">
           <svg className="h-0 w-0">
             <filter id="noise">
               <feTurbulence id="turbulence">

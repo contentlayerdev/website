@@ -21,6 +21,7 @@ import { buildDocsTree } from 'src/utils/build-docs-tree'
 import { H2, H3, H4 } from 'src/components/common/Headings'
 import { OptionsTable, OptionTitle, OptionDescription } from 'src/components/docs/OptionsTable'
 import { useRouter } from 'next/router'
+import * as ScrollArea from '@radix-ui/react-scroll-area'
 
 export const getStaticPaths = async () => {
   const paths = allDocs.map((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join('/')).map(toParams)
