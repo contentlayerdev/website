@@ -9,10 +9,10 @@ import { Heading } from 'src/components/landing-page/Heading'
 import { Paragraph } from 'src/components/landing-page/Paragraph'
 import { Label } from 'src/components/common/Label'
 
-export const getStaticProps = defineStaticProps(async (_context) => {
+export const getStaticProps = async () => {
   const tree = buildDocsTree(allDocs)
   return { props: { tree } }
-})
+}
 
 const NotFound: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ tree }) => {
   return (
