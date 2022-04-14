@@ -23,7 +23,6 @@ export const SearchProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const router = useRouter()
   const docsTree = buildDocsTree(allDocs)
   const examplesTree = buildExamplesTree(allExamples)
-
   const actions = useMemo(() => {
     let actions: Action[] = [
       {
@@ -70,6 +69,7 @@ export const SearchProvider: FC<{ children: ReactNode }> = ({ children }) => {
           subtitle: parent,
           perform: () => router.push(element.urlPath),
         })
+        id++
         if (element.children.length) mapExamples(element.children, parent + parent ? ' / ' : '' + element.title)
       }
     }
