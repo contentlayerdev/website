@@ -44,14 +44,10 @@ export const FAQ: FC = () => {
           <Heading level={2}>{content.heading}</Heading>
           <Paragraph>{content.description}</Paragraph>
           <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4 md:flex-col md:space-y-4 md:space-x-0 lg:flex-row lg:space-y-0 lg:space-x-4">
-            <Button
-              label={content.primaryAction.label}
-              action={() => router.push(content.primaryAction.url)}
-              theme="primary"
-            />
+            <Button label={content.primaryAction.label} href={content.primaryAction.url} theme="primary" />
             <Button
               label={content.secondaryAction.label}
-              action={() => router.push(content.secondaryAction.url)}
+              href={content.secondaryAction.url}
               theme="secondary"
               icon={content.secondaryAction?.icon}
             />
