@@ -108,4 +108,18 @@
     hyphens: auto;
     -webkit-hyphens: auto;
   }
+
+  .background-grain {
+    background: repeating-linear-gradient(#d1d5db, #d1d5db 50%, #fff 50%, #fff);
+    background-size: 5px 5px;
+    filter: url(#noise);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .background-grain {
+      background: repeating-linear-gradient(#0b0f1a, #0b0f1a 50%, #1f2937 50%, #1f2937);
+      background-size: 5px 5px;
+      filter: url(#noise);
+    }
+  }
 }
