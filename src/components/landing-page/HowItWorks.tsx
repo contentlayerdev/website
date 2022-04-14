@@ -21,11 +21,11 @@ const Post = defineDocumentType(() => ({
   name: 'Post',
   filePathPattern: \`**/*.md\`,
   fields: {
-  title: { type: 'string', required: true },
+    title: { type: 'string', required: true },
     date: { type: 'date', required: true }
   },
   computedFields: {
-    urlPath: {
+    url: {
       type: 'string',
       resolve: (doc) => \`/posts/\${doc._raw.flattenedPath}\`
     }
@@ -41,27 +41,53 @@ export default makeSource({
   ],
   howItWorksStep3: [
     {
+      file: 'pages/posts/index.tsx',
+      lines: 21,
+      content: `\
+import { allPosts, type Post } from './assets/contentlayer-generated'
+
+export async function getStaticProps() {
+  return { props: { posts: allPosts } }
+}
+
+export default function Home({ posts }: { posts: Post[] }) {
+  return (
+    <div>
+      <h1>All posts</h1>
+      <ul>
+        {posts.map((post) => (
+          <li key={post.url}>
+            <a href={post.url}>{post.title}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}\
+`,
+    },
+    {
       file: 'pages/posts/[slug].tsx',
       lines: 21,
       content: `\
-import { allPages, type Page } from './assets/contentlayer-generated'
+import { allPosts, type Post } from './assets/contentlayer-generated'
 
 export async function getStaticPaths() {
-  const paths = allPages.map((page) => page.urlPath)
+  const paths = allPosts.map((post) => post.url)
   return { paths }
 }
 
 export async function getStaticProps({ params }) {
-  const page = allPages.find((page) => page.urlPath === params.slug)
+  const post = allPosts.find((post) => post.url === params.slug)
 
-  return { props: { page } }
+  return { props: { post } }
 }
 
-export default function Page({ page }: { page: Page }) {
+export default function Post({ post }: { post: Post }) {
   return (
     <div>
-      <h1>{page.title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: page.body.html }} />
+      <h1>{post.title}</h1>
+      <div dangerouslySetInnerHTML={{ __html: post.body.html }} />
     </div>
   )
 }\
@@ -87,19 +113,19 @@ const localStep2DataTransformation = {
           children: [
             {
               type: 'file',
-              name: 'index.md',
+              name: 'change-me.md',
               comment: '',
               tooltip: 'TODO: Define file tooltip contents.',
             },
             {
               type: 'file',
-              name: 'about.md',
+              name: 'click-me.md',
               comment: '',
               tooltip: 'TODO: Define file tooltip contents.',
             },
             {
               type: 'file',
-              name: 'blog.md',
+              name: 'what-is-contentlayer.md',
               comment: '',
               tooltip: 'TODO: Define file tooltip contents.',
             },
@@ -130,8 +156,9 @@ const localStep2DataTransformation = {
           type: 'folder',
           name: 'Post/',
           children: [
-            { type: 'file', name: '_index.json', comment: '', tooltip: 'TODO: Define file tooltip contents.' },
-            { type: 'file', name: '_index.mjs', comment: '', tooltip: 'TODO: Define file tooltip contents.' },
+            // NOTE Commented out to simplify of the narrative
+            // { type: 'file', name: '_index.json', comment: '', tooltip: 'TODO: Define file tooltip contents.' },
+            // { type: 'file', name: '_index.mjs', comment: '', tooltip: 'TODO: Define file tooltip contents.' },
             {
               type: 'file',
               name: 'change-me.md.json',
@@ -164,12 +191,13 @@ const localStep2DataTransformation = {
           comment: 'Exports all data',
           tooltip: 'TODO: Define file tooltip contents.',
         },
-        {
-          type: 'file',
-          name: 'types.d.ts',
-          comment: 'Type definitions',
-          tooltip: 'TODO: Define file tooltip contents.',
-        },
+        // NOTE Commented out to simplify of the narrative
+        // {
+        //   type: 'file',
+        //   name: 'types.d.ts',
+        //   comment: 'Type definitions',
+        //   tooltip: 'TODO: Define file tooltip contents.',
+        // },
       ],
     },
   },
