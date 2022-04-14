@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useState, FC } from 'react'
 import Image from 'next/image'
-import { FC } from 'react'
 import { Dashed } from './Dashed'
 import { Icon } from '../common/Icon'
 import { Button } from '../common/Button'
@@ -21,7 +20,7 @@ const content = {
     </>
   ),
   features: ['Lightweight & easy to use', 'Great developer experience', 'Blazing fast build & page performance'],
-  primaryAction: { label: 'Get started', url: '/' },
+  primaryAction: { label: 'Get started', url: '/docs/getting-started' },
   secondaryAction: { label: 'Why Contentlayer?', url: '/docs/concepts/why-contentlayer' },
   video: {
     thumbnail: { url: '/images/intro-thumbnail.jpg', alt: 'Intro to Contentlayer Video Thumbnail' },
@@ -33,7 +32,7 @@ export const Hero: FC = () => {
   const router = useRouter()
 
   return (
-    <div className="mx-auto grid w-full max-w-screen-xl grid-cols-1 gap-16 px-4 pt-8 md:grid-cols-2 md:px-8 md:pt-24 lg:pt-32">
+    <div className="grid w-full max-w-screen-xl grid-cols-1 gap-16 px-4 pt-8 mx-auto md:grid-cols-2 md:px-8 md:pt-24 lg:pt-32">
       <div className="space-y-8 sm:max-w-md">
         <Heading level={1}>{content.heading}</Heading>
         <Paragraph className="text-lg">{content.text}</Paragraph>
@@ -51,7 +50,7 @@ export const Hero: FC = () => {
           />
         </div>
       </div>
-      <div className="relative flex w-full items-center">
+      <div className="relative flex items-center w-full">
         <Video thumbnail={content.video.thumbnail} videoId={content.video.youtubeId} />
       </div>
     </div>

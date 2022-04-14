@@ -10,17 +10,17 @@ export type { Markdown, MDX }
 
 /** Document types */
 
-export type Page = {
+export type Post = {
   /** File path relative to `contentDirPath` */
   _id: string
   _raw: Local.RawDocumentData
-  type: 'Page'
+  type: 'Post'
   /** The title of the page */
   title: string
   /** Markdown file body */
   body: Markdown
   /** The URL path of this page relative to site root. For example, the site root page would be "/", and doc page would be "docs/getting-started/" */
-  urlPath: string
+  url: string
 }
 
 /** Nested types */
@@ -30,8 +30,8 @@ export type Page = {
 export type AllTypes = DocumentTypes | NestedTypes
 export type AllTypeNames = DocumentTypeNames | NestedTypeNames
 
-export type DocumentTypes = Page
-export type DocumentTypeNames = 'Page'
+export type DocumentTypes = Post
+export type DocumentTypeNames = 'Post'
 
 export type NestedTypes = never
 export type NestedTypeNames = never
@@ -51,7 +51,7 @@ export interface ContentlayerGenTypes {
 // }
 
 export type DocumentTypeMap = {
-  Page: Page
+  Post: Post
 }
 
 export type NestedTypeMap = {}
