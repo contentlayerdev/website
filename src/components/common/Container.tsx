@@ -5,7 +5,7 @@ import { SearchProvider } from '../SearchContext'
 import { MainNavigation } from './MainNavigation'
 import { Footer } from './Footer'
 
-export const Container: FC<any> = ({ tree, children, ...customMeta }) => {
+export const Container: FC<any> = ({ children, ...customMeta }) => {
   const router = useRouter()
 
   const meta = {
@@ -43,7 +43,7 @@ export const Container: FC<any> = ({ tree, children, ...customMeta }) => {
         <meta name="twitter:image" content={meta.image} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </Head>
-      <SearchProvider tree={tree}>
+      <SearchProvider>
         <MainNavigation />
         <main className="pt-16">{children}</main>
         <Footer />

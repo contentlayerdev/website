@@ -20,16 +20,15 @@ const content = {
 
 export const getStaticProps = defineStaticProps(async (context) => {
   const posts = allPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-  const tree = buildDocsTree(allDocs)
 
-  return { props: { posts, tree } }
+  return { props: { posts } }
 })
 
-const Blog: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ posts, tree }) => {
+const Blog: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ posts }) => {
   useLiveReload()
 
   return (
-    <Container title="Blog – Contentlayer" description={content.description} tree={tree}>
+    <Container title="Blog – Contentlayer" description={content.description}>
       <div className="mx-auto grid w-full max-w-screen-xl grid-cols-1 gap-16 px-4 py-8 md:grid-cols-2 md:px-8 md:py-24 lg:py-32">
         <div className="max-w-md space-y-8">
           <Heading level={1}>{content.title}</Heading>

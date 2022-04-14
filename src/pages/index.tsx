@@ -1,6 +1,6 @@
 import type { InferGetStaticPropsType } from 'next'
 import React from 'react'
-import { allDocs } from 'contentlayer/generated'
+import { allDocs, allExamples, allPosts } from 'contentlayer/generated'
 import { buildDocsTree } from 'src/utils/build-docs-tree'
 import { defineStaticProps } from '../utils/next'
 import { ColorScheme, snippetToHtml } from '../utils/syntax-highlighting'
@@ -17,6 +17,7 @@ import { Tweets } from '../components/landing-page/Tweets'
 import { Playground } from '../components/landing-page/Playground'
 import { Container } from '../components/common/Container'
 import { PreprocessedCodeSnippets } from 'types/PreprocessedCodeSnippets'
+import { buildExamplesTree } from 'src/utils/build-examples-tree'
 
 export const getStaticProps = defineStaticProps(async (_context) => {
   const { preprocessedCodeSnippets, usedByCount } = await promiseAllProperties({
@@ -26,19 +27,17 @@ export const getStaticProps = defineStaticProps(async (_context) => {
     }),
     usedByCount: getUsedByCount(),
   })
-  const tree = buildDocsTree(allDocs)
-  return { props: { preprocessedCodeSnippets, usedByCount, tree } }
+  const docs = buildDocsTree(allDocs)
+  const examples = buildExamplesTree(allExamples)
+  const posts = allPosts
+  return { props: { preprocessedCodeSnippets, usedByCount, docs, examples, posts } }
 })
 
-const Page: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
-  preprocessedCodeSnippets,
-  usedByCount,
-  tree,
-}) => {
+const Page: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ preprocessedCodeSnippets, usedByCount }) => {
   const colorScheme = useColorScheme()
 
   return (
-    <Container tree={tree}>
+    <Container>
       <Hero />
       <Support />
       <Testimonials usedByCount={usedByCount} />

@@ -1,22 +1,13 @@
-import type { InferGetStaticPropsType } from 'next'
 import React from 'react'
-import { allDocs } from 'contentlayer/generated'
-import { buildDocsTree } from 'src/utils/build-docs-tree'
-import { defineStaticProps } from '../utils/next'
 import { Container } from '../components/common/Container'
 import { Icon } from 'src/components/common/Icon'
 import { Heading } from 'src/components/landing-page/Heading'
 import { Paragraph } from 'src/components/landing-page/Paragraph'
 import { Label } from 'src/components/common/Label'
 
-export const getStaticProps = async () => {
-  const tree = buildDocsTree(allDocs)
-  return { props: { tree } }
-}
-
-const NotFound: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ tree }) => {
+const NotFound = () => {
   return (
-    <Container tree={tree}>
+    <Container>
       <div style={{ minHeight: 'calc(100vh - 64px)' }} className="relative overflow-hidden">
         <div className="background-grain absolute -inset-8">
           <svg className="h-0 w-0">

@@ -29,9 +29,8 @@ export const getStaticPaths = async () => {
 export const getStaticProps = defineStaticProps(async (context) => {
   const params = context.params as any
   const post = allPosts.find((_) => _.slug === params.slug)!
-  const tree = buildDocsTree(allDocs)
 
-  return { props: { post, tree } }
+  return { props: { post } }
 })
 
 const Image: FC<{ src: string }> = ({ src }) => {
@@ -74,12 +73,12 @@ const mdxComponents = {
   Playground,
 }
 
-const Post: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ post, tree }) => {
+const Post: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ post }) => {
   useLiveReload()
   const MDXContent = useMDXComponent(post.body.code || '')
 
   return (
-    <Container title={post.title + ' – Contentlayer'} description={post.excerpt} tree={tree}>
+    <Container title={post.title + ' – Contentlayer'} description={post.excerpt}>
       <div className="relative mx-auto max-w-screen-2xl md:pt-8 lg:pt-16">
         <div className="lg:flex lg:items-start">
           <div className="sticky top-32 mx-auto hidden w-full max-w-3xl shrink-0 border-b border-gray-200 p-8 dark:border-gray-800 lg:block lg:w-64 lg:border-none lg:pl-16 xl:w-72 2xl:w-80">
