@@ -18,6 +18,7 @@ import { BlogDetails } from 'src/components/blog/BlogDetails'
 import { BlogHeader } from 'src/components/blog/BlogHeader'
 import { sluggifyTitle, getNodeText } from 'src/utils/sluggify'
 import { Playground } from 'src/components/blog/Playground'
+import { RelatedPosts } from 'src/components/blog/RelatedPosts'
 
 export const getStaticPaths = async () => {
   const paths = allPosts.map(({ slug }) => {
@@ -88,6 +89,12 @@ const Post: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ post }) => {
             <BlogHeader post={post} />
             <div className="blog prose prose-slate prose-violet relative w-full max-w-3xl prose-headings:font-semibold prose-p:text-slate-500 prose-a:font-normal prose-code:font-normal prose-code:before:content-none prose-code:after:content-none prose-ul:text-slate-500 prose-hr:border-gray-200 dark:prose-invert dark:prose-p:text-slate-400 dark:prose-a:text-violet-400 dark:prose-ul:text-slate-400 dark:prose-hr:border-gray-800 lg:max-w-full">
               {MDXContent && <MDXContent components={mdxComponents} />}
+              {post.related_posts && (
+                <>
+                  <hr />
+                  <RelatedPosts posts={post.related_posts} />
+                </>
+              )}
             </div>
           </div>
           <div

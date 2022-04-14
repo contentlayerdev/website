@@ -28,21 +28,6 @@ export const BlogHeader: FC<{ post: Post }> = ({ post }) => {
         </h1>
         <p className="leading-relaxed">{post.excerpt}</p>
         <BlogDetails post={post} className="lg:hidden" />
-        {post.related_posts && (
-          <div>
-            <h2 className="mb-8 text-2xl font-semibold text-slate-800 dark:text-slate-200">Related Posts</h2>
-            <div className={`grid grid-cols-1 gap-8 ${post.related_posts.length > 1 ? 'md:grid-cols-2' : ''}`}>
-              {post.related_posts.map(({ slug }, index) => {
-                const post = allPosts.find((_) => _.slug === slug)!
-                return (
-                  <Card key={index} className="p-8">
-                    <BlogPreview post={post} />
-                  </Card>
-                )
-              })}
-            </div>
-          </div>
-        )}
         <hr className="border-gray-200 dark:border-gray-800" />
       </div>
       <div
