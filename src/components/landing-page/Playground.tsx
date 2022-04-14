@@ -122,7 +122,7 @@ export const Playground: FC = () => {
           <div className="px-8">
             {content.steps[selectedStep].hints?.editor && (
               <div className="flex space-x-4">
-                <p className="pt-2 font-handwritten text-slate-500 lg:text-lg">
+                <p className="pt-2 font-handwritten text-slate-400 lg:text-lg">
                   {content.steps[selectedStep].hints?.editor}
                 </p>
                 <Arrow type="curved-short" className="w-16 shrink-0 text-slate-700 lg:w-24" />
@@ -132,7 +132,7 @@ export const Playground: FC = () => {
           <div className="px-8">
             {content.steps[selectedStep].hints?.preview && (
               <div className="flex mb-2 space-x-4">
-                <p className="pt-2 font-handwritten text-slate-500 lg:text-lg">
+                <p className="pt-2 font-handwritten text-slate-400 lg:text-lg">
                   {content.steps[selectedStep].hints?.preview}
                 </p>
                 <Arrow type="looped-long" className="mt-2 w-28 shrink-0 rotate-12 text-slate-700 lg:w-40" />
@@ -162,7 +162,7 @@ export const Playground: FC = () => {
           {content.steps[selectedStep].hints?.console && (
             <div className="flex items-start pl-48 space-x-4 lg:pl-96">
               <Arrow type="straight-dashed" className="w-32 rotate-180 shrink-0 text-slate-700 lg:w-40" />
-              <p className="pt-5 font-handwritten text-slate-600 lg:text-lg">
+              <p className="pt-5 font-handwritten text-slate-400 lg:text-lg">
                 {content.steps[selectedStep].hints?.console}
               </p>
             </div>
