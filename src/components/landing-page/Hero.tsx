@@ -11,7 +11,7 @@ import { Paragraph } from './Paragraph'
 import { Video } from './Video'
 
 const content = {
-  heading: 'Content made easy for developers',
+  heading: 'Type-safe SDK for your web content',
   text: (
     <>
       Contentlayer is a <Dashed label="content preprocessor" tooltip="TODO: short explanation" /> that validates and
@@ -32,7 +32,7 @@ export const Hero: FC = () => {
   const router = useRouter()
 
   return (
-    <div className="mx-auto grid w-full max-w-screen-xl grid-cols-1 gap-16 px-4 pt-8 md:grid-cols-2 md:px-8 md:pt-24 lg:pt-32">
+    <div className="grid w-full max-w-screen-xl grid-cols-1 gap-16 px-4 pt-8 mx-auto md:grid-cols-2 md:px-8 md:pt-24 lg:pt-32">
       <div className="space-y-8 sm:max-w-md">
         <Heading level={1}>{content.heading}</Heading>
         <Paragraph className="text-lg">{content.text}</Paragraph>
@@ -42,7 +42,7 @@ export const Hero: FC = () => {
           <Button label={content.secondaryAction.label} href={content.secondaryAction.url} theme="secondary" />
         </div>
       </div>
-      <div className="relative flex w-full items-center">
+      <div className="relative flex items-center w-full">
         <Video thumbnail={content.video.thumbnail} videoId={content.video.youtubeId} />
       </div>
     </div>

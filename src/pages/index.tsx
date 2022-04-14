@@ -17,7 +17,7 @@ import { Tweets } from '../components/landing-page/Tweets'
 import { Playground } from '../components/landing-page/Playground'
 import { Container } from '../components/common/Container'
 import { PreprocessedCodeSnippets } from 'types/PreprocessedCodeSnippets'
-import { buildExamplesTree } from 'src/utils/build-examples-tree'
+import { buildExamplesTree } from '../utils/build-examples-tree'
 
 export const getStaticProps = defineStaticProps(async (_context) => {
   const { preprocessedCodeSnippets, usedByCount } = await promiseAllProperties({

@@ -309,8 +309,7 @@ export const HowItWorks: FC<{ codeSnippets: CodeSnippets }> = ({ codeSnippets })
               ) : (
                 <Tooltip.Root key={index} delayDuration={100}>
                   <Tooltip.Trigger
-                    disabled
-                    className={`border font-semibold ${
+                    className={`cursor-default border font-semibold ${
                       index == 0 ? 'rounded-l-md' : index == content.tabs.length - 1 ? 'rounded-r-md' : '-mx-px'
                     } border-gray-200 bg-gray-50 py-2 px-4 text-slate-400 dark:border-gray-800 dark:bg-gray-900 dark:text-slate-500`}
                   >
