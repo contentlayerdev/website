@@ -1,0 +1,330 @@
+diff --git a/bundles/sdk.m.js b/bundles/sdk.m.js
+index 62aaca9d5f21797879c3360f213bf1dee0eb4b23..3c4a455a345b62cf9c292e5b903dbd710c1c4dd2 100644
+--- a/bundles/sdk.m.js
++++ b/bundles/sdk.m.js
+@@ -1,2 +1,324 @@
+-function e(e,t){(null==t||t>e.length)&&(t=e.length);for(var n=0,r=new Array(t);n<t;n++)r[n]=e[n];return r}function t(){return Math.random().toString(36).slice(2,6)+Math.random().toString(36).slice(2,6)}function n(e,t){return""+i(t)+e+o(t)}function r(e,t){var n={forceEmbedLayout:!0};return t&&"object"==typeof t&&Object.assign(n,t),""+i(n)+e+o(n)}function i(e){return void 0===e&&(e={}),"string"==typeof e.origin?e.origin:"https://stackblitz.com"}function o(t){void 0===t&&(t={});var n=[];t.forceEmbedLayout&&n.push("embed=1"),t.clickToLoad&&n.push("ctl=1");for(var r,i=function(t,n){var r="undefined"!=typeof Symbol&&t[Symbol.iterator]||t["@@iterator"];if(r)return(r=r.call(t)).next.bind(r);if(Array.isArray(t)||(r=function(t,n){if(t){if("string"==typeof t)return e(t,n);var r=Object.prototype.toString.call(t).slice(8,-1);return"Object"===r&&t.constructor&&(r=t.constructor.name),"Map"===r||"Set"===r?Array.from(t):"Arguments"===r||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(r)?e(t,n):void 0}}(t))){r&&(t=r);var i=0;return function(){return i>=t.length?{done:!0}:{done:!1,value:t[i++]}}}throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}(Array.isArray(t.openFile)?t.openFile:[t.openFile]);!(r=i()).done;){var o=r.value;"string"==typeof o&&""!==o.trim()&&n.push("file="+encodeURIComponent(o.trim()))}return"preview"!==t.view&&"editor"!==t.view||n.push("view="+t.view),"light"!==t.theme&&"dark"!==t.theme||n.push("theme="+t.theme),t.hideExplorer&&n.push("hideExplorer=1"),t.hideNavigation&&n.push("hideNavigation=1"),t.hideDevTools&&n.push("hideDevTools=1"),"number"==typeof t.devToolsHeight&&t.devToolsHeight>=0&&t.devToolsHeight<=100&&n.push("devToolsHeight="+Math.round(t.devToolsHeight)),n.length?"?"+n.join("&"):""}function a(e,t,n){if(!t||!e||!e.parentNode)throw new Error("Invalid Element");e.id&&(t.id=e.id),e.className&&(t.className=e.className),function(e,t){t&&"object"==typeof t&&(Object.hasOwnProperty.call(t,"height")&&(e.height=""+t.height),Object.hasOwnProperty.call(t,"width")&&(e.width=""+t.width)),e.height||(e.height="300"),e.width||e.setAttribute("style","width:100%;")}(t,n),e.parentNode.replaceChild(t,e)}function d(e){if("string"==typeof e){var t=document.getElementById(e);if(!t)throw new Error("Could not find element with id '"+e+"'");return t}if(e instanceof HTMLElement)return e;throw new Error("Invalid element: "+e)}function c(e){return e&&!1===e.newWindow?"_self":"_blank"}var l=/*#__PURE__*/function(){function e(e){var t=this;this.port=void 0,this.pending={},this.port=e,this.port.onmessage=function(e){var n,r=e.data;if(null!=r&&null!=(n=r.payload)&&n.__reqid){var i=r.payload.__reqid,o=r.payload.__success;if(t.pending[i]){if(delete r.payload.__reqid,delete r.payload.__success,o){var a=0===Object.keys(r.payload).length&&r.payload.constructor===Object?null:r.payload;t.pending[i].resolve(a)}else t.pending[i].reject(r.payload.error?r.type+": "+r.payload.error:r.type);delete t.pending[i]}}}}return e.prototype.request=function(e){var n=this,r=t();return new Promise(function(t,i){n.pending[r]={resolve:t,reject:i},e.payload.__reqid=r,n.port.postMessage(e)})},e}(),s=/*#__PURE__*/function(){function e(e,t){var n=this;this._rdc=void 0,this.editor={openFile:function(e){return n._rdc.request({type:"SDK_OPEN_FILE",payload:{path:e}})},setTheme:function(e){return n._rdc.request({type:"SDK_SET_UI_THEME",payload:{theme:e}})},setView:function(e){return n._rdc.request({type:"SDK_SET_UI_VIEW",payload:{view:e}})},showSidebar:function(e){return void 0===e&&(e=!0),n._rdc.request({type:"SDK_TOGGLE_SIDEBAR",payload:{visible:e}})}},this.preview={origin:"",getUrl:function(){return n._rdc.request({type:"SDK_GET_PREVIEW_URL",payload:{}})},setUrl:function(e){return void 0===e&&(e="/"),n._rdc.request({type:"SDK_SET_PREVIEW_URL",payload:{path:e}})}},this._rdc=new l(e),Object.defineProperty(this.preview,"origin",{value:"string"==typeof t.previewOrigin?t.previewOrigin:null,writable:!1})}var t=e.prototype;return t.applyFsDiff=function(e){var t=function(e){return null!==e&&"object"==typeof e};if(!t(e)||!t(e.create))throw new Error("Invalid diff object: expected diff.create to be an object.");if(!Array.isArray(e.destroy))throw new Error("Invalid diff object: expected diff.create to be an array.");return this._rdc.request({type:"SDK_APPLY_FS_DIFF",payload:e})},t.getDependencies=function(){return this._rdc.request({type:"SDK_GET_DEPS_SNAPSHOT",payload:{}})},t.getFsSnapshot=function(){return this._rdc.request({type:"SDK_GET_FS_SNAPSHOT",payload:{}})},e}(),u=[],p=function(e){var n=this;this.element=void 0,this.id=void 0,this.pending=void 0,this.vm=void 0,this.id=t(),this.element=e,this.pending=new Promise(function(e,t){var r=function(t){var r=t.data;"SDK_INIT_SUCCESS"===(null==r?void 0:r.action)&&r.id===n.id&&(n.vm=new s(t.ports[0],r.payload),e(n.vm),o())},i=function(){n.element.contentWindow&&n.element.contentWindow.postMessage({action:"SDK_INIT",id:n.id},"*")};function o(){window.clearInterval(d),window.removeEventListener("message",r)}window.addEventListener("message",r),i();var a=0,d=window.setInterval(function(){if(n.vm)o();else{if(a>=20)return o(),t("Timeout: Unable to establish a connection with the StackBlitz VM"),void u.forEach(function(e,t){e.id===n.id&&u.splice(t,1)});a++,i()}},500)}),u.push(this)},h=["angular-cli","create-react-app","html","javascript","node","polymer","typescript","vue"];function f(e,t){var n=document.createElement("input");return n.type="hidden",n.name=e,n.value=t,n}function m(e){h.includes(e.template)||console.warn("Unsupported project.template: must be one of "+h.join(", "));var t="node"===e.template,n=document.createElement("form");return n.method="POST",n.setAttribute("style","display:none!important;"),n.appendChild(f("project[title]",e.title)),n.appendChild(f("project[description]",e.description)),n.appendChild(f("project[template]",e.template)),e.dependencies&&(t?console.warn("Invalid project.dependencies: dependencies must be provided as a 'package.json' file when using the 'node' template."):n.appendChild(f("project[dependencies]",JSON.stringify(e.dependencies)))),e.settings&&n.appendChild(f("project[settings]",JSON.stringify(e.settings))),Object.keys(e.files).forEach(function(t){"string"==typeof e.files[t]&&n.appendChild(f("project[files]["+t+"]",e.files[t]))}),n}function v(e){var t,n,r,i;return null!=e&&e.contentWindow?(null!=(i=(n=e)instanceof Element?"element":"id",t=null!=(r=u.find(function(e){return e[i]===n}))?r:null)?t:new p(e)).pending:Promise.reject("Provided element is not an iframe.")}var y={__proto__:null,connect:v,openProject:function(e,t){!function(e,t){var r=m(e);r.action=n("/run",t),r.target=c(t),document.body.appendChild(r),r.submit(),document.body.removeChild(r)}(e,t)},openProjectId:function(e,t){var r=n("/edit/"+e,t),i=c(t);window.open(r,i)},openGithubProject:function(e,t){var r=n("/github/"+e,t),i=c(t);window.open(r,i)},embedProject:function(e,t,n){var i,o=d(e),c=function(e,t){var n=m(e);return n.action=r("/run",t),n.id="sb","<html><head><title></title></head><body>"+n.outerHTML+"<script>document.getElementById('"+n.id+"').submit();<\/script></body></html>"}(t,n),l=document.createElement("iframe");return a(o,l,n),null==(i=l.contentDocument)||i.write(c),v(l)},embedProjectId:function(e,t,n){var i=d(e),o=document.createElement("iframe");return o.src=r("/edit/"+t,n),a(i,o,n),v(o)},embedGithubProject:function(e,t,n){var i=d(e),o=document.createElement("iframe");return o.src=r("/github/"+t,n),a(i,o,n),v(o)}};export{y as default};
++function e(e, t) {
++  ;(null == t || t > e.length) && (t = e.length)
++  for (var n = 0, r = new Array(t); n < t; n++) r[n] = e[n]
++  return r
++}
++function t() {
++  return Math.random().toString(36).slice(2, 6) + Math.random().toString(36).slice(2, 6)
++}
++function n(e, t) {
++  return '' + i(t) + e + o(t)
++}
++function r(e, t) {
++  var n = { forceEmbedLayout: !0 }
++  return t && 'object' == typeof t && Object.assign(n, t), '' + i(n) + e + o(n)
++}
++function i(e) {
++  return void 0 === e && (e = {}), 'string' == typeof e.origin ? e.origin : 'https://stackblitz.com'
++}
++function o(t) {
++  void 0 === t && (t = {})
++  var n = []
++  t.forceEmbedLayout && n.push('embed=1'), t.clickToLoad && n.push('ctl=1')
++  for (
++    var r,
++      i = (function (t, n) {
++        var r = ('undefined' != typeof Symbol && t[Symbol.iterator]) || t['@@iterator']
++        if (r) return (r = r.call(t)).next.bind(r)
++        if (
++          Array.isArray(t) ||
++          (r = (function (t, n) {
++            if (t) {
++              if ('string' == typeof t) return e(t, n)
++              var r = Object.prototype.toString.call(t).slice(8, -1)
++              return (
++                'Object' === r && t.constructor && (r = t.constructor.name),
++                'Map' === r || 'Set' === r
++                  ? Array.from(t)
++                  : 'Arguments' === r || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(r)
++                  ? e(t, n)
++                  : void 0
++              )
++            }
++          })(t))
++        ) {
++          r && (t = r)
++          var i = 0
++          return function () {
++            return i >= t.length ? { done: !0 } : { done: !1, value: t[i++] }
++          }
++        }
++        throw new TypeError(
++          'Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.',
++        )
++      })(Array.isArray(t.openFile) ? t.openFile : [t.openFile]);
++    !(r = i()).done;
++
++  ) {
++    var o = r.value
++    'string' == typeof o && '' !== o.trim() && n.push('file=' + encodeURIComponent(o.trim()))
++  }
++  return (
++    ('preview' !== t.view && 'editor' !== t.view) || n.push('view=' + t.view),
++    ('light' !== t.theme && 'dark' !== t.theme) || n.push('theme=' + t.theme),
++    t.hideExplorer && n.push('hideExplorer=1'),
++    t.hideNavigation && n.push('hideNavigation=1'),
++    t.hideDevTools && n.push('hideDevTools=1'),
++    'number' == typeof t.devToolsHeight &&
++      t.devToolsHeight >= 0 &&
++      t.devToolsHeight <= 100 &&
++      n.push('devToolsHeight=' + Math.round(t.devToolsHeight)),
++    n.length ? '?' + n.join('&') : ''
++  )
++}
++function a(e, t, n) {
++  if (!t || !e || !e.parentNode) throw new Error('Invalid Element')
++  e.id && (t.id = e.id),
++    e.className && (t.className = e.className),
++    (function (e, t) {
++      t &&
++        'object' == typeof t &&
++        (Object.hasOwnProperty.call(t, 'height') && (e.height = '' + t.height),
++        Object.hasOwnProperty.call(t, 'width') && (e.width = '' + t.width)),
++        e.height || (e.height = '300'),
++        e.width || e.setAttribute('style', 'width:100%;')
++    })(t, n),
++    e.parentNode.replaceChild(t, e)
++}
++function d(e) {
++  if ('string' == typeof e) {
++    var t = document.getElementById(e)
++    if (!t) throw new Error("Could not find element with id '" + e + "'")
++    return t
++  }
++  if (e instanceof HTMLElement) return e
++  throw new Error('Invalid element: ' + e)
++}
++function c(e) {
++  return e && !1 === e.newWindow ? '_self' : '_blank'
++}
++var l = /*#__PURE__*/ (function () {
++    function e(e) {
++      var t = this
++      ;(this.port = void 0),
++        (this.pending = {}),
++        (this.port = e),
++        (this.port.onmessage = function (e) {
++          var n,
++            r = e.data
++          if (null != r && null != (n = r.payload) && n.__reqid) {
++            var i = r.payload.__reqid,
++              o = r.payload.__success
++            if (t.pending[i]) {
++              if ((delete r.payload.__reqid, delete r.payload.__success, o)) {
++                var a = 0 === Object.keys(r.payload).length && r.payload.constructor === Object ? null : r.payload
++                t.pending[i].resolve(a)
++              } else t.pending[i].reject(r.payload.error ? r.type + ': ' + r.payload.error : r.type)
++              delete t.pending[i]
++            }
++          }
++        })
++    }
++    return (
++      (e.prototype.request = function (e) {
++        var n = this,
++          r = t()
++        return new Promise(function (t, i) {
++          ;(n.pending[r] = { resolve: t, reject: i }), (e.payload.__reqid = r), n.port.postMessage(e)
++        })
++      }),
++      e
++    )
++  })(),
++  s = /*#__PURE__*/ (function () {
++    function e(e, t) {
++      var n = this
++      ;(this._rdc = void 0),
++        (this.editor = {
++          openFile: function (e) {
++            return n._rdc.request({ type: 'SDK_OPEN_FILE', payload: { path: e } })
++          },
++          setTheme: function (e) {
++            return n._rdc.request({ type: 'SDK_SET_UI_THEME', payload: { theme: e } })
++          },
++          setView: function (e) {
++            return n._rdc.request({ type: 'SDK_SET_UI_VIEW', payload: { view: e } })
++          },
++          showSidebar: function (e) {
++            return void 0 === e && (e = !0), n._rdc.request({ type: 'SDK_TOGGLE_SIDEBAR', payload: { visible: e } })
++          },
++        }),
++        (this.preview = {
++          origin: '',
++          getUrl: function () {
++            return n._rdc.request({ type: 'SDK_GET_PREVIEW_URL', payload: {} })
++          },
++          setUrl: function (e) {
++            return void 0 === e && (e = '/'), n._rdc.request({ type: 'SDK_SET_PREVIEW_URL', payload: { path: e } })
++          },
++        }),
++        (this._rdc = new l(e)),
++        Object.defineProperty(this.preview, 'origin', {
++          value: 'string' == typeof t.previewOrigin ? t.previewOrigin : null,
++          writable: !1,
++        })
++    }
++    var t = e.prototype
++    return (
++      (t.applyFsDiff = function (e) {
++        var t = function (e) {
++          return null !== e && 'object' == typeof e
++        }
++        if (!t(e) || !t(e.create)) throw new Error('Invalid diff object: expected diff.create to be an object.')
++        if (!Array.isArray(e.destroy)) throw new Error('Invalid diff object: expected diff.create to be an array.')
++        return this._rdc.request({ type: 'SDK_APPLY_FS_DIFF', payload: e })
++      }),
++      (t.getDependencies = function () {
++        return this._rdc.request({ type: 'SDK_GET_DEPS_SNAPSHOT', payload: {} })
++      }),
++      (t.getFsSnapshot = function () {
++        return this._rdc.request({ type: 'SDK_GET_FS_SNAPSHOT', payload: {} })
++      }),
++      e
++    )
++  })(),
++  u = [],
++  p = function (e) {
++    var n = this
++    ;(this.element = void 0),
++      (this.id = void 0),
++      (this.pending = void 0),
++      (this.vm = void 0),
++      (this.id = t()),
++      (this.element = e),
++      (this.pending = new Promise(function (e, t) {
++        var r = function (t) {
++            var r = t.data
++            'SDK_INIT_SUCCESS' === (null == r ? void 0 : r.action) &&
++              r.id === n.id &&
++              ((n.vm = new s(t.ports[0], r.payload)), e(n.vm), o())
++          },
++          i = function () {
++            n.element.contentWindow && n.element.contentWindow.postMessage({ action: 'SDK_INIT', id: n.id }, '*')
++          }
++        function o() {
++          window.clearInterval(d), window.removeEventListener('message', r)
++        }
++        window.addEventListener('message', r), i()
++        var a = 0,
++          d = window.setInterval(function () {
++            if (n.vm) o()
++            else {
++              if (a >= 20)
++                return (
++                  o(),
++                  t('Timeout: Unable to establish a connection with the StackBlitz VM'),
++                  void u.forEach(function (e, t) {
++                    e.id === n.id && u.splice(t, 1)
++                  })
++                )
++              a++, i()
++            }
++          }, 500)
++      })),
++      u.push(this)
++  },
++  h = ['angular-cli', 'create-react-app', 'html', 'javascript', 'node', 'polymer', 'typescript', 'vue']
++function f(e, t) {
++  var n = document.createElement('input')
++  return (n.type = 'hidden'), (n.name = e), (n.value = t), n
++}
++function m(e) {
++  h.includes(e.template) || console.warn('Unsupported project.template: must be one of ' + h.join(', '))
++  var t = 'node' === e.template,
++    n = document.createElement('form')
++  return (
++    (n.method = 'POST'),
++    n.setAttribute('style', 'display:none!important;'),
++    n.appendChild(f('project[title]', e.title)),
++    n.appendChild(f('project[description]', e.description)),
++    n.appendChild(f('project[template]', e.template)),
++    e.dependencies &&
++      (t
++        ? console.warn(
++            "Invalid project.dependencies: dependencies must be provided as a 'package.json' file when using the 'node' template.",
++          )
++        : n.appendChild(f('project[dependencies]', JSON.stringify(e.dependencies)))),
++    e.settings && n.appendChild(f('project[settings]', JSON.stringify(e.settings))),
++    Object.keys(e.files).forEach(function (t) {
++      'string' == typeof e.files[t] && n.appendChild(f('project[files][' + t + ']', e.files[t]))
++    }),
++    n
++  )
++}
++function v(e) {
++  var t, n, r, i
++  return null != e && e.contentWindow
++    ? (null !=
++      ((i = (n = e) instanceof Element ? 'element' : 'id'),
++      (t =
++        null !=
++        (r = u.find(function (e) {
++          return e[i] === n
++        }))
++          ? r
++          : null))
++        ? t
++        : new p(e)
++      ).pending
++    : Promise.reject('Provided element is not an iframe.')
++}
++var y = {
++  __proto__: null,
++  connect: v,
++  openProject: function (e, t) {
++    !(function (e, t) {
++      var r = m(e)
++      ;(r.action = n('/run', t)),
++        (r.target = c(t)),
++        document.body.appendChild(r),
++        r.submit(),
++        document.body.removeChild(r)
++    })(e, t)
++  },
++  openProjectId: function (e, t) {
++    var r = n('/edit/' + e, t),
++      i = c(t)
++    window.open(r, i)
++  },
++  openGithubProject: function (e, t) {
++    var r = n('/github/' + e, t),
++      i = c(t)
++    window.open(r, i)
++  },
++  embedProject: function (e, t, n) {
++    var i,
++      o = d(e),
++      c = (function (e, t) {
++        var n = m(e)
++        return (
++          (n.action = r('/run', t)),
++          (n.id = 'sb'),
++          '<html><head><title></title></head><body>' +
++            n.outerHTML +
++            "<script>document.getElementById('" +
++            n.id +
++            "').submit();</script></body></html>"
++        )
++      })(t, n),
++      l = document.createElement('iframe')
++    return a(o, l, n), null == (i = l.contentDocument) || i.write(c), v(l)
++  },
++  embedProjectId: function (e, t, n) {
++    var i = d(e),
++      o = document.createElement('iframe')
++    return (o.src = r('/edit/' + t, n)), a(i, o, n), v(o)
++  },
++  embedGithubProject: function (e, t, n) {
++    var i = d(e),
++      o = document.createElement('iframe')
++    return (o.src = r('/fork/github/' + t, n)), a(i, o, n), v(o)
++  },
++}
++export { y as default }
+ //# sourceMappingURL=sdk.m.js.map

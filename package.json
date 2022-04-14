@@ -53,5 +53,8 @@
     "tailwindcss": "^3.0.24",
     "typescript": "4.6.3"
   },
-  "packageManager": "yarn@3.1.1"
+  "packageManager": "yarn@3.2.0",
+  "resolutions": {
+    "@stackblitz/sdk": "patch:@stackblitz/sdk@npm:1.7.0-alpha.2#.yarn/patches/@stackblitz-sdk-npm-1.7.0-alpha.2-9db47a6843.patch"
+  }
 }

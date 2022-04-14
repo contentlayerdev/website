@@ -2,7 +2,7 @@
 # Manual changes might be lost - proceed with caution!
 
 __metadata:
-  version: 5
+  version: 6
   cacheKey: 8
 
 "@babel/runtime-corejs3@npm:^7.10.2":
@@ -1321,10 +1321,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@stackblitz/sdk@npm:^1.7.0-alpha.2":
+"@stackblitz/sdk@npm:1.7.0-alpha.2":
   version: 1.7.0-alpha.2
   resolution: "@stackblitz/sdk@npm:1.7.0-alpha.2"
   checksum: 60b87f16d7fd0636d6e7b153678bcea2c8f04b7e79148155aff8a3f8daa24f7338581db4a37f9039f0e98c18fdac0a342d5d8186d6dbd30eb756abef60ce4139
+  languageName: node
+  linkType: hard
+
+"@stackblitz/sdk@patch:@stackblitz/sdk@npm:1.7.0-alpha.2#.yarn/patches/@stackblitz-sdk-npm-1.7.0-alpha.2-9db47a6843.patch::locator=contentlayer-docs%40workspace%3A.":
+  version: 1.7.0-alpha.2
+  resolution: "@stackblitz/sdk@patch:@stackblitz/sdk@npm%3A1.7.0-alpha.2#.yarn/patches/@stackblitz-sdk-npm-1.7.0-alpha.2-9db47a6843.patch::version=1.7.0-alpha.2&hash=48073a&locator=contentlayer-docs%40workspace%3A."
+  checksum: c2769b8f453e6636ce1fb1b04fede9383d880bbe75884e60cd249d0aaff1b71b54c9082d3f452bd6911929eb683fa56e21db0c0a4ff73fb9a4f51b085b60bf71
   languageName: node
   linkType: hard
 
@@ -8886,11 +8893,11 @@ __metadata:
 
 "typescript@patch:typescript@4.6.3#~builtin<compat/typescript>, typescript@patch:typescript@>3#~builtin<compat/typescript>":
   version: 4.6.3
-  resolution: "typescript@patch:typescript@npm%3A4.6.3#~builtin<compat/typescript>::version=4.6.3&hash=493e53"
+  resolution: "typescript@patch:typescript@npm%3A4.6.3#~builtin<compat/typescript>::version=4.6.3&hash=bda367"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: fe6bdc1afb2f145ddb7b0a3a31f96352209f6a5704d97f038414ea22ff9d8dd42f32cfb6652e30458d7d958d2d4e85de2df11c574899c6f750a6b3c0e90a3a76
+  checksum: 6bf45caf847062420592e711bc9c28bf5f9a9a7fa8245343b81493e4ededae33f1774009d1234d911422d1646a2c839f44e1a23ecb111b40a60ac2ea4c1482a8
   languageName: node
   linkType: hard
 
