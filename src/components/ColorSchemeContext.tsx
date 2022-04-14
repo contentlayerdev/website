@@ -10,20 +10,22 @@ export const useUpdateColorScheme = () => useContext(UpdateColorSchemeContext)
 export const ColorSchemeProvider: FC<React.PropsWithChildren<{}>> = ({ children }) => {
   const [colorScheme, setColorScheme] = useState<'light' | 'dark' | 'system'>('system')
 
-  // useEffect(() => {
-  //   if (typeof window === 'undefined') return
-  //   const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-  //   setColorScheme(isDarkMode ? 'dark' : 'light')
-  //   window
-  //     .matchMedia('(prefers-color-scheme: dark)')
-  //     .addEventListener('change', (e) => setColorScheme(e.matches ? 'dark' : 'light'))
-  // }, [setColorScheme])
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    if (colorScheme === 'system') {
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => updateColorScheme('system'))
+    }
+  }, [colorScheme])
 
   const updateColorScheme = (colorScheme: 'light' | 'dark' | 'system') => {
     setColorScheme(colorScheme)
     if (colorScheme === 'system') {
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.classList.add('dark')
+      } else {
+        document.documentElement.classList.remove('dark')
+      }
       localStorage.removeItem('theme')
-      document.documentElement.classList.remove('dark')
     } else {
       if (colorScheme === 'dark') {
         document.documentElement.classList.add('dark')

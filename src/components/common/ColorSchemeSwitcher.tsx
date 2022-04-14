@@ -42,7 +42,7 @@ export const ColorSchemeSwitcher = () => {
           <Icon name={colorScheme === 'light' ? 'sun' : 'moon'} />
         </span>
       </DropdownMenu.Trigger>
-      <DropdownMenu.Content className="rounded-md border-gray-100 bg-gray-50 p-2 dark:border-gray-800 dark:bg-gray-900">
+      <DropdownMenu.Content className="rounded-md border border-gray-100 bg-gray-50 p-2 dark:border-gray-800 dark:bg-gray-900">
         <DropdownMenu.Item
           onSelect={() => updateColorScheme('light')}
           className={`group flex h-8 cursor-pointer items-center space-x-4 rounded-md px-3 text-sm font-medium leading-none hover:outline-none ${
