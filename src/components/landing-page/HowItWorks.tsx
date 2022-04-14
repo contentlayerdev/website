@@ -46,7 +46,7 @@ export default makeSource({
       content: `\
 import { allPosts, type Post } from './assets/contentlayer-generated'
 
-export async function getStaticProps() {
+export function getStaticProps() {
   return { props: { posts: allPosts } }
 }
 
@@ -72,12 +72,12 @@ export default function Home({ posts }: { posts: Post[] }) {
       content: `\
 import { allPosts, type Post } from './assets/contentlayer-generated'
 
-export async function getStaticPaths() {
+export function getStaticPaths() {
   const paths = allPosts.map((post) => post.url)
   return { paths }
 }
 
-export async function getStaticProps({ params }) {
+export function getStaticProps({ params }) {
   const post = allPosts.find((post) => post.url === params.slug)
 
   return { props: { post } }
