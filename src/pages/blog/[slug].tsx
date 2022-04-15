@@ -67,6 +67,12 @@ export const H4: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
 
 const P: React.FC<React.PropsWithChildren<{}>> = ({ children }) => <div className="mb-4">{children}</div>
 
+const Transform: React.FC<{ className?: string }> = ({ className }) => (
+  <div className={className}>
+    <DataTransformation from={dataTransformation.from} to={dataTransformation.to} />
+  </div>
+)
+
 const mdxComponents = {
   Callout,
   Card,
@@ -82,7 +88,7 @@ const mdxComponents = {
   img: Image,
   Playground,
   BulletList,
-  Transform: () => <DataTransformation from={dataTransformation.from} to={dataTransformation.to} />,
+  Transform,
 }
 
 const Post: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ post }) => {

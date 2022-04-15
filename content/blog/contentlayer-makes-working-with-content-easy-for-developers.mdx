@@ -7,6 +7,8 @@ related_posts:
   - slug: working-with-content-is-hard-for-developers
 ---
 
+TODO Add TLDR section with Contentlayer video
+
 ## The Modern Approach: Content as Data
 
 How we handle content for the web [has evolved significantly](/blog/working-with-content-is-hard-for-developers) over the past three decades. The pattern from frameworks emerging today is to bring no opinion about how you handle content.
@@ -34,12 +36,12 @@ While it’s nice to be able to work the way you want, it’s not so great to wr
 
 For example, if you built a website using Next.js with local markdown files as your content source, you’d have to put a mechanism in place that converted those markdown files to data that you could feed into Next.js pages.
 
+Doing that on its own doesn’t sound like a lot of work, but it gets complicated fast. Consider that if you _really_ wanted to have the optimal developer experience, you’d have to do the following:
+
 <BulletList
   type="cross"
   items={['Adds development complexity', 'Decreased build performance', 'Manual caching, validation, etc.']}
 />
-
-Doing that on its own doesn’t sound like a lot of work, but it gets complicated fast. Consider that if you _really_ wanted to have the optimal developer experience, you’d have to do the following:
 
 - Write markdown processing logic, including working with content-processing libraries and their plugins. This is a lot of base-level logic and adds a number of dependencies to your project.
 - Cache processed data. _Caching is hard_. _Not caching_ degrades the developer experience.
@@ -94,7 +96,7 @@ Working with Contentlayer is a three-step process:
 
 2. Run the build. This can be done independently, or by hooking into framework server/build processes.
 
-   <Transform />
+   <Transform className="my-12" />
 
 3. Use `import` to work with your content, just as you would any other data in your application.
 
@@ -141,6 +143,8 @@ Try it! Make a change to one of the markdown files in the `content` directory. N
 
 ## Contentlayer is Fast at Every Stage of a Project
 
+Contentlayer isn’t just convenient and built to improve development experience. It’s also _fast_. Contentlayer provides performance benefits when you:
+
 <BulletList
   type="check"
   items={[
@@ -150,15 +154,24 @@ Try it! Make a change to one of the markdown files in the `content` directory. N
   ]}
 />
 
-Contentlayer isn’t just convenient and built to improve development experience. It’s also _fast_. Contentlayer provides performance benefits when you:
-
 - **Build:** The server boots quickly, content is incrementally regenerated, and live reloading unlocked.
 - **Test:** Because builds are faster, CI and CD finish quicker, which means your content gets into production sooner.
 - **Deploy:** More processing is done at build time, including rendering markdown, minimizing the work done on the client. This improves your Lighthouse scores and makes your site faster for your users.
 
 ## Built to Serve Most Projects
 
-![Contentlayer - Content as Data, Made Easy for Developers](https://i.imgur.com/HwBRywW.png)
+<BulletList
+  type="check"
+  columns={2}
+  items={[
+    '`import` content as data',
+    'Maximized build performance',
+    'Built-in content validation',
+    'Auto-generated type definitions',
+    'Incremental, cached builds',
+    'Live reloading',
+  ]}
+/>
 
 As we’ve seen, Contentlayer tends to work best alongside frameworks with an open content model. We’ve focused on Next.js up until this point, but plan to investigate support for Remix, SvelteKit, Nuxt, and more.
 
@@ -172,7 +185,12 @@ When starting a project with opinionated content tooling, there is always a risk
 
 And we’re just getting started.
 
-![contentlayer - The Future of Content](https://i.imgur.com/3sSqu69.png)
+<Image
+  src="https://i.imgur.com/MgkpgPi.png"
+  height="192"
+  width="600"
+  className="inline-flex w-full justify-center px-4 py-14"
+/>
 
 ## Contentlayer’s Roadmap
 

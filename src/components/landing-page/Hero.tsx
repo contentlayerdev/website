@@ -31,7 +31,7 @@ const content = {
   primaryAction: { label: 'Get started', url: '/docs/getting-started' },
   secondaryAction: { label: 'Why Contentlayer?', url: '/docs/concepts/why-contentlayer' },
   video: {
-    thumbnail: { url: '/images/intro-thumbnail.jpg', alt: 'Intro to Contentlayer Video Thumbnail' },
+    thumbnail: { url: 'https://i.imgur.com/Ogv8EgG.png', alt: 'Intro to Contentlayer Video Thumbnail' },
     youtubeId: 'oC_96_U864o',
   },
 }
@@ -51,6 +51,7 @@ export const Hero: FC = () => {
         </div>
       </div>
       <div className="relative flex items-center w-full">
+        {/* TODO don't use image as thumbnail if possible */}
         <Video thumbnail={content.video.thumbnail} videoId={content.video.youtubeId} />
       </div>
     </div>
