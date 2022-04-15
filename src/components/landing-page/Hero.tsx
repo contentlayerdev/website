@@ -14,9 +14,9 @@ const content = {
   heading: 'Type-safe SDK for your web content',
   text: (
     <>
-      Contentlayer is a <Dashed label="content preprocessor" tooltip="TODO: short explanation" /> that validates and
-      transforms your content into <Dashed label="type-safe" tooltip="TODO: short explanation" /> JSON you can easily
-      import into your application.
+      Contentlayer is a <Dashed label="content SDK" tooltip="TODO: short explanation" /> that validates and transforms
+      your content into <Dashed label="type-safe" tooltip="TODO: short explanation" /> JSON you can easily import into
+      your application.
     </>
   ),
   features: ['Lightweight & easy to use', 'Great developer experience', 'Blazing fast build & page performance'],

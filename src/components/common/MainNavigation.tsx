@@ -6,8 +6,7 @@ import { Label } from './Label'
 import { Logo } from './Logo'
 import { useRouter } from 'next/router'
 import { ColorSchemeSwitcher } from './ColorSchemeSwitcher'
-
-const isExternalUrl = (link: string): boolean => !link.startsWith('/')
+import { isExternalUrl } from '../../utils/helpers'
 
 const navLinks: Array<{ label: string; url: string }> = [
   { label: 'Documentation', url: '/docs' },
@@ -58,9 +57,9 @@ export const SearchButton: FC<{ showShortcut?: boolean }> = ({ showShortcut = tr
     <button
       aria-label="Search"
       onClick={query.toggle}
-      className="flex h-8 cursor-text items-center rounded-md border border-gray-200 bg-gray-50 px-2 text-sm hover:border-gray-300 hover:bg-gray-100 dark:border-gray-800 dark:bg-gray-900 dark:hover:border-gray-700 dark:hover:bg-gray-800"
+      className="flex items-center h-8 px-2 text-sm border border-gray-200 rounded-md cursor-text bg-gray-50 hover:border-gray-300 hover:bg-gray-100 dark:border-gray-800 dark:bg-gray-900 dark:hover:border-gray-700 dark:hover:bg-gray-800"
     >
-      <span className="mr-2 block w-3">
+      <span className="block w-3 mr-2">
         <Icon name="search" />
       </span>
       <span className="mr-8 text-slate-400 dark:text-slate-500">Search...</span>
@@ -73,8 +72,8 @@ export const MainNavigation = () => {
   const [open, setOpen] = useState(false)
 
   return (
-    <header className="fixed z-50 w-full border-b border-gray-200 bg-white bg-opacity-90 backdrop-blur backdrop-filter dark:border-gray-800 dark:bg-gray-950">
-      <div className="mx-auto flex h-16 w-full max-w-screen-2xl items-center justify-between px-4 md:px-8 lg:px-16">
+    <header className="fixed z-50 w-full bg-white border-b border-gray-200 bg-opacity-90 backdrop-blur backdrop-filter dark:border-gray-800 dark:bg-gray-950">
+      <div className="flex items-center justify-between w-full h-16 px-4 mx-auto max-w-screen-2xl md:px-8 lg:px-16">
         <div className="flex items-center space-x-2.5">
           <Link href="/">
             <a className="flex items-center space-x-2.5 font-bold text-slate-800 no-underline dark:text-white">
@@ -89,7 +88,7 @@ export const MainNavigation = () => {
             type="button"
             aria-label="Toggle menu"
             onClick={() => setOpen(!open)}
-            className="flex h-8 w-8 items-center justify-end text-slate-600 dark:text-slate-300"
+            className="flex items-center justify-end w-8 h-8 text-slate-600 dark:text-slate-300"
           >
             <span className="inline-block w-4">
               <Icon name={open ? 'close' : 'bars'} />
@@ -97,8 +96,8 @@ export const MainNavigation = () => {
           </button>
           {open && (
             <div className="fixed inset-0 top-[65px] z-50 h-screen bg-gray-950/10 pb-20 backdrop-blur-lg backdrop-filter dark:bg-gray-950/50">
-              <nav className="absolute right-0 h-full divide-y divide-gray-200 border-l border-gray-200 bg-white p-8 dark:divide-gray-800 dark:border-gray-800 dark:bg-gray-950">
-                <div className="flex flex-col items-end space-y-2 pb-8">
+              <nav className="absolute right-0 h-full p-8 bg-white border-l border-gray-200 divide-y divide-gray-200 dark:divide-gray-800 dark:border-gray-800 dark:bg-gray-950">
+                <div className="flex flex-col items-end pb-8 space-y-2">
                   <div className="mb-2">
                     <SearchButton showShortcut={false} />
                   </div>
@@ -111,7 +110,7 @@ export const MainNavigation = () => {
                     />
                   ))}
                 </div>
-                <div className="flex items-center justify-end space-x-4 pt-8">
+                <div className="flex items-center justify-end pt-8 space-x-4">
                   {iconLinks.map(({ label, icon, url }, index) => (
                     <NavLink key={index} label={label} hideLabel url={url} icon={icon} />
                   ))}
@@ -120,7 +119,7 @@ export const MainNavigation = () => {
             </div>
           )}
         </div>
-        <nav className="hidden items-center divide-x divide-gray-200 dark:divide-gray-800 md:flex">
+        <nav className="items-center hidden divide-x divide-gray-200 dark:divide-gray-800 md:flex">
           <div className="flex items-center pr-2 lg:space-x-4 lg:pr-8">
             {navLinks.map(({ label, url }, index) => (
               <NavLink key={index} label={label} url={url} icon={isExternalUrl(url) ? 'external-link' : undefined} />
