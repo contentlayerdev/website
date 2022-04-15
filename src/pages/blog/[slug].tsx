@@ -21,6 +21,7 @@ import { Playground } from 'src/components/blog/Playground'
 import { RelatedPosts } from 'src/components/blog/RelatedPosts'
 import { BulletList } from 'src/components/blog/BulletList'
 import { DataTransformation } from 'src/components/landing-page/DataTransformation'
+import { Video } from 'src/components/landing-page/Video'
 import { localStep2DataTransformation as dataTransformation } from '../../components/landing-page/HowItWorks'
 
 export const getStaticPaths = async () => {
@@ -89,6 +90,7 @@ const mdxComponents = {
   Playground,
   BulletList,
   Transform,
+  Video
 }
 
 const Post: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ post }) => {
