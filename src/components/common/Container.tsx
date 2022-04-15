@@ -45,10 +45,12 @@ export const Container: FC<any> = ({ children, ...customMeta }) => {
       </Head>
       <SearchProvider>
         <MainNavigation />
-        <main className="relative pt-16" style={{ scrollPaddingTop: '150px' }}>
-          {children}
-        </main>
-        <Footer />
+        <div className="flex min-h-screen flex-col justify-between">
+          <main className="relative pt-16" style={{ scrollPaddingTop: '150px' }}>
+            {children}
+          </main>
+          <Footer />
+        </div>
       </SearchProvider>
     </>
   )

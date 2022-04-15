@@ -4,14 +4,31 @@ import { Heading } from '../../components/landing-page/Heading'
 import { Paragraph } from '../../components/landing-page/Paragraph'
 import { ChevronLink } from '../../components/common/ChevronLink'
 import { FC } from 'react'
+import Image from 'next/image'
+import { Card } from '../common/Card'
+import Link from 'next/link'
 
 export const BlogPreview: FC<{ post: Post }> = ({ post }) => {
   return (
-    <div className="space-y-4">
-      <Heading level={3}>{post.title}</Heading>
-      <BlogDetails post={post} hideBackButton />
-      <Paragraph>{post.excerpt}</Paragraph>
-      <ChevronLink label="Read more" url={'/blog/' + post.slug} />
-    </div>
+    <Card className="grid grid-cols-1 gap-8 p-4 sm:p-8 md:grid-cols-2 lg:gap-16">
+      <div>
+        <Image
+          src={post.cover_image.url}
+          alt={post.cover_image.alt}
+          width={post.cover_image.width}
+          height={post.cover_image.height}
+          placeholder="blur"
+          blurDataURL={post.cover_image.url}
+        />
+      </div>
+      <div className="space-y-4">
+        <Heading level={3}>
+          <Link href={'/blog/' + post.slug}>{post.title}</Link>
+        </Heading>
+        <BlogDetails post={post} />
+        <Paragraph>{post.excerpt}</Paragraph>
+        <ChevronLink label="Read more" url={'/blog/' + post.slug} />
+      </div>
+    </Card>
   )
 }

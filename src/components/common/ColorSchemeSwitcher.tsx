@@ -17,7 +17,7 @@ export const ColorSchemeSwitcher = () => {
     return () => {
       window.removeEventListener('storage', handleEvent)
     }
-  }, [])
+  }, [updateColorScheme])
 
   useEffect(() => {
     if (preferredColorScheme === 'system') {
