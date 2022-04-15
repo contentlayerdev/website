@@ -14,6 +14,16 @@ const RelatedPost = defineNestedType(() => ({
   },
 }))
 
+const CoverImage = defineNestedType(() => ({
+  name: 'CoverImage',
+  fields: {
+    url: { type: 'string', required: true },
+    alt: { type: 'string', required: true },
+    width: { type: 'number', required: true },
+    height: { type: 'number', required: true },
+  },
+}))
+
 export const Post = defineDocumentType(() => ({
   name: 'Post',
   filePathPattern: `blog/**/*.mdx`,
@@ -21,7 +31,12 @@ export const Post = defineDocumentType(() => ({
   fields: {
     title: {
       type: 'string',
-      description: 'The title of the page',
+      description: 'The title of the post',
+      required: true,
+    },
+    cover_image: {
+      type: 'nested',
+      of: CoverImage,
       required: true,
     },
     excerpt: {
