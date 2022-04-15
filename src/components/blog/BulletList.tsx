@@ -8,12 +8,12 @@ export const BulletListItem: React.FC<React.PropsWithChildren<{ type: 'check' | 
   return (
     <li className="mt-[-1.5rem] flex max-w-2xl items-start space-x-4">
       {type === 'check' && (
-        <span className="text-green-500" style={{ flex: '0 0 1.5rem', marginTop: '.15rem' }}>
+        <span className="text-green-500" style={{ flex: '0 0 1.5rem', marginTop: '.25rem' }}>
           <Icon name="check-circle-outline" />
         </span>
       )}
       {type === 'cross' && (
-        <span className="text-red-500" style={{ flex: '0 0 1.5rem', marginTop: '.15rem' }}>
+        <span className="text-red-500" style={{ flex: '0 0 1.5rem', marginTop: '.25rem' }}>
           <Icon name="cross-circle-outline" />
         </span>
       )}
