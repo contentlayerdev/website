@@ -84,7 +84,7 @@ const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ example, tre
         })
         .then((_) => setVm(_))
     }
-  }, [ref, example.open_file])
+  }, [ref, example.open_file, example.github_repo])
 
   return (
     <Container title={example.title + ' – Contentlayer'} description={example.excerpt}>

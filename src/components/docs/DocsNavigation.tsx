@@ -57,7 +57,7 @@ const Node: FC<{ node: TreeNode; level: number; activePath: string }> = ({ node,
     if (activePath == node.urlPath || node.children.map((_) => _.urlPath).includes(activePath)) {
       setCollapsed(false)
     }
-  }, [activePath])
+  }, [activePath, node.children, node.urlPath])
 
   return (
     <>

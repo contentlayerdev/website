@@ -112,7 +112,7 @@ export const SearchProvider: FC<{ children: ReactNode }> = ({ children }) => {
     mapPosts(allPosts)
     mapDocs(docsTree, 'Docs')
     return actions
-  }, [docsTree])
+  }, [docsTree, examplesTree, router])
 
   return (
     // @ts-expect-error https://github.com/timc1/kbar/issues/199

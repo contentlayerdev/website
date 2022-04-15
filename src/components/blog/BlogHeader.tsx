@@ -3,10 +3,6 @@ import { FC, useEffect, useState } from 'react'
 import { BlogDetails } from 'src/components/blog/BlogDetails'
 import Link from 'next/link'
 import { Icon } from 'src/components/common/Icon'
-import { allPosts } from 'contentlayer/generated'
-import { Heading } from '../landing-page/Heading'
-import { Card } from '../common/Card'
-import { BlogPreview } from './BlogPreview'
 import Image from 'next/image'
 
 export const BlogHeader: FC<{ post: Post }> = ({ post }) => {
