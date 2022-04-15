@@ -1,5 +1,6 @@
 import { FC } from 'react'
 
+import { ApiIcon } from './API'
 import { BarsIcon } from './Bars'
 import { BrokenLinkIcon } from './BrokenLink'
 import { CalendarIcon } from './Calendar'
@@ -43,6 +44,7 @@ import { UsersIcon } from './Users'
 import { WordPressIcon } from './WordPress'
 
 export type IconName =
+  | 'api'
   | 'bars'
   | 'broken-link'
   | 'calendar'
@@ -96,6 +98,7 @@ const iconMap = {
   'cross-circle-outline': CrossCircleOutlineIcon,
   'external-link': ExternalLinkIcon,
   'play-button': PlayButtonIcon,
+  api: ApiIcon,
   bars: BarsIcon,
   calendar: CalendarIcon,
   check: CheckIcon,

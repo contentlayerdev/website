@@ -78,9 +78,16 @@ const MonolithicStack: React.FC<Exclude<Props, 'decoupled'>> = ({ content, proce
 
 export const ContentStack: React.FC<Props> = ({ decoupled = false, ...props }) => {
   const StackComponent = decoupled ? DecoupledStack : MonolithicStack
+  const numIcons = [props.content, props.pages, props.processor]
+    .map((item) => item.icons.length)
+    .reduce((prev, curr) => prev + curr)
+
+  let maxWidthClass = `max-w-xl`
+  if (numIcons > 3) maxWidthClass = `max-w-2xl`
+  if (numIcons > 5) maxWidthClass = ``
 
   return (
-    <div className="mx-auto my-12 max-w-2xl">
+    <div className={`mx-auto my-12 ${maxWidthClass}`}>
       <StackComponent {...props} />
     </div>
   )
