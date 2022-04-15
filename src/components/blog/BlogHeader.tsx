@@ -19,7 +19,7 @@ export const BlogHeader: FC<{ post: Post }> = ({ post }) => {
 
   return (
     <>
-      <div className="mb-8 max-w-4xl space-y-8 lg:mb-12 lg:space-y-12">
+      <div className="mb-16 max-w-4xl space-y-8 lg:space-y-12">
         <div className="space-y-4">
           <Link href="/blog">
             <a className="flex items-center font-medium text-slate-600 hover:text-slate-700 dark:text-slate-300 dark:hover:text-slate-200">
@@ -34,17 +34,6 @@ export const BlogHeader: FC<{ post: Post }> = ({ post }) => {
           </h1>
           <BlogDetails post={post} />
         </div>
-        <div className="text-center">
-          <Image
-            src={post.cover_image.url}
-            alt={post.cover_image.alt}
-            width={post.cover_image.width}
-            height={post.cover_image.height}
-            placeholder="blur"
-            blurDataURL={post.cover_image.url}
-          />
-        </div>
-        <p className="text-lg leading-relaxed">{post.excerpt}</p>
         <BlogDetails post={post} className="lg:hidden" />
       </div>
       <div
