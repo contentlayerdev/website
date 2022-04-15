@@ -12,8 +12,7 @@ import { BlogPreview } from 'src/components/blog/BlogPreview'
 
 const content = {
   title: 'Contentlayer Blog',
-  description:
-    'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.',
+  description: `Working with content for the web shouldn't be difficult. That's why we built Contentlayer.`,
 }
 
 export const getStaticProps = defineStaticProps(async (context) => {
