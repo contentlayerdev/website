@@ -108,7 +108,7 @@ const Post: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ post }) => {
 
   return (
     <Container title={post.title + ' – Contentlayer'} description={post.excerpt}>
-      <div className="relative mx-auto max-w-screen-2xl md:pt-8 lg:pt-16">
+      <div className="relative mx-auto max-w-screen-2xl md:pt-8 lg:px-8 lg:pt-16">
         <div className="lg:flex lg:items-start">
           <div className="mx-auto mb-4 w-full shrink p-4 py-8 md:mb-8 md:px-8 lg:mx-0 lg:mb-16 lg:max-w-full lg:pr-16 xl:pr-8">
             <BlogHeader post={post} />

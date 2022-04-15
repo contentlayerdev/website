@@ -42,7 +42,7 @@ export const BlogHeader: FC<{ post: Post }> = ({ post }) => {
         }`}
       >
         <div className="mx-auto h-full max-w-screen-2xl">
-          <div className="flex h-full items-center space-x-2 px-8 text-sm">
+          <div className="flex h-full items-center space-x-2 px-8 text-sm lg:px-16">
             <Link href="/blog">
               <a className="inline whitespace-nowrap hover:text-slate-600 dark:hover:text-slate-300">Blog</a>
             </Link>
