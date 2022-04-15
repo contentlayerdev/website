@@ -56,13 +56,33 @@ Doing that on its own doesn’t sound like a lot of work, but it gets complicate
   items={['Adds development complexity', 'Decreased build performance', 'Manual caching, validation, etc.']}
 />
 
-- Write markdown processing logic, including working with content-processing libraries and their plugins. This is a lot of base-level logic and adds a number of dependencies to your project.
-- Cache processed data. _Caching is hard_. _Not caching_ degrades the developer experience.
-- Incrementally regenerate only the content you changed to optimize rebuild/reload performance.
-- Account for rich and complex content associations, so that objects can live as individual content files but be embedded as necessary when used as data.
-- For some frameworks, like Next.js, pages are not live-reloaded automatically when editing markdown content. That’s another mechanism to build.
-- If you want to work with TypeScript and have strongly-typed data, you must generate those types manually (or build a thing that does it automatically).
-- Implement content validations, or build an abstracted system that accepts validation settings through configuration.
+<BulletList>
+  <BulletListItem type="cross">
+    Write markdown processing logic, including working with content-processing libraries and their plugins. This is a
+    lot of base-level logic and adds a number of dependencies to your project.
+  </BulletListItem>
+  <BulletListItem type="cross">
+    Cache processed data. _Caching is hard_. _Not caching_ degrades the developer experience.
+  </BulletListItem>
+  <BulletListItem type="cross">
+    Incrementally regenerate only the content you changed to optimize rebuild/reload performance.
+  </BulletListItem>
+  <BulletListItem type="cross">
+    Account for rich and complex content associations, so that objects can live as individual content files but be
+    embedded as necessary when used as data.
+  </BulletListItem>
+  <BulletListItem type="cross">
+    For some frameworks, like Next.js, pages are not live-reloaded automatically when editing markdown content. That’s
+    another mechanism to build.
+  </BulletListItem>
+  <BulletListItem type="cross">
+    If you want to work with TypeScript and have strongly-typed data, you must generate those types manually (or build a
+    thing that does it automatically).
+  </BulletListItem>
+  <BulletListItem type="cross">
+    Implement content validations, or build an abstracted system that accepts validation settings through configuration.
+  </BulletListItem>
+</BulletList>
 
 That’s _a lot_ of work.
 

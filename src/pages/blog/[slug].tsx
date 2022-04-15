@@ -20,7 +20,7 @@ import { sluggifyTitle, getNodeText } from 'src/utils/sluggify'
 import { Playground } from 'src/components/blog/Playground'
 import { RelatedPosts } from 'src/components/blog/RelatedPosts'
 import { TLDR } from 'src/components/blog/TLDR'
-import { BulletList } from 'src/components/blog/BulletList'
+import { BulletList, BulletListItem } from 'src/components/blog/BulletList'
 import { ContentStack } from 'src/components/blog/ContentStack'
 import { DataTransformation } from 'src/components/landing-page/DataTransformation'
 import { Video } from 'src/components/landing-page/Video'
@@ -91,6 +91,7 @@ const mdxComponents = {
   img: Image,
   Playground,
   BulletList,
+  BulletListItem,
   Transform,
   Video,
   TLDR,

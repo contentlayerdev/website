@@ -80,7 +80,7 @@ export const ContentStack: React.FC<Props> = ({ decoupled = false, ...props }) =
   const StackComponent = decoupled ? DecoupledStack : MonolithicStack
 
   return (
-    <div className="mx-auto my-8 max-w-2xl">
+    <div className="mx-auto my-12 max-w-2xl">
       <StackComponent {...props} />
     </div>
   )
