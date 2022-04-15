@@ -29,7 +29,7 @@ const content = {
   ),
   features: ['Lightweight & easy to use', 'Great developer experience', 'Blazing fast build & page performance'],
   primaryAction: { label: 'Get started', url: '/docs/getting-started' },
-  secondaryAction: { label: 'Why Contentlayer?', url: '/docs/concepts/why-contentlayer' },
+  secondaryAction: { label: 'Why Contentlayer?', url: '/blog/working-with-content-is-hard-for-developers' },
   video: {
     thumbnail: { url: 'https://i.imgur.com/Ogv8EgG.png', alt: 'Intro to Contentlayer Video Thumbnail' },
     youtubeId: 'oC_96_U864o',
