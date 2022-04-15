@@ -29,8 +29,6 @@ export const ColorSchemeProvider: FC<React.PropsWithChildren<{}>> = ({ children 
     (newColorScheme: 'light' | 'dark' | 'system') => {
       if (newColorScheme === colorScheme) return
 
-      console.log('update', newColorScheme)
-
       setColorScheme(newColorScheme)
 
       if (newColorScheme === 'system') {
