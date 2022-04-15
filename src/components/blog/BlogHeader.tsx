@@ -26,7 +26,6 @@ export const BlogHeader: FC<{ post: Post }> = ({ post }) => {
         <h1 className="text-2xl font-semibold text-slate-800 dark:text-slate-200 md:text-3xl lg:text-4xl">
           {post.title}
         </h1>
-        <p className="leading-relaxed">{post.excerpt}</p>
         <BlogDetails post={post} className="lg:hidden" />
         <hr className="border-gray-200 dark:border-gray-800" />
       </div>
