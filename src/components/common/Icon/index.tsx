@@ -1,93 +1,132 @@
 import { FC } from 'react'
 
-import { CodeIcon } from './Code'
-import { DiscordIcon } from './Discord'
-import { ExternalLinkIcon } from './ExternalLink'
-import { GitHubIcon } from './GitHub'
-import { CheckIcon } from './Check'
-import { CodeLightIcon } from './CodeLight'
-import { CheckCircleIcon } from './CheckCircle'
-import { LightningIcon } from './Lightning'
 import { BarsIcon } from './Bars'
-import { CloseIcon } from './Close'
-import { PlayButtonIcon } from './PlayButton'
-import { ChevronDownIcon } from './ChevronDown'
-import { GitpodIcon } from './Gitpod'
-import { ChevronRightIcon } from './ChevronRight'
-import { InfoIcon } from './Info'
-import { ExclamationIcon } from './Exclamation'
-import { RocketIcon } from './Rocket'
-import { SignIcon } from './Sign'
-import { SearchIcon } from './Search'
-import { ChevronLeftIcon } from './ChevronLeft'
-import { UsersIcon } from './Users'
-import { CalendarIcon } from './Calendar'
 import { BrokenLinkIcon } from './BrokenLink'
-import { SunIcon } from './Sun'
-import { MoonIcon } from './Moon'
-import { GearIcon } from './Gear'
+import { CalendarIcon } from './Calendar'
+import { CheckCircleIcon } from './CheckCircle'
 import { CheckCircleOutlineIcon } from './CheckCircleOutline'
+import { CheckIcon } from './Check'
+import { ChevronDownIcon } from './ChevronDown'
+import { ChevronLeftIcon } from './ChevronLeft'
+import { ChevronRightIcon } from './ChevronRight'
+import { CloseIcon } from './Close'
+import { CodeIcon } from './Code'
+import { CodeLightIcon } from './CodeLight'
+import { ContentfulIcon } from './Contentful'
+import { ContentlayerIcon } from './Contentlayer'
 import { CrossCircleOutlineIcon } from './CrossCircleOutline'
+import { DatabaseIcon } from './Database'
+import { DiscordIcon } from './Discord'
+import { ExclamationIcon } from './Exclamation'
+import { ExternalLinkIcon } from './ExternalLink'
+import { GearIcon } from './Gear'
+import { GitHubIcon } from './GitHub'
+import { GitpodIcon } from './Gitpod'
+import { GraphQLIcon } from './GraphQL'
+import { InfoIcon } from './Info'
+import { JekyllIcon } from './Jekyll'
+import { LightningIcon } from './Lightning'
+import { MarkdownIcon } from './Markdown'
+import { MoonIcon } from './Moon'
+import { NotionIcon } from './Notion'
+import { PHPIcon } from './PHP'
+import { PlayButtonIcon } from './PlayButton'
+import { PlusIcon } from './Plus'
+import { QuestionIcon } from './Question'
+import { ReactIcon } from './React'
+import { RocketIcon } from './Rocket'
+import { SearchIcon } from './Search'
+import { SignIcon } from './Sign'
+import { SunIcon } from './Sun'
+import { TemplateIcon } from './Template'
+import { UsersIcon } from './Users'
+import { WordPressIcon } from './WordPress'
 
 export type IconName =
-  | 'code'
-  | 'discord'
-  | 'external-link'
-  | 'github'
-  | 'check'
-  | 'code-light'
-  | 'check-circle'
-  | 'lightning'
   | 'bars'
-  | 'close'
-  | 'play-button'
-  | 'chevron-down'
-  | 'gitpod'
-  | 'chevron-right'
-  | 'chevron-left'
-  | 'info'
-  | 'exclamation'
-  | 'rocket'
-  | 'sign'
-  | 'search'
-  | 'users'
-  | 'calendar'
   | 'broken-link'
-  | 'sun'
-  | 'moon'
-  | 'gear'
+  | 'calendar'
   | 'check-circle-outline'
+  | 'check-circle'
+  | 'check'
+  | 'chevron-down'
+  | 'chevron-left'
+  | 'chevron-right'
+  | 'close'
+  | 'code-light'
+  | 'code'
+  | 'contentful'
+  | 'contentlayer'
   | 'cross-circle-outline'
+  | 'database'
+  | 'discord'
+  | 'exclamation'
+  | 'external-link'
+  | 'gear'
+  | 'github'
+  | 'gitpod'
+  | 'graphql'
+  | 'info'
+  | 'jekyll'
+  | 'lightning'
+  | 'markdown'
+  | 'moon'
+  | 'notion'
+  | 'php'
+  | 'play-button'
+  | 'plus'
+  | 'question'
+  | 'react'
+  | 'rocket'
+  | 'search'
+  | 'sign'
+  | 'sun'
+  | 'template'
+  | 'users'
+  | 'wordpress'
 
 const iconMap = {
-  code: CodeIcon,
-  discord: DiscordIcon,
-  'external-link': ExternalLinkIcon,
-  github: GitHubIcon,
-  check: CheckIcon,
-  'code-light': CodeLightIcon,
-  'check-circle': CheckCircleIcon,
-  lightning: LightningIcon,
-  bars: BarsIcon,
-  close: CloseIcon,
-  'play-button': PlayButtonIcon,
-  'chevron-down': ChevronDownIcon,
-  'chevron-right': ChevronRightIcon,
-  'chevron-left': ChevronLeftIcon,
-  gitpod: GitpodIcon,
-  info: InfoIcon,
-  exclamation: ExclamationIcon,
-  rocket: RocketIcon,
-  sign: SignIcon,
-  search: SearchIcon,
-  users: UsersIcon,
-  calendar: CalendarIcon,
   'broken-link': BrokenLinkIcon,
-  sun: SunIcon,
-  moon: MoonIcon,
-  gear: GearIcon,
   'check-circle-outline': CheckCircleOutlineIcon,
+  'check-circle': CheckCircleIcon,
+  'chevron-down': ChevronDownIcon,
+  'chevron-left': ChevronLeftIcon,
+  'chevron-right': ChevronRightIcon,
+  'code-light': CodeLightIcon,
   'cross-circle-outline': CrossCircleOutlineIcon,
+  'external-link': ExternalLinkIcon,
+  'play-button': PlayButtonIcon,
+  bars: BarsIcon,
+  calendar: CalendarIcon,
+  check: CheckIcon,
+  close: CloseIcon,
+  code: CodeIcon,
+  contentful: ContentfulIcon,
+  contentlayer: ContentlayerIcon,
+  database: DatabaseIcon,
+  discord: DiscordIcon,
+  exclamation: ExclamationIcon,
+  gear: GearIcon,
+  github: GitHubIcon,
+  gitpod: GitpodIcon,
+  graphql: GraphQLIcon,
+  info: InfoIcon,
+  jekyll: JekyllIcon,
+  lightning: LightningIcon,
+  markdown: MarkdownIcon,
+  moon: MoonIcon,
+  notion: NotionIcon,
+  php: PHPIcon,
+  plus: PlusIcon,
+  question: QuestionIcon,
+  react: ReactIcon,
+  rocket: RocketIcon,
+  search: SearchIcon,
+  sign: SignIcon,
+  sun: SunIcon,
+  template: TemplateIcon,
+  users: UsersIcon,
+  wordpress: WordPressIcon,
 }
 
 export const Icon: FC<{ name: IconName }> = ({ name }) => {

@@ -26,11 +26,11 @@ Conentlayer is a content SDK that makes working with content a delight for devel
 
 How we handle content for the web [has evolved significantly](/blog/working-with-content-is-hard-for-developers) over the past three decades. The pattern from frameworks emerging today is to bring no opinion about how you handle content.
 
-<Image
-  src="https://i.imgur.com/lRrBFqd.png"
-  height="162"
-  width="600"
-  className="inline-flex w-full justify-center px-4 py-14"
+<ContentStack
+  content={{ icons: ['markdown', 'contentful'], label: 'Local/Remote Content' }}
+  processor={{ icons: ['question'], label: 'Custom Content Processor' }}
+  pages={{ icons: ['react'], label: 'Component Pages' }}
+  decoupled={true}
 />
 
 Tools like Next.js, Remix, SvelteKit, Astro, and others make no inference as to where your content is stored or how it is processed.
@@ -70,11 +70,11 @@ That’s _a lot_ of work.
 
 And that’s [why we built Contentlayer](/blog/working-with-content-is-hard-for-developers). **Contentlayer makes working with content easy.**
 
-<Image
-  src="https://i.imgur.com/eoGZEHD.png"
-  height="143"
-  width="600"
-  className="inline-flex w-full justify-center px-4 py-14"
+<ContentStack
+  content={{ icons: ['markdown', 'contentful', 'notion'], label: 'Content' }}
+  processor={{ icons: ['contentlayer'], label: 'Contentlayer', className: 'text-purple-500' }}
+  pages={{ icons: ['react'], label: 'Pages' }}
+  decoupled={true}
 />
 
 ## How Contentlayer Works

@@ -21,6 +21,7 @@ import { Playground } from 'src/components/blog/Playground'
 import { RelatedPosts } from 'src/components/blog/RelatedPosts'
 import { TLDR } from 'src/components/blog/TLDR'
 import { BulletList } from 'src/components/blog/BulletList'
+import { ContentStack } from 'src/components/blog/ContentStack'
 import { DataTransformation } from 'src/components/landing-page/DataTransformation'
 import { Video } from 'src/components/landing-page/Video'
 import { localStep2DataTransformation as dataTransformation } from '../../components/landing-page/HowItWorks'
@@ -93,6 +94,7 @@ const mdxComponents = {
   Transform,
   Video,
   TLDR,
+  ContentStack,
 }
 
 const Post: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ post }) => {
