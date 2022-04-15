@@ -8,23 +8,8 @@ import { Label } from 'src/components/common/Label'
 const NotFound = () => {
   return (
     <Container>
-      <div style={{ minHeight: 'calc(100vh - 64px)' }} className="relative overflow-hidden">
-        <div className="background-grain absolute -inset-8 w-full">
-          <svg className="h-0 w-0">
-            <filter id="noise">
-              <feTurbulence id="turbulence">
-                <animate
-                  attributeName="baseFrequency"
-                  dur="500s"
-                  values="0.9 0.9;0.8 0.8;0.9 0.9"
-                  repeatCount="indefinite"
-                ></animate>
-              </feTurbulence>
-              <feDisplacementMap in="SourceGraphic" scale="60"></feDisplacementMap>
-            </filter>
-          </svg>
-        </div>
-        <div className="relative flex flex-col items-center justify-center pt-32 md:pt-64">
+      <div className="relative overflow-hidden">
+        <div className="relative flex flex-col items-center justify-center pt-32 md:pt-56">
           <Heading level={1} className="flex items-center font-black">
             <span>404</span>
             <span className="ml-4 w-10 text-violet-500 dark:text-violet-400">
