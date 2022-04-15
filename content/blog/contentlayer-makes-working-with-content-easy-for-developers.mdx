@@ -51,11 +51,6 @@ For example, if you built a website using Next.js with local markdown files as y
 
 Doing that on its own doesn’t sound like a lot of work, but it gets complicated fast. Consider that if you _really_ wanted to have the optimal developer experience, you’d have to do the following:
 
-<BulletList
-  type="cross"
-  items={['Adds development complexity', 'Decreased build performance', 'Manual caching, validation, etc.']}
-/>
-
 <BulletList>
   <BulletListItem type="cross">
     Write markdown processing logic, including working with content-processing libraries and their plugins. This is a
@@ -157,12 +152,6 @@ Working with Contentlayer is a three-step process:
    }
    ```
 
-### See it in Action
-
-To take a deeper dive, here’s what it looks like to use Contentlayer to load local markdown files into a simple Next.js application with TypeScript.
-
-_TODO: Rather than spelling out the whole tutorial here, we link to a video that walks through the tutorial example, but using TypeScript._
-
 ### Try it Yourself
 
 Take a look around a working example. Notice the following:
@@ -174,41 +163,59 @@ Try it! Make a change to one of the markdown files in the `content` directory. N
 
 {/* <Playground githubRepo="contentlayerdev/next-contentlayer-example/tree/stackblitz-demo" openFile="posts/change-me.md" /> */}
 
-## Contentlayer is Fast at Every Stage of a Project
+## Benefits of Contentlayer
 
-Contentlayer isn’t just convenient and built to improve development experience. It’s also _fast_. Contentlayer provides performance benefits when you:
+Contentlayer makes working with content a great experience for developers by providing the following benefits:
 
-TODO add perfomance benchmark diagram
+<BulletList>
+  <BulletListItem type="check">
+    Gone are the days of writing low-level content-processing logic. Instead, you set the rules and the content _just
+    works_.
+  </BulletListItem>
+  <BulletListItem type="check">
+    TypeScript type definitions are automatically generated for every piece of content.
+  </BulletListItem>
+  <BulletListItem type="check">
+    <div className="mb-4">Validations are built-in and configurable.</div>
+  </BulletListItem>
+  <BulletListItem type="check">
+    Content builds are cached, and content is incrementally regenerated, doing only the necessary work when you update
+    content in development mode.
+  </BulletListItem>
+  <BulletListItem type="check">
+    The browser will automatically reload after changing content for those frameworks that support live reloading.
+  </BulletListItem>
+  <BulletListItem type="check">
+    It's easier to scale your system to account for complex content relationships.
+  </BulletListItem>
+</BulletList>
 
-TODO merge bullet lists
+### Contentlayer is Fast at Every Stage of a Project
 
-<BulletList
-  type="check"
-  items={[
-    'Build: Quick boot, live reload, incremental regeneration',
-    'Test: Fast CI runs, deploy earlier',
-    'Deploy: Minimize client work, improve lighthouse score',
-  ]}
-/>
+These benefits make Contentlayer fast at every stage of project development.
 
-- **Build:** The server boots quickly, content is incrementally regenerated, and live reloading unlocked.
-- **Test:** Because builds are faster, CI and CD finish quicker, which means your content gets into production sooner.
-- **Deploy:** More processing is done at build time, including rendering markdown, minimizing the work done on the client. This improves your Lighthouse scores and makes your site faster for your users.
+<BulletList>
+  <BulletListItem type="check">
+    **Build:** The server boots quickly, content is incrementally regenerated, and live reloading unlocked.
+  </BulletListItem>
+  <BulletListItem type="check">
+    **Test:** Because builds are faster, CI and CD finish quicker, which means your content gets into production sooner.
+  </BulletListItem>
+  <BulletListItem type="check">
+    **Deploy:** More processing is done at build time, including rendering markdown, minimizing the work done on the
+    client. This improves your Lighthouse scores and makes your site faster for your users.
+  </BulletListItem>
+</BulletList>
+
+### Build Performance Comparison vs DIY and Gatsby
+
+We put our claims to the test and [built a simple benchmark study](https://github.com/contentlayerdev/contentlayer-benchmarks) that compared a Next.js site with 1k markdown content files to the same site using a DIY content method. We then built the same site with Gatsby.
+
+In both cases, the Contentlayer site was nearly **twice as fast**. Even when we tested against warm builds, where the frameworks could make use of cached artifacts from previous builds, **Contentlayer was still nearly twice as fast**.
+
+<BenchmarkResults />
 
 ## Built to Serve Most Projects
-
-<BulletList
-  type="check"
-  columns={2}
-  items={[
-    '`import` content as data',
-    'Maximized build performance',
-    'Built-in content validation',
-    'Auto-generated type definitions',
-    'Incremental, cached builds',
-    'Live reloading',
-  ]}
-/>
 
 As we’ve seen, Contentlayer tends to work best alongside frameworks with an open content model. We’ve focused on Next.js up until this point, but plan to investigate support for Remix, SvelteKit, Nuxt, and more.
 
