@@ -24,6 +24,7 @@ import { BulletList, BulletListItem } from 'src/components/blog/BulletList'
 import { ContentStack } from 'src/components/blog/ContentStack'
 import { BenchmarkResults } from 'src/components/blog/BenchmarkResults'
 import { DataTransformation } from 'src/components/landing-page/DataTransformation'
+import { Support } from 'src/components/landing-page/Support'
 import { Video } from 'src/components/landing-page/Video'
 import { localStep2DataTransformation as dataTransformation } from '../../components/landing-page/HowItWorks'
 
@@ -97,7 +98,8 @@ const mdxComponents = {
   Video,
   TLDR,
   ContentStack,
-  BenchmarkResults
+  Support,
+  BenchmarkResults,
 }
 
 const Post: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ post }) => {
