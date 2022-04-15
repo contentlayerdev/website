@@ -40,7 +40,7 @@ const NavLink: FC<{
       </Link>
       {collapsible && (
         <button aria-label="Toggle children" onClick={toggleCollapsed} className="mr-2 shrink-0 px-2 py-1">
-          <span className={`block w-2.5 ${collapsed ? '' : 'rotate-180 transform'}`}>
+          <span className={`block w-2.5 ${collapsed ? '-rotate-90 transform' : ''}`}>
             <Icon name="chevron-down" />
           </span>
         </button>
