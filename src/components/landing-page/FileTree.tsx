@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { FC, useMemo, useState } from 'react'
 import * as Tooltip from '@radix-ui/react-tooltip'
 import { Card } from '../common/Card'
 
@@ -55,6 +55,8 @@ const File: FC<{
 }> = ({ name, level, lastItem = false, parentLastItem = false, comment, tooltip }) => {
   const [showTooltip, setShowTooltip] = useState<boolean>(false)
 
+  const disabled = useMemo(() => tooltip === '' || tooltip.includes('TODO'), [tooltip])
+
   return (
     <Tooltip.Root delayDuration={100} open={showTooltip} onOpenChange={(open) => setShowTooltip(open)}>
       <div className="whitespace-pre">
@@ -63,7 +65,7 @@ const File: FC<{
             <span key={i}>{parentLastItem && i == level - 3 ? '    ' : '│   '}</span>
           ))}
         {lastItem ? <span>└── </span> : <span>├── </span>}
-        <Tooltip.Trigger className="cursor-text">
+        <Tooltip.Trigger className="cursor-text" disabled={disabled}>
           <span
             onClick={() => setShowTooltip(true)}
             className="rounded hover:bg-gray-200 hover:ring-4 hover:ring-gray-200 dark:hover:bg-gray-800 dark:hover:ring-gray-800"
@@ -79,7 +81,7 @@ const File: FC<{
         className="rounded bg-gray-800 px-3 py-1.5 text-sm text-slate-100 shadow-xl shadow-white dark:bg-violet-200 dark:text-violet-900 dark:shadow-black"
       >
         {tooltip}
-        <Tooltip.Arrow className="mx-1 fill-current text-gray-800 dark:text-violet-200" />
+        <Tooltip.Arrow className="mx-1 text-gray-800 fill-current dark:text-violet-200" />
       </Tooltip.Content>
     </Tooltip.Root>
   )

@@ -11,12 +11,20 @@ import { Paragraph } from './Paragraph'
 import { Video } from './Video'
 
 const content = {
-  heading: 'Type-safe SDK for your web content',
+  heading: 'Content made easy for developers',
   text: (
     <>
-      Contentlayer is a <Dashed label="content SDK" tooltip="TODO: short explanation" /> that validates and transforms
-      your content into <Dashed label="type-safe" tooltip="TODO: short explanation" /> JSON you can easily import into
-      your application.
+      Contentlayer is a{' '}
+      <Dashed
+        label="content SDK"
+        tooltip="A content SDK simplifies working with structured content as data in your site/application"
+      />{' '}
+      that validates and transforms your content into{' '}
+      <Dashed
+        label="type-safe"
+        tooltip="Contentlayer generates TypeScript types based on your content document definitions"
+      />{' '}
+      JSON data you can easily import into your application.
     </>
   ),
   features: ['Lightweight & easy to use', 'Great developer experience', 'Blazing fast build & page performance'],
