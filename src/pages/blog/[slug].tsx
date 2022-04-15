@@ -20,6 +20,8 @@ import { sluggifyTitle, getNodeText } from 'src/utils/sluggify'
 import { Playground } from 'src/components/blog/Playground'
 import { RelatedPosts } from 'src/components/blog/RelatedPosts'
 import { BulletList } from 'src/components/blog/BulletList'
+import { DataTransformation } from 'src/components/landing-page/DataTransformation'
+import { localStep2DataTransformation as dataTransformation } from '../../components/landing-page/HowItWorks'
 
 export const getStaticPaths = async () => {
   const paths = allPosts.map(({ slug }) => {
@@ -35,12 +37,15 @@ export const getStaticProps = defineStaticProps(async (context) => {
   return { props: { post } }
 })
 
-const Image: FC<{ src: string }> = ({ src }) => {
+const Image: FC<{ src: string; width?: number; height?: number; className?: string }> = ({
+  src,
+  width,
+  height,
+  className,
+}) => {
   return (
-    <div className="overflow-hidden rounded-lg">
-      <div className="-mb-2">
-        <NextImage src={src} width="1600" height="900" placeholder="blur" blurDataURL={src} />
-      </div>
+    <div className={`${className} overflow-hidden rounded-lg`}>
+      <NextImage src={src} width={width ?? '1600'} height={height ?? '900'} placeholder="blur" blurDataURL={src} />
     </div>
   )
 }
@@ -60,6 +65,8 @@ export const H4: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
   return <h4 id={slug}>{children}</h4>
 }
 
+const P: React.FC<React.PropsWithChildren<{}>> = ({ children }) => <div className="mb-4">{children}</div>
+
 const mdxComponents = {
   Callout,
   Card,
@@ -71,9 +78,11 @@ const mdxComponents = {
   h3: H3,
   h4: H4,
   a: Link,
+  p: P,
   img: Image,
   Playground,
   BulletList,
+  Transform: () => <DataTransformation from={dataTransformation.from} to={dataTransformation.to} />,
 }
 
 const Post: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ post }) => {
@@ -84,12 +93,12 @@ const Post: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ post }) => {
     <Container title={post.title + ' – Contentlayer'} description={post.excerpt}>
       <div className="relative mx-auto max-w-screen-2xl md:pt-8 lg:pt-16">
         <div className="lg:flex lg:items-start">
-          <div className="sticky top-32 mx-auto hidden w-full max-w-3xl shrink-0 border-b border-gray-200 p-8 dark:border-gray-800 lg:block lg:w-64 lg:border-none lg:pl-16 xl:w-72 2xl:w-80">
+          <div className="sticky hidden w-full max-w-3xl p-8 mx-auto border-b border-gray-200 top-32 shrink-0 dark:border-gray-800 lg:block lg:w-64 lg:border-none lg:pl-16 xl:w-72 2xl:w-80">
             <BlogDetails post={post} />
           </div>
-          <div className="mx-auto mb-4 w-full max-w-3xl shrink p-4 py-8 md:mb-8 md:px-8 lg:mx-0 lg:mb-16 lg:max-w-full lg:pr-16 xl:pr-8">
+          <div className="w-full max-w-3xl p-4 py-8 mx-auto mb-4 shrink md:mb-8 md:px-8 lg:mx-0 lg:mb-16 lg:max-w-full lg:pr-16 xl:pr-8">
             <BlogHeader post={post} />
-            <div className="blog prose prose-slate prose-violet relative w-full max-w-3xl prose-headings:font-semibold prose-p:text-slate-500 prose-a:font-normal prose-code:font-normal prose-code:before:content-none prose-code:after:content-none prose-ul:text-slate-500 prose-hr:border-gray-200 dark:prose-invert dark:prose-p:text-slate-400 dark:prose-a:text-violet-400 dark:prose-ul:text-slate-400 dark:prose-hr:border-gray-800 lg:max-w-full">
+            <div className="relative w-full max-w-3xl prose blog prose-slate prose-violet prose-headings:font-semibold prose-p:text-slate-500 prose-a:font-normal prose-code:font-normal prose-code:before:content-none prose-code:after:content-none prose-ul:text-slate-500 prose-hr:border-gray-200 dark:prose-invert dark:prose-p:text-slate-400 dark:prose-a:text-violet-400 dark:prose-ul:text-slate-400 dark:prose-hr:border-gray-800 lg:max-w-full">
               {MDXContent && <MDXContent components={mdxComponents} />}
               {post.related_posts && (
                 <>
@@ -101,7 +110,7 @@ const Post: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ post }) => {
           </div>
           <div
             style={{ maxHeight: 'calc(100vh - 64px)' }}
-            className="sticky top-32 hidden w-80 shrink-0 overflow-y-scroll p-8 pr-16 xl:block"
+            className="sticky hidden p-8 pr-16 overflow-y-scroll top-32 w-80 shrink-0 xl:block"
           >
             <PageNavigation headings={post.headings} />
             <div className="absolute inset-x-0 top-0 h-8 bg-gradient-to-t from-white/0 to-white/100 dark:from-gray-950/0 dark:to-gray-950/100" />

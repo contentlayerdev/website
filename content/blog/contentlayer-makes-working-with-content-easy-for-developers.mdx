@@ -9,32 +9,14 @@ related_posts:
 
 ## The Modern Approach: Content as Data
 
-<BulletList
-  type="check"
-  columns={2}
-  items={[
-    'This is an example checklist',
-    'This is an example checklist',
-    'This is an example checklist',
-    'This is an example checklist',
-    'This is an example checklist',
-    'This is an example checklist',
-  ]}
-/>
-
-<BulletList
-  type="cross"
-  items={[
-    'Another example checklist',
-    'Another example checklist',
-    'Another example checklist',
-    'Another example checklist',
-  ]}
-/>
-
 How we handle content for the web [has evolved significantly](/blog/working-with-content-is-hard-for-developers) over the past three decades. The pattern from frameworks emerging today is to bring no opinion about how you handle content.
 
-![Modern Meta Frameworks - Content as Data, Unprescribed](https://i.imgur.com/ulSFruZ.png)
+<Image
+  src="https://i.imgur.com/lRrBFqd.png"
+  height="162"
+  width="600"
+  className="inline-flex w-full justify-center px-4 py-14"
+/>
 
 Tools like Next.js, Remix, SvelteKit, Astro, and others make no inference as to where your content is stored or how it is processed.
 
@@ -52,7 +34,10 @@ While it’s nice to be able to work the way you want, it’s not so great to wr
 
 For example, if you built a website using Next.js with local markdown files as your content source, you’d have to put a mechanism in place that converted those markdown files to data that you could feed into Next.js pages.
 
-![Modern Meta Frameworks - Content as Data, Unprescribed](https://i.imgur.com/4uxWcuc.png)
+<BulletList
+  type="cross"
+  items={['Adds development complexity', 'Decreased build performance', 'Manual caching, validation, etc.']}
+/>
 
 Doing that on its own doesn’t sound like a lot of work, but it gets complicated fast. Consider that if you _really_ wanted to have the optimal developer experience, you’d have to do the following:
 
@@ -70,7 +55,12 @@ That’s _a lot_ of work.
 
 And that’s [why we built Contentlayer](/blog/working-with-content-is-hard-for-developers). **Contentlayer makes working with content easy.**
 
-![Contentlayer - Content as Data, Made Easy for Developers](https://i.imgur.com/RsprRtN.png)
+<Image
+  src="https://i.imgur.com/eoGZEHD.png"
+  height="143"
+  width="600"
+  className="inline-flex w-full justify-center px-4 py-14"
+/>
 
 ## How Contentlayer Works
 
@@ -104,7 +94,7 @@ Working with Contentlayer is a three-step process:
 
 2. Run the build. This can be done independently, or by hooking into framework server/build processes.
 
-   ![Contentlayer - Data Transformation](https://i.imgur.com/3Iqt1sP.png)
+   <Transform />
 
 3. Use `import` to work with your content, just as you would any other data in your application.
 
@@ -147,7 +137,7 @@ Take a look around a working example. Notice the following:
 
 Try it! Make a change to one of the markdown files in the `content` directory. Notice that the content in the browser is automatically refreshed (quickly) and the JSON cache is updated for that piece of content.
 
-<Playground githubRepo="contentlayerdev/next-contentlayer-example/tree/stackblitz-demo" openFile="posts/change-me.md" />
+{/* <Playground githubRepo="contentlayerdev/next-contentlayer-example/tree/stackblitz-demo" openFile="posts/change-me.md" /> */}
 
 ## Contentlayer is Fast at Every Stage of a Project
 
