@@ -10,7 +10,7 @@ export const RelatedPosts: FC<{ posts: RelatedPost[] }> = ({ posts }) => {
       <div className="not-prose space-y-8">
         {posts.map(({ slug }, index) => {
           const post = allPosts.find((_) => _.slug === slug)!
-          return <BlogPreview post={post} />
+          return <BlogPreview key={index} post={post} />
         })}
       </div>
     </div>
