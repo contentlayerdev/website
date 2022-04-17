@@ -32,7 +32,7 @@ const content = {
   secondaryAction: { label: 'Why Contentlayer?', url: '/blog/working-with-content-is-hard-for-developers' },
   video: {
     thumbnail: { url: 'https://i.imgur.com/Ogv8EgG.png', alt: 'Intro to Contentlayer Video Thumbnail' },
-    youtubeId: 'oC_96_U864o',
+    youtubeId: '3nL5BFM17u4',
   },
 }
 
@@ -40,7 +40,7 @@ export const Hero: FC = () => {
   const router = useRouter()
 
   return (
-    <div className="grid w-full max-w-screen-xl grid-cols-1 gap-16 px-4 pt-8 mx-auto md:grid-cols-2 md:px-8 md:pt-24 lg:pt-32">
+    <div className="mx-auto grid w-full max-w-screen-xl grid-cols-1 gap-16 px-4 pt-8 md:grid-cols-2 md:px-8 md:pt-24 lg:pt-32">
       <div className="space-y-8 sm:max-w-md">
         <Heading level={1}>{content.heading}</Heading>
         <Paragraph className="text-lg">{content.text}</Paragraph>
@@ -50,7 +50,7 @@ export const Hero: FC = () => {
           <Button label={content.secondaryAction.label} href={content.secondaryAction.url} theme="secondary" />
         </div>
       </div>
-      <div className="relative flex items-center w-full">
+      <div className="relative flex w-full items-center">
         {/* TODO don't use image as thumbnail if possible */}
         <Video thumbnail={content.video.thumbnail} videoId={content.video.youtubeId} />
       </div>
