@@ -66,122 +66,7 @@ For example, if you built a website using Next.js with local markdown files as y
 
 TODO use tab components
 
-```tsx
-import Head from 'next/head'
-import type { FC } from 'react'
-import fs from 'fs'
-import glob from 'glob'
-import path from 'path'
-import rehypeSanitize from 'rehype-sanitize'
-import rehypeStringify from 'rehype-stringify'
-import matter from 'gray-matter'
-import remarkParse from 'remark-parse'
-import remarkRehype from 'remark-rehype'
-import { unified } from 'unified'
-
-import type { Page } from '../types/Page'
-import { pageByUrlPath, allPagePaths } from '../utils/page-utils'
-
-const contentDir = path.join(process.cwd(), '../content')
-
-export const getStaticPaths = async () => {
-  const paths = await allPagePaths()
-  return { paths, fallback: false }
-}
-
-export const getStaticProps = async ({ params }) => {
-  const page = await pageByUrlPath(`/${params.id.join('/')}`)
-  return { props: { page } }
-}
-
-const Page: FC<{ page: Page }> = ({ page }) => (
-  <>
-    <Head>
-      <title>{page.title}</title>
-    </Head>
-    <h1>{page.title}</h1>
-    <div dangerouslySetInnerHTML={{ __html: page.body.html }} />
-  </>
-)
-
-export default Page
-
-/**
- * Full paths to all content source files.
- *
- * @returns an array of all content source files
- */
-function allPageFilePaths(): string[] {
-  return glob.sync(path.join(contentDir, '**/*.md'))
-}
-
-/**
- * Given the full path to a content source file, provide a relative path from
- * the content source directory, without the file extension.
- *
- * @param filePath Full path to the content source file
- * @returns Path that can be used as a urlPath for this piece of content
- */
-function buildPageUrlPath(filePath: string): string {
-  const relFilePath = filePath.replace(contentDir, '')
-  return relFilePath.replace(/\.md$/, '')
-}
-
-/**
- * Read from a local file and convert it into a Page object.
- *
- * @param filePath Full path to the content source file
- * @returns processed Page object
- */
-async function processPage(filePath: string): Promise<Page> {
-  const rawContent = fs.readFileSync(filePath).toString()
-
-  const { data, content } = matter(rawContent)
-  const frontmatter = data as PageFrontmatter
-
-  const body = await unified()
-    .use(remarkParse)
-    .use(remarkRehype)
-    .use(rehypeSanitize)
-    .use(rehypeStringify)
-    .process(content)
-
-  const urlPath = buildPageUrlPath(filePath)
-
-  return {
-    ...frontmatter,
-    urlPath,
-    body: {
-      raw: content,
-      html: String(body),
-    },
-  }
-}
-
-/**
- * Get an array of all possible page paths, to be used with getStaticPaths().
- *
- * @returns array of all possible page paths
- */
-async function allPagePaths(): Promise<string[]> {
-  return allPageFilePaths().map((filePath) => buildPageUrlPath(filePath))
-}
-
-/**
- * Given a current urlPath, process the appropriate content source file as a
- * page.
- *
- * @param urlPath path to the current path
- * @returns Page object
- */
-async function pageByUrlPath(urlPath: string): Promise<Page> {
-  // Build an object when the keys are paths relative to the content source and
-  // the values are the original full file paths.
-  const pagePathMap = Object.fromEntries(allPageFilePaths().map((filePath) => [buildPageUrlPath(filePath), filePath]))
-  const page = await processPage(pagePathMap[urlPath])
-  return page
-}
-```
+<BetaCodeWindow.Remark />
 
 Doing that on its own doesn’t sound like a lot of work, but it gets complicated fast. Consider that if you _really_ wanted to have the optimal developer experience, you’d have to do the following:
 
@@ -232,29 +117,7 @@ Working with Contentlayer is a three-step process:
 
 1. Configure your content source within a Contentlayer configuration file.
 
-   ```jsx
-   import { defineDocumentType, makeSource } from 'contentlayer/source-files'
-
-   const Post = defineDocumentType(() => ({
-     name: 'Post',
-     filePathPattern: `**/*.md`,
-     fields: {
-       title: { type: 'string', required: true },
-       date: { type: 'date', required: true },
-     },
-     computedFields: {
-       urlPath: {
-         type: 'string',
-         resolve: (doc) => `/posts/${doc._raw.flattenedPath}`,
-       },
-     },
-   }))
-
-   export default makeSource({
-     contentDirPath: 'posts',
-     documentTypes: [Post],
-   })
-   ```
+   <BetaCodeWindow.ContentlayerConfig />
 
 2. Run the build. This can be done independently, or by hooking into framework server/build processes.
 
@@ -262,29 +125,7 @@ Working with Contentlayer is a three-step process:
 
 3. Use `import` to work with your content, just as you would any other data in your application.
 
-   ```jsx
-   import { allPages, type Page } from 'contentlayer/generated'
-
-   export function getStaticPaths() {
-     const paths = allPages.map((page) => page.urlPath)
-     return { paths }
-   }
-
-   export function getStaticProps({ params }) {
-     const page = allPages.find((page) => page.UrlPath === params.slug)
-
-     return { props: { page } }
-   }
-
-   export default function Page({ page }: { page: Page }) {
-     return (
-       <div>
-         <h1>{page.title}</h1>
-         <div dangerouslySetInnerHTML={{ __html: page.body.html }} />
-       </div>
-     )
-   }
-   ```
+   <BetaCodeWindow.ContentlayerNext />
 
 ### Try it Yourself
 

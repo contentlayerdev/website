@@ -67,7 +67,7 @@ export default Page
 
 export type PreprocessedCodeSnippets = Record<ColorScheme, CodeSnippets>
 
-const htmlForCodeSnippets = (colorScheme: ColorScheme): Promise<CodeSnippets> =>
+export const htmlForCodeSnippets = (colorScheme: ColorScheme): Promise<CodeSnippets> =>
   promiseAllProperties(
     mapObjectValues(
       codeSnippets,
