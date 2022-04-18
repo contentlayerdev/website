@@ -28,7 +28,7 @@ const content = {
   primaryAction: { label: 'Read more in docs', url: '/' },
   secondaryAction: {
     label: 'Ask a question',
-    url: '/docs/concepts/why-contentlayer',
+    url: '/',
     icon: 'external-link' as IconName,
   },
 }
