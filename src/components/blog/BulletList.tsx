@@ -1,7 +1,7 @@
 import { Icon } from '../common/Icon'
 
 export const BulletList: React.FC<React.PropsWithChildren<{ columns?: number | 1 }>> = ({ columns, children }) => {
-  return <ul className={`mb-4 mt-12 grid grid-cols-1 gap-4 pl-0 md:gap-4 md:grid-cols-${columns}`}>{children}</ul>
+  return <ul className={`mb-4 mt-12 grid grid-cols-1 gap-x-4 gap-y-2 pl-0 md:grid-cols-${columns}`}>{children}</ul>
 }
 
 export const BulletListItem: React.FC<React.PropsWithChildren<{ type: 'check' | 'cross' }>> = ({ type, children }) => {
@@ -17,7 +17,7 @@ export const BulletListItem: React.FC<React.PropsWithChildren<{ type: 'check' | 
           <Icon name="cross-circle-outline" />
         </span>
       )}
-      <span>{children}</span>
+      <span className="leading-normal">{children}</span>
     </li>
   )
 }
