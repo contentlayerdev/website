@@ -284,7 +284,7 @@ const content = {
 
 export const HowItWorks: FC<{ codeSnippets: CodeSnippets }> = ({ codeSnippets }) => {
   return (
-    <div className="w-full max-w-screen-xl px-4 mx-auto mt-16 md:mt-24 md:px-8 lg:mt-32">
+    <div className="mx-auto mt-16 w-full max-w-screen-xl px-4 md:mt-24 md:px-8 lg:mt-32">
       <Tabs.Root defaultValue={content.tabs[0].title.toLowerCase().replace(/ /g, '-')}>
         <div className="space-y-8 sm:text-center">
           <Heading level={2}>{content.heading}</Heading>
@@ -320,7 +320,7 @@ export const HowItWorks: FC<{ codeSnippets: CodeSnippets }> = ({ codeSnippets })
                     className="rounded bg-gray-800 px-3 py-1.5 text-sm text-slate-100 shadow-xl shadow-white dark:bg-violet-200 dark:text-violet-900 dark:shadow-black"
                   >
                     Coming soon
-                    <Tooltip.Arrow className="mx-1 text-gray-800 fill-current dark:text-violet-200" />
+                    <Tooltip.Arrow className="mx-1 fill-current text-gray-800 dark:text-violet-200" />
                   </Tooltip.Content>
                 </Tooltip.Root>
               ),
@@ -335,10 +335,10 @@ export const HowItWorks: FC<{ codeSnippets: CodeSnippets }> = ({ codeSnippets })
               value={title.toLowerCase().replace(/ /g, '-')}
               className="relative focus:outline-none"
             >
-              <div className="absolute inset-y-0 hidden w-0 border-l border-dashed left-6 border-slate-300 dark:border-slate-600 sm:block" />
-              <div className="absolute bottom-0 hidden w-2 left-5 h-96 bg-gradient-to-b from-white/0 via-white/100 to-white/100 dark:from-gray-950/0 dark:via-gray-950/100 dark:to-gray-950/100 sm:block" />
+              <div className="absolute inset-y-0 left-6 hidden w-0 border-l border-dashed border-slate-300 dark:border-slate-600 sm:block" />
+              <div className="absolute bottom-0 left-5 hidden h-96 w-2 bg-gradient-to-b from-white/0 via-white/100 to-white/100 dark:from-gray-950/0 dark:via-gray-950/100 dark:to-gray-950/100 sm:block" />
               {steps.map(({ heading, text, cta, codeSnippetsKey, dataTransformation }, index) => (
-                <div key={index} className="relative grid grid-cols-1 gap-12 mt-16 md:grid-cols-2 md:gap-16">
+                <div key={index} className="relative mt-16 grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-16">
                   <div className="space-y-4">
                     <div className="flex items-center space-x-4 sm:space-x-8">
                       <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-violet-200 bg-violet-100 text-xl font-black text-violet-600 ring-4 ring-white dark:border-violet-900 dark:bg-[#2C1657] dark:text-violet-500 dark:ring-gray-950">

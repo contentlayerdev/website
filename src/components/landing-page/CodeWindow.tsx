@@ -2,20 +2,22 @@ import { FC } from 'react'
 import * as Tabs from '@radix-ui/react-tabs'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { Card } from '../common/Card'
+import { useRouter } from 'next/router'
 
 export type CodeSnippet = { file: string; content: string; lines: number }
 
 export const CodeWindow: FC<{
   snippets: readonly CodeSnippet[]
 }> = ({ snippets }) => {
+  const router = useRouter()
   return (
     <Card shadow>
       <Tabs.Root defaultValue={snippets[0].file}>
-        <Tabs.List aria-label="Select file to view" className="flex overflow-x-auto flex-nowrap">
+        <Tabs.List aria-label="Select file to view" className="flex flex-nowrap overflow-x-auto">
           <div className="flex h-10 items-center space-x-1.5 border-r border-b border-gray-100 px-4 dark:border-gray-900">
-            <span className="w-3 h-3 bg-red-400 rounded-full dark:bg-slate-600" />
-            <span className="w-3 h-3 rounded-full bg-amber-400 dark:bg-slate-600" />
-            <span className="w-3 h-3 bg-green-400 rounded-full dark:bg-slate-600" />
+            <span className="h-3 w-3 rounded-full bg-red-400 dark:bg-slate-600" />
+            <span className="h-3 w-3 rounded-full bg-amber-400 dark:bg-slate-600" />
+            <span className="h-3 w-3 rounded-full bg-green-400 dark:bg-slate-600" />
           </div>
           {snippets.map(({ file }, index) => (
             <Tabs.Trigger
@@ -26,7 +28,7 @@ export const CodeWindow: FC<{
               {file}
             </Tabs.Trigger>
           ))}
-          <div className="border-b border-gray-100 grow dark:border-gray-900"></div>
+          <div className="grow border-b border-gray-100 dark:border-gray-900"></div>
         </Tabs.List>
         {snippets.map(({ file, content, lines }, index) => (
           <Tabs.Content key={index} value={file} className="flex overflow-y-hidden focus:outline-none">
@@ -39,7 +41,12 @@ export const CodeWindow: FC<{
             </div>
             <ScrollArea.Root className="w-full overflow-hidden bg-white dark:bg-[#0D1116]">
               <ScrollArea.Viewport>
-                <div className="text-[13] -mt-[20px] -mb-[40px]" dangerouslySetInnerHTML={{ __html: content }} />
+                <div
+                  className={`text-[13] not-prose ${
+                    router.pathname.split('/')[1] == 'blog' ? '-mt-[30px]' : '-mt-[20px]'
+                  } -mb-[40px]`}
+                  dangerouslySetInnerHTML={{ __html: content }}
+                />
               </ScrollArea.Viewport>
               <ScrollArea.Scrollbar orientation="horizontal">
                 <ScrollArea.Thumb className="relative" />
