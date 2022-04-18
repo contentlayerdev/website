@@ -19,7 +19,7 @@ export const BlogHeader: FC<{ post: Post }> = ({ post }) => {
 
   return (
     <>
-      <div className="max-w-4xl mb-16 space-y-8 lg:space-y-12">
+      <div className="mb-16 max-w-[866px] space-y-8 lg:space-y-12">
         <div className="space-y-4">
           {/* <Link href="/blog">
             <a className="flex items-center font-medium text-slate-600 hover:text-slate-700 dark:text-slate-300 dark:hover:text-slate-200">
@@ -41,8 +41,8 @@ export const BlogHeader: FC<{ post: Post }> = ({ post }) => {
           top ? 'opacity-0' : 'opacity-100'
         }`}
       >
-        <div className="h-full mx-auto max-w-screen-2xl">
-          <div className="flex items-center h-full px-8 space-x-2 text-sm lg:px-16">
+        <div className="mx-auto h-full max-w-screen-2xl">
+          <div className="flex h-full items-center space-x-2 px-8 text-sm lg:px-16">
             <Link href="/blog">
               <a className="inline whitespace-nowrap hover:text-slate-600 dark:hover:text-slate-300">Blog</a>
             </Link>

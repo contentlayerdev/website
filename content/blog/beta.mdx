@@ -60,11 +60,7 @@ While it’s nice to be able to work the way you want, it’s not so great to wr
 
 ### An Example with Next.js + Markdown
 
-TODO link to GH repo example
-
-For example, if you built a website using Next.js with local markdown files as your content source, you’d have to put a mechanism in place that converted those markdown files to data that you could feed into Next.js pages.
-
-TODO use tab components
+Let's look at a concrete example (see [source on GitHub](https://github.com/contentlayerdev/contentlayer-benchmarks/tree/main/next-remark)). If you built a website using Next.js with local Markdown files as your content source, you’d have to develop a mechanism that converted those Markdown files into data that you could use in your Next.js pages.
 
 <BetaCodeWindow.Remark />
 
@@ -76,7 +72,7 @@ Doing that on its own doesn’t sound like a lot of work, but it gets complicate
     lot of base-level logic and adds a number of dependencies to your project.
   </BulletListItem>
   <BulletListItem type="cross">
-    Cache processed data. _Caching is hard_. _Not caching_ degrades the developer experience.
+    Cache processed data. _Caching is hard_. _Not caching_ degrades the developer experience and build performance.
   </BulletListItem>
   <BulletListItem type="cross">
     Incrementally regenerate only the content you changed to optimize rebuild/reload performance.
@@ -102,7 +98,7 @@ That’s _a lot_ of work.
 
 ## Contentlayer Makes Content Easy
 
-And that’s [why we built Contentlayer](/blog/working-with-content-is-hard-for-developers). **Contentlayer makes working with content easy** for developers.
+And that’s why we built Contentlayer. **Contentlayer makes working with content easy** for developers.
 
 <ContentStack
   content={{ icons: ['markdown', 'contentful', 'notion'], label: 'Content' }}
@@ -119,7 +115,7 @@ Working with Contentlayer is a three-step process:
 
    <BetaCodeWindow.ContentlayerConfig />
 
-2. Run the build. This can be done independently, or by hooking into framework server/build processes.
+2. Run Contentlayer to transform the content into data. This can be done independently, or by hooking into framework server/build processes.
 
    <Transform className="my-12 max-w-2xl" />
 
