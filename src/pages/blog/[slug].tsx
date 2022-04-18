@@ -114,10 +114,12 @@ const Post: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ post }) => {
       urlPath={`/${post.url_path}`}
     >
       <div className="relative mx-auto max-w-screen-2xl md:pt-8 lg:px-8 lg:pt-16">
-        <div className="lg:flex lg:items-start">
-          <div className="mx-auto mb-4 w-full shrink p-4 py-8 md:mb-8 md:px-8 lg:mx-0 lg:mb-16 lg:max-w-full lg:pr-16 xl:pr-8">
+        <div className="w-full lg:flex lg:justify-center">
+          {/* <div className="lg:flex lg:items-start"> */}
+          {/* <div className="w-full p-4 py-8 mx-auto mb-4 shrink md:mb-8 md:px-8 lg:mx-0 lg:mb-16 lg:max-w-full lg:pr-16 xl:pr-8"> */}
+          <div className="p-4 py-8 mx-auto mb-4 shrink md:mb-8 md:px-8 lg:mx-0 lg:mb-16 lg:max-w-full lg:pr-16 xl:pr-8">
             <BlogHeader post={post} />
-            <div className="blog prose prose-lg prose-slate prose-violet relative w-full max-w-4xl prose-headings:font-semibold prose-p:text-slate-500 prose-a:font-normal prose-code:font-normal prose-code:before:content-none prose-code:after:content-none prose-ul:text-slate-500 prose-hr:border-gray-200 dark:prose-invert dark:prose-p:text-slate-400 dark:prose-a:text-violet-400 dark:prose-ul:text-slate-400 dark:prose-hr:border-gray-800">
+            <div className="relative w-full max-w-4xl prose prose-lg blog prose-slate prose-violet prose-headings:font-semibold prose-p:text-slate-500 prose-a:font-normal prose-code:font-normal prose-code:before:content-none prose-code:after:content-none prose-ul:text-slate-500 prose-hr:border-gray-200 dark:prose-invert dark:prose-p:text-slate-400 dark:prose-a:text-violet-400 dark:prose-ul:text-slate-400 dark:prose-hr:border-gray-800">
               {MDXContent && <MDXContent components={mdxComponents} />}
               {post.related_posts && (
                 <>
@@ -127,14 +129,14 @@ const Post: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ post }) => {
               )}
             </div>
           </div>
-          <div
+          {/* <div
             style={{ maxHeight: 'calc(100vh - 64px)' }}
-            className="sticky top-32 hidden w-80 shrink-0 overflow-y-scroll p-8 pr-16 xl:block"
+            className="sticky hidden p-8 pr-16 overflow-y-scroll top-32 w-80 shrink-0 xl:block"
           >
             <PageNavigation headings={post.headings} />
             <div className="absolute inset-x-0 top-0 h-8 bg-gradient-to-t from-white/0 to-white/100 dark:from-gray-950/0 dark:to-gray-950/100" />
             <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-b from-white/0 to-white/100 dark:from-gray-950/0 dark:to-gray-950/100" />
-          </div>
+          </div> */}
         </div>
       </div>
     </Container>
