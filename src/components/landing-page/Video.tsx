@@ -3,7 +3,10 @@ import Image from 'next/image'
 import { Card } from '../common/Card'
 import { Icon } from '../common/Icon'
 
-export const Video: FC<{ thumbnail: { url: string; alt: string }; videoId: string }> = ({ thumbnail, videoId }) => {
+export const Video: FC<{
+  thumbnail: { url: string; alt: string; width?: number; height?: number }
+  videoId: string
+}> = ({ thumbnail, videoId }) => {
   const [showVideo, setShowVideo] = useState(false)
 
   return (
@@ -16,16 +19,17 @@ export const Video: FC<{ thumbnail: { url: string; alt: string }; videoId: strin
             src={`https://www.youtube-nocookie.com/embed/${videoId}?&autoplay=1`}
             loading="lazy"
             title="Intro to Contentlayer"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
+            allowFullScreen
           />
         </div>
       ) : (
-        <div className="relative -mb-2">
+        <div className="relative -mb-3">
           <Image
             src={thumbnail.url}
             alt={thumbnail.alt}
-            width="800"
-            height="450"
+            width={thumbnail?.width || 800}
+            height={thumbnail?.height || 450}
             placeholder="blur"
             blurDataURL={thumbnail.url}
           />

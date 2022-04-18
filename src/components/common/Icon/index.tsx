@@ -13,12 +13,14 @@ import { ChevronRightIcon } from './ChevronRight'
 import { CloseIcon } from './Close'
 import { CodeIcon } from './Code'
 import { CodeLightIcon } from './CodeLight'
+import { CollapseIcon } from './Collapse'
 import { ContentfulIcon } from './Contentful'
 import { ContentlayerIcon } from './Contentlayer'
 import { CrossCircleOutlineIcon } from './CrossCircleOutline'
 import { DatabaseIcon } from './Database'
 import { DiscordIcon } from './Discord'
 import { ExclamationIcon } from './Exclamation'
+import { ExpandIcon } from './Expand'
 import { ExternalLinkIcon } from './ExternalLink'
 import { GearIcon } from './Gear'
 import { GitHubIcon } from './GitHub'
@@ -57,12 +59,14 @@ export type IconName =
   | 'close'
   | 'code-light'
   | 'code'
+  | 'collapse'
   | 'contentful'
   | 'contentlayer'
   | 'cross-circle-outline'
   | 'database'
   | 'discord'
   | 'exclamation'
+  | 'expand'
   | 'external-link'
   | 'gear'
   | 'github'
@@ -104,11 +108,13 @@ const iconMap = {
   check: CheckIcon,
   close: CloseIcon,
   code: CodeIcon,
+  collapse: CollapseIcon,
   contentful: ContentfulIcon,
   contentlayer: ContentlayerIcon,
   database: DatabaseIcon,
   discord: DiscordIcon,
   exclamation: ExclamationIcon,
+  expand: ExpandIcon,
   gear: GearIcon,
   github: GitHubIcon,
   gitpod: GitpodIcon,
