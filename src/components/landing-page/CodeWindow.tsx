@@ -11,7 +11,7 @@ export const CodeWindow: FC<{
 }> = ({ snippets }) => {
   const router = useRouter()
   return (
-    <Card shadow>
+    <Card shadow className={router.pathname.split('/')[1] == 'blog' ? 'mb-8' : 'mb-0'}>
       <Tabs.Root defaultValue={snippets[0].file}>
         <Tabs.List aria-label="Select file to view" className="flex flex-nowrap overflow-x-auto">
           <div className="flex h-10 items-center space-x-1.5 border-r border-b border-gray-100 px-4 dark:border-gray-900">

@@ -87,7 +87,7 @@ export const ContentStack: React.FC<Props> = ({ decoupled = false, ...props }) =
   if (numIcons > 5) maxWidthClass = ``
 
   return (
-    <div className={`mx-auto my-12 ${maxWidthClass}`}>
+    <div className={`mx-auto my-12 ${maxWidthClass} text-sm`}>
       <StackComponent {...props} />
     </div>
   )

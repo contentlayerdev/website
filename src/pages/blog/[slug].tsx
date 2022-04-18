@@ -86,7 +86,7 @@ const Image: FC<{ src: string; width?: number; height?: number; className?: stri
 const P: React.FC<React.PropsWithChildren<{}>> = ({ children }) => <div className="mb-4">{children}</div>
 
 const Transform: React.FC<{ className?: string }> = ({ className }) => (
-  <div className={className}>
+  <div className={`mx-auto ${className}`}>
     <DataTransformation from={dataTransformation.from} to={dataTransformation.to} />
   </div>
 )
