@@ -27,6 +27,8 @@ export const Container: FC<any> = ({ children, ...customMeta }) => {
     url: meta.url,
   }
 
+  console.log(meta)
+
   return (
     <>
       <Head>

@@ -111,7 +111,7 @@ const Post: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ post }) => {
       title={post.title + ' – Contentlayer'}
       description={post.excerpt}
       imagePath={post.seo?.imagePath ?? null}
-      urlPath={post.url_path}
+      urlPath={`/${post.url_path}`}
     >
       <div className="relative mx-auto max-w-screen-2xl md:pt-8 lg:px-8 lg:pt-16">
         <div className="lg:flex lg:items-start">
