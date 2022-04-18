@@ -26,8 +26,8 @@ const Blog: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ posts }) => 
 
   return (
     <Container title="Blog – Contentlayer" description={content.description} urlPath="/blog">
-      <div className="mx-auto w-full max-w-screen-xl space-y-16 px-4 py-8 md:px-8 md:py-24 lg:space-y-24 lg:py-32">
-        <div className="max-w-2xl space-y-8">
+      <div className="w-full max-w-screen-xl px-4 py-8 mx-auto space-y-16 md:px-8 md:py-24 lg:space-y-24 lg:py-32">
+        <div className="max-w-3xl space-y-8">
           <Heading level={1}>{content.title}</Heading>
           <Paragraph className="text-lg">{content.description}</Paragraph>
         </div>

@@ -80,7 +80,7 @@ export const MainNavigation = () => {
           <Link href="/">
             <a className="flex items-center space-x-2.5 font-bold text-slate-800 no-underline dark:text-white">
               <Logo />
-              <span>Contentlayer</span>
+              <span className="-mt-0.5">Contentlayer</span>
             </a>
           </Link>
           <Label text="Beta" />
