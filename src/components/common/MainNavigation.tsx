@@ -11,7 +11,9 @@ import { isExternalUrl } from '../../utils/helpers'
 const navLinks: Array<{ label: string; url: string }> = [
   { label: 'Documentation', url: '/docs' },
   { label: 'Blog', url: '/blog' },
-  { label: 'Examples', url: '/examples' },
+  // NOTE until we have a proper example overview page and multiple examples, link directly to Next.js example
+  { label: 'Examples', url: '/examples/nextjs' },
+  // { label: 'Examples', url: '/examples' },
 ]
 
 const iconLinks: Array<{ label: string; icon: IconName; url: string }> = [
