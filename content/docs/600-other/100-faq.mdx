@@ -1,0 +1,33 @@
+---
+title: Frequently Asked Questions
+nav_title: FAQ
+excerpt: Answers to the most common questions about Contentlayer.
+---
+
+## What problem is Contentlayer solving?
+
+Modern web frameworks don't prescribe a method for parsing content. They provide powerful page routing and rendering processes, but it's up to you to provide it with content.
+
+That's a lot of work. Without the time and energy to build a truly great processing mechanism, it's easy to quickly degrade the developer experience these tools have afforded us.
+
+Contentlayer persists the great developer experience provided by modern web frameworks by making it easy to work with content in your web project.
+
+## Why is Contentlayer fast?
+
+Contentlayer leverages optimizations of build tools to the fullest to make processing source content a breeze.
+
+It then caches that content intelligently and builds incrementally. When you update content, Contentlayer will only build what has changed, taking advantage of work already done.
+
+## Can I use Contentlayer with my existing tools?
+
+Contentlayer is built to be framework agnostic. Contentlayer is a content processor at its core, but provides modules for importing content from various sources, and uses plugins to provide tight integration with modern frameworks.
+
+Our docs list [current supported sources](/docs/sources) and [frameworks](/docs/environments). And if you don't see what you're looking for, [start a discussion](https://github.com/contentlayerdev/contentlayer/issues/new). We're constantly looking for new use cases to consider.
+
+## Next.js already supports MDX. Why do I need Contentlayer?
+
+It is a misconception that Next.js inherently supports MDX. Next.js makes no inference whatsoever about where your content lives and how it should be processed.
+
+Libraries like [mdx-bundler](https://github.com/kentcdodds/mdx-bundler) and [next-mdx-remote](https://github.com/hashicorp/next-mdx-remote) provide tooling to help in processing MDX. In addition to processing MDX, Contentlayer also parses and validates content and provides auto-generated TypeScript type definitions. And it does so while prioritizing performance and developer experience.
+
+Learn more about [how Contentlayer compares to other content processors](/docs/concepts/comparison#content-processors).
