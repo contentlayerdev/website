@@ -16,7 +16,6 @@ import { FAQ } from '../components/landing-page/FAQ'
 import { Tweets } from '../components/landing-page/Tweets'
 import { Playground } from '../components/landing-page/Playground'
 import { Container } from '../components/common/Container'
-import { PreprocessedCodeSnippets } from 'types/PreprocessedCodeSnippets'
 import { buildExamplesTree } from '../utils/build-examples-tree'
 
 export const getStaticProps = defineStaticProps(async (_context) => {
@@ -65,6 +64,8 @@ const Page: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ prepro
 }
 
 export default Page
+
+export type PreprocessedCodeSnippets = Record<ColorScheme, CodeSnippets>
 
 const htmlForCodeSnippets = (colorScheme: ColorScheme): Promise<CodeSnippets> =>
   promiseAllProperties(
