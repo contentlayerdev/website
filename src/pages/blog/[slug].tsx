@@ -30,6 +30,7 @@ import { codeSnippets, CodeSnippets } from 'src/utils/blog/beta-post-snippets'
 import { promiseAllProperties } from 'src/utils/object'
 import { useColorScheme } from 'src/components/ColorSchemeContext'
 import { htmlForCodeSnippets, PreprocessedCodeSnippets } from '..'
+import { H2, H3, H4 } from 'src/components/common/Headings'
 
 export const getStaticPaths = async () => {
   const paths = allPosts.map(({ slug }) => {
@@ -38,14 +39,18 @@ export const getStaticPaths = async () => {
   return { paths, fallback: false }
 }
 
+let devcache_betaSnippets: BetaSnippets | null = null
+
 export type PreprocessedCodeSnippetsRemark = Record<ColorScheme, CodeSnippets>
+
+type BetaSnippets = { remark: PreprocessedCodeSnippetsRemark; contentlayer: PreprocessedCodeSnippets }
 
 export const getStaticProps = defineStaticProps(async (context) => {
   const params = context.params as any
   const post = allPosts.find((_) => _.slug === params.slug)!
 
-  let betaSnippets: { remark: PreprocessedCodeSnippetsRemark; contentlayer: PreprocessedCodeSnippets } | null = null
-  if (params.slug === 'beta') {
+  let betaSnippets: BetaSnippets | null = devcache_betaSnippets
+  if (params.slug === 'beta' && !betaSnippets) {
     betaSnippets = await promiseAllProperties({
       remark: promiseAllProperties<PreprocessedCodeSnippetsRemark>({
         light: htmlForCodeSnippetsRemark('light'),
@@ -56,6 +61,8 @@ export const getStaticProps = defineStaticProps(async (context) => {
         dark: htmlForCodeSnippets('dark'),
       }),
     })
+
+    devcache_betaSnippets = betaSnippets
   }
 
   return { props: { post, betaSnippets } }
@@ -72,21 +79,6 @@ const Image: FC<{ src: string; width?: number; height?: number; className?: stri
       <NextImage src={src} width={width ?? '1600'} height={height ?? '900'} placeholder="blur" blurDataURL={src} />
     </div>
   )
-}
-
-export const H2: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
-  const slug = sluggifyTitle(getNodeText(children))
-  return <h2 id={slug}>{children}</h2>
-}
-
-export const H3: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
-  const slug = sluggifyTitle(getNodeText(children))
-  return <h3 id={slug}>{children}</h3>
-}
-
-export const H4: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
-  const slug = sluggifyTitle(getNodeText(children))
-  return <h4 id={slug}>{children}</h4>
 }
 
 const P: React.FC<React.PropsWithChildren<{}>> = ({ children }) => <div className="mb-4">{children}</div>
