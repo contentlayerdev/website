@@ -3,7 +3,7 @@ import Document, { Html, Head, Main, NextScript } from 'next/document'
 const AnalyticsScripts = () => {
   if (process.env.NODE_ENV !== 'production') return null
   return (
-    <Head>
+    <>
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q3CT19D49H" />
       <script
         dangerouslySetInnerHTML={{
@@ -15,7 +15,7 @@ const AnalyticsScripts = () => {
               `,
         }}
       />
-    </Head>
+    </>
   )
 }
 
