@@ -18,6 +18,7 @@ export const Video: FC<{
             height="100%"
             src={`https://www.youtube-nocookie.com/embed/${videoId}?&autoplay=1`}
             loading="lazy"
+            allowFullScreen
             title="Intro to Contentlayer"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
             allowFullScreen

@@ -39,14 +39,18 @@ export const getStaticPaths = async () => {
   return { paths, fallback: false }
 }
 
+let devcache_betaSnippets: BetaSnippets | null = null
+
 export type PreprocessedCodeSnippetsRemark = Record<ColorScheme, CodeSnippets>
+
+type BetaSnippets = { remark: PreprocessedCodeSnippetsRemark; contentlayer: PreprocessedCodeSnippets }
 
 export const getStaticProps = defineStaticProps(async (context) => {
   const params = context.params as any
   const post = allPosts.find((_) => _.slug === params.slug)!
 
-  let betaSnippets: { remark: PreprocessedCodeSnippetsRemark; contentlayer: PreprocessedCodeSnippets } | null = null
-  if (params.slug === 'beta') {
+  let betaSnippets: BetaSnippets | null = devcache_betaSnippets
+  if (params.slug === 'beta' && !betaSnippets) {
     betaSnippets = await promiseAllProperties({
       remark: promiseAllProperties<PreprocessedCodeSnippetsRemark>({
         light: htmlForCodeSnippetsRemark('light'),
@@ -57,6 +61,8 @@ export const getStaticProps = defineStaticProps(async (context) => {
         dark: htmlForCodeSnippets('dark'),
       }),
     })
+
+    devcache_betaSnippets = betaSnippets
   }
 
   return { props: { post, betaSnippets } }
