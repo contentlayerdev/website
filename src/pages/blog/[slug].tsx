@@ -30,6 +30,7 @@ import { codeSnippets, CodeSnippets } from 'src/utils/blog/beta-post-snippets'
 import { promiseAllProperties } from 'src/utils/object'
 import { useColorScheme } from 'src/components/ColorSchemeContext'
 import { htmlForCodeSnippets, PreprocessedCodeSnippets } from '..'
+import { H2, H3, H4 } from 'src/components/common/Headings'
 
 export const getStaticPaths = async () => {
   const paths = allPosts.map(({ slug }) => {
@@ -72,21 +73,6 @@ const Image: FC<{ src: string; width?: number; height?: number; className?: stri
       <NextImage src={src} width={width ?? '1600'} height={height ?? '900'} placeholder="blur" blurDataURL={src} />
     </div>
   )
-}
-
-export const H2: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
-  const slug = sluggifyTitle(getNodeText(children))
-  return <h2 id={slug}>{children}</h2>
-}
-
-export const H3: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
-  const slug = sluggifyTitle(getNodeText(children))
-  return <h3 id={slug}>{children}</h3>
-}
-
-export const H4: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
-  const slug = sluggifyTitle(getNodeText(children))
-  return <h4 id={slug}>{children}</h4>
 }
 
 const P: React.FC<React.PropsWithChildren<{}>> = ({ children }) => <div className="mb-4">{children}</div>
@@ -155,9 +141,9 @@ const Post: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ post, betaSn
       imagePath={post.seo?.imagePath ?? null}
       urlPath={`/${post.url_path}`}
     >
-      <div className="relative mx-auto max-w-screen-2xl p-4 py-8 md:p-8 md:py-16 lg:px-16">
+      <div className="relative mx-auto max-w-screen-2xl px-4 py-8 md:px-8 md:py-16 lg:px-0">
         <BlogHeader post={post} />
-        <div className="blog prose prose-lg prose-slate prose-violet relative mx-auto w-full max-w-[866px] prose-headings:font-semibold prose-p:text-slate-500 prose-a:font-normal prose-code:font-normal prose-code:before:content-none prose-code:after:content-none prose-ul:text-slate-500 prose-hr:border-gray-200 dark:prose-invert dark:prose-p:text-slate-400 dark:prose-a:text-violet-400 dark:prose-ul:text-slate-400 dark:prose-hr:border-gray-800">
+        <div className="blog prose prose-lg prose-slate prose-violet relative mx-auto w-full max-w-full prose-headings:font-semibold prose-p:text-slate-500 prose-a:font-normal prose-code:font-normal prose-code:before:content-none prose-code:after:content-none prose-ul:text-slate-500 prose-hr:border-gray-200 dark:prose-invert dark:prose-p:text-slate-400 dark:prose-a:text-violet-400 dark:prose-ul:text-slate-400 dark:prose-hr:border-gray-800 lg:max-w-[994px] lg:px-16">
           {MDXContent && <MDXContent components={{ ...mdxComponents, BetaCodeWindow }} />}
           {post.related_posts && (
             <>
