@@ -1,5 +1,5 @@
 ---
-title: Contentlayer Makes Working with Content Easy for Developers
+title: 'Contentlayer Beta: Content Made Easy for Developers'
 excerpt: Working with content for the web sucks. It always has. That's why we built Contentlayer. Conentlayer is a content SDK that makes working with content a delight for developers using modern tooling.
 date: 2022-04-19
 cover_image:
@@ -19,6 +19,12 @@ Working with content for the web sucks. It always has. That's why we built Conte
 
 Conentlayer is a content SDK that makes working with content a delight for developers using modern tooling.
 
+- [Thinking of Content as Data](#): ...
+- [Contentlayer Makes Content Easy](#): ...
+  - [How Contentlayer works](#): ...
+  - [Build Performance Comparison vs DIY and Gatsby](#): ...
+- [The Future of Content(layer)](#): ...
+
 </TLDR>
 
 <Video
@@ -29,7 +35,7 @@ Conentlayer is a content SDK that makes working with content a delight for devel
   videoId="3nL5BFM17u4"
 />
 
-## The Modern Approach: Content as Data
+## Thinking of Content as Data
 
 How we handle content for the web [has evolved significantly](/blog/working-with-content-is-hard-for-developers) over the past three decades. The pattern from frameworks emerging today is to bring no opinion about how you handle content.
 
@@ -44,7 +50,7 @@ Tools like Next.js, Remix, SvelteKit, Astro, and others make no inference as to 
 
 Instead, they focus their energy on providing a refined page routing and rendering system. Using Node.js, developers can process content however they want and send it as data to their pages, which are rendered using a component-based framework, like React, Vue, or Svelte.
 
-## Content as Data is Better. But it’s Hard.
+### Content as Data is Better. But it’s Hard.
 
 This _content as data_ approach has been a _huge_ improvement over the limitations and challenges of previous attempts to improve the developer experience when working with content.
 
@@ -54,7 +60,128 @@ While it’s nice to be able to work the way you want, it’s not so great to wr
 
 ### An Example with Next.js + Markdown
 
+TODO link to GH repo example
+
 For example, if you built a website using Next.js with local markdown files as your content source, you’d have to put a mechanism in place that converted those markdown files to data that you could feed into Next.js pages.
+
+TODO use tab components
+
+```tsx
+import Head from 'next/head'
+import type { FC } from 'react'
+import fs from 'fs'
+import glob from 'glob'
+import path from 'path'
+import rehypeSanitize from 'rehype-sanitize'
+import rehypeStringify from 'rehype-stringify'
+import matter from 'gray-matter'
+import remarkParse from 'remark-parse'
+import remarkRehype from 'remark-rehype'
+import { unified } from 'unified'
+
+import type { Page } from '../types/Page'
+import { pageByUrlPath, allPagePaths } from '../utils/page-utils'
+
+const contentDir = path.join(process.cwd(), '../content')
+
+export const getStaticPaths = async () => {
+  const paths = await allPagePaths()
+  return { paths, fallback: false }
+}
+
+export const getStaticProps = async ({ params }) => {
+  const page = await pageByUrlPath(`/${params.id.join('/')}`)
+  return { props: { page } }
+}
+
+const Page: FC<{ page: Page }> = ({ page }) => (
+  <>
+    <Head>
+      <title>{page.title}</title>
+    </Head>
+    <h1>{page.title}</h1>
+    <div dangerouslySetInnerHTML={{ __html: page.body.html }} />
+  </>
+)
+
+export default Page
+
+/**
+ * Full paths to all content source files.
+ *
+ * @returns an array of all content source files
+ */
+function allPageFilePaths(): string[] {
+  return glob.sync(path.join(contentDir, '**/*.md'))
+}
+
+/**
+ * Given the full path to a content source file, provide a relative path from
+ * the content source directory, without the file extension.
+ *
+ * @param filePath Full path to the content source file
+ * @returns Path that can be used as a urlPath for this piece of content
+ */
+function buildPageUrlPath(filePath: string): string {
+  const relFilePath = filePath.replace(contentDir, '')
+  return relFilePath.replace(/\.md$/, '')
+}
+
+/**
+ * Read from a local file and convert it into a Page object.
+ *
+ * @param filePath Full path to the content source file
+ * @returns processed Page object
+ */
+async function processPage(filePath: string): Promise<Page> {
+  const rawContent = fs.readFileSync(filePath).toString()
+
+  const { data, content } = matter(rawContent)
+  const frontmatter = data as PageFrontmatter
+
+  const body = await unified()
+    .use(remarkParse)
+    .use(remarkRehype)
+    .use(rehypeSanitize)
+    .use(rehypeStringify)
+    .process(content)
+
+  const urlPath = buildPageUrlPath(filePath)
+
+  return {
+    ...frontmatter,
+    urlPath,
+    body: {
+      raw: content,
+      html: String(body),
+    },
+  }
+}
+
+/**
+ * Get an array of all possible page paths, to be used with getStaticPaths().
+ *
+ * @returns array of all possible page paths
+ */
+async function allPagePaths(): Promise<string[]> {
+  return allPageFilePaths().map((filePath) => buildPageUrlPath(filePath))
+}
+
+/**
+ * Given a current urlPath, process the appropriate content source file as a
+ * page.
+ *
+ * @param urlPath path to the current path
+ * @returns Page object
+ */
+async function pageByUrlPath(urlPath: string): Promise<Page> {
+  // Build an object when the keys are paths relative to the content source and
+  // the values are the original full file paths.
+  const pagePathMap = Object.fromEntries(allPageFilePaths().map((filePath) => [buildPageUrlPath(filePath), filePath]))
+  const page = await processPage(pagePathMap[urlPath])
+  return page
+}
+```
 
 Doing that on its own doesn’t sound like a lot of work, but it gets complicated fast. Consider that if you _really_ wanted to have the optimal developer experience, you’d have to do the following:
 
@@ -99,7 +226,7 @@ And that’s [why we built Contentlayer](/blog/working-with-content-is-hard-for-
   decoupled={true}
 />
 
-## How Contentlayer Works
+### How Contentlayer Works
 
 Working with Contentlayer is a three-step process:
 
@@ -176,11 +303,11 @@ Contentlayer makes working with content a great experience for developers by pro
 
 <BulletList>
   <BulletListItem type="check">
-    Gone are the days of writing low-level content-processing logic. Instead, you set the rules and the content _just
-    works_.
+    **Content just works**: Gone are the days of writing low-level content-processing logic. Instead, you set the rules
+    and the content _just works_.
   </BulletListItem>
   <BulletListItem type="check">
-    TypeScript type definitions are automatically generated for every piece of content.
+    **TypeScript Support**: TypeScript type definitions are automatically generated for every piece of content.
   </BulletListItem>
   <BulletListItem type="check">
     <div className="mb-4">Validations are built-in and configurable.</div>
@@ -222,7 +349,7 @@ In both cases, the Contentlayer site was nearly **twice as fast**. Even when we 
 
 <BenchmarkResults />
 
-### Built to Serve Most Projects
+### Works for projects of any size
 
 As we’ve seen, Contentlayer tends to work best alongside frameworks with an open content model. We’ve focused on Next.js up until this point, but plan to investigate support for Remix, SvelteKit, Nuxt, and more.
 
@@ -232,17 +359,15 @@ And it _really_ starts to feel like the right decision as content structures bec
 
 When starting a project with opinionated content tooling, there is always a risk of outgrowing those opinions and needing to switch to something more flexible. Conentlayer makes the flexibility of modern open content frameworks accessible to projects of any size.
 
-## The Future of Content
-
-<div className="mt-[-4rem]">
-  <Support />
-</div>
-
-### Contentlayer’s Roadmap
+## The Future of Content(layer)
 
 We’re just getting started.
 
 We will continue to add new content sources — Contentful is experimental, with Notion is coming up quickly behind it — and investigate fully supporting additional modern frameworks. We’ll also be giving much attention to image processing.
+
+<div className="mt-[-4rem] mb-12">
+  <Support />
+</div>
 
 [The roadmap](https://www.contentlayer.dev/docs/other/roadmap) is being shaped by our open-source community that has grown organically and will continue to grow with your involvement.
 
@@ -251,10 +376,11 @@ We will continue to add new content sources — Contentful is experimental, with
 Become part of the Contentlayer journey by:
 
 - Following [the tutorial](https://www.contentlayer.dev/docs/getting-started) and bringing Contentlayer into your project.
-- Looking through [examples](https://www.contentlayer.dev/examples) and other open-source projects created with Contentlayer.
+- Looking through [examples](https://www.contentlayer.dev/docs/other/examples) and other open-source projects created with Contentlayer.
 - Joining our [Discord community](https://discord.gg/rytFErsARm).
+- TODO: Star repo on GH
 
-### Thank You
+### Thank You (TODO Johannes)
 
 It took a lot of effort to get to this point. Big thanks to [Stackbit](https://www.stackbit.com/), who has sponsored this project from the beginning.
 

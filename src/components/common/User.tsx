@@ -1,17 +1,17 @@
 import { FC } from 'react'
 import Image from 'next/image'
 
-export const User: FC<{ name: string; position: string; avatar: string }> = ({ name, position, avatar }) => {
+export const User: FC<{ name: string; bio: string; avatar: string }> = ({ name, bio, avatar }) => {
   return (
     <div className="flex space-x-4">
       <div className="flex-shrink-0">
-        <div className="relative w-12 h-12 rounded-full overflow-hidden">
+        <div className="relative w-12 h-12 overflow-hidden rounded-full">
           <Image src={avatar} alt={name} layout="fill" placeholder="blur" blurDataURL={avatar} />
         </div>
       </div>
       <div>
-        <p className="font-semibold text-slate-700 mb-0 dark:text-slate-300">{name}</p>
-        <p className="text-slate-500 text-sm dark:text-slate-400">{position}</p>
+        <p className="mb-0 font-semibold text-slate-700 dark:text-slate-300">{name}</p>
+        <p className="text-sm text-slate-500 dark:text-slate-400">{bio}</p>
       </div>
     </div>
   )
