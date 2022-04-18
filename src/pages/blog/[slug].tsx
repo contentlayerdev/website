@@ -31,6 +31,8 @@ import { promiseAllProperties } from 'src/utils/object'
 import { useColorScheme } from 'src/components/ColorSchemeContext'
 import { htmlForCodeSnippets, PreprocessedCodeSnippets } from '..'
 import { H2, H3, H4 } from 'src/components/common/Headings'
+import { BlogDetails } from 'src/components/blog/BlogDetails'
+import { Author } from 'src/components/common/Author'
 
 export const getStaticPaths = async () => {
   const paths = allPosts.map(({ slug }) => {
@@ -149,14 +151,13 @@ const Post: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ post, betaSn
     >
       <div className="relative mx-auto max-w-screen-2xl px-4 py-8 md:px-8 md:py-16 lg:px-0">
         <BlogHeader post={post} />
-        <div className="blog prose prose-lg prose-slate prose-violet relative mx-auto w-full max-w-full prose-headings:font-semibold prose-a:font-normal prose-code:font-normal prose-code:before:content-none prose-code:after:content-none prose-hr:border-gray-200 dark:prose-invert dark:prose-a:text-violet-400 dark:prose-hr:border-gray-800 lg:max-w-[994px] lg:px-16">
+        <div className="blog prose prose-lg prose-slate prose-violet relative mx-auto w-full max-w-full prose-headings:mt-16 prose-headings:font-semibold prose-a:font-normal prose-code:font-normal prose-code:before:content-none prose-code:after:content-none prose-hr:border-gray-200 dark:prose-invert dark:prose-a:text-violet-400 dark:prose-hr:border-gray-800 lg:max-w-[994px] lg:px-16">
           {MDXContent && <MDXContent components={{ ...mdxComponents, BetaCodeWindow }} />}
-          {post.related_posts && (
-            <>
-              <hr />
-              <RelatedPosts posts={post.related_posts} />
-            </>
-          )}
+          <hr />
+          {post.authors.map((author, index) => (
+            <Author key={index} {...author} />
+          ))}
+          {post.related_posts && <RelatedPosts posts={post.related_posts} />}
         </div>
       </div>
     </Container>

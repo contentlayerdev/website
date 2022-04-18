@@ -4,6 +4,7 @@ import { BlogDetails } from 'src/components/blog/BlogDetails'
 import Link from 'next/link'
 import { Icon } from 'src/components/common/Icon'
 import Image from 'next/image'
+import { format } from 'date-fns'
 
 export const BlogHeader: FC<{ post: Post }> = ({ post }) => {
   const [top, setTop] = useState<boolean>(true)
@@ -24,7 +25,12 @@ export const BlogHeader: FC<{ post: Post }> = ({ post }) => {
           <h1 className="text-2xl font-semibold text-slate-800 dark:text-slate-200 md:text-3xl lg:text-4xl">
             {post.title}
           </h1>
-          <BlogDetails post={post} />
+          <p className="mb-2 flex">
+            <span className="mt-1 mr-2 block w-3 shrink-0 text-violet-600 dark:text-violet-400">
+              <Icon name="calendar" />
+            </span>
+            <span>{format(new Date(post.date), 'MMMM dd, yyyy')}</span>
+          </p>
         </div>
       </div>
       <div
