@@ -194,6 +194,17 @@ const StackblitzIDE: React.FC<
   const [currentFiles, setCurrentFiles] = useState<string[]>(openFiles)
   const [currentView, setCurrentView] = useState<Stackblitz.OpenOptions['view']>(view)
 
+  const [sidebarIsOpen, setSidebarIsOpen] = useState(false)
+
+  useEffect(() => {
+    if (vm && !sidebarIsOpen) {
+      vm.editor.showSidebar()
+
+      setSidebarIsOpen(true)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sidebarIsOpen, currentFiles, currentView])
+
   useEffect(() => {
     if (vm === undefined) return
 

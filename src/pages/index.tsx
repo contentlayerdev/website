@@ -20,6 +20,8 @@ import { PreprocessedCodeSnippets } from 'types/PreprocessedCodeSnippets'
 import { buildExamplesTree } from '../utils/build-examples-tree'
 
 export const getStaticProps = defineStaticProps(async (_context) => {
+  console.time('getStaticProps /')
+
   const { preprocessedCodeSnippets, usedByCount } = await promiseAllProperties({
     preprocessedCodeSnippets: promiseAllProperties<PreprocessedCodeSnippets>({
       light: htmlForCodeSnippets('light'),
@@ -30,6 +32,9 @@ export const getStaticProps = defineStaticProps(async (_context) => {
   const docs = buildDocsTree(allDocs)
   const examples = buildExamplesTree(allExamples)
   const posts = allPosts
+
+  console.timeEnd('getStaticProps /')
+
   return { props: { preprocessedCodeSnippets, usedByCount, docs, examples, posts } }
 })
 

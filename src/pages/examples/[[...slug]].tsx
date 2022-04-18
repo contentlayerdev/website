@@ -79,7 +79,6 @@ const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ example, tre
     if (example.github_repo && ref.current) {
       stackblitz
         .embedGithubProject(ref.current, 'contentlayerdev/next-contentlayer-example/tree/stackblitz-demo', {
-          height: 700,
           openFile: example.open_file,
         })
         .then((_) => setVm(_))
@@ -88,12 +87,12 @@ const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ example, tre
 
   return (
     <Container title={example.title + ' – Contentlayer'} description={example.excerpt}>
-      <div className="relative mx-auto w-full max-w-screen-2xl lg:flex lg:items-start">
+      <div className="relative w-full mx-auto max-w-screen-2xl lg:flex lg:items-start">
         <div
           style={{ height: 'calc(100vh - 64px)' }}
-          className="sticky top-16 hidden shrink-0 border-r border-gray-200 dark:border-gray-800 lg:block"
+          className="sticky hidden border-r border-gray-200 top-16 shrink-0 dark:border-gray-800 lg:block"
         >
-          <div className="-ml-3 h-full overflow-y-scroll p-8 pl-16">
+          <div className="h-full p-8 pl-16 -ml-3 overflow-y-scroll">
             <DocsNavigation tree={tree} />
           </div>
           <div className="absolute inset-x-0 top-0 h-8 bg-gradient-to-t from-white/0 to-white/100 dark:from-gray-950/0 dark:to-gray-950/100" />
@@ -101,7 +100,7 @@ const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ example, tre
         </div>
         <div className="w-full grow">
           <DocsHeader tree={tree} breadcrumbs={breadcrumbs} title={example.title} />
-          <div className="docs prose prose-slate prose-violet mx-auto mb-4 w-full max-w-3xl shrink p-4 pb-8 prose-headings:font-semibold prose-p:text-slate-500 prose-a:font-normal prose-code:font-normal prose-code:before:content-none prose-code:after:content-none prose-ul:text-slate-500 prose-hr:border-gray-200 dark:prose-invert dark:prose-p:text-slate-400 dark:prose-a:text-violet-400 dark:prose-ul:text-slate-400 dark:prose-hr:border-gray-800 md:mb-8 md:px-8 lg:mx-0 lg:max-w-full lg:px-16">
+          <div className="w-full max-w-3xl p-4 pb-8 mx-auto mb-4 prose docs prose-slate prose-violet shrink prose-headings:font-semibold prose-p:text-slate-500 prose-a:font-normal prose-code:font-normal prose-code:before:content-none prose-code:after:content-none prose-ul:text-slate-500 prose-hr:border-gray-200 dark:prose-invert dark:prose-p:text-slate-400 dark:prose-a:text-violet-400 dark:prose-ul:text-slate-400 dark:prose-hr:border-gray-800 md:mb-8 md:px-8 lg:mx-0 lg:max-w-full lg:px-16">
             {MDXContent && <MDXContent components={mdxComponents} />}
             {example.github_repo && (
               <div
@@ -111,15 +110,18 @@ const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ example, tre
                     : 'relative mt-8 lg:mt-16'
                 }
               >
-                <div className="mb-8 hidden justify-end md:flex">
+                <div className="justify-end hidden mb-8 md:flex">
                   <Button
                     theme="primary"
                     label={fullScreen ? 'Collapse Playground' : 'Expand Playground'}
                     action={() => setFullScreen(!fullScreen)}
                   />
                 </div>
-                <div className="overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-900">
-                  <div className="h-[700px] w-full " ref={ref} />
+                <div
+                  className="overflow-hidden bg-gray-100 rounded-lg dark:bg-gray-900"
+                  style={{ height: fullScreen ? 'calc(100vh - 190px)' : 700 }}
+                >
+                  <div className="w-full h-full " ref={ref} />
                 </div>
               </div>
             )}
