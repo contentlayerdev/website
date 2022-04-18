@@ -4,6 +4,7 @@ import { mdxToMarkdown } from 'mdast-util-mdx'
 import { toMarkdown } from 'mdast-util-to-markdown'
 import { bundleMDX } from 'mdx-bundler'
 import { urlFromFilePath } from '../utils'
+import { SEO } from '../nested/SEO'
 
 type PostHeading = { level: 1 | 2 | 3; title: string }
 
@@ -55,6 +56,10 @@ export const Post = defineDocumentType(() => ({
       type: 'list',
       of: RelatedPost,
       required: false,
+    },
+    seo: {
+      type: 'nested',
+      of: SEO,
     },
   },
   computedFields: {

@@ -8,12 +8,15 @@ import { Footer } from './Footer'
 export const Container: FC<any> = ({ children, ...customMeta }) => {
   const router = useRouter()
 
+  const baseUrl = `https://www.contentlayer.dev`
+
   const meta = {
-    title: 'Contentlayer',
-    description: 'Validate and transform content into type-safe data.',
-    url: 'https://contentlayer.dev',
+    title: 'Contentlayer makes content easy for developers',
+    description:
+      'Contentlayer is a content SDK that validates and transforms your content into type-safe JSON data you can easily import into your application.',
+    url: customMeta.urlPath ? `${baseUrl}${customMeta.urlPath}` : baseUrl,
     name: 'Contentlayer',
-    image: 'https://contentlayer.dev/images/banner.jpg',
+    image: customMeta.imagePath ? `${baseUrl}${customMeta.imagePath}` : `${baseUrl}/images/contentlayer-meta-image.png`,
     type: 'website',
     ...customMeta,
   }
