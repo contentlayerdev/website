@@ -31,7 +31,7 @@ const content = {
   primaryAction: { label: 'Get started', url: '/docs/getting-started' },
   secondaryAction: { label: 'Why Contentlayer?', url: '/blog/working-with-content-is-hard-for-developers' },
   video: {
-    thumbnail: { url: 'https://i.imgur.com/Ogv8EgG.png', alt: 'Intro to Contentlayer Video Thumbnail' },
+    thumbnail: { url: 'https://i.imgur.com/5IKJALH.png', alt: 'Intro to Contentlayer Video Thumbnail' },
     youtubeId: '58Pj4a4Us7A',
   },
 }
