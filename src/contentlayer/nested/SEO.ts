@@ -11,6 +11,7 @@ export const SEO = defineNestedType(() => ({
     },
     imagePath: {
       type: 'string',
+      required: true,
     },
   },
   extensions: {},

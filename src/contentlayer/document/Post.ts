@@ -60,6 +60,7 @@ export const Post = defineDocumentType(() => ({
     seo: {
       type: 'nested',
       of: SEO,
+      required: true,
     },
   },
   computedFields: {

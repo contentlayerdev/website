@@ -12,18 +12,22 @@ export const BlogPreview: FC<{ post: Post }> = ({ post }) => {
   return (
     <Card className="grid grid-cols-1 gap-8 p-4 sm:p-8 md:grid-cols-2 lg:gap-16">
       <div>
-        <Image
-          src={post.cover_image.url}
-          alt={post.cover_image.alt}
-          width={post.cover_image.width}
-          height={post.cover_image.height}
-          placeholder="blur"
-          blurDataURL={post.cover_image.url}
-        />
+        <Link href={`/blog/${post.slug}`}>
+          <a>
+            <Image
+              src={post.seo.imagePath}
+              alt={post.cover_image.alt}
+              width={540}
+              height={283}
+              placeholder="blur"
+              blurDataURL={post.cover_image.url}
+            />
+          </a>
+        </Link>
       </div>
       <div className="space-y-4">
         <Heading level={3}>
-          <Link href={'/blog/' + post.slug}>{post.title}</Link>
+          <Link href={`/blog/${post.slug}`}>{post.title}</Link>
         </Heading>
         <BlogDetails post={post} />
         <Paragraph>{post.excerpt}</Paragraph>
