@@ -3,7 +3,6 @@ import { FC } from 'react'
 import { Button } from '../common/Button'
 import { CodeWindow } from './CodeWindow'
 import { DataTransformation } from './DataTransformation'
-import { ColorScheme } from '../../utils/syntax-highlighting'
 import * as Tabs from '@radix-ui/react-tabs'
 import * as Tooltip from '@radix-ui/react-tooltip'
 import { Heading } from './Heading'
@@ -13,7 +12,7 @@ export const codeSnippets = {
   howItWorksStep1: [
     {
       file: 'contentlayer.config.ts',
-      lines: 21,
+      lines: 16,
       content: `\
 import { defineDocumentType, makeSource } from 'contentlayer/source-files'
 
@@ -24,16 +23,11 @@ const Post = defineDocumentType(() => ({
     title: { type: 'string', required: true },
     date: { type: 'date', required: true }
   },
-  computedFields: {
-    url: {
-      type: 'string',
-      resolve: (doc) => \`/posts/\${doc._raw.flattenedPath}\`
-    }
-  }
 }))
 
 export default makeSource({
   contentDirPath: 'posts',
+  /*              ^^^^^^^ Directory with the Markdown files. */
   documentTypes: [Post]
 })\
 `,
@@ -42,7 +36,7 @@ export default makeSource({
   howItWorksStep3: [
     {
       file: 'pages/posts/index.tsx',
-      lines: 21,
+      lines: 20,
       content: `\
 import { allPosts, type Post } from './assets/contentlayer-generated'
 

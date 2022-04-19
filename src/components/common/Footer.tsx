@@ -12,8 +12,13 @@ const content = {
   note: (
     <>
       <p>
-        MIT Licenced - Copyright © 2022{' '}
-        <a href="https://www.stackbit.com/" className="text-violet-600 underline dark:text-violet-400">
+        MIT Licenced - Sponsored by{' '}
+        <a
+          href="https://www.stackbit.com/"
+          target="_blank"
+          className="text-violet-600 underline dark:text-violet-400"
+          rel="noreferrer"
+        >
           Stackbit
         </a>
       </p>
@@ -44,7 +49,7 @@ const content = {
       elements: [
         {
           label: 'Next.js (TypeScript)',
-          url: 'https://github.com/contentlayerdev/next-contentlayer-example/tree/acba19596977752162275b7b1517664d872d5d9e',
+          url: '/examples/nextjs',
         },
       ],
     },
