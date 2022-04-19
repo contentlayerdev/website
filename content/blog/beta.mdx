@@ -28,7 +28,7 @@ We're very excited to officially release Contentlayer in beta after many months 
 - [Motivation: Thinking of Content as Data](#motivation-thinking-of-content-as-data)
   - [DIY Example with Next.js + Markdown](#diy-example-with-nextjs-markdown)
 - [Introducing Contentlayer](#introducing-contentlayer)
-  - [How Contentlayer works](#how-contentlayer-works)
+  - [How Contentlayer Works](#how-contentlayer-works)
   - [Try it Yourself](#try-it-yourself)
   - [Build Performance Comparison](#build-performance-comparison-vs-diy-and-gatsby)
 - [The Future of Content(layer)](#the-future-of-contentlayer)
@@ -203,9 +203,13 @@ We put our claims to the test and [built a simple benchmark study](https://githu
 
 In both cases, the Contentlayer site was nearly **twice as fast**. Even when we tested against warm builds, where the frameworks could make use of cached artifacts from previous builds, **Contentlayer was still nearly twice as fast**.
 
-<Image src="https://i.imgur.com/RL2t7es.png" alt="Contentlayer Performance Comparison" width="2560" height="1200" />
-
-{/* <BenchmarkResults /> */}
+<div className="mt-8 space-y-4">
+  <Image src="https://i.imgur.com/RL2t7es.png" alt="Contentlayer Performance Comparison" width="2560" height="1200" />
+  <div className="flex w-full justify-center text-sm text-slate-300 dark:text-slate-500">
+    Smaller is better/faster. Used machine: [GitHub
+    Actions](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#supported-runners-and-hardware-resources)
+  </div>
+</div>
 
 ### Works for projects of any size
 
