@@ -74,15 +74,25 @@ export const getStaticProps = defineStaticProps(async (context) => {
   return { props: { post, betaSnippets } }
 })
 
-const Image: FC<{ src: string; width?: number; height?: number; className?: string }> = ({
+const Image: FC<{ src: string; alt?: string; width?: number; height?: number; className?: string }> = ({
   src,
+  alt,
   width,
   height,
   className,
 }) => {
   return (
     <div className={`${className} overflow-hidden rounded-lg`}>
-      <NextImage src={src} width={width ?? '1600'} height={height ?? '900'} placeholder="blur" blurDataURL={src} />
+      <div className="-mb-3">
+        <NextImage
+          src={src}
+          alt={alt}
+          width={width ?? '1600'}
+          height={height ?? '900'}
+          placeholder="blur"
+          blurDataURL={src}
+        />
+      </div>
     </div>
   )
 }
