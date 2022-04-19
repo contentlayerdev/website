@@ -14,7 +14,7 @@
     "@radix-ui/react-scroll-area": "^0.1.4",
     "@radix-ui/react-tabs": "^0.1.5",
     "@radix-ui/react-tooltip": "^0.1.7",
-    "@stackblitz/sdk": "^1.7.0-alpha.2",
+    "@stackblitz/sdk": "^1.7.0-alpha.3",
     "@tailwindcss/typography": "^0.5.2",
     "cheerio": "^1.0.0-rc.10",
     "classnames": "^2.3.1",
@@ -55,6 +55,6 @@
   },
   "packageManager": "yarn@3.2.0",
   "resolutions": {
-    "@stackblitz/sdk": "patch:@stackblitz/sdk@npm:1.7.0-alpha.2#.yarn/patches/@stackblitz-sdk-npm-1.7.0-alpha.2-9db47a6843.patch"
+    "@stackblitz/sdk@1.7.0": "patch:@stackblitz/sdk@npm:1.7.0-alpha.3#.yarn/patches/@stackblitz-sdk-npm-1.7.0-alpha.3-1f8676ad43.patch"
   }
 }

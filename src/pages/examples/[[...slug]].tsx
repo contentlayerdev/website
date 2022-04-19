@@ -3,8 +3,7 @@ import type { InferGetStaticPropsType } from 'next'
 // eslint-disable-next-line import/no-unresolved
 import { useLiveReload, useMDXComponent } from 'next-contentlayer/hooks'
 import { FC, useEffect, useRef, useState } from 'react'
-import { type VM } from '@stackblitz/sdk/typings/VM'
-import stackblitz from '@stackblitz/sdk'
+import stackblitz, { type VM } from '@stackblitz/sdk'
 import { allExamples } from 'contentlayer/generated'
 import { Container } from '../../components/common/Container'
 import { defineStaticProps, toParams } from '../../utils/next'
@@ -75,15 +74,23 @@ const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ example, tre
   const ref = useRef<HTMLDivElement>(null)
   const [vm, setVm] = useState<VM | undefined>(undefined)
   const [fullScreen, setFullScreen] = useState<boolean>(false)
+
   useEffect(() => {
     if (example.github_repo && ref.current) {
       stackblitz
         .embedGithubProject(ref.current, 'contentlayerdev/next-contentlayer-example/tree/stackblitz-demo', {
           openFile: example.open_file,
+          showSidebar: true,
         })
         .then((_) => setVm(_))
     }
   }, [ref, example.open_file, example.github_repo])
+
+  useEffect(() => {
+    if (vm && fullScreen) {
+      vm.editor.showSidebar()
+    }
+  }, [vm, fullScreen])
 
   return (
     <Container title={example.title + ' – Contentlayer'} description={example.excerpt}>
