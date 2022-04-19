@@ -134,12 +134,9 @@ After installing Contentlayer via `npm install contentlayer next-contentlayer` y
 
 ### Playground: Try it Yourself
 
-Take a look around a working example. Notice the following:
+To get a better feeling for how Contentlayer works and how to use it, it's best to actually use it. We've included a interactive playground with a real Next.js + Contentlayer project below. (Currently works best in Chrome on Desktop).
 
-- The content is generated into a `.contentlayer/generated` directory that includes JSON content caches, exported collections of data, and automatically-generated types.
-- The `pages/[[...slug]].tsx` page brings in the content directly, manipulates it as needed, and passes it onto the page component.
-
-Try it! Make a change to one of the markdown files in the `content` directory. Notice that the content in the browser is automatically refreshed (quickly) and the JSON cache is updated for that piece of content.
+Go ahead - give it a try! For example, make a change to one of the markdown files in the `content` directory. Notice that the content in the browser is automatically refreshed and the JSON cache is updated for that piece of content.
 
 <div className="my-24 xl:-mx-40">
   <Playground
@@ -147,6 +144,9 @@ Try it! Make a change to one of the markdown files in the `content` directory. N
     openFile="posts/change-me.md"
   />
 </div>
+
+- The content is generated into a `.contentlayer/generated` directory that includes JSON content caches, exported collections of data, and automatically-generated types.
+- The `pages/[[...slug]].tsx` page brings in the content directly, manipulates it as needed, and passes it onto the page component.
 
 ## Benefits of Contentlayer
 
