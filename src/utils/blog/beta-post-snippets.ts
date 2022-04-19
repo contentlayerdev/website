@@ -1,68 +1,5 @@
 export const codeSnippets = [
   {
-    file: 'pages/index.tsx',
-    lines: 22,
-    content: `\
-// @noErrors
-import type { FC } from "react";
-
-import type { Page } from "../types/Page";
-
-import { allPages } from "../utils/page-utils";
-
-export const getStaticProps = async () => {
-  const pages = await allPages();
-  return { props: { pages } };
-};
-
-const Page: FC<{ pages: Page[] }> = ({ pages }) => (
-  <div>
-    {pages.map((page) => (
-      <a style={{ display: "block" }} key={page.urlPath} href={page.urlPath}>
-        {page.title}
-      </a>
-    ))}
-  </div>
-);
-
-export default Page;\
-`,
-  },
-  {
-    file: 'pages/[slug].tsx',
-    lines: 27,
-    content: `\
-// @noErrors
-import Head from "next/head";
-import type { FC } from "react";
-
-import type { Page } from "../types/Page";
-import { pageByUrlPath, allPagePaths } from "../utils/page-utils";
-
-export const getStaticPaths = async () => {
-	const paths = await allPagePaths();
-	return { paths, fallback: false };
-};
-
-export const getStaticProps = async ({ params }) => {
-	const page = await pageByUrlPath(\`/\${params.id.join("/")}\`);
-	return { props: { page } };
-};
-
-const Page: FC<{ page: Page }> = ({ page }) => (
-	<>
-		<Head>
-			<title>{page.title}</title>
-		</Head>
-		<h1>{page.title}</h1>
-		<div dangerouslySetInnerHTML={{ __html: page.body.html }} />
-	</>
-);
-
-export default Page;
-`,
-  },
-  {
     file: 'utils/page-utils.tsx',
     lines: 106,
     content: `\
@@ -173,6 +110,69 @@ export async function pageByUrlPath(urlPath: string): Promise<Page> {
 	const page = await processPage(pagePathMap[urlPath]);
 	return page;
 }
+`,
+  },
+  {
+    file: 'pages/index.tsx',
+    lines: 22,
+    content: `\
+// @noErrors
+import type { FC } from "react";
+
+import type { Page } from "../types/Page";
+
+import { allPages } from "../utils/page-utils";
+
+export const getStaticProps = async () => {
+  const pages = await allPages();
+  return { props: { pages } };
+};
+
+const Page: FC<{ pages: Page[] }> = ({ pages }) => (
+  <div>
+    {pages.map((page) => (
+      <a style={{ display: "block" }} key={page.urlPath} href={page.urlPath}>
+        {page.title}
+      </a>
+    ))}
+  </div>
+);
+
+export default Page;\
+`,
+  },
+  {
+    file: 'pages/[slug].tsx',
+    lines: 27,
+    content: `\
+// @noErrors
+import Head from "next/head";
+import type { FC } from "react";
+
+import type { Page } from "../types/Page";
+import { pageByUrlPath, allPagePaths } from "../utils/page-utils";
+
+export const getStaticPaths = async () => {
+	const paths = await allPagePaths();
+	return { paths, fallback: false };
+};
+
+export const getStaticProps = async ({ params }) => {
+	const page = await pageByUrlPath(\`/\${params.id.join("/")}\`);
+	return { props: { page } };
+};
+
+const Page: FC<{ page: Page }> = ({ page }) => (
+	<>
+		<Head>
+			<title>{page.title}</title>
+		</Head>
+		<h1>{page.title}</h1>
+		<div dangerouslySetInnerHTML={{ __html: page.body.html }} />
+	</>
+);
+
+export default Page;
 `,
   },
 ] as const

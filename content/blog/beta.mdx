@@ -1,7 +1,7 @@
 ---
-title: 'Contentlayer Beta: Content Made Easy for Developers'
+title: 'Introducing Contentlayer (Beta): Content Made Easy for Developers'
 excerpt: Working with content for the web sucks. It always has. That's why we built Contentlayer. Conentlayer is a content SDK that makes working with content a delight for developers using modern tooling.
-date: 2022-04-19
+date: 2022-04-21
 cover_image:
   url: https://i.imgur.com/lRrBFqd.png
   alt: Contentlayer Makes Working with Content Easy for Developers
@@ -18,15 +18,22 @@ seo:
 ---
 
 <TLDR>
-Working with content for the web sucks. It always has. That's why we built Contentlayer.
 
-Conentlayer is a content SDK that makes working with content a delight for developers using modern tooling.
+Working with content data (e.g. Markdown files or CMS) is a surprisingly difficult and laborious task when developing modern sites (e.g. with Next.js). Contentlayer is a content SDK that to aims to make content easy for developers.
 
-- [Thinking of Content as Data](#): ...
-- [Contentlayer Makes Content Easy](#): ...
-  - [How Contentlayer works](#): ...
-  - [Build Performance Comparison vs DIY and Gatsby](#): ...
-- [The Future of Content(layer)](#): ...
+We're very excited to officially release Contentlayer in beta after many months of alpha testing.
+
+<div className='mt-8'>
+
+- [Motivation: Thinking of Content as Data](#motivation-thinking-of-content-as-data)
+  - [DIY Example with Next.js + Markdown](#diy-example-with-nextjs-markdown)
+- [Introducing Contentlayer](#introducing-contentlayer)
+  - [How Contentlayer works](#how-contentlayer-works)
+  - [Try it Yourself](#try-it-yourself)
+  - [Build Performance Comparison](#build-performance-comparison-vs-diy-and-gatsby)
+- [The Future of Content(layer)](#)
+
+</div>
 
 </TLDR>
 
@@ -40,7 +47,7 @@ Conentlayer is a content SDK that makes working with content a delight for devel
   videoId="58Pj4a4Us7A"
 />
 
-## Thinking of Content as Data
+## Motivation: Thinking of Content as Data
 
 How we handle content for the web [has evolved significantly](/blog/working-with-content-is-hard-for-developers) over the past three decades. The pattern from frameworks emerging today is to bring no opinion about how you handle content.
 
@@ -63,15 +70,15 @@ But it’s still hard.
 
 While it’s nice to be able to work the way you want, it’s not so great to write low-level content-processing logic when you could move faster if that work was done for you, and you could spend more time on the business logic.
 
-### An Example with Next.js + Markdown
+### DIY Example with Next.js + Markdown
 
-Let's look at a concrete example (see [source on GitHub](https://github.com/contentlayerdev/contentlayer-benchmarks/tree/main/next-remark)). If you built a website using Next.js with local Markdown files as your content source, you’d have to develop a mechanism that converted those Markdown files into data that you could use in your Next.js pages.
+Let's look at a concrete example (see [source on GitHub](https://github.com/contentlayerdev/contentlayer-benchmarks/tree/main/next-remark)) without Contentlayer. If you built a website using Next.js with local Markdown files as your content source, you’d have to develop a mechanism that converted those Markdown files into data that you could use in your Next.js pages.
 
 <div className="my-8">
   <BetaCodeWindow.Remark />
 </div>
 
-Doing that on its own doesn’t sound like a lot of work, but it gets complicated fast. Consider that if you _really_ wanted to have the optimal developer experience, you’d have to do the following:
+Doing that on its own doesn’t sound like a lot of work, but it gets complicated fast. Consider that if you _really_ wanted to have a reliable setup and good developer experience, you’d have to do the following:
 
 <BulletList>
   <BulletListItem type="cross">
@@ -103,7 +110,7 @@ Doing that on its own doesn’t sound like a lot of work, but it gets complicate
 
 That’s _a lot_ of work.
 
-## Contentlayer Makes Content Easy
+## Introducing Contentlayer
 
 And that’s why we built Contentlayer. **Contentlayer makes working with content easy** for developers.
 

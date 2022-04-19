@@ -48,6 +48,8 @@ export type PreprocessedCodeSnippetsRemark = Record<ColorScheme, CodeSnippets>
 type BetaSnippets = { remark: PreprocessedCodeSnippetsRemark; contentlayer: PreprocessedCodeSnippets }
 
 export const getStaticProps = defineStaticProps(async (context) => {
+  console.time(`getStaticProps /blog/${context.params!.slug}`)
+
   const params = context.params as any
   const post = allPosts.find((_) => _.slug === params.slug)!
 
@@ -66,6 +68,8 @@ export const getStaticProps = defineStaticProps(async (context) => {
 
     devcache_betaSnippets = betaSnippets
   }
+
+  console.timeEnd(`getStaticProps /blog/${context.params!.slug}`)
 
   return { props: { post, betaSnippets } }
 })

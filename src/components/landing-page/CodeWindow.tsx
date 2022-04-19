@@ -30,31 +30,33 @@ export const CodeWindow: FC<{
           ))}
           <div className="grow border-b border-gray-100 dark:border-gray-900"></div>
         </Tabs.List>
-        {snippets.map(({ file, content, lines }, index) => (
-          <Tabs.Content key={index} value={file} className="flex overflow-y-hidden focus:outline-none">
-            <div className="w-8 shrink-0 grow-0 bg-white pt-[19px] pb-3 text-right font-mono text-sm leading-none text-slate-300 dark:bg-[#0d1116] dark:text-slate-700">
-              {[...new Array(lines)].map((v, index) => (
-                <div key={index} className="h-[20px] px-2">
-                  {index + 1}
-                </div>
-              ))}
-            </div>
-            <ScrollArea.Root className="w-full overflow-hidden bg-white dark:bg-[#0D1116]">
-              <ScrollArea.Viewport>
-                <div
-                  className={`text-[13] not-prose ${
-                    router.pathname.split('/')[1] == 'blog' ? '-mt-[30px]' : '-mt-[20px]'
-                  } -mb-[40px]`}
-                  dangerouslySetInnerHTML={{ __html: content }}
-                />
-              </ScrollArea.Viewport>
-              <ScrollArea.Scrollbar orientation="horizontal">
-                <ScrollArea.Thumb className="relative" />
-              </ScrollArea.Scrollbar>
-              <ScrollArea.Corner />
-            </ScrollArea.Root>
-          </Tabs.Content>
-        ))}
+        <div className="max-h-[600px] overflow-y-scroll">
+          {snippets.map(({ file, content, lines }, index) => (
+            <Tabs.Content key={index} value={file} className="flex overflow-y-hidden focus:outline-none">
+              <div className="w-8 shrink-0 grow-0 bg-white pt-[19px] pb-3 text-right font-mono text-sm leading-none text-slate-300 dark:bg-[#0d1116] dark:text-slate-700">
+                {[...new Array(lines)].map((v, index) => (
+                  <div key={index} className="h-[20px] px-2">
+                    {index + 1}
+                  </div>
+                ))}
+              </div>
+              <ScrollArea.Root className="w-full overflow-hidden bg-white dark:bg-[#0D1116]">
+                <ScrollArea.Viewport>
+                  <div
+                    className={`text-[13] not-prose ${
+                      router.pathname.split('/')[1] == 'blog' ? '-mt-[30px]' : '-mt-[20px]'
+                    } -mb-[40px]`}
+                    dangerouslySetInnerHTML={{ __html: content }}
+                  />
+                </ScrollArea.Viewport>
+                <ScrollArea.Scrollbar orientation="horizontal">
+                  <ScrollArea.Thumb className="relative" />
+                </ScrollArea.Scrollbar>
+                <ScrollArea.Corner />
+              </ScrollArea.Root>
+            </Tabs.Content>
+          ))}
+        </div>
       </Tabs.Root>
     </Card>
   )

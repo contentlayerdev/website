@@ -1,17 +1,3 @@
-import { children } from 'cheerio/lib/api/traversing'
-
-const results = `
-┌────────────────────────┬────────────┬────────────┐
-│                        │ Cold (sec) │ Warm (sec) │
-├────────────────────────┼────────────┼────────────┤
-│ Next.js + Contentlayer │ 25.73      │ 16.29      │
-├────────────────────────┼────────────┼────────────┤
-│ Next.js + Remark       │ 44.48      │ 39.27      │
-├────────────────────────┼────────────┼────────────┤
-│ Gatsby                 │ 46.59      │ 25.73      │
-└────────────────────────┴────────────┴────────────┘
-`.trim()
-
 const TableHeadCell: React.FC<
   React.PropsWithChildren<{
     style?: React.CSSProperties
@@ -47,7 +33,7 @@ const ResultCell: React.FC<React.PropsWithChildren<{ success?: boolean }>> = ({ 
 
 export const BenchmarkResults: React.FC = () => {
   return (
-    <div className="mx-auto my-12 max-w-xl">
+    <div className="mx-auto my-12 max-w-xl space-y-4">
       <div className="overflow-hidden rounded-2xl border border-gray-100 bg-gray-50 p-4 text-xs text-slate-500 shadow-lg shadow-gray-100 dark:border-gray-800 dark:bg-gray-900 dark:text-slate-400 dark:shadow-gray-900">
         <table className="m-0 table-fixed text-[1rem]">
           <thead>
@@ -75,6 +61,17 @@ export const BenchmarkResults: React.FC = () => {
             </tr>
           </tbody>
         </table>
+      </div>
+      <div className="w-full text-center text-sm text-slate-300 dark:text-slate-500">
+        Smaller is better/faster. Used machine:{' '}
+        <a
+          href="https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#supported-runners-and-hardware-resources"
+          target="_blank"
+          rel="noreferrer"
+        >
+          GitHub Actions
+        </a>
+        .
       </div>
     </div>
   )
