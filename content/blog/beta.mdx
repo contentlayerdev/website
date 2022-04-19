@@ -19,7 +19,7 @@ seo:
 
 <TLDR>
 
-Working with content data (e.g. Markdown files or CMS) is a surprisingly difficult and laborious task when developing modern sites (e.g. with Next.js). Contentlayer is a content SDK that to aims to make content easy for developers.
+Working with content data (e.g. Markdown files or CMS) is a surprisingly difficult and laborious task when developing modern sites (e.g. with Next.js). **Contentlayer is a content SDK** that to aims to make content easy for developers with a focus on great DX and performance.
 
 We're very excited to officially release Contentlayer in beta after many months of alpha testing and already being used in over 300 projects.
 
@@ -30,7 +30,7 @@ We're very excited to officially release Contentlayer in beta after many months 
 - [Introducing Contentlayer](#introducing-contentlayer)
   - [How Contentlayer Works](#how-contentlayer-works)
   - [Try it Yourself](#try-it-yourself)
-  - [Build Performance Comparison](#build-performance-comparison-vs-diy-and-gatsby)
+  - [Build Performance Comparison](#build-performance-comparison-contentlayer-vs-diy-and-gatsby)
 - [The Future of Content(layer)](#the-future-of-contentlayer)
 
 </div>
@@ -123,7 +123,7 @@ And that’s why we built Contentlayer. **Contentlayer makes working with conten
 
 ### How Contentlayer Works
 
-Working with Contentlayer is a three-step process:
+After installing Contentlayer via `npm i contentlayer next-contentlayer` you're ready to go:
 
 1. First you need to tell Contentlayer where your content lives and which format and structure it has. There are different kinds of content sources - here we're using local Markdown files.
 
@@ -155,7 +155,7 @@ Try it! Make a change to one of the markdown files in the `content` directory. N
 
 ## Benefits of Contentlayer
 
-Contentlayer makes working with content a great experience for developers by providing the following benefits:
+Contentlayer aims to provide a great developer experience (DX) through the following features:
 
 <BulletList>
   <BulletListItem type="check">
@@ -163,47 +163,29 @@ Contentlayer makes working with content a great experience for developers by pro
     and the content _just works_.
   </BulletListItem>
   <BulletListItem type="check">
-    **TypeScript Support**: TypeScript type definitions are automatically generated for every piece of content.
+    **TypeScript Support**: Auto-generated TypeScript type definitions every document type.
   </BulletListItem>
   <BulletListItem type="check">
-    <div className="mb-4">Validations are built-in and configurable.</div>
+    <div className="mb-4">**Content validation:** Content is validated automatically with helpful error messages.</div>
   </BulletListItem>
   <BulletListItem type="check">
-    Content builds are cached, and content is incrementally regenerated, doing only the necessary work when you update
-    content in development mode.
+    **Caching**: Content builds are cached and incrementally regenerated - doing only the minimal amount of work
+    necessary when changing your content.
   </BulletListItem>
   <BulletListItem type="check">
-    The browser will automatically reload after changing content for those frameworks that support live reloading.
+    **Live reload**: The browser will automatically reload after changing content for those frameworks that support live
+    reloading.
   </BulletListItem>
   <BulletListItem type="check">
-    It's easier to scale your system to account for complex content relationships.
+    **Flexible content modeling**: Contentlayer allows you to structure your content in a flexible and powerful way.
   </BulletListItem>
 </BulletList>
 
-### Contentlayer is Fast at Every Stage of a Project
+### Build Performance Comparison: Contentlayer vs DIY and Gatsby
 
-These benefits make Contentlayer fast at every stage of project development.
+We put our claims to the test and [built a simple benchmark study](https://github.com/contentlayerdev/contentlayer-benchmarks) that compared a Next.js site with 1,000+ markdown content files to the same site using a DIY content processing method. We then built the same site with Gatsby.
 
-<BulletList>
-  <BulletListItem type="check">
-    **Build:** The server boots quickly, content is incrementally regenerated, and live reloading unlocked.
-  </BulletListItem>
-  <BulletListItem type="check">
-    **Test:** Because builds are faster, CI and CD finish quicker, which means your content gets into production sooner.
-  </BulletListItem>
-  <BulletListItem type="check">
-    **Deploy:** More processing is done at build time, including rendering markdown, minimizing the work done on the
-    client. This improves your Lighthouse scores and makes your site faster for your users.
-  </BulletListItem>
-</BulletList>
-
-### Build Performance Comparison vs DIY and Gatsby
-
-We put our claims to the test and [built a simple benchmark study](https://github.com/contentlayerdev/contentlayer-benchmarks) that compared a Next.js site with 1k markdown content files to the same site using a DIY content method. We then built the same site with Gatsby.
-
-In both cases, the Contentlayer site was nearly **twice as fast**. Even when we tested against warm builds, where the frameworks could make use of cached artifacts from previous builds, **Contentlayer was still nearly twice as fast**.
-
-<div className="mt-8 space-y-4">
+<div className="my-8 space-y-4">
   <Image src="https://i.imgur.com/RL2t7es.png" alt="Contentlayer Performance Comparison" width="2560" height="1200" />
   <div className="flex w-full justify-center text-sm text-slate-300 dark:text-slate-500">
     Smaller is better/faster. Used machine: [GitHub
@@ -211,29 +193,23 @@ In both cases, the Contentlayer site was nearly **twice as fast**. Even when we 
   </div>
 </div>
 
-### Works for projects of any size
-
-As we’ve seen, Contentlayer tends to work best alongside frameworks with an open content model. We’ve focused on Next.js up until this point, but plan to investigate support for Remix, SvelteKit, Nuxt, and more.
-
-Beyond the framework, Contentlayer can stand up to complex content structures, while also serving projects at every stage. It’s simple enough to get started that you’d find great benefit in working with Contentlayer for your personal site or blog.
-
-And it _really_ starts to feel like the right decision as content structures become more nested or complex, like in typical documentation sites. And it can continue to scale with any site as its complexity grows.
-
-When starting a project with opinionated content tooling, there is always a risk of outgrowing those opinions and needing to switch to something more flexible. Conentlayer makes the flexibility of modern open content frameworks accessible to projects of any size.
+In both cases, using Contentlayer was nearly **twice as fast**. Even when we tested against warm builds, where the frameworks could make use of cached artifacts from previous builds, Contentlayer was still nearly twice as fast.
 
 ## The Future of Content(layer)
 
-We’re just getting started.
+This beta release of Contentlayer marks an important milestone in the [roadmap of the project](/docs/other/roadmap) - but we're just getting started. Over the coming months leading up to a stable 1.0 release we're aiming to accomplish the following:
 
-We will continue to add new content sources — Contentful is experimental, with Notion is coming up quickly behind it — and investigate fully supporting additional modern frameworks. We’ll also be giving much attention to image processing.
+- Add support for more content sources (e.g. [Contentful](https://github.com/contentlayerdev/contentlayer/issues/173), [Notion](https://github.com/contentlayerdev/contentlayer/issues/174), ...) and even supporting [multiple content sources](https://github.com/contentlayerdev/contentlayer/issues/84) in a single project
+- Providing seamless integrations for more site frameworks (such as [Vite](https://github.com/contentlayerdev/contentlayer/issues/179), [Remix](https://github.com/contentlayerdev/contentlayer/issues/169), [Astro](https://github.com/contentlayerdev/contentlayer/issues/171), ...)
+- Validate and evolve the core abstractions of Contentlayer to avoid breaking changes after the 1.0 release
 
 <div className="mt-[-4rem] mb-12">
   <Support />
 </div>
 
-[The roadmap](https://www.contentlayer.dev/docs/other/roadmap) is being shaped by our open-source community that has grown organically and will continue to grow with your involvement.
+---
 
-### Join the Contentlayer Community
+## Join the Contentlayer Community
 
 You're invited to become part of the Contentlayer community by ...
 
@@ -242,7 +218,9 @@ You're invited to become part of the Contentlayer community by ...
 - Joining our welcoming [Discord community](https://discord.gg/rytFErsARm).
 - Reporting issues in the [GitHub repository](https://github.com/contentlayerdev/contentlayer) - Please also consider starring the repo 🌟
 
-### Thank You 💜
+---
+
+## Thank You 💜
 
 It took a signiciant amount of work to get to this point and I couldn't have done it without the help of others. **Thanks a lot** to everyone involved, especially to ...
 
@@ -251,6 +229,6 @@ It took a signiciant amount of work to get to this point and I couldn't have don
 - [Stackbit](https://www.stackbit.com/) for generously sponsoring this project since the beginning
 - [Sean Davis](https://twitter.com/seancdavis29) and [Lukas Wiesehan](https://twitter.com/lukaswiesehan) for helping to launch Contentlayer's new website and documentation
 
----
+<br />
 
 If you have any questions or feedback, please don't hestitate to [get in touch](https://twitter.com/schickling) or ask in our [Discord community](https://discord.gg/rytFErsARm).
