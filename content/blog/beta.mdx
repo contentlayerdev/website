@@ -1,6 +1,6 @@
 ---
 title: 'Introducing Contentlayer (Beta): Content Made Easy for Developers'
-excerpt: Working with content for the web sucks. It always has. That's why we built Contentlayer. Conentlayer is a content SDK that makes working with content a delight for developers using modern tooling.
+excerpt: 'Working with content data (e.g. Markdown files or CMS) is a surprisingly difficult and laborious task when developing modern sites (e.g. with Next.js). Contentlayer is a content SDK that to aims to make content easy for developers.'
 date: 2022-04-21
 cover_image:
   url: https://i.imgur.com/lRrBFqd.png
@@ -21,7 +21,7 @@ seo:
 
 Working with content data (e.g. Markdown files or CMS) is a surprisingly difficult and laborious task when developing modern sites (e.g. with Next.js). Contentlayer is a content SDK that to aims to make content easy for developers.
 
-We're very excited to officially release Contentlayer in beta after many months of alpha testing.
+We're very excited to officially release Contentlayer in beta after many months of alpha testing and already being used in over 300 projects.
 
 <div className='mt-8'>
 
@@ -31,7 +31,7 @@ We're very excited to officially release Contentlayer in beta after many months 
   - [How Contentlayer works](#how-contentlayer-works)
   - [Try it Yourself](#try-it-yourself)
   - [Build Performance Comparison](#build-performance-comparison-vs-diy-and-gatsby)
-- [The Future of Content(layer)](#)
+- [The Future of Content(layer)](#the-future-of-contentlayer)
 
 </div>
 
@@ -125,7 +125,7 @@ And that’s why we built Contentlayer. **Contentlayer makes working with conten
 
 Working with Contentlayer is a three-step process:
 
-1. Configure your content source within a Contentlayer configuration file.
+1. First you need to tell Contentlayer where your content lives and which format and structure it has. There are different kinds of content sources - here we're using local Markdown files.
 
    <BetaCodeWindow.ContentlayerConfig />
 
@@ -133,7 +133,7 @@ Working with Contentlayer is a three-step process:
 
    <Transform className="my-12 max-w-2xl" />
 
-3. Use `import` to work with your content, just as you would any other data in your application.
+3. Use `import` to work with your content, just as you would with any other data or code in your application.
 
    <BetaCodeWindow.ContentlayerNext />
 
@@ -229,28 +229,22 @@ We will continue to add new content sources — Contentful is experimental, with
 
 ### Join the Contentlayer Community
 
-Become part of the Contentlayer journey by:
+You're invited to become part of the Contentlayer community by ...
 
-- Following [the tutorial](https://www.contentlayer.dev/docs/getting-started) and bringing Contentlayer into your project.
-- Looking through [examples](https://www.contentlayer.dev/docs/other/examples) and other open-source projects created with Contentlayer.
-- Joining our [Discord community](https://discord.gg/rytFErsARm).
-- TODO: Star repo on GH
+- Following [the tutorial](/docs/getting-started) and using Contentlayer into your project.
+- Looking through [examples](/examples/nextjs) and other open-source projects created with Contentlayer.
+- Joining our welcoming [Discord community](https://discord.gg/rytFErsARm).
+- Reporting issues in the [GitHub repository](https://github.com/contentlayerdev/contentlayer) - Please also consider starring the repo 🌟
 
-### Thank You (TODO Johannes)
+### Thank You 💜
 
-It took a lot of effort to get to this point. Big thanks to [Stackbit](https://www.stackbit.com/), who has sponsored this project from the beginning.
+It took a signiciant amount of work to get to this point and I couldn't have done it without the help of others. **Thanks a lot** to everyone involved, especially to ...
 
-We also owe a big thanks to the following contributors:
-
-- Other contributors, including ...
-- Lukas, for putting the finishing touches on the website so we could write this blog post.
-- Those already using Contentlayer in their projects, including ...
-- All of our community members who have given us early feedback and helped shape the project.
+- Everyone already using Contentlayer for providing early feedback shaping the project
+- All contributors for [reporting and investigating issues](https://github.com/contentlayerdev/contentlayer/issues)
+- [Stackbit](https://www.stackbit.com/) for generously sponsoring this project since the beginning
+- [Sean Davis](https://twitter.com/seancdavis29) and [Lukas Wiesehan](https://twitter.com/lukaswiesehan) for helping to launch Contentlayer's new website and documentation
 
 ---
 
-Contentlayer is here to help you work easily and consistently with content in your projects without injecting restricting opinions on the way you work.
-
-Thank you for your support!
-
-\- Johannes Schickling
+If you have any questions or feedback, please don't hestitate to [get in touch](https://twitter.com/schickling) or ask in our [Discord community](https://discord.gg/rytFErsARm).
