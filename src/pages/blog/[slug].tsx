@@ -33,6 +33,7 @@ import { htmlForCodeSnippets, PreprocessedCodeSnippets } from '..'
 import { H2, H3, H4 } from 'src/components/common/Headings'
 import { BlogDetails } from 'src/components/blog/BlogDetails'
 import { Author } from 'src/components/common/Author'
+import { Dashed } from 'src/components/landing-page/Dashed'
 
 export const getStaticPaths = async () => {
   const paths = allPosts.map(({ slug }) => {
@@ -127,6 +128,7 @@ const mdxComponents = {
   ContentStack,
   Support,
   BenchmarkResults,
+  Dashed,
 }
 
 const Post: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ post, betaSnippets }) => {
