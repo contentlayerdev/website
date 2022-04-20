@@ -45,8 +45,8 @@ export const Hero: FC = () => {
   const router = useRouter()
 
   return (
-    <div className="w-full space-y-20 pt-8 md:pt-16 lg:pt-20">
-      <div className="flex w-full justify-center">
+    <div className="w-full space-y-12 pt-8 md:space-y-20 md:pt-16 lg:pt-20">
+      <div className="flex w-full justify-start px-4 md:justify-center">
         <div className="flex items-center space-x-2.5 rounded-md border border-slate-200 bg-slate-50 py-3 px-4 dark:border-slate-700 dark:bg-slate-900">
           <div className="rounded-md bg-purple-500 py-1 px-1.5 text-xs font-semibold uppercase text-white dark:bg-purple-800">
             New
