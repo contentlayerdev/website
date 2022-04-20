@@ -20,10 +20,10 @@ type Props = {
 const StackItem: React.FC<StackItem> = ({ icons, label, className }) => {
   return (
     <div>
-      <div className="mb-4 flex h-12 justify-around">
+      <div className="mb-4 flex flex-col items-center justify-around sm:h-12 sm:flex-row">
         {icons.map((name, idx) => {
           return (
-            <span key={idx} className={`svg-h-full mx-4 block h-12 ${className ? className : ''}`}>
+            <span key={idx} className={`svg-h-full m-4 mb-0 block h-12 shrink-0 ${className ? className : ''}`}>
               <Icon name={name} />
             </span>
           )
@@ -36,7 +36,7 @@ const StackItem: React.FC<StackItem> = ({ icons, label, className }) => {
 
 const PlusIcon: React.FC = () => {
   return (
-    <span className="mx-6 block h-4 w-4 text-slate-500">
+    <span className="m-6 block h-4 w-4 shrink-0 text-slate-500">
       <Icon name="plus" />
     </span>
   )
@@ -48,12 +48,12 @@ const borderClasses = `rounded-lg border border-slate-500`
 
 const DecoupledStack: React.FC<Exclude<Props, 'decoupled'>> = ({ content, processor, pages }) => {
   return (
-    <div className={`flex items-center justify-between text-center`}>
+    <div className={`flex flex-col items-center justify-between text-center md:flex-row`}>
       <div className={`p-8 ${borderClasses}`}>
         <StackItem {...content} />
       </div>
       <PlusIcon />
-      <div className={`p-8 ${borderClasses} flex items-center justify-between text-center`}>
+      <div className={`p-8 ${borderClasses} flex flex-col items-center justify-between text-center sm:flex-row`}>
         <StackItem {...processor} />
         <PlusIcon />
         <StackItem {...pages} />
@@ -64,12 +64,14 @@ const DecoupledStack: React.FC<Exclude<Props, 'decoupled'>> = ({ content, proces
 
 const MonolithicStack: React.FC<Exclude<Props, 'decoupled'>> = ({ content, processor, pages }) => {
   return (
-    <div className={`flex items-center justify-between py-12 px-8 text-center ${borderClasses}`}>
-      <StackItem {...content} />
-      <PlusIcon />
-      <StackItem {...processor} />
-      <PlusIcon />
-      <StackItem {...pages} />
+    <div className={`flex justify-center`}>
+      <div className={`flex flex-col items-center justify-between p-8 text-center sm:flex-row ${borderClasses}`}>
+        <StackItem {...content} />
+        <PlusIcon />
+        <StackItem {...processor} />
+        <PlusIcon />
+        <StackItem {...pages} />
+      </div>
     </div>
   )
 }
