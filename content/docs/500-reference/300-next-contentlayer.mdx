@@ -25,6 +25,8 @@ If you're using MDX in your Next.js project, `useMDXComponent` makes it to rende
 
 Here is an example of a layout that receives a `slug `parameter, then uses it to retrieve a document and render MDX on the page.
 
+Remember to set `contentType: 'mdx'` in your config for propper [processing of MDX files](/docs/sources/files/mdx).
+
 ```jsx
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import { allDocs } from 'contentlayer/generated'
