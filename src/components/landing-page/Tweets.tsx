@@ -43,7 +43,7 @@ It transforms the mdx files, validates them AND adds types!`,
 Took me less than 5 minutes to cleanly separate and connect MDX files to a Next.js layout.`,
     person: {
       name: 'Houssein Djirdeh',
-      bio: 'Software Engineer at Goole',
+      bio: 'Software Engineer at Google',
       avatar: 'https://pbs.twimg.com/profile_images/1460651862340915201/w8Zva6LO_400x400.jpg',
     },
     url: 'https://twitter.com/hdjirdeh/status/1483047963316260870',
@@ -63,9 +63,9 @@ const Tweet: FC<TweetData> = ({ text, person, url }) => {
   return (
     <Link href={url}>
       <a className="block h-full" rel="noreferrer" target="_blank">
-        <Card className="h-full p-8 space-y-4">
+        <Card className="h-full space-y-4 p-8">
           <User {...person} />
-          <p className="italic font-light text-slate-500 dark:text-slate-400">
+          <p className="font-light italic text-slate-500 dark:text-slate-400">
             <q>{text}</q>
           </p>
         </Card>
@@ -77,8 +77,8 @@ const Tweet: FC<TweetData> = ({ text, person, url }) => {
 export const Tweets: FC = ({}) => {
   const [tweetsToShow, setTweetsToShow] = useState<number>(2)
   return (
-    <div className="relative w-full my-16 overflow-x-hidden md:my-24 lg:my-32">
-      <ul className="hidden m-0 space-y-8 list-none md:animate-scroll md:flex md:space-y-0">
+    <div className="relative my-16 w-full overflow-x-hidden md:my-24 lg:my-32">
+      <ul className="md:animate-scroll m-0 hidden list-none space-y-8 md:flex md:space-y-0">
         {[...tweets, ...tweets, ...tweets].map((tweet, index) => (
           <li
             key={index}
@@ -89,7 +89,7 @@ export const Tweets: FC = ({}) => {
         ))}
       </ul>
       <div className="md:hidden">
-        <ul className="m-0 space-y-8 list-none md:animate-scroll md:space-y-0">
+        <ul className="md:animate-scroll m-0 list-none space-y-8 md:space-y-0">
           {tweets.slice(0, tweetsToShow).map((tweet, index) => (
             <li
               key={index}
@@ -100,7 +100,7 @@ export const Tweets: FC = ({}) => {
           ))}
         </ul>
         {tweetsToShow < tweets.length && (
-          <div className="flex justify-center w-full px-4 pt-8">
+          <div className="flex w-full justify-center px-4 pt-8">
             <Button label="Show more" action={() => setTweetsToShow(tweetsToShow + 2)} theme="primary" />
           </div>
         )}
