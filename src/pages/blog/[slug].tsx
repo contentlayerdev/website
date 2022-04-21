@@ -165,14 +165,18 @@ const Post: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ post, betaSn
       imagePath={post.seo?.imagePath ?? null}
       urlPath={`/${post.url_path}`}
     >
-      <div className="relative mx-auto max-w-screen-2xl px-4 py-8 md:px-8 md:py-16 lg:px-0">
+      <div className="relative px-4 py-8 mx-auto max-w-screen-2xl md:px-8 md:py-16 lg:px-0">
         <BlogHeader post={post} />
         <div className="blog prose prose-lg prose-slate prose-violet relative mx-auto w-full max-w-full prose-headings:mt-16 prose-headings:font-semibold prose-a:font-normal prose-code:font-normal prose-code:before:content-none prose-code:after:content-none prose-hr:border-gray-200 dark:prose-invert dark:prose-a:text-violet-400 dark:prose-hr:border-gray-800 lg:max-w-[994px] lg:px-16">
           {MDXContent && <MDXContent components={{ ...mdxComponents, BetaCodeWindow }} />}
           <hr />
-          {post.authors.map((author, index) => (
-            <Author key={index} {...author} />
-          ))}
+          <div className="md:flex">
+            {post.authors.map((author, index) => (
+              <div className={`${index === post.authors.length - 1 ? 'mb-0' : 'mb-6'} mr-4 md:mb-0`}>
+                <Author key={index} {...author} />
+              </div>
+            ))}
+          </div>
           {post.related_posts && <RelatedPosts posts={post.related_posts} />}
         </div>
       </div>
