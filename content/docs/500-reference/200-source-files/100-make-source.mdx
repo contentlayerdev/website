@@ -1,0 +1,198 @@
+---
+title: makeSource
+excerpt: makeSource provides Contentlayer with the schema and configuration when using local files as the content source.
+---
+
+`makeSource` provides Contentlayer with the schema and configuration for your application.
+
+## Usage
+
+The code calling `makeSource` should be placed in `contentlayer.config.js`.
+
+```ts
+// contentlayer.config.js
+
+import { makeSource } from 'contentlayer/source-files'
+
+export default makeSource({
+  /* options */
+})
+```
+
+## Options
+
+<OptionsTable>
+  <OptionTitle>
+    ### `contentDirPath` 
+    (required)
+    
+  </OptionTitle>
+  <OptionDescription>
+    Path to where the content lives, relative to the root of your project.
+
+    **Example:**
+
+    ```js
+    export default makeSource({
+      contentDirPath: 'content',
+    })
+    ```
+
+    This would load content from a `content` directory in your project.
+
+  </OptionDescription>
+  <OptionTitle>
+    ### `contentDirInclude`
+
+  </OptionTitle>
+  <OptionDescription>
+    An array of paths that Contentlayer should include, with the following conditions:
+
+    - They can be either files or directories.
+    - The paths need to be relative to `contentDirPath` or absolute.
+    - An empty array means that all files in `contentDirPath` will be included.
+    - Glob/wildcard patterns (e.g. using `*`) are not supported yet.
+
+    This is useful when you have content spread across multiple directories in your project.
+
+    **Default:** `[]`
+
+    **Example:**
+
+    This would target only content in the `docs` directory, while using the default for `contentDirExclude` (see below).
+
+    ```js
+    export default makeSource({
+      // ...
+      contentDirPath: '.',
+      contentDirInclude: ['docs'],
+    })
+    ```
+
+  </OptionDescription>
+  <OptionTitle>
+    ### `contentDirExclude`
+
+  </OptionTitle>
+  <OptionDescription>
+    An array of paths that Contentlayer should explicitly exclude, with the following conditions:
+
+    - **Setting this option completely overrides the defaults.**
+    - They can be either files or directories.
+    - The paths need to be relative to `contentDirPath` or absolute.
+    - An empty array means that all files in `contentDirPath` will be included.
+    - Glob/wildcard patterns (e.g. using `*`) are not supported yet.
+
+    This is useful when you want to ignore a specific file or directory within your main content directory.
+
+    **Default:** `['node_modules', '.git', '.yarn', '.cache', '.next', '.contentlayer', 'package.json', 'tsconfig.json']`
+
+    **Example:**
+
+    This ignores only the `content/internal-docs` directory, but targets all other content files in the `content` directory.
+
+    ```js
+    export default makeSource({
+      // ...
+      contentDirPath: './content',
+      contentDirExclude: ['internal-docs'],
+    })
+    ```
+
+  </OptionDescription>
+  <OptionTitle>
+    ### `documentTypes` 
+    (required)
+
+  </OptionTitle>
+  <OptionDescription>
+    Your schema definitions for your project. See [`defineDocumentType`](/docs/reference/source-files/define-document-type) for usage.
+
+  </OptionDescription>
+  <OptionTitle>
+    ### `markdown`
+
+  </OptionTitle>
+  <OptionDescription>
+    Specify [remark](https://remark.js.org/) and [rehype](https://github.com/rehypejs/rehype) plugins.
+
+    **Options:**
+
+    - `remarkPlugins`
+    - `rehypePlugins`
+
+    **Example:**
+
+    Here's an example that adds syntax highlighting.
+
+    ```js
+    import { makeSource } from 'contentlayer/source-files'
+    import highlight from 'rehype-highlight'
+
+    export default makeSource({
+      // ...
+      markdown: { rehypePlugins: [highlight] },
+    })
+    ```
+
+  </OptionDescription>
+  <OptionTitle>
+    ### `mdx`
+
+  </OptionTitle>
+  <OptionDescription>
+    Follows the same pattern as the `markdown` option, but for MDX processing.
+
+    **Options:**
+
+    - `remarkPlugins`
+    - `rehypePlugins`
+
+    **Example:**
+
+    ```js
+    import { makeSource } from 'contentlayer/source-files'
+    import highlight from 'rehype-highlight'
+
+    export default makeSource({
+      // ...
+      mdx: { rehypePlugins: [highlight] },
+    })
+    ```
+
+  </OptionDescription>
+  <OptionTitle>
+    ### `fieldOptions`
+
+  </OptionTitle>
+  <OptionDescription>
+    Provides the ability to manipulate how fields are written when parsing the content source.
+
+    **Options:**
+
+    - `bodyFieldName` (default: `body`): Name of the field containing the body/content extracted when the body type is `markdown` or `mdx`.
+    - `typeFieldName` (default: `type`): Name of the field containing the name of the document type (or nested document type).
+
+    **Example:**
+
+    ```js
+    export default makeSource({
+      fieldOptions: {
+        bodyFieldName: 'content',
+        typeFieldName: '__typename',
+      },
+    })
+    ```
+
+  </OptionDescription>
+  <OptionTitle>
+    ### `date`
+
+  </OptionTitle>
+  <OptionDescription>
+    Specify date options. Currently only supports:
+
+    - `timezone`: Specify the timezone when parsing dates. Based on [@marsnusw/date-fns-tz](https://github.com/marnusw/date-fns-tz#zonedtimetoutc).
+
+  </OptionDescription>
+</OptionsTable>

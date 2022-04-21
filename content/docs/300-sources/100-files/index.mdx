@@ -1,0 +1,54 @@
+---
+title: Files Source
+nav_title: Files
+collapsible: true
+collapsed: true
+excerpt: Guides for working with Contentlayer when using local files as your content source.
+---
+
+Using a files source with Contentlayer means that content lives locally, right alongside your code in your web project repository. These is most often markdown or MDX files, but can also be content in the JSON or YAML syntax.
+
+<div className="mt-8 grid gap-6 md:grid-cols-2">
+  <Card
+    title="Getting Started"
+    icon="rocket"
+    link={{ url: '/docs/getting-started', label: 'Jump into it' }}
+    subtitle="Our getting started tutorial shows you how to work with local content in a Next.js project."
+  />
+  <div className="mt-2">
+    <p>Our getting started tutorial is the best place to start when wanting to work with local content.</p>
+    <p>It shows you how to work with local markdown files within a Next.js application.</p>
+  </div>
+</div>
+
+---
+
+## Local Source Guides
+
+<div className="-mt-4 grid gap-6 md:grid-cols-2">
+  <div>Local source guides will teach you the crucial aspects of working with local content.</div>
+  <div>
+    - <ChevronLink label="Mapping Documents to Types" url="/docs/sources/files/mapping-document-types" />
+    - <ChevronLink label="Generated Data" url="/docs/sources/files/generated-data" />
+    - <ChevronLink label="Generated Type Definitions" url="/docs/sources/files/generated-types" />
+    - <ChevronLink label="Using MDX" url="/docs/sources/files/mdx" />
+    - <ChevronLink label="Working with Images" url="/docs/sources/files/images" />
+  </div>
+</div>
+
+---
+
+## API Reference
+
+<div className="-mt-4 grid gap-6 md:grid-cols-2">
+  <div>
+    Working with local content uses the `contentlayer/local-source` module.
+    <ChevronLink label="Full technical reference" url="/docs/reference/source-files" />
+  </div>
+  <div>
+    - <ChevronLink label="makeSource" url="/docs/reference/source-files/make-source" />
+    - <ChevronLink label="defineDocumentType" url="/docs/reference/source-files/define-document-type" />
+    - <ChevronLink label="defineNestedType" url="/docs/reference/source-files/define-nested-type" />
+    - <ChevronLink label="Field types reference" url="/docs/reference/source-files/field-types" />
+  </div>
+</div>

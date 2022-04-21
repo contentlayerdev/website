@@ -1,0 +1,110 @@
+---
+title: Working with Images
+nav_title: Images
+excerpt: Options on image processing when using local files as your content source.
+---
+
+Contentlayer does not currently support image processing, though we're [planning on implementing it](https://github.com/contentlayerdev/contentlayer/issues/11). Until then, there are a few different approaches you can take to working with images when your content is processed by Contentlayer:
+
+- [Framework Tooling](#lean-on-the-framework) (recommendation)
+- [Raw Local Files](#using-unprocessed-images)
+- [Image Mangement Service](#using-an-image-management-services)
+- [Manual Image Processing](#manually-processing-images)
+
+The sections below go into further detail on these approaches.
+
+## Lean on the Framework
+
+Some frameworks like Next.js come with the ability to process images on the server side, providing the optimal image based on the current viewport size. When the framework has this tooling available, you can often use images stored either locally or remotely.
+
+The exact implementation will differ depending on the framework you're using. See [our environments guides](/docs/environments) for more details.
+
+## Using Unprocessed Images
+
+Most frameworks come with a _public_ or _static_ directory feature, where any files you place in that directory are automatically added to the output directory. If the tool you're using doesn't have this by default, it's likely there is a configuration option or the ability to make it work.
+
+The simplest approach in working with images is to place your images in this public/static directory and store the reference to them as a `string` field.
+
+For example, consider a post model with an image field:
+
+```js
+defineDocumentType(() => ({
+  name: 'Post',
+  fields: {
+    image: { type: string },
+  },
+}))
+```
+
+In the frontmatter of your content files, you'd store a reference to an image:
+
+```yaml
+---
+title: Why Contentlayer is Awesome
+image: /images/why-contentlayer.png
+# ...
+---
+```
+
+### The Consequence of Raw Images
+
+The downside to this approach is that it isn't optimal for page speed performance. You want to ensure your images are as crisp as they need to be, while also being as small as they can be. This is an okay first step to get things working, but not the best approach for production.
+
+## Using an Image Management Services
+
+Alternatively, you can use an image management service like [Cloudinary](https://cloudinary.com/) or [Imgix](https://imgix.com/). (There are many to choose from.)
+
+These services allow you to use URL parameters to determine the size and shape of your image. The image is then optimized by these services and delivered to your users.
+
+These services deliver an optimized image, but it's still up to you to ensure that image doesn't degrade the performance of your pages. Therefore, you may also want to consider manually processing the images. See below for details.
+
+## Manually Processing Images
+
+For the time being, unless the framework you're using supports processing images, manually processing is the best way to ensure page speed.
+
+To handle processing manually, you must decide if you want to do the processing _during_ the Contentlayer build or _after_.
+
+### Processing Images as Computed Fields
+
+To process images during the Contentlayer build, you can use a computed field. Say you're storing the images locally. You could have a field called `imageSrc` that points to the location of the image.
+
+```yaml
+---
+title: Why Contentlayer is Awesome
+imageSrc: /images/why-contentlayer.png
+# ...
+---
+```
+
+Then you'd add a _computed_ field like `image` that would do the processing.
+
+```js
+defineDocumentType(() => ({
+  name: 'Post',
+  computedFields: {
+    image: {
+      type: string,
+      resolve: (doc) => {
+        // do the processing, and return new value ...
+      },
+    },
+  },
+}))
+```
+
+Note that if you don't also specify the `imageSrc` as a field, you'll run into a warning from Contentlayer. To avoid that, you can tell Contentlayer to ignore extra fields.
+
+```js
+export default makeSource({
+  onExtraFieldData: 'ignore',
+  // ...
+})
+```
+
+### Processing after the Contentlayer Build
+
+Another option is to build a utility method within your application that does the processing. In this case, Contentlayer would have already processed the image reference as a string, which you would send to the processing utility before building the props to send to the page.
+
+### Handling Images in Markdown with Contentlayer
+
+It's worth noting that the methods above handle processing images only that were specified in the frontmatter. If you want to process images you've used within the body of a markdown or MDX file, you'll want to build (or find) a remark or rehype plugin.

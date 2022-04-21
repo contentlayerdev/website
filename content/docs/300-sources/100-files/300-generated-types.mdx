@@ -1,0 +1,46 @@
+---
+title: Generated Type Definitions
+excerpt: Contentlayer automatically generates type definitions for content that lives locally.
+---
+
+Alongside your [generated documents](./generated-data) you'll find a `types` file at `.contentlayer/generated/index.d.ts`.
+
+This file exports a number of auto-generated and provided types that you can use to ensure type safety throughout your application.
+
+## Generated Types
+
+A type is generated for every document and nested type you've defined in your Contentlayer configuration.
+
+These types will match the structure of your documents, including both generated and reserved properties.
+
+Consider an example where you have a `Page` document type that has three fields: `title`, `description`, and `seo`, along with `body` content. And let's say the `seo` field is a nested object of type `SEO`, also with a `title` and `description`.
+
+The exported types will look something like this:
+
+```ts
+export type SEO = {
+  type: 'SEO'
+  title: string
+  description: string | undefined
+}
+
+export type Page = {
+  _id: string
+  _raw: Local.RawDocumentData
+  type: 'Page'
+  title: string
+  description: string | undefined
+  seo: SEO | undefined
+  body: Markdown
+}
+```
+
+## Provided Types
+
+This file also exports a number of provided types that may come in handy in your project. Though there are more than you could inspect, here are those that may be of most use to you:
+
+- `Markdown`: Object with properties `raw` and `html`.
+- `MDX`: Object with properties `raw` and `code`.
+- `AllTypes`: Accepts any document type or nested type.
+- `DocumentTypes`: Accepts any document type.
+- `NestedTypes`: Accepts any nested type.

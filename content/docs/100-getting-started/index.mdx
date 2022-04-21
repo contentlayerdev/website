@@ -7,17 +7,15 @@ This tutorial will get you comfortable with the basics of Contentlayer by walkin
 
 The blog will include a list of posts with a title, body, and date, rendered with the most recent on top. And each post will have its own page.
 
-<div className="grid md:grid-cols-2 gap-4 mb-20 mt-8">
-  <Card title="Try it Now" icon="code">
+<div className="mt-8 grid gap-6 md:grid-cols-2">
+  <Card title="Try it Now" icon="gitpod" link={{url: 'http://gitpod.io/#https:/github.com/contentlayerdev/next-contentlayer-example', label: 'Try in Gitpod'}}>
     If you'd like to dive right in and start playing with Contentlayer, you can open the project in Gitpod.
 
-    [![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-908a85?logo=gitpod)](http://gitpod.io/#https://github.com/contentlayerdev/next-contentlayer-example)
-
   </Card>
-  <Card title="Example Project" icon="github">
-    [next-contentlayer-example](https://github.com/contentlayerdev/next-contentlayer-example) began as a working version of this tutorial. While it may drift over time, [this point in its history](https://github.com/contentlayerdev/next-contentlayer-example/tree/bca4b7884f5cad8963e631a2f24a19200c106495) is closest to what you will find below.
+  <Card title="Example Project" icon="github" link={{url: 'https://github.com/contentlayerdev/next-contentlayer-example', label: 'See example'}}>
+    You can find a working version of this tutorial in [this state](https://github.com/contentlayerdev/next-contentlayer-example/tree/bca4b7884f5cad8963e631a2f24a19200c106495) of the example project.
 
-    See [the examples page](/docs/other/examples) for a full list of examples.
+    See [the examples page](/examples) for a full list of examples.
 
   </Card>
 </div>
@@ -197,7 +195,7 @@ export async function getStaticProps() {
 function PostCard(post) {
   return (
     <div className="mb-6">
-      <time dateTime={post.date} className="block text-sm text-gray-600">
+      <time dateTime={post.date} className="block text-sm text-slate-600">
         {format(parseISO(post.date), 'LLLL d, yyyy')}
       </time>
       <h2 className="text-lg">
@@ -211,12 +209,12 @@ function PostCard(post) {
 
 export default function Home({ posts }) {
   return (
-    <div className="max-w-2xl mx-auto py-16 text-center">
+    <div className="mx-auto max-w-2xl py-16 text-center">
       <Head>
         <title>Contentlayer Blog Example</title>
       </Head>
 
-      <h1 className="text-3xl font-bold mb-8">Contentlayer Blog Example</h1>
+      <h1 className="mb-8 text-3xl font-bold">Contentlayer Blog Example</h1>
 
       {posts.map((post, idx) => (
         <PostCard key={idx} {...post} />
@@ -279,15 +277,15 @@ const PostLayout = ({ post }) => {
       <Head>
         <title>{post.title}</title>
       </Head>
-      <article className="max-w-2xl mx-auto py-16">
-        <div className="text-center mb-6">
+      <article className="mx-auto max-w-2xl py-16">
+        <div className="mb-6 text-center">
           <Link href="/">
-            <a className="text-sm text-blue-700 uppercase font-bold text-center">Home</a>
+            <a className="text-center text-sm font-bold uppercase text-blue-700">Home</a>
           </Link>
         </div>
-        <div className="text-center mb-6">
-          <h1 className="text-3xl font-bold mb-1">{post.title}</h1>
-          <time dateTime={post.date} className="text-sm text-gray-600">
+        <div className="mb-6 text-center">
+          <h1 className="mb-1 text-3xl font-bold">{post.title}</h1>
+          <time dateTime={post.date} className="text-sm text-slate-600">
             {format(parseISO(post.date), 'LLLL d, yyyy')}
           </time>
         </div>
@@ -314,9 +312,5 @@ This is just the beginning. Now you can dig in and add all the bells and whistle
 
 - Jump into [the conceptual guides](/docs/concepts) to learn more about [how Contentlayer works](/docs/concepts/how-contentlayer-works).
 - [Join our Discord community](https://discord.gg/rytFErsARm) to ask questions, stay up to date, and share your work.
-- Check out [the examples](/docs/other/examples) for inspiration on what you can do with Contentlayer.
-- Explore [the guides](/docs/guides) for learning about specific techniques.
-
-```
-
-```
+- Check out [the examples](/examples) for inspiration on what you can do with Contentlayer.
+- Explore [local file source guides](/docs/sources/files) for learning about specific techniques.

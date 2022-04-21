@@ -1,0 +1,81 @@
+---
+title: Writing Type-Safe Code
+nav_title: Type Safety
+excerpt: Though not required, TypeScript is an important piece of Contentlayer. Let us convince you why.
+---
+
+Using TypeScript with Next.js is optional, but _highly_ recommended, especially when it is well-supported by the framework you're using for your web project.
+
+## What is TypeScript?
+
+TypeScript is a syntax extension to JavaScript, with a compiler that transforms the TypeScript code into plain JavaScript.
+
+TypeScript is tool to help you write JavaScript better, stronger, and faster by bringing type safety to your code.
+
+### Understanding Type Safety
+
+JavaScript does what is called _type coercion_. This means when your code runs, it will be converted so as to avoid failures. Consider the following:
+
+```js
+const a = '1'
+const b = 1
+const sum = a + b // => 11
+```
+
+Because JavaScript can't add a string and a number, it converts `b` into a string (`"1"`) and uses the plus operator as a string concatenation operator. Thus: `"1" + 1` becomes `"1" + "1"`.
+
+With TypeScript, we can declare that `sum` should be a number.
+
+```ts
+const a = '1'
+const b = 1
+const sum: number = a + b
+```
+
+When we compile our code, we're then told we have a problem.
+
+```txt
+Type 'string' is not assignable to type 'number'.
+```
+
+Thus, we can be _confident_ that the code we're shipping is doing what we'd expect.
+
+## Benefits of TypeScript
+
+Bringing type safety to your code will **boost your confidence you have in shipping new features** as your site grows.
+
+Though that is a big enough benefit to warrant the use of TypeScript, here are a few additional benefits:
+
+- TypeScript brings more power to your code editor (e.g. VS Code) to help you catch errors before running the TS compiler and to help introspect type expectations on other modules, including those coming from external libraries in `node_modules`.
+- TypeScript is completely optional. Rather than forcing you to use it everywhere, you can determine where you need it.
+- Because its use is optional, it's also easy to get started. You can use TypeScript _just a little_ until you're feeling more confident.
+
+## Using TypeScript with Contentlayer
+
+Using TypeScript is how you can get the most out of Contentlayer. Contentlayer automatically generates type definitions for the transformed content. No extra work or configuration is required.
+
+Because Contentlayer caches transformed content locally as JSON data, you can have confidence that the data being imported into your pages is in the shape you'd expect.
+
+Consider this example:
+
+```ts
+import { allPosts } from 'contentlayer/generated'
+
+export async function getStaticProps({ params }) {
+  const post = allPosts.find((post) => post._raw.flattenedPath === params.slug)
+  return { props: { post } }
+}
+```
+
+This _seems_ like it should be fine, as you're bringing in content of a single type. But you can be absolutely sure by using TypeScript:
+
+```ts
+import { allPosts, Post } from 'contentlayer/generated'
+
+export async function getStaticProps({ params }) {
+  const post: Post = allPosts.find((post) => post._raw.flattenedPath === params.slug)
+  return { props: { post } }
+}
+```
+
+And as an added benefit, if using a TS-friendly code editor like VS Code, you'll get automatic suggestions on properties available on `post` in your components. And you'll also get immediate feedback when there is an issue with your types.

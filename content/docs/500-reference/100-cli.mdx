@@ -1,0 +1,76 @@
+---
+title: Contentlayer CLI
+nav_title: CLI
+excerpt: Working with Contentlayer on the command line.
+---
+
+The Contentlayer CLI enables you to transform you content into data.
+
+## Usage
+
+```txt
+contentlayer <command> [options]
+```
+
+To get a list of all commands, you can run `contentlayer` with the `--help` flag:
+
+```txt
+contentlayer --help
+```
+
+Which will produce an output that looks like this:
+
+```txt
+━━━ Contentlayer CLI - 0.0.34 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  $ contentlayer <command>
+
+━━━ General commands ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  contentlayer build [-c,--config #0] [--clearCache] [--verbose]
+    Transforms your content into static data
+
+  contentlayer dev [-c,--config #0] [--clearCache] [--verbose]
+    Same as "contentlayer build" but with watch mode
+
+You can also print more details about any of these commands by calling them
+with the `-h,--help` flag right after the command name.
+```
+
+## Commands
+
+### `build`
+
+```txt
+contentlayer build [options]
+```
+
+Transforms content into data objects that your pages and components can consume. These objects are written to files in the `.contentlayer/generated` directory.
+
+### `dev`
+
+```txt
+contentlayer build [options]
+```
+
+Runs a build, then listens for changes to your content files, rebuilding after each change.
+
+## Options
+
+The following options are available to run with each command.
+
+### `config` (alias: `-c`)
+
+Use a custom config file path. Both `contentlayer.config.ts` and `contentlayer.config.js` work by default.
+
+### `clearCache`
+
+Clears the `.contentlayer/generated` directory before running the specified command.
+
+### `verbose`
+
+Adds more detailed output when running a command.
+
+### `help`
+
+Generates usage instructions and options for the CLI. Does not require an associated command.

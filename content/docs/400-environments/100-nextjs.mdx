@@ -1,0 +1,62 @@
+---
+title: Next.js
+excerpt: Use the next-contentlayer plugin to tightly integrate Contentlayer into a Next.js project.
+---
+
+Contentlayer has full support for Next.js projects, including live reloading (if you follow the recommended approach below).
+
+## Installation & Configuration
+
+Using Contentlayer in a Next.js project is easiest if you use the [`next-contentlayer`](/docs/reference/next-contentlayer) plugin. Install the plugin:
+
+```txt
+npm install next-contentlayer
+```
+
+Then wrap your next configuration object in the [`withContentlayer` utility](/docs/reference/next-contentlayer#withcontentlayer).
+
+```js
+// next.config.js
+import { withContentlayer } from 'next-contentlayer'
+export default withContentlayer({})
+```
+
+## Working with Images
+
+Image processing with Contentlayer is not currently supported, although we're planning on it. The current recommendation is to place images in the `public` directory, and then use a `string` field to store the path to that image.
+
+Alternatively, you can store your images in an asset service like Cloudinary or Imgix. [See here for more detail](/docs/sources/files/images) on our current recommendation for image processing.
+
+### Using next/image in Body Content
+
+If you want to use `next/image` to render your images, create a component to wrap `next/image` and add the image via component markup in your markdown or MDX file.
+
+For example, say we have an `Image` component in our project that wraps the `next/image`.
+
+```jsx
+import Image as NextImage from 'next/image'
+
+const Image = (props) => {
+  return <NextImage /* ... */ />
+}
+```
+
+You content should then call this component directly.
+
+```md
+Other markdown content ...
+
+<Image src="..." />
+```
+
+You can either use an `.mdx` file to have this content processed automatically, or you can use a tool like [`markdown-to-jsx`](https://www.npmjs.com/package/markdown-to-jsx) with raw markdown.
+
+## Using TypeScript
+
+Using TypeScript with Next.js is optional, but [we _highly_ recommend it](/docs/concepts/type-safety).
+
+Next.js works great with TypeScript. [Their docs](https://nextjs.org/docs/basic-features/typescript) show how to add TypeScript to new and existing projects. It also lists useful types provided by Next.js.
+
+### Using Preact
+
+Preact can be used with a custom Webpack config. See [this GitHub issue](https://github.com/contentlayerdev/contentlayer/issues/62) for details.

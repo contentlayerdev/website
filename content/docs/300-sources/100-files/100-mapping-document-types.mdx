@@ -1,0 +1,103 @@
+---
+title: Mapping Documents to Document Types
+nav_title: Mapping Documents to Types
+excerpt: How Contentlayer determines and sets the type for each document.
+---
+
+Contentlayer resolves the _type_ of each document in this order:
+
+1. Explicit `type` field on the document.
+1. Matching the `filePathPattern` for the document type.
+
+## Explicitly Specifying Document Type
+
+Any document can explicitly declare its type. Do this by adding a field to the document called `type` and using the `name` option from the document type definition. [See here](/docs/reference/source-files/define-document-type) for all document type options.
+
+Consider the following schema (document type) definition:
+
+```js
+defineDocumentType(() => ({
+  name: 'Post',
+  filePathPattern: `posts/**/*.mdx`,
+  // ...
+}))
+```
+
+The name of this definition is `Post`. Therefore, in the content file, you can specify the `Post` type directly, like this (in markdown):
+
+```yaml
+---
+title: '...'
+type: Post
+# ...
+---
+```
+
+### Colocated Documents with Multiple Types
+
+There is convenience in defining types explicitly on documents when you have multiple types in the same directory. In this case, you likely have multiple document type definitions that share the same `filePathPattern` option.
+
+Say you have pages and posts, but you want them both to live in the same directory. Your config might look like this:
+
+```js
+const Page = defineDocumentType(() => ({
+  name: 'Page',
+  filePathPattern: `**/*.md`,
+  // ...
+}))
+
+const Post = defineDocumentType(() => ({
+  name: 'Post',
+  filePathPattern: `**/*.md`,
+  // ...
+}))
+```
+
+In this case, regardless of where you put a page or a post, you'd want to specify the type explicitly.
+
+```yaml
+---
+title: Home Page
+type: Page
+# ...
+```
+
+### Staying True to `filePathPattern`
+
+Note that regardless of whether or not you are explicitly defining the type on individual documents, you should still stay true to the `filePathPattern` option for that document type's definition.
+
+Following the example above, if you've specified the `filePathPattern` as `posts/**/*.mdx` and the type as `Post`, you don't want to place a document of type `Post` in a directory outside `posts` or without an `.mdx` file extension. If you do, Contentlayer may process the file.
+
+```txt
+/
+├── posts/
+|   └── put Post documents here ...
+└── pages/
+    └── not here ...
+```
+
+## Resolving Document Type with `filePathPattern`
+
+When a content directory will contain only one type of document, you can avoid explicitly specifying the type by providing a unique `filePathPattern` option to the document type definition.
+
+For example, consider a `Post` document type that would only be placed in a `posts` directory, which would never contain any other types. Everything in this directory would automatically be interpreted as a `Post` object, even if not explicitly stated.
+
+If this is our definition:
+
+```js
+const Post = defineDocumentType(() => ({
+  name: 'Post',
+  filePathPattern: `posts/**/*.md`,
+  // ...
+}))
+```
+
+Then Contentlayer's interpretation would look like this:
+
+```txt
+/
+├── posts/
+|   └── assumed to be Post documents
+└── pages/
+    └── no Post documents here
+```

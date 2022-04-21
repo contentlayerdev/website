@@ -1,0 +1,229 @@
+---
+title: 'Introducing Contentlayer (Beta): Content Made Easy for Developers'
+excerpt: 'Working with content data (e.g. Markdown files or CMS) is a surprisingly difficult and laborious task when developing modern sites (e.g. with Next.js). Contentlayer is a content SDK that to aims to make content easy for developers.'
+date: 2022-04-21
+cover_image:
+  url: https://i.imgur.com/lRrBFqd.png
+  alt: Contentlayer Makes Working with Content Easy for Developers
+  width: 600
+  height: 162
+authors:
+  - name: Johannes Schickling
+    handle: schickling
+    avatar: https://pbs.twimg.com/profile_images/1452580365156208644/MSsWd3oT_400x400.jpg
+related_posts:
+  - slug: working-with-content-is-hard-for-developers
+seo:
+  imagePath: /images/beta-launch-post-meta.png
+---
+
+<TLDR>
+
+Working with content data (e.g. Markdown files or CMS) is a surprisingly difficult and laborious task when developing modern sites (e.g. with Next.js). Contentlayer is a <Dashed label="content SDK" tooltip="A content SDK simplifies working with structured content as data in your site/application" /> that to aims to make content easy for developers with a focus on great DX and performance.
+
+We're very excited to officially release Contentlayer in beta after many months of alpha testing and already being used in over 300 projects.
+
+<div className='mt-8'>
+
+- [Motivation: Thinking of Content as Data](#motivation-thinking-of-content-as-data)
+  - [DIY Example with Next.js + Markdown](#diy-example-with-nextjs-markdown)
+- [Introducing Contentlayer](#introducing-contentlayer)
+  - [How Contentlayer Works](#how-contentlayer-works)
+  - [Playground: Try it Yourself](#playground-try-it-yourself)
+  - [Build Performance Comparison](#build-performance-comparison-contentlayer-vs-diy-and-gatsby)
+- [The Future of Content(layer)](#the-future-of-contentlayer)
+
+</div>
+
+</TLDR>
+
+<Video
+  thumbnail={{
+    url: 'https://i.imgur.com/5IKJALH.png',
+    alt: 'Intro to Contentlayer Video Thumbnail',
+    width: 2560,
+    height: 1440,
+  }}
+  videoId="58Pj4a4Us7A"
+/>
+
+## Motivation: Thinking of Content as Data
+
+How we build content-driven web experiences [has evolved significantly](/blog/working-with-content-is-hard-for-developers) over the past three decades. From monolithic CMSs (like Wordpress) over template-based site generators (like Jekyll) to modern web frameworks (like Next.js).
+
+While developers gained more flexibility in the way they can design and structure their site - it also came at the cost of having to take responsibility over how to process and serve the content.
+
+<ContentStack
+  content={{ icons: ['markdown', 'contentful'], label: 'Local/Remote Content' }}
+  processor={{ icons: ['question'], label: 'Custom Content Processor' }}
+  pages={{ icons: ['react'], label: 'React Pages' }}
+  decoupled={true}
+/>
+
+Since most modern site frameworks (like Next.js, Remix etc) are "content agnostic", it's the responsibility of the developer to provide the **content as data** to the application in order to render it. This either means consuming the content data from an API (e.g. when using a headless CMS) or doing some form of manual **content pre-processing** which converts the raw content files (e.g. Markdown) into JSON data.
+
+This content pre-processing step can be surprisingly difficult as the following example illustrates.
+
+### DIY Example with Next.js + Markdown
+
+Let's look at a concrete example without Contentlayer (see [source on GitHub](https://github.com/contentlayerdev/contentlayer-benchmarks/tree/main/next-remark)). When building a website using Next.js with local Markdown files as your content source, you’d have to develop a mechanism that converted those Markdown files into data that you could use in your Next.js pages.
+
+<div className="my-8">
+  <BetaCodeWindow.Remark />
+</div>
+
+That's already a lot code for a simple use case - and it's just the tip of the iceberg. To achieve a more reliable setup with a decent developer experience, you’d have to also take care of the following:
+
+<BulletList>
+  <BulletListItem type="cross">
+    Write **markdown processing logic**, including working with content-processing libraries and their plugins. This is
+    a lot of base-level logic and adds a number of dependencies to your project.
+  </BulletListItem>
+  <BulletListItem type="cross">
+    Implement **content validation** to make sure your content matches the structure expected by your application.
+  </BulletListItem>
+  <BulletListItem type="cross">
+    **Cache** processed content data to avoid unnecessary work. But _caching is hard_ and _Not caching_ degrades the
+    developer experience and build performance.
+  </BulletListItem>
+  <BulletListItem type="cross">
+    **Incrementally regenerate** only the content you changed to optimize rebuild/reload performance.
+  </BulletListItem>
+  <BulletListItem type="cross">
+    Account for rich and complex **content relations**, so that objects can live as individual content files but be
+    embedded as necessary when used as data.
+  </BulletListItem>
+  <BulletListItem type="cross">
+    Most frameworks (e.g Next.js) don't support **content live-reload**. Building this yourself is usually very
+    complicated.
+  </BulletListItem>
+  <BulletListItem type="cross">
+    If you want to work with **TypeScript** and have strongly-typed data, you must write those types manually and hope
+    that the content data matches your types.
+  </BulletListItem>
+</BulletList>
+
+Doing all of this is an insane amount of work - and you really shouldn't have to build this yourself.
+
+## Introducing Contentlayer
+
+And that’s why we built Contentlayer. **Contentlayer makes working with content easy** for developers.
+
+<ContentStack
+  content={{ icons: ['markdown', 'contentful', 'notion'], label: 'Content' }}
+  processor={{ icons: ['contentlayer'], label: 'Contentlayer', className: 'text-purple-500' }}
+  pages={{ icons: ['react'], label: 'Pages' }}
+  decoupled={true}
+/>
+
+### How Contentlayer Works
+
+After installing Contentlayer via `npm install contentlayer next-contentlayer` you're ready to go:
+
+1. First you need to tell Contentlayer where your content lives and which format and structure it has. There are different kinds of content sources - here we're using local Markdown files.
+
+   <BetaCodeWindow.ContentlayerConfig />
+
+2. Run Contentlayer to transform the content into data. This can be done independently, or by hooking into framework server/build processes.
+
+   <Transform className="my-12 max-w-2xl" />
+
+3. Use `import` to work with your content, just as you would with any other data or code in your application.
+
+   <BetaCodeWindow.ContentlayerNext />
+
+### Playground: Try it Yourself
+
+To get a better feeling for how Contentlayer works and how to use it, it's best to actually use it. We've included a interactive playground with a real Next.js + Contentlayer project below. (Currently works best in Chrome on Desktop).
+
+Go ahead - give it a try! For example, make a change to one of the Markdown files in the `posts` directory - you should see the page live-reload instantly.
+
+<div className="my-24 xl:-mx-40">
+  <Playground
+    githubRepo="contentlayerdev/next-contentlayer-example/tree/stackblitz-demo"
+    openFile="posts/change-me.md"
+  />
+</div>
+
+- The content is generated into a `.contentlayer/generated` directory that includes JSON content caches, exported collections of data, and automatically-generated types.
+- The `pages/posts/[[...slug]].tsx` page brings in the content directly, manipulates it as needed, and passes it onto the page component.
+
+## Benefits of Contentlayer
+
+Contentlayer aims to provide a great developer experience (DX) through the following features:
+
+<BulletList>
+  <BulletListItem type="check">
+    **Content just works**: Gone are the days of writing low-level content-processing logic. Instead, you set the rules
+    and the content _just works_.
+  </BulletListItem>
+  <BulletListItem type="check">
+    **TypeScript Support**: Auto-generated TypeScript type definitions every document type.
+  </BulletListItem>
+  <BulletListItem type="check">
+    <div className="mb-4">**Content validation:** Content is validated automatically with helpful error messages.</div>
+  </BulletListItem>
+  <BulletListItem type="check">
+    **Caching**: Content builds are cached and incrementally regenerated - doing only the minimal amount of work
+    necessary when changing your content.
+  </BulletListItem>
+  <BulletListItem type="check">
+    **Live reload**: The browser will automatically reload after changing content for those frameworks that support live
+    reloading.
+  </BulletListItem>
+  <BulletListItem type="check">
+    **Flexible content modeling**: Contentlayer allows you to structure your content in a flexible and powerful way.
+  </BulletListItem>
+</BulletList>
+
+### Build Performance Comparison: Contentlayer vs DIY and Gatsby
+
+We put our claims to the test and [built a simple benchmark study](https://github.com/contentlayerdev/contentlayer-benchmarks) that compared a Next.js site with 1,000+ markdown content files to the same site using a DIY content processing method. We then built the same site with Gatsby.
+
+<div className="my-8 space-y-4">
+  <Image src="https://i.imgur.com/RL2t7es.png" alt="Contentlayer Performance Comparison" width="2560" height="1200" />
+  <div className="flex w-full justify-center text-sm text-slate-300 dark:text-slate-500">
+    Smaller is better/faster. Used machine: [GitHub
+    Actions](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#supported-runners-and-hardware-resources)
+  </div>
+</div>
+
+In both cases, using Contentlayer was nearly **twice as fast**. Even when we tested against warm builds, where the frameworks could make use of cached artifacts from previous builds, Contentlayer was still nearly twice as fast. (Note these numbers might differ on machines with more CPUs as Contentlayer doesn't yet support [parallel content processing](https://github.com/contentlayerdev/contentlayer/issues/60).)
+
+## The Future of Content(layer)
+
+This beta release of Contentlayer marks an important milestone in the [roadmap of the project](/docs/other/roadmap) - but we're just getting started. Over the coming months leading up to a stable 1.0 release we're aiming to accomplish the following:
+
+- Add support for more content sources (e.g. [Contentful](https://github.com/contentlayerdev/contentlayer/issues/173), [Notion](https://github.com/contentlayerdev/contentlayer/issues/174), ...) and even supporting [multiple content sources](https://github.com/contentlayerdev/contentlayer/issues/84) in a single project
+- Providing seamless integrations for more site frameworks (such as [Vite](https://github.com/contentlayerdev/contentlayer/issues/179), [Remix](https://github.com/contentlayerdev/contentlayer/issues/169), [Astro](https://github.com/contentlayerdev/contentlayer/issues/171), ...)
+- Validate and evolve the core abstractions of Contentlayer to avoid breaking changes after the 1.0 release
+
+<div className="mt-[-4rem] mb-12">
+  <Support />
+</div>
+
+---
+
+## Join the Contentlayer Community
+
+You're invited to become part of the Contentlayer community by ...
+
+- Following [the tutorial](/docs/getting-started) and using Contentlayer into your project.
+- Looking through [examples](/examples/nextjs) and other open-source projects created with Contentlayer.
+- Joining our welcoming [Discord community](https://discord.gg/rytFErsARm).
+- Reporting issues in the [GitHub repository](https://github.com/contentlayerdev/contentlayer) - Please also consider starring the repo 🌟
+
+---
+
+## Thank You 💜
+
+It took a signiciant amount of work to get to this point and I couldn't have done it without the help of others. **Thanks a lot** to everyone involved, especially to ...
+
+- Everyone already using Contentlayer for providing early feedback shaping the project
+- All contributors for [reporting and investigating issues](https://github.com/contentlayerdev/contentlayer/issues)
+- [Stackbit](https://www.stackbit.com/) for generously sponsoring this project since the beginning
+- [Sean Davis](https://twitter.com/seancdavis29) and [Lukas Wiesehan](https://twitter.com/lukaswiesehan) for helping to launch Contentlayer's new website and documentation
+
+<br />
+
+If you have any questions or feedback, please don't hestitate to [get in touch](https://twitter.com/schickling) or ask in our [Discord community](https://discord.gg/rytFErsARm).

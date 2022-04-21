@@ -1,7 +1,14 @@
 import { defineDocumentType } from 'contentlayer/source-files'
+import type * as unified from 'unified'
+import { toMarkdown } from 'mdast-util-to-markdown'
+import { mdxToMarkdown } from 'mdast-util-mdx'
+
+import { bundleMDX } from 'mdx-bundler'
 
 // import { SEO } from '../nested/SEO'
-import { urlFromFilePath } from '../utils'
+import { getLastEditedDate, urlFromFilePath } from '../utils'
+
+export type DocHeading = { level: 1 | 2 | 3; title: string }
 
 export const Doc = defineDocumentType(() => ({
   name: 'Doc',
@@ -22,9 +29,20 @@ export const Doc = defineDocumentType(() => ({
     },
     excerpt: {
       type: 'string',
+      required: true,
     },
     show_child_cards: {
       type: 'boolean',
+      default: false,
+    },
+    collapsible: {
+      type: 'boolean',
+      required: false,
+      default: false,
+    },
+    collapsed: {
+      type: 'boolean',
+      required: false,
       default: false,
     },
     // seo: { type: 'nested', of: SEO },
@@ -50,6 +68,58 @@ export const Doc = defineDocumentType(() => ({
             return { order, pathName }
           }),
     },
+    headings: {
+      type: 'json',
+      resolve: async (doc) => {
+        const headings: DocHeading[] = []
+
+        await bundleMDX({
+          source: doc.body.raw,
+          xdmOptions: (opts) => {
+            opts.remarkPlugins = [...(opts.remarkPlugins ?? []), tocPlugin(headings)]
+            return opts
+          },
+        })
+
+        return [{ level: 1, title: doc.title }, ...headings]
+      },
+    },
+    last_edited: { type: 'date', resolve: getLastEditedDate },
   },
   extensions: {},
 }))
+
+const tocPlugin =
+  (headings: DocHeading[]): unified.Plugin =>
+  () => {
+    return (node: any) => {
+      for (const element of node.children.filter((_: any) => _.type === 'heading' || _.name === 'OptionsTable')) {
+        if (element.type === 'heading') {
+          const title = toMarkdown({ type: 'paragraph', children: element.children }, { extensions: [mdxToMarkdown()] })
+            .trim()
+            .replace(/<.*$/g, '')
+            .replace(/\\/g, '')
+            .trim()
+          headings.push({ level: element.depth, title })
+        } else if (element.name === 'OptionsTable') {
+          element.children
+            .filter((_: any) => _.name === 'OptionTitle')
+            .forEach((optionTitle: any) => {
+              optionTitle.children
+                .filter((_: any) => _.type === 'heading')
+                .forEach((heading: any) => {
+                  const title = toMarkdown(
+                    { type: 'paragraph', children: heading.children },
+                    { extensions: [mdxToMarkdown()] },
+                  )
+                    .trim()
+                    .replace(/<.*$/g, '')
+                    .replace(/\\/g, '')
+                    .trim()
+                  headings.push({ level: heading.depth, title })
+                })
+            })
+        }
+      }
+    }
+  }

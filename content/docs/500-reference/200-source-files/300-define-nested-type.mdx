@@ -1,0 +1,56 @@
+---
+title: defineNestedType
+excerpt: Technical reference for defining a nested document type schema.
+---
+
+`defineNestedType` defines the schema for a reusable shape of data that can be embedded within documents.
+
+Nested types are defined within document type definitions, and therefore do not have to be included in the [`makeSource` options](./make-source).
+
+## Usage
+
+```js
+const SEO = defineNestedType(() => ({
+  name: 'SEO',
+  fields: {
+    title: {
+      type: 'string',
+    },
+  },
+}))
+
+const Doc = defineDocumentType(() => ({
+  name: 'Doc',
+  filePathPattern: '**/*.md',
+  fields: {
+    // ...
+    seo: {
+      type: 'nested',
+      of: SEO,
+    },
+  },
+}))
+```
+
+## Options
+
+### `name` (required)
+
+Name of the document. This defines the types and functions that are generated for documents of this type.
+
+```js
+const SEO = defineNestedType(() => ({
+  name: "SEO",
+  // ...
+})
+```
+
+Because nested types are not documents, they are not exported as individual data files. But a type definition will still be generated (as `SEO` in the usage example).
+
+### `fields`
+
+Field definitions determine the data shape for the document type. See [the field tyeps reference](./field-types) for more information.
+
+### `description`
+
+Provides a description for the generated type definition.

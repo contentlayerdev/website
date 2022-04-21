@@ -1,0 +1,87 @@
+---
+title: Comparing Contentlayer to Other Tools
+nav_title: Contentlayer vs X
+excerpt: Better understand Contentlayer and where it fits by using comparisons to tools that you're familiar with.
+---
+
+We are regularly asked how Contentlayer fits into some given web project. By comparing Contentlayer to existing frameworks, we've found it easier to contextualize the role Contentlayer plays within a project.
+
+The sections below walk through some common comparisons, categorized by frameworks, content processors, and content sources. In general, Contentlayer is more of a complement than a competitor to both frameworks and sources. The most direct comparison is found in content processors.
+
+## Frameworks
+
+Contentlayer is not a framework. It is a tool for processing content. However, it can be helpful to think of Contentlayer within the context of existing frameworks to better understand how Contentlayer can fit into your project.
+
+### Gatsby vs Contentlayer
+
+[Gatsby](https://www.gatsbyjs.com/) is a flexible framework that uses a GraphQL layer and rich plugin ecosystem to load content into pages built with React components.
+
+In a way, Contentlayer is like taking Gatsby's GraphQL engine and allowing it to be used with other frameworks like Next.js. Aside from its portability among modern frameworks, Contentlayer has several advantages over Gatsby's GraphQL solution:
+
+- Gatsby requires that you know GraphQL. Contentlayer is just JavaScript.
+- Local markdown files cannot be modeled as individual types with Gatsby, while Contentlayer provides full control over your structured content schema.
+- Contentlayer automatically generates TypeScript type definitions for your content.
+
+### Jekyll vs Contentlayer
+
+[Jekyll](https://jekyllrb.com/) is a static site generator written in Ruby. It parses local content files and passes them through Liquid templates to generate static HTML pages.
+
+Contentlayer can be considered complementary to Jekyll rather than competitive, as Contentlayer is a tool for processing content. However, because Jekyll has strong opinions about how content is fed through its system, it likely would not be beneficial to use Contentlayer with Jekyll for local content. It would be a better fit for sourcing remote content from headless CMS, though we're not optimizing Contentlayer for this usage.
+
+Jekyll is opinionated on how it processes content, and therefore limiting in what you can do with content. Contentlayer does not help overcome the limitations of Jekyll. That typically requires moving to a more modern and powerful framework.
+
+### Hugo vs Contentlayer
+
+[Hugo](https://gohugo.io/) is a static site generator like Jekyll, but it is written in Go and designed for speed.
+
+Like Jekyll, Contentlayer can be considered complementary to Hugo, but not often used together. Typically Contentlayer is paired with more modern frameworks like Next.js, while those using Hugo are limited by Hugo's opinions on content processing.
+
+### Next.js vs Contentlayer
+
+Contentlayer is optimized for Next.js. We envision it becoming the go-to tool for managing content in Next.js projects.
+
+### Remix vs Contentlayer
+
+Contentlayer is a tool for working with content into JavaScript frameworks. We believe it will become the go-to content solution for Remix. [We're currently considering Remix support](/docs/environments/remix).
+
+### SvelteKit vs Contentlayer
+
+Contentlayer is a tool for working with content into JavaScript frameworks. We believe it will become the go-to content solution for SvelteKit. [We're currently considering SvelteKit support](/docs/environments/svelte).
+
+### Astro vs Contentlayer
+
+Contentlayer is a tool for working with content into JavaScript frameworks. We believe it will become the go-to content solution for Astro. [We're currently considering Astro support](/docs/environments/astro).
+
+## Content Processors
+
+An more direct comparison can be found in content-processing tools.
+
+### next-mdx-remote vs Contentlayer
+
+[next-mdx-remote](https://github.com/hashicorp/next-mdx-remote) is a set of utilities to help work with MDX in Next.js projects. These utilities are powerful and, before Contentlayer, were a great solution for using MDX in Next.js projects.
+
+Where next-mdx-remote stops is that it does not handle loading content from sources, whether local or remote. Contentlayer will load content from source files and also supports MDX. Contentlayer also automatically generates TypeScript type definitions to ensure the content being processed is in the shape you'd expect, which next-mdx-remote does not handle.
+
+### mdx-bundler vs Contentlayer
+
+[mdx-bundler](https://github.com/kentcdodds/mdx-bundler) is a solution for bundling MDX content. It is similar to next-mdx-remote but can handle bundling imports.
+
+Like next-mdx-remote, mdx-bundler is concerned only with the processing content and knows nothing of where the content is sourced. Contentlayer provides a full content solution for projects built with modern frameworks.
+
+## Content Sources
+
+With Contentlayer, your content can be sourced from anywhere, whether local or remote. We're just getting started and plan to add a number of remote sources in the near future.
+
+Because of this, Contentlayer can generally be considered a complement to most headless API-driven solutions today.
+
+### Contentful vs Contentlayer
+
+We consider Contentlayer to be a complement of Contentful. In fact, we're currently exploring making Contentful the first supported remote source. [Learn more about Contentful integration](/docs/sources/contentful).
+
+### Sanity vs Contentlayer
+
+We consider Contentlayer to be a complement of Sanity. In fact, we're currently exploring making Sanity the first supported remote source. [Learn more about Sanity integration](/docs/sources/sanity).
+
+### Notion vs Contentlayer
+
+We consider Contentlayer to be a complement of Notion. In fact, we're currently exploring making Notion the first supported remote source. [Learn more about Notion integration](/docs/sources/notion).

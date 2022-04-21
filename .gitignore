@@ -2,6 +2,7 @@
 !/.yarn/releases
 !/.yarn/plugins
 !/.yarn/sdks
+!/.yarn/patches
 
 # dependencies
 /node_modules
@@ -21,6 +22,7 @@
 # misc
 .DS_Store
 *.pem
+tmp
 
 # debug
 npm-debug.log*
