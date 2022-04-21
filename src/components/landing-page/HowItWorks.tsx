@@ -99,31 +99,25 @@ export const localStep2DataTransformation = {
     type: 'fileTree',
     data: {
       type: 'folder',
-      name: 'content/',
+      name: 'posts/',
       children: [
         {
-          type: 'folder',
-          name: 'pages/',
-          children: [
-            {
-              type: 'file',
-              name: 'change-me.md',
-              comment: '',
-              tooltip: 'TODO: Define file tooltip contents.',
-            },
-            {
-              type: 'file',
-              name: 'click-me.md',
-              comment: '',
-              tooltip: 'TODO: Define file tooltip contents.',
-            },
-            {
-              type: 'file',
-              name: 'what-is-contentlayer.md',
-              comment: '',
-              tooltip: 'TODO: Define file tooltip contents.',
-            },
-          ],
+          type: 'file',
+          name: 'change-me.md',
+          comment: '',
+          tooltip: 'TODO: Define file tooltip contents.',
+        },
+        {
+          type: 'file',
+          name: 'click-me.md',
+          comment: '',
+          tooltip: 'TODO: Define file tooltip contents.',
+        },
+        {
+          type: 'file',
+          name: 'what-is-contentlayer.md',
+          comment: '',
+          tooltip: 'TODO: Define file tooltip contents.',
         },
       ],
     },
