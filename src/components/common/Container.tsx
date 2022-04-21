@@ -16,7 +16,7 @@ export const Container: FC<any> = ({ children, ...customMeta }) => {
       'Contentlayer is a content SDK that validates and transforms your content into type-safe JSON data you can easily import into your application.',
     url: customMeta.urlPath ? `${baseUrl}${customMeta.urlPath}` : baseUrl,
     name: 'Contentlayer',
-    image: customMeta.imagePath ? `${baseUrl}${customMeta.imagePath}` : `${baseUrl}/images/contentlayer-meta-image.png`,
+    image: customMeta.imagePath ? `${baseUrl}${customMeta.imagePath}` : `${baseUrl}/images/beta-launch-post-meta.png`,
     type: 'website',
     ...customMeta,
   }
