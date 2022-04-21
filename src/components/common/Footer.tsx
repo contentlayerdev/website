@@ -12,7 +12,7 @@ const content = {
   note: (
     <>
       <p>
-        MIT Licenced - Sponsored by{' '}
+        MIT Licenced - A project by{' '}
         <a
           href="https://www.stackbit.com/"
           target="_blank"
