@@ -49,6 +49,17 @@ Took me less than 5 minutes to cleanly separate and connect MDX files to a Next.
     url: 'https://twitter.com/hdjirdeh/status/1483047963316260870',
   },
   {
+    text: `If you bring content-as-data into your website, whether it's from Markdown files or a hosted CMS, do yourself a favour and check this out.
+
+    Massive leap forward in speed, type safety, and DX 👏🏻`,
+    person: {
+      name: 'Jed Watson',
+      bio: 'Co-founder of Thinkmill',
+      avatar: 'https://pbs.twimg.com/profile_images/694401960397570049/uIEsJzcv_400x400.jpg',
+    },
+    url: 'https://twitter.com/JedWatson/status/1517130123463454721',
+  },
+  {
     text: `We're using Contentlayer on the @GraphCMS documentation, and it's fantastic! It not only loads all the local content, but it also supports MDX. Plus, having type definitions for the content is super helpful.`,
     person: {
       name: 'João Pedro Schmitz',
