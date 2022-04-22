@@ -115,12 +115,9 @@ export const SearchProvider: FC<{ children: ReactNode }> = ({ children }) => {
   }, [docsTree, examplesTree, router])
 
   return (
-    // @ts-expect-error https://github.com/timc1/kbar/issues/199
     <KBarProvider actions={actions}>
       <KBarPortal>
-        {/* @ts-expect-error https://github.com/timc1/kbar/issues/199 */}
         <KBarPositioner className="bg-gray-300/50 p-4 backdrop-blur backdrop-filter dark:bg-black/50">
-          {/* @ts-expect-error https://github.com/timc1/kbar/issues/199 */}
           <KBarAnimator className="w-full max-w-xl">
             <Card>
               <div className="flex items-center space-x-4 p-4">
