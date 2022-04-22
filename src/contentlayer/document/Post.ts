@@ -92,7 +92,7 @@ export const Post = defineDocumentType(() => ({
 
         await bundleMDX({
           source: doc.body.raw,
-          xdmOptions: (opts) => {
+          mdxOptions: (opts) => {
             opts.remarkPlugins = [...(opts.remarkPlugins ?? []), tocPlugin(headings)]
             return opts
           },
