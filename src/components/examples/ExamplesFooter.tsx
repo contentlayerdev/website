@@ -5,7 +5,7 @@ import { format } from 'date-fns'
 import { Doc, Example } from 'contentlayer/generated'
 
 const githubBranch = 'main'
-const githubBaseUrl = `https://github.com/contentlayerdev/website/blob/${githubBranch}/examples/`
+const githubBaseUrl = `https://github.com/contentlayerdev/website/blob/${githubBranch}/content/`
 
 export const ExamplesFooter: FC<{ example: Example }> = ({ example }) => {
   return (
