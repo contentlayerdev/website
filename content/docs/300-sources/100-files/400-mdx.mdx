@@ -21,6 +21,34 @@ defineDocumentType(() => ({
 }))
 ```
 
+## Usage from Next.js
+
+```tsx
+import React from 'react'
+import { allPosts, type Post } from 'contentlayer/generated'
+import { useMDXComponent } from 'next-contentlayer/hooks'
+
+export const getStaticProps = () => {
+  const post = allPosts[0]
+  return { props: { post } }
+}
+
+const MyButton: React.FC = () => <button>Click me</button>
+
+const Page: React.FC<{ post }> = ({ post }) => {
+  const MDXContent = useMDXComponent(post.body.code)
+  
+  return (
+    <div>
+      {/* Some code ... */}
+      <MDXContent components={{ MyButton }} />
+    </div>
+  )
+}
+
+export default Page
+```
+
 ## MDX Plugins (remark/rehype)
 
 You can add [remark](https://github.com/remarkjs/remark) and [rehype](https://github.com/rehypejs/rehype) plugins inside the `mdx` property when calling `makeSource` in your Contentlayer configuration.
