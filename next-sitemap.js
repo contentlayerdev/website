@@ -1,4 +1,4 @@
 module.exports = {
-  siteUrl: 'https://contentlayer.de',
+  siteUrl: 'https://contentlayer.dev',
   generateRobotsTxt: true,
 }
