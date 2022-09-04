@@ -52,14 +52,19 @@ npm install contentlayer next-contentlayer
 
 To hook Contentlayer into the `next dev` and `next build` processes, you'll want to wrap the Next.js configuration using the `withContentlayer` method.
 
-Create a new file called `next.config.mjs` in the root of your project, and add the following content.
+Update the existing `next.config.js` file in the root of your project to look as follows:
 
 ```js
-// next.config.mjs
+// next.config.js
 
-import { withContentlayer } from 'next-contentlayer'
+const { withContentlayer } = require('next-contentlayer')
 
-export default withContentlayer({})
+const nextConfig = {
+  reactStrictMode: true,
+  swcMinify: true,
+}
+
+module.exports = withContentlayer(nextConfig)
 ```
 
 Then add the following lines to your `tsconfig.json` or `jsconfig.json` file:
