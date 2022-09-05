@@ -153,7 +153,7 @@ export const Playground: FC = () => {
           <div className="overflow-hidden">
             <StackblitzIDE
               setEditorIsReady={setEditorIsReady}
-              repoSlug="contentlayerdev/next-contentlayer-example/tree/stackblitz-demo"
+              repoSlug="contentlayerdev/next-contentlayer-example"
               className="h-[700px] w-full"
               {...stackblitzIDEState}
             />

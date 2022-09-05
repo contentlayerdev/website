@@ -8,7 +8,7 @@ export const Playground: FC<{ githubRepo: string; openFile?: string | '' }> = ({
   useEffect(() => {
     if (ref.current && vm === undefined) {
       stackblitz
-        .embedGithubProject(ref.current, 'contentlayerdev/next-contentlayer-example/tree/stackblitz-demo', {
+        .embedGithubProject(ref.current, 'contentlayerdev/next-contentlayer-example', {
           height: 700,
           showSidebar: true,
           openFile: openFile,

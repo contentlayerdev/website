@@ -78,7 +78,7 @@ const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ example, tre
   useEffect(() => {
     if (example.github_repo && ref.current) {
       stackblitz
-        .embedGithubProject(ref.current, 'contentlayerdev/next-contentlayer-example/tree/stackblitz-demo', {
+        .embedGithubProject(ref.current, 'contentlayerdev/next-contentlayer-example', {
           openFile: example.open_file,
           showSidebar: true,
         })
