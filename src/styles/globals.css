@@ -114,4 +114,8 @@
     hyphens: auto;
     -webkit-hyphens: auto;
   }
+  
+  html.dark {
+    color-scheme: dark;
+  }
 }
