@@ -51,6 +51,23 @@ Other markdown content ...
 
 You can either use an `.mdx` file to have this content processed automatically, or you can use a tool like [`markdown-to-jsx`](https://www.npmjs.com/package/markdown-to-jsx) with raw markdown.
 
+## Content live-reload (HMR)
+
+Content live reload should work out-of-the-box with Next.js when using the `next-contentlayer` plugin and importing your content (e.g. `import { allPosts } from 'contentlayer/generated'`) directly in your page app/components.
+
+However, in some cases (due to a bug in Next.js) you might need to add the following hook to your app/page components:
+
+```tsx
+import { useLiveReload } from 'next-contentlayer/hooks';
+import { allPosts } from 'contentlayer/generated';
+
+export function MyPage() {
+  useLiveReload() // this only runs during development and has no impact on production
+
+  return <div>Your app</div>
+}
+```
+
 ## Using TypeScript
 
 Using TypeScript with Next.js is optional, but [we _highly_ recommend it](/docs/concepts/type-safety).
