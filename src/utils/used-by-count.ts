@@ -39,6 +39,7 @@ const getUsedByCount = async () => {
   )
     .text()
     .trim()
+    .replace(',', '') // remove commas e.g. `1,201 repos` -> `1201 repos`
     .split(' ')[0]
 
   const usedByCount = parseInt(usedByCountStr, 10)
