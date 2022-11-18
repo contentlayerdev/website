@@ -11,7 +11,7 @@ const content = {
     person: {
       name: 'Lee Robinson',
       bio: 'Developer Relations at Vercel',
-      avatar: 'https://pbs.twimg.com/profile_images/1194080814688079872/6qhYKGKC_400x400.jpg',
+      avatar: 'https://pbs.twimg.com/profile_images/1587647097670467584/adWRdqQ6_400x400.jpg',
     },
   },
   projects: {
