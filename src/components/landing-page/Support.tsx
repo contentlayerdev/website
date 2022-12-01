@@ -125,7 +125,7 @@ export const Support: FC = () => {
                         supported === true
                           ? ''
                           : supported === 'Planned'
-                          ? '- Planned'
+                          ? ' - Planned'
                           : ' – Considering to add support.'
                       }`}
                       <Tooltip.Arrow className="mx-1 fill-current text-gray-800 dark:text-violet-200" />
