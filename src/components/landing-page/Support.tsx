@@ -9,7 +9,7 @@ const content = {
     label: 'Supported Frameworks',
     items: [
       {
-        logo: { file: 'nextjs.svg', width: 81, height: 48 },
+        logo: { file: 'nextjs.svg', width: 118, height: 24 },
         label: 'Next.js',
         url: '/docs/environments/nextjs',
         supported: true,
