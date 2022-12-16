@@ -1,6 +1,67 @@
 ---
 title: contentlayer/experimental-source-files-stackbit
-excerpt: TODO ...
+excerpt: API reference for transforming a Stackbit configuration object into Contentlayer config for source-files.
+label: Experimental
 ---
 
-TODO ...
+The `@contentlayer/experimental-source-files-stackbit` API provides a `stackbitConfigToDocumentTypes` method that transforms a [Stackbit](https://www.stackbit.com/) configuration object into Contentlayer configuration.
+
+<Callout>
+  This applies only to [source-files](/docs/sources/files), as the content schema must be defined in files within the
+  repository or a shared package available in `node_modules`.
+</Callout>
+
+## `stackbitConfigToDocumentTypes`
+
+This method is used to build out [document types configuration](/docs/reference/source-files/define-document-type) that can used as the [`documentTypes` property in the `makeSource` function](/docs/reference/source-files/make-source#documenttypes).
+
+### Usage
+
+```ts
+stackbitConfigToDocumentTypes(stackbitConfig, options)
+```
+
+<OptionsTable>
+  <OptionTitle>`stackbitConfig` (required)</OptionTitle>
+  <OptionDescription>
+    A Stackbit configuration object, exported from the Stackbit configuration file (`stackbit.config.js|ts`). [See the
+    Stackbit configuration reference](https://docs.stackbit.com/reference/config).
+  </OptionDescription>
+  <OptionTitle>`options`</OptionTitle>
+  <OptionDescription>
+    If wanting to extend document type definitions imported from Stackbit config, `options` should be an object with a
+    `documentTypes` property, which itself is an object, where its property names are the `name` values from Stackbit
+    document types defined in [the `models`
+    property](https://docs.stackbit.com/reference/config/content-modeling/models).
+
+    See [the integration guide](/docs/integrations/stackbit) for an example that extends a Stackbit model.
+
+  </OptionDescription>
+</OptionsTable>
+
+### Example
+
+The recommended pattern is to import the Stackbit configuration object (`stackbit.config.js|ts`) in your Contentlayer configuration file (`contentlayer.config.js|ts`).
+
+Then use the `stackbitConfigToDocumentTypes` function to transform the Stackbit models into Contentlayer document type definitions, extend or override properties as needed, and then use the result as [the `documentTypes` property](<(/docs/reference/source-files/make-source#documenttypes)>) passed to the `makeSource` options.
+
+```ts
+// contentlayer.config.ts
+
+import stackbitConfig from './stackbit.config.js'
+import { stackbitConfigToDocumentTypes } from '@contentlayer/experimental-source-files-stackbit'
+
+const documentTypes = stackbitConfigToDocumentTypes(stackbitConfig, {
+  documentTypes: {
+    Page: {
+      // extend page properties ...
+    },
+  },
+})
+
+export default makeSource({ contentDirPath: 'content', documentTypes })
+```
+
+<Callout>
+  See [the integration guide](/docs/integrations/stackbit) for an example in overriding a particular document type.
+</Callout>
