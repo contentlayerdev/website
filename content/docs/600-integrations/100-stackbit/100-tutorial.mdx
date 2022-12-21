@@ -1,0 +1,115 @@
+---
+title: Stackbit + Contentlayer Tutorial
+nav_title: Basic Tutorial
+excerpt: Learn how to use Stackbit and Contentlayer to add visual editing to a Next.js application.
+---
+
+We can demonstrate how this works through a simple example. In this scenario, we have a `Page` model with a required `title` field.
+
+The content lives in a `content/pages` directory, and we want to use each page's file path as the URL path to that page, which we'll store in a computed `urlPath` property on the compiled data (via the Contentlayer build process).
+
+Let's assume:
+
+- The content is stored in markdown files in a `content/pages` directory. (Note that only files-source is supported by this approach.)
+- We're using Next.js as the site framework, which is the primary framework for which Contentlayer is optimized.
+
+## Setup
+
+First, make sure the dependencies are installed in the project:
+
+```txt
+npm install contentlayer next-contentlayer @contentlayer/experimental-source-files-stackbit
+```
+
+## Stackbit Configuration
+
+In Stackbit, document type definitions are referred to as _models_ and are defined using [the `models` property](https://docs.stackbit.com/reference/config/content-modeling/models).
+
+A simple Stackbit config might look something like this:
+
+```ts
+// stackbit.config.ts
+
+import type * as Stackbit from '@stackbit/sdk'
+
+const stackbitConfig: Stackbit.RawConfig = {
+  stackbitVersion: '~0.6.0',
+  cmsName: 'git',
+  ssgName: 'nextjs',
+  nodeVersion: '16',
+  dataDir: 'content/data',
+  pagesDir: 'content/pages',
+  models: {
+    Page: {
+      type: 'page',
+      hideContent: true,
+      urlPath: '/{slug}',
+      fields: [
+        {
+          type: 'string',
+          name: 'title',
+          default: 'This is a new page',
+          required: true,
+        },
+      ],
+    },
+  },
+}
+
+export default stackbitConfig
+```
+
+<Callout>
+  Note that best practice generally leads to breaking up each object in the `models` property into individual files, but
+  are combined here for context.
+</Callout>
+
+## Extend Models
+
+In the Contentlayer configuration file, we can import the Stackbit config, and then add our computed `urlPath` property.
+
+```ts
+import { stackbitConfigToDocumentTypes } from '@contentlayer/experimental-source-files-stackbit'
+import stackbitConfig from './stackbit.config.js'
+
+const documentTypes = stackbitConfigToDocumentTypes(stackbitConfig, {
+  documentTypes: {
+    Page: {
+      computedFields: {
+        url: {
+          type: 'string',
+          resolve: (doc) => doc._raw.flattenedPath.replace(/^pages\/?/, '/'),
+        },
+      },
+    },
+  },
+})
+```
+
+<Callout>
+  Notice that we didn't have to define the `title` field. We also didn't have to define properties like `name` or
+  `filePathPattern` on the models, as they were already inferred by this function.
+</Callout>
+
+## Configure the Source
+
+At this point, we have everything we need to call `makeSource` and start using Contentlayer build output from Stackbit configuration.
+
+```ts
+import { makeSource } from 'contentlayer/source-files'
+import { stackbitConfigToDocumentTypes } from '@contentlayer/experimental-source-files-stackbit'
+import stackbitConfig from './stackbit.config.js'
+
+const documentTypes = stackbitConfigToDocumentTypes(stackbitConfig, {
+  // document type extensions ...
+})
+
+export default makeSource({ contentDirPath: 'content', documentTypes })
+```
+
+Now you can build files by running `contentlayer build` in your project!
+
+<Callout>
+  We recommend using [`withContentlayer`](/docs/reference/next-contentlayer#withcontentlayer) when using Next.js to run
+  `contentlayer dev` in sync with `next dev`.
+</Callout>
