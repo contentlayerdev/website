@@ -83,7 +83,7 @@ const Image: FC<{ src: string; alt?: string; width?: number; height?: number; cl
   className,
 }) => {
   return (
-    <div className={`${className} overflow-hidden rounded-lg`}>
+    <div className={`overflow-hidden rounded-lg ${className}`}>
       <div className="-mb-3">
         <NextImage
           src={src}
@@ -154,7 +154,7 @@ const Post: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ post, betaSn
             ContentlayerConfig: () => <CodeWindow snippets={betaSnippets.contentlayer[colorScheme].howItWorksStep1} />,
             ContentlayerNext: () => <CodeWindow snippets={betaSnippets.contentlayer[colorScheme].howItWorksStep3} />,
           }
-        : null,
+        : ({} as any),
     [betaSnippets, colorScheme],
   )
 
@@ -168,7 +168,7 @@ const Post: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ post, betaSn
       <div className="relative mx-auto max-w-screen-2xl px-4 py-8 md:px-8 md:py-16 lg:px-0">
         <BlogHeader post={post} />
         <div className="blog prose prose-lg prose-slate prose-violet relative mx-auto w-full max-w-full prose-headings:mt-16 prose-headings:font-semibold prose-a:font-normal prose-code:font-normal prose-code:before:content-none prose-code:after:content-none prose-hr:border-gray-200 dark:prose-invert dark:prose-a:text-violet-400 dark:prose-hr:border-gray-800 lg:max-w-[994px] lg:px-16">
-          {MDXContent && <MDXContent components={{ ...mdxComponents, BetaCodeWindow }} />}
+          {MDXContent && <MDXContent components={{ ...(mdxComponents as any), BetaCodeWindow }} />}
           <hr />
           {post.authors.map((author, index) => (
             <Author key={index} {...author} />

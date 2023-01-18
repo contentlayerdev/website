@@ -90,7 +90,7 @@ const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ doc, tree, b
         <div className="relative w-full grow">
           <DocsHeader tree={tree} breadcrumbs={breadcrumbs} title={doc.title} />
           <div className="docs prose prose-slate prose-violet mx-auto mb-4 w-full max-w-3xl shrink p-4 pb-8 prose-headings:font-semibold prose-a:font-normal prose-code:font-normal prose-code:before:content-none prose-code:after:content-none prose-hr:border-gray-200 dark:prose-invert dark:prose-a:text-violet-400 dark:prose-hr:border-gray-800 md:mb-8 md:px-8 lg:mx-0 lg:max-w-full lg:px-16">
-            {MDXContent && <MDXContent components={mdxComponents} />}
+            {MDXContent && <MDXContent components={mdxComponents as any} />}
             {doc.show_child_cards && (
               <>
                 <hr />

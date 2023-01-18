@@ -108,7 +108,7 @@ const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ example, tre
         <div className="relative w-full grow">
           <DocsHeader tree={tree} breadcrumbs={breadcrumbs} title={example.title} />
           <div className="docs prose prose-slate prose-violet mx-auto mb-4 w-full max-w-3xl shrink p-4 pb-8 prose-headings:font-semibold prose-a:font-normal prose-code:font-normal prose-code:before:content-none prose-code:after:content-none prose-hr:border-gray-200 dark:prose-invert dark:prose-a:text-violet-400 dark:prose-hr:border-gray-800 md:mb-8 md:px-8 lg:mx-0 lg:max-w-full lg:px-16">
-            {MDXContent && <MDXContent components={mdxComponents} />}
+            {MDXContent && <MDXContent components={mdxComponents as any} />}
             {example.github_repo && (
               <div
                 className={
@@ -129,7 +129,7 @@ const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ example, tre
                   className="overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-900"
                   style={{ height: fullScreen ? 'calc(100vh - 190px)' : 700 }}
                 >
-                  <div className="h-full w-full " ref={ref} />
+                  <div className="h-full w-full" ref={ref} />
                 </div>
               </div>
             )}

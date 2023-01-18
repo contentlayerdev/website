@@ -1,9 +1,8 @@
-import { FC, useState, useEffect } from 'react'
+import React, { FC, useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import classNames from 'classnames'
 import { TreeNode } from 'types/TreeNode'
-import React from 'react'
 import { Label } from '../common/Label'
 import { Icon } from '../common/Icon'
 
