@@ -1,0 +1,67 @@
+---
+title: Remote Files
+label: Experimental
+excerpt: How to use Contentlayer with remote files as content source (e.g. Git repo)
+---
+
+The remote files source acts very similarly to the [files source](/docs/sources/files) with the difference that the content files can live outside the website folder. Using the remote files source Contentlayer will automatically **sync the content files from your remote files source to your local website folder** and then process them using the regular files source.
+
+Common remote file sources incl other Git repositories, databases, APIs or anywhere else where your content comes from.
+
+## Example: Remote Git Repository
+
+See full example here: TODO
+
+```ts
+// NOTE we're using the `defineDocumentType` from the regular files source
+import { defineDocumentType } from 'contentlayer/source-files'
+import { spawn } from 'node:child_process'
+import { makeSource } from 'contentlayer/source-remote-files'
+
+const Post = defineDocumentType(() => ({
+  name: 'Post',
+  filePathPattern: `docs/**/*.md`,
+  fields: {
+    title: { type: 'string', required: false },
+  },
+}))
+
+const syncContentFromGit = async (contentDir: string) => {
+  const syncRun = async () => {
+    const gitUrl = 'https://github.com/vercel/next.js.git'
+    // TODO: git pull or git clone (see full example for working code)
+  }
+
+  let wasCancelled = false
+  let syncInterval
+
+  const syncLoop = async () => {
+    await syncRun()
+
+    if (wasCancelled) return
+
+    syncInterval = setTimeout(syncLoop, 1000 * 60)
+  }
+
+  // Block until the first sync is done
+  await syncLoop()
+
+  return () => {
+    wasCancelled = true
+    clearTimeout(syncInterval)
+  }
+}
+
+export default makeSource({
+  syncFiles: syncContentFromGit,
+  contentDirPath: 'nextjs-repo',
+  contentDirInclude: ['docs'],
+  documentTypes: [Post],
+  disableImportAliasWarning: true,
+})
+```
+
+## Notes
+
+- It's recommended to add the synced content directory to your `.gitignore` file
+- It's possible to combine the regular files source and the remote files source. You'll have to use the same root `contentDirPath` and put the respective content in different sub directories.
