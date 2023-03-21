@@ -1,0 +1,121 @@
+---
+title: defineDatabase
+excerpt: defineDatabase provides Contentlayer with the schema and configuration when using local files as the content source.
+---
+
+`defineDatabase` defines how Contentlayer should generate your schema for one particular database.
+
+Database definitions are used within the options for [`makeSource`](/docs/reference/source-notion/make-source), which is how the definition is passed onto Contentlayer.
+
+## Usage
+
+```js
+import { defineDatabase } from 'contentlayer-source-notion'
+
+const Post = defineDatabase(() => ({
+  name: 'Post',
+  databaseId: '<database_id>',
+}))
+```
+
+## Options
+
+<OptionsTable>
+  <OptionTitle>
+    ### `name`
+    `boolean` (required)
+  </OptionTitle>
+  <OptionDescription>
+    Name of the document. This defines the types and functions that are generated for documents of this type.
+
+    ```js
+    const Doc = defineDatabase(() => ({
+      name: "Doc",
+      // ...
+    })
+    ```
+
+    In the usage example, the `name` was `Doc`, which would generate a data object `allDocs` representing the collection of pages of this database (see `databaseId`). And it would add a type definition for `Doc`, representing the shape of the data object created from your content.
+
+  </OptionDescription>
+  <OptionTitle>
+    ### `databaseId`
+    `string` (required)
+  </OptionTitle>
+  <OptionDescription>
+    The ID of the database used to generate the schema.
+
+    You can find the ID of the database in the URL:<br/>
+    **notion.so/my-org/<ins>fe26b972ec3f4b32a1882230915fe111</ins>**
+
+  </OptionDescription>
+  <OptionTitle>
+    ### `properties`
+
+  </OptionTitle>
+  <OptionDescription>
+    Options to configure how properties should be used to generate the data shape for the document type. See [the properties types reference](/docs/reference/source-notion/properties) for more information
+  </OptionDescription>
+  <OptionTitle>
+    ### `description`
+    `string`
+  </OptionTitle>
+  <OptionDescription>
+    Provides a description for the generated type definition.
+  </OptionDescription>
+  <OptionTitle>
+    ### `automaticImport`
+    `boolean`
+  </OptionTitle>
+  <OptionDescription>
+    The Notion source automatically import all properties of your database.
+
+    If thoses properties can contain sensitive information you can set this option to `true` and only properties defined in `properties` will be in your schema.
+
+  </OptionDescription>
+  <OptionTitle>
+    ### `importContent`
+    `boolean`
+  </OptionTitle>
+  <OptionDescription>
+    Notion requires a request for each pages to query their content. *(That can lead to other requests)*
+
+    As Notion can be slow, you can disable this feature if you only use the page properties.
+
+  </OptionDescription>
+  <OptionTitle>
+    ### `query`
+
+  </OptionTitle>
+  <OptionDescription>
+    This option allows you to **sort** and **filter** your database.
+
+    **Example:**
+
+    In this example only published posts will be queried ordered by name.
+
+    ```js
+    const Post = defineDatabase(() => ({
+      name: 'Post',
+      databaseId: '<database_id>',
+      query: {
+        filter: {
+          property: 'Status',
+          status: {
+            equals: 'Published',
+          },
+        },
+        sort: [
+          {
+            property: 'Name',
+            direction: 'ascending',
+          },
+        ],
+      },
+    }))
+    ```
+
+    You can find more information on the [Notion API Documentation](https://developers.notion.com/reference/post-database-query).
+
+  </OptionDescription>
+</OptionsTable>

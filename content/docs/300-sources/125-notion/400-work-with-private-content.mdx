@@ -1,0 +1,52 @@
+---
+title: Work with private content
+nav_title: Work with private content
+excerpt: How Contentlayer determines and sets the type for each document.
+---
+
+<div className="rounded-md border border-yellow-100 bg-yellow-50 px-6 dark:border-orange-500/50 dark:bg-orange-500/20">
+  ⚠ The content source plugin `contentlayer-notion-source` is currently in Alpha and should not be used in production.
+</div>
+
+As Contentful generates your content at build time, you can query your private Notion databases without exposing your authentication Token.
+
+---
+
+## 1. Create a Notion Integration
+
+Head over the [following link](https://www.notion.so/my-integrations) to create a new Notion Integration.
+As Contentlayer is only made for reading content, you should only add the Read capacity.
+
+When your integration is created you will have an Internal Integration Token. Save it and keep it safe, it will be the "Notion token" that you will use to authenticate to the API.
+
+![Create Notion Integration](/images/integration_granular_permissions.gif)
+
+## 2. Authorize the integration to your databases
+
+On each databases you want to work with, click on the `•••` in the top right corner.
+Click on **Add connection** and select your Integration. Your token should now authorize you to query thoses databases.
+
+## 3. Configure the Notion client
+
+First install the official Notion JS SDK `@notionhq/client`:
+
+```text
+npm install @notionhq/client
+```
+
+Then in `contentlayer.config.js` provide your own Notion client:
+
+```js
+import * as notion from '@notionhq/client'
+
+const client = new notion.Client({
+  auth: '<notion_token>',
+})
+
+export default makeSource({
+  client,
+  databaseTypes: [Category, Post],
+})
+```
+
+> ⚠ For security reasons, do not store your Internal Integration Token in your repository and prefer using environment variables with `process.env` or `dotenv` package.

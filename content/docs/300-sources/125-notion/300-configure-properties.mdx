@@ -1,0 +1,103 @@
+---
+title: Configure properties
+nav_title: Configure properties
+excerpt: How Contentlayer determines and sets the type for each document.
+---
+
+<div className="rounded-md border border-yellow-100 bg-yellow-50 px-6 dark:border-orange-500/50 dark:bg-orange-500/20">
+  ⚠ The content source plugin `contentlayer-notion-source` is currently in Alpha and should not be used in production.
+</div>
+
+---
+
+## Base configuration
+
+In order to map a configuration to a property you need to provide the `id` or the `name`.
+
+- `name|id` is used to specify which property to configure (required).
+- `description` is used to generate comments
+- `isRequired` if set to true, the content of the pages without this property defined will not be generated (defaults to `false`)
+
+```js
+const Post = defineDatabase(() => ({
+  name: 'Post',
+  databaseId: '<database_id>',
+  properties: [
+    {
+      name: 'Short description',
+      description: 'The post description',
+      isRequired: true,
+    },
+    {
+      id: 'x%Fdv',
+      description: 'The post status',
+      isRequired: true,
+    },
+  ],
+}))
+```
+
+## Map properties to specific keys
+
+By mapping properties to specific keys, you can keep the name in your own language in Notion but having it translated in the generated schema.
+
+### By using array
+
+```js
+const Post = defineDatabase(() => ({
+  name: 'Post',
+  databaseId: '<database_id>',
+  properties: [
+    {
+      key: 'metaDescription',
+      name: 'Short description',
+    },
+  ],
+}))
+```
+
+### By using object
+
+```js
+const Post = defineDatabase(() => ({
+  name: 'Post',
+  databaseId: '<database_id>',
+  properties: {
+    metaDescription: {
+      name: 'Short description',
+    },
+  },
+}))
+```
+
+## Relation property configuration
+
+Relation properties allows you to define relations between pages.
+
+By setting `single` to `true`, the property will be the ID of the relation instead of a list of IDs.
+
+```js
+const Category = defineDatabase(() => ({
+  name: 'Category',
+  databaseId: '<database_id>',
+}))
+
+const Post = defineDatabase(() => ({
+  name: 'Post',
+  databaseId: '<database_id>',
+  properties: {
+    category: {
+      name: 'Category',
+      type: 'relation',
+      relation: Category,
+      single: true,
+    },
+  },
+}))
+```
+
+## Rollup properties configuration
+
+A rollup property allows you to aggregate a property of the pages defined in a relation property (e.g. average numbers).
+
+The cool thing is that you only have to configure the `relation` property and everything will work by itself!

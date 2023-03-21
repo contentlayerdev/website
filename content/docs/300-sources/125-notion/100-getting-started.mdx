@@ -1,0 +1,42 @@
+---
+title: Getting started
+nav_title: Getting started
+excerpt: How Contentlayer determines and sets the type for each document.
+---
+
+<div className="rounded-md border border-yellow-100 bg-yellow-50 px-6 dark:border-orange-500/50 dark:bg-orange-500/20">
+  ⚠ The content source plugin `contentlayer-notion-source` is currently in Alpha and should not be used in production.
+</div>
+
+This plugin allows you to use Notion as a content source. It automatically generates type by inferring your page properties and transform Rich Text into HTML.
+
+---
+
+## 1. Install dependencies
+
+```txt
+npm install contentlayer-source-notion
+```
+
+## 2. Define databases
+
+A database in Notion is a list of pages with a set of defined properties.
+
+The power of this plugin is that you do not have to define a schema, the database properties are automatically inferred to generate it for you.
+
+```js
+// contentlayer.config.js
+
+import { makeSource, defineDatabase } from 'contentlayer-source-notion'
+
+export const Post = defineDatabase(() => ({
+  name: 'Post',
+  databaseId: '<databaseId>',
+}))
+
+export default makeSource({
+  documentTypes: [Post],
+})
+```
+
+## 3. Going further
