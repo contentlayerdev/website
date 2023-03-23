@@ -15,7 +15,27 @@ This plugin allows you to use Notion as a content source. It automatically gener
 ## 1. Install dependencies
 
 ```txt
-npm install contentlayer-source-notion
+npm install contentlayer-source-notion @notionhq/client
+```
+
+## 2. Configure source plugin
+
+To configure the Notion Source plugin you need to create an instance of `@notionhq/client` Client.
+
+Follow [this guide](/docs/notion/work-with-private-content) to create your Notion Token.
+
+```js
+// contentlayer.config.js
+
+import { makeSource, defineDatabase } from 'contentlayer-source-notion'
+import { Client } from '@notionhq/client'
+
+const client = new Client({ auth: process.env.NOTION_TOKEN })
+
+export default makeSource({
+  client,
+  documentTypes: [],
+})
 ```
 
 ## 2. Define databases
@@ -28,6 +48,9 @@ The power of this plugin is that you do not have to define a schema, the databas
 // contentlayer.config.js
 
 import { makeSource, defineDatabase } from 'contentlayer-source-notion'
+import { Client } from '@notionhq/client'
+
+const client = new Client({ auth: process.env.NOTION_TOKEN })
 
 export const Post = defineDatabase(() => ({
   name: 'Post',
@@ -35,6 +58,7 @@ export const Post = defineDatabase(() => ({
 }))
 
 export default makeSource({
+  client,
   documentTypes: [Post],
 })
 ```

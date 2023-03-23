@@ -57,6 +57,28 @@ const Post = defineDatabase(() => ({
     Options to configure how properties should be used to generate the data shape for the document type. See [the properties types reference](/docs/reference/source-notion/properties) for more information
   </OptionDescription>
   <OptionTitle>
+    ### `computedFields`
+
+  </OptionTitle>
+  <OptionDescription>
+    Computed fields can be calculated on the fly rather than being read directly from the content source.
+
+    Here's an example that transforms the page title to a slug.
+
+    ```js
+    export const Post = defineDatabase(() => ({
+      // ...
+      computedFields: {
+        slug: {
+          type: 'string',
+          resolve: (doc) => slugify(doc.title),
+        },
+      },
+    }))
+    ```
+
+  </OptionDescription>
+  <OptionTitle>
     ### `description`
     `string`
   </OptionTitle>
