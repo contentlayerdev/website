@@ -1,0 +1,110 @@
+---
+title: Configure databases
+nav_title: Configure databases
+excerpt: How to configure Notion databases using contentlayer-source-notion.
+---
+
+<div className="rounded-md border border-yellow-100 bg-yellow-50 px-6 dark:border-orange-500/50 dark:bg-orange-500/20">
+  ⚠ The content source plugin `contentlayer-source-notion` is currently in Alpha and should not be used in production.
+</div>
+
+---
+
+## Base configuration
+
+- `name` of the generated schema and constants (e.g. `allCategories`)
+- `description` used to generate comments
+- `database_id` of the database you want to query
+
+```js
+const Category = defineDatabase(() => ({
+  name: 'Category',
+  databaseId: '<database_id>',
+  description: 'Categories used to group posts',
+}))
+```
+
+## Properties configuration
+
+Even if your schema is automatically inferred you can configure properties to:
+
+- Map properties to different keys in the generated schema
+- Configure complex properties like "Rollup" and "Relation"
+- Define required properties
+
+More information on the dedicated page [Configure properties](/docs/sources/notion/configure-properties).
+
+```js
+const Category = defineDatabase(() => ({
+  name: 'Post',
+  databaseId: '<database_id>',
+  properties: {
+    author: {
+      name: 'Created by',
+    },
+    metaDescription: {
+      name: 'Short description',
+    },
+  },
+}))
+```
+
+## Disable content importation
+
+By setting `importContent` to `false`, the content of your pages will not be queried.
+
+It is extremely useful when you only need the properties of your pages and want to keep good performances.
+
+```js
+const Category = defineDatabase(() => ({
+  name: 'Category',
+  databaseId: '<database_id>',
+  importContent: false,
+}))
+```
+
+## Disable automatic properties importation
+
+By setting `automaticImport` to `false`, only the properties defined in the `properties` parameter will be generated.
+
+It is useful when your pages contains properties with sensible information you do not want to have in your generated content.
+
+```js
+const Category = defineDatabase(() => ({
+  name: 'Category',
+  databaseId: '<database_id>',
+  automaticImport: false,
+  properties: {
+    email: {
+      name: 'Email',
+    },
+  },
+}))
+```
+
+## Filter and sort queried pages
+
+You can filter and sort pages that are queried from your database by using the `query` parameter.
+
+You can find more information on the [Notion API documentation](https://developers.notion.com/reference/post-database-query).
+
+```js
+const Category = defineDatabase(() => ({
+  name: 'Category',
+  databaseId: '<database_id>',
+  query: {
+    filter: {
+      property: 'Status',
+      status: {
+        equals: 'Published',
+      },
+    },
+    sort: [
+      {
+        property: 'Name',
+        direction: 'ascending',
+      },
+    ],
+  },
+}))
+```

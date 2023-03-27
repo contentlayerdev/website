@@ -1,0 +1,53 @@
+---
+title: Images
+nav_title: Images
+excerpt: Options on image processing when using Notion as your content source.
+---
+
+<div className="rounded-md border border-yellow-100 bg-yellow-50 px-6 dark:border-orange-500/50 dark:bg-orange-500/20">
+  ⚠ The content source plugin `contentlayer-source-notion` is currently in Alpha and should not be used in production.
+</div>
+
+---
+
+When querying images from Notion it give a temporary link that expires after a certain amount of time.
+
+Contentlayer does not currently support image processing, though we're [planning on implementing it](https://github.com/contentlayerdev/contentlayer/issues/11).
+Until then, there are a few different approaches you can take to working with images when your content is processed by Contentlayer:
+
+## Using an Image Management Services
+
+Alternatively, you can use an image management service like [Cloudinary](https://cloudinary.com/) or [Imgix](https://imgix.com/). (There are many to choose from.)
+
+These services allow you to use URL parameters to determine the size and shape of your image. The image is then optimized by these services and delivered to your users.
+
+These services deliver an optimized image, but it's still up to you to ensure that image doesn't degrade the performance of your pages. Therefore, you may also want to consider manually processing the images. See below for details.
+
+### Processing Images as Computed Fields
+
+To process images during the Contentlayer build, you can use a computed field.
+Say you've a property `thumbnail`.
+
+Then you'd add a _computed_ field like `image` that would do the processing and returns the path/url to the processed image.
+
+```js
+defineDatabase(() => ({
+  name: 'Post',
+  computedFields: {
+    thumbnail: {
+      type: 'string',
+      resolve: (doc) => {
+        // do the processing, and return new value ...
+      },
+    },
+  },
+}))
+```
+
+### Processing after the Contentlayer Build
+
+Another option is to build a utility method within your application that does the processing. In this case, Contentlayer would have already processed the image reference as a string, which you would send to the processing utility before building the props to send to the page.
+
+### Handling Images in Markdown with Contentlayer
+
+It's worth noting that the methods above handle processing images only that were specified in the frontmatter. If you want to process images you've used within the body of a markdown or MDX file, you'll want to build (or find) a remark or rehype plugin.

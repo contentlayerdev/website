@@ -1,0 +1,144 @@
+---
+title: Properties
+excerpt: defineDatabase provides Contentlayer with the schema and configuration when using local files as the content source.
+---
+
+Properties configuration allows you to configure how your database properties will be used to generate the shape and behavior of your content.
+
+## Usage
+
+### By using array
+
+```js
+const Post = defineDatabase(() => ({
+  name: 'Post',
+  databaseId: '<database_id>',
+  properties: [
+    {
+      key: 'metaDescription',
+      name: 'Short description',
+    },
+  ],
+}))
+```
+
+### By using object
+
+```js
+const Post = defineDatabase(() => ({
+  name: 'Post',
+  databaseId: '<database_id>',
+  properties: {
+    metaDescription: {
+      name: 'Short description',
+    },
+  },
+}))
+```
+
+## Shared options
+
+<OptionsTable>
+  <OptionTitle>
+    ### `name|id`
+    `string` (required)
+  </OptionTitle>
+  <OptionDescription>
+    Will map this property configuration to a database property. You can choose to use the `id` or the `name` depending
+    on your use case.
+  </OptionDescription>
+  <OptionTitle>
+    ### `key`  
+    `string`
+  </OptionTitle>
+  <OptionDescription>
+    Defines the generated field name in your schema for this property.
+
+    **Example:**
+
+    ```js
+    defineDatabase(() => ({
+      name: 'Post',
+      databaseId: '<databaseId>',
+      properties: [
+        {
+          key: 'metaDescription',
+          name: 'Short description'
+        }
+      ]
+    }))
+    ```
+
+    ```js
+    allPosts.forEach(
+      (post) => console.log(post.metaDescription)
+    )
+    ```
+
+  </OptionDescription>
+  <OptionTitle>
+    ### `required` 
+    `boolean`
+  </OptionTitle>
+  <OptionDescription>
+    Pages that does not have this property defined will not be generated.
+
+    Defaults to `false`.
+
+  </OptionDescription>
+  <OptionTitle>
+    ### `description` 
+    `string`
+  </OptionTitle>
+  <OptionDescription>
+    A short description to editors how the field is to be used.
+
+  </OptionDescription>
+</OptionsTable>
+
+## Relation property
+
+<OptionsTable>
+  <OptionTitle>
+    ### `type`
+    `'relation'` (required)
+  </OptionTitle>
+  <OptionDescription>
+    Defines the type of this property.
+  </OptionDescription>
+  <OptionTitle>
+    ### `relation`
+    `DatabaseType` (required)
+  </OptionTitle>
+  <OptionDescription>
+    The database definition of the relation.
+
+    **Example:**
+
+    ```js
+    const Category = defineDatabase(() => ({
+      name: 'Category',
+      databaseId: '<database_id>',
+    }))
+
+    const Post = defineDatabase(() => ({
+      name: 'Post',
+      databaseId: '<database_id>',
+      properties: {
+        category: {
+          type: 'relation',
+          name: 'Category',
+          relation: Category,
+        },
+      },
+    }))
+    ```
+
+  </OptionDescription>
+</OptionsTable>
+
+## Rollup property
+
+A rollup property allows you to aggregate a property of the pages defined in a relation property (e.g. average numbers).
+
+The cool thing is that you only have to configure the relation property and everything will work by itself!

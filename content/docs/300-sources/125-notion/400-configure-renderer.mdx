@@ -1,0 +1,78 @@
+---
+title: Configure renderer
+nav_title: Configure renderer
+excerpt: How to configure how the HTML is generated for Rich text content with contentlayer-source-notion.
+---
+
+<div className="rounded-md border border-yellow-100 bg-yellow-50 px-6 dark:border-orange-500/50 dark:bg-orange-500/20">
+  ⚠ The content source plugin `contentlayer-source-notion` is currently in Alpha and should not be used in production.
+</div>
+
+The `contentlayer-source-notion` uses [`@notion-render/client`](https://www.npmjs.com/package/@notion-render/client) under the hood to transform your Rich text content (Rich Text properties and pages content) into HTML that you can then use and style in your app.
+
+## Use own instance of the renderer
+
+If you want to configure the renderer, you have to provide your own instance (by defaults one is generated for you).
+
+### Install `@notion-render/client`
+
+Run the following command to add `@notion-render/client` to your dependencies:
+
+```text
+npm install @notion-render/client
+```
+
+### Pass the renderer to the source plugin
+
+```js
+// contentlayer.config.js
+import { makeSource } from 'contentlayer-source-notion'
+import * as notion from '@notionhq/client'
+import { NotionRenderer } from '@notion-render/client'
+
+const client = new notion.Client({ auth: process.env.NOTION_TOKEN })
+const renderer = new NotionRenderer({ client })
+
+export default makeSource({
+  client,
+  renderer,
+})
+```
+
+## Configure the renderer
+
+Notion Rich Text is basically a list of blocks, each block has a `type` (e.g. image) and contains its configuration (e.g. the image url).
+
+Each block has its own renderer called `block renderer` that takes in input the configuration and returns a string (the generated HTML).
+
+You can find the list of block types on the [Official Notion API documentation](https://developers.notion.com/reference/block).
+
+### Create block renderer
+
+You can create a block renderer by using the `createBlockRenderer` function.
+The first parameter is the type of block, the second is the function used to render this type of block.
+
+When a block has children, you can use the renderer instance to render them.
+
+```typescript
+import { createBlockRenderer } from '@syneki/notion-render'
+
+const paragraphRenderer = createBlockRenderer<ParagraphBlockObjectResponse>('paragraph', async (data, renderer) => {
+  return `<p>${await renderer.render(...data.paragraph.rich_text)}</p>`
+})
+```
+
+### Add the block renderer
+
+You can add your block renderers directly in the constructor parameters or with the method `addBlockRenderer`.
+
+```typescript
+import { NotionRenderer } from '@syneki/notion-render'
+
+const renderer = new NotionRenderer({
+  renderers: [paragraphRenderer],
+})
+
+// or
+renderer.addBlockRenderer(paragraphRenderer)
+```

@@ -1,0 +1,58 @@
+---
+title: Notion Source
+nav_title: Notion
+label: Experimental
+collapsible: true
+collapsed: true
+excerpt: Guides for working with Contentlayer when using Notion as your content source.
+---
+
+<div className="rounded-md border border-orange-200 bg-orange-100 px-6 dark:border-orange-500/50 dark:bg-orange-500/20">
+  ⚠ The content source plugin `contentlayer-source-notion` is currently in Alpha and should not be used in production.
+</div>
+
+This plugin allows you to use Notion as a content source. It automatically generates type by inferring your page properties and transform Rich Text into HTML.
+
+<div className="mt-8 grid gap-6 md:grid-cols-2">
+  <Card
+    title="Getting Started"
+    icon="rocket"
+    link={{ url: '/docs/sources/notion/getting-started', label: 'Jump into it' }}
+  >
+    Our getting started tutorial shows you how to use Notion to manage your Next.JS Blog.
+  </Card>
+  <div className="mt-2">
+    <p>Follow the getting started tutorial to start working with Notion as a Content source.</p>
+  </div>
+</div>
+
+---
+
+## Notion Source Guides
+
+<div className="-mt-4 grid gap-6 md:grid-cols-2">
+  <div>Notion source guides will teach you the crucial aspects of working with Notion.</div>
+  <div>
+    - <ChevronLink label="Getting started" url="/docs/sources/notion/getting-started" />
+    - <ChevronLink label="Configure databases" url="/docs/sources/notion/configure-databases" />
+    - <ChevronLink label="Configure properties" url="/docs/sources/notion/configure-properties" />
+    - <ChevronLink label="Configure renderer" url="/docs/sources/notion/configure-renderer" />
+    - <ChevronLink label="Working with Images" url="/docs/sources/notion/images" />
+  </div>
+</div>
+
+---
+
+## API Reference
+
+<div className="-mt-4 grid gap-6 md:grid-cols-2">
+  <div>
+    Working with Notion uses the `contentlayer/notion-source` module.
+    <ChevronLink label="Full technical reference" url="/docs/reference/source-notion" />
+  </div>
+  <div>
+    - <ChevronLink label="makeSource" url="/docs/reference/source-notion/make-source" />
+    - <ChevronLink label="defineDatabase" url="/docs/reference/source-notion/define-database" />
+    - <ChevronLink label="Properties reference" url="/docs/reference/source-notion/properties" />
+  </div>
+</div>
