@@ -7,11 +7,22 @@ excerpt: How Contentlayer processes MDX when using local files as the content so
 MDX brings JSX components to markdown, which can provide power and flexibility to the main body area of a content piece.
 
 ## MDX Content
+# Hello, World!
 
-Contentlayer supports MDX processing via [`mdx-bundler`](https://github.com/kentcdodds/mdx-bundler). By default, Contentlayer processes the main content area of `.md` and `.mdx` files as markdown. You can enable this behavior using the `contentType` option in your document type definition.
+This is my first MDX file. Here's a button element <button>Click me!</button>.
+
+<MyComponent />
+```
+
+## MDX Content Type
+
+Contentlayer supports MDX processing via [`mdx-bundler`](https://github.com/kentcdodds/mdx-bundler). By default, Contentlayer processes the main content area of `.md` and `.mdx` files as markdown.
+
+You can enable MDX processing by setting the `contentType` option in your document type definition to `'mdx'` in your Contentlayer configuration.
 
 ```js
-defineDocumentType(() => ({
+// contentlayer.config.ts
+const Post = defineDocumentType(() => ({
   name: 'Post',
   filePathPattern: `**/*.mdx`,
   contentType: 'mdx',
@@ -21,44 +32,147 @@ defineDocumentType(() => ({
 }))
 ```
 
-## Usage from Next.js
+## Usage in Next.js
+
+To parse the contents of a MDX file in a Next.js page, use the `useMDXComponent` hook provided by `next-contentlayer/hooks`.
+
+### Pages Directory
+
+Here's an example implementation in Next.js using the legacy `/pages` directory:
 
 ```tsx
-import React from 'react'
+// pages/posts/[slug].tsx
 import { allPosts, type Post } from 'contentlayer/generated'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 
-export const getStaticProps = () => {
-  const post = allPosts[0]
+export async function getStaticPaths() {
+  // Get a list of valid post paths.
+  const paths = allPosts.map((post) => ({
+    params: { slug: post._raw.flattenedPath },
+  }))
+
+  return { paths, fallback: false }
+}
+
+export async function getStaticProps(context) {
+  // Find the post for the current page.
+  const post = allPosts.find((post) => post._raw.flattenedPath === context.params.slug)
+
+  // Return notFound if the post does not exist.
+  if (!post) return { notFound: true }
+
+  // Return the post as page props.
   return { props: { post } }
 }
 
-const MyButton: React.FC = () => <button>Click me</button>
-
-const Page: React.FC<{ post }> = ({ post }) => {
+export default function Page({ post }: { post: Post }) {
+  // Parse the MDX file via the useMDXComponent hook.
   const MDXContent = useMDXComponent(post.body.code)
-  
+
   return (
     <div>
       {/* Some code ... */}
-      <MDXContent components={{ MyButton }} />
+      <MDXContent />
     </div>
   )
 }
-
-export default Page
 ```
+
+In this example, the `getStaticPaths` function returns an array of all valid post slugs for pre-rendering and the `getStaticProps` function retrieves the relevant MDX post for the current page. The `useMDXComponent` hook then processes the MDX file via [`mdx-bundler`](https://github.com/kentcdodds/mdx-bundler). Finally, the rendered content is displayed using the `MDXContent` component returned by the `useMDXComponent` hook.
+
+### App Directory
+
+Here's an example implementation in Next.js version 13 and above using the new `/app` directory:
+
+```tsx
+// app/posts/[slug]/page.tsx
+import { allPosts } from 'contentlayer/generated'
+import { useMDXComponent } from 'next-contentlayer/hooks'
+import { notFound } from 'next/navigation'
+
+export async function generateStaticParams() {
+  return allPosts.map((post) => ({
+    slug: post._raw.flattenedPath,
+  }))
+}
+
+export default async function Page({ params }: { params: { slug: string } }) {
+  // Find the post for the current page.
+  const post = allPosts.find((post) => post._raw.flattenedPath === params.slug)
+
+  // 404 if the post does not exist.
+  if (!post) notFound()
+
+  // Parse the MDX file via the useMDXComponent hook.
+  const MDXContent = useMDXComponent(post.body.code)
+
+  return (
+    <div>
+      {/* Some code ... */}
+      <MDXContent />
+    </div>
+  )
+}
+```
+
+In this example, the `generateStaticParams` function returns an array of all valid post slugs for pre-rendering. The `useMDXComponent` hook then processes the MDX file for the current page via [`mdx-bundler`](https://github.com/kentcdodds/mdx-bundler). Finally, the rendered content is displayed using the `MDXContent` component returned by the `useMDXComponent` hook.
+
+## Custom MDX Components
+
+You can override built-in HTML elements and create your own custom React components using the `components` prop of the `MDXContent` component returned by the `useMDXComponent` hook.
+
+Here's an example implementation:
+
+```tsx
+import { allPosts } from 'contentlayer/generated'
+import type { MDXComponents } from 'mdx/types'
+import { useMDXComponent } from 'next-contentlayer/hooks'
+import Link from 'next/link'
+
+// Define your custom MDX components.
+const mdxComponents: MDXComponents = {
+  // Override the default <a> element to use the next/link component.
+  a: ({ href, children }) => <Link href={href as string}>{children}</Link>,
+  // Add a custom component.
+  MyComponent: () => <div>Hello World!</div>,
+}
+
+export default async function Page({ params }: { params: { slug: string } }) {
+  // Find the post for the current page.
+  const post = allPosts.find((post) => post._raw.flattenedPath === params.slug)
+
+  // 404 if the post does not exist.
+  if (!post) notFound()
+
+  // Parse the MDX file via the useMDXComponent hook.
+  const MDXContent = useMDXComponent(post.body.code)
+
+  return (
+    <div>
+      {/* Some code ... */}
+      <MDXContent components={mdxComponents} /> {/* <= Include your custom MDX components here */}
+    </div>
+  )
+}
+```
+
+In this example, we define a custom `mdxComponents` object that overrides the default `<a>` element to use the `next/link` component and adds a custom `MyComponent` component. Then, we include our custom components by passing the `mdxComponents` object to the `components` prop of the `MDXContent` component.
 
 ## MDX Plugins (remark/rehype)
 
 You can add [remark](https://github.com/remarkjs/remark) and [rehype](https://github.com/rehypejs/rehype) plugins inside the `mdx` property when calling `makeSource` in your Contentlayer configuration.
 
 ```js
+// contentlayer.config.ts
 import { makeSource } from 'contentlayer/source-files'
+import remarkGfm from 'remark-gfm'
 import highlight from 'rehype-highlight'
 
 export default makeSource({
   // ...
-  mdx: { rehypePlugins: [highlight] },
+  mdx: {
+    remarkPlugins: [remarkGfm],
+    rehypePlugins: [highlight],
+  },
 })
 ```
