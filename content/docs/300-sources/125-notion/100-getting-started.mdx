@@ -58,13 +58,8 @@ Click on the `•••` in the top right corner of your database, then on **Add
 
 ### Install dependencies
 
-You will need to install the following dependencies to get started:
-
-- `contentlayer-source-notion`: The Notion content source implementation for Contentlayer
-- `@notionhq/client`: The official Notion JS SDK
-
 ```text
-npm install contentlayer-source-notion @notionhq/client
+npm install contentlayer-source-notion
 ```
 
 ### Configure Notion source plugin
@@ -75,12 +70,9 @@ To configure the Notion Source plugin you need to create an instance of `@notion
 // contentlayer.config.js
 
 import { makeSource, defineDatabase } from 'contentlayer-source-notion'
-import { Client } from '@notionhq/client'
-
-const client = new Client({ auth: process.env.NOTION_TOKEN })
 
 export default makeSource({
-  client,
+  client: { auth: process.env.NOTION_TOKEN },
   documentTypes: [],
 })
 ```
@@ -99,9 +91,6 @@ In our case we want to:
 // contentlayer.config.js
 
 import { makeSource, defineDatabase } from 'contentlayer-source-notion'
-import * as notion from '@notionhq/client'
-
-const client = new notion.Client({ auth: process.env.NOTION_TOKEN })
 
 export const Post = defineDatabase(() => ({
   name: 'Post',
@@ -128,7 +117,7 @@ export const Post = defineDatabase(() => ({
 }))
 
 export default makeSource({
-  client,
+  client: { auth: process.env.NOTION_TOKEN },
   documentTypes: [Post],
 })
 ```

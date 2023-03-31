@@ -10,33 +10,12 @@ excerpt: How to configure how the HTML is generated for Rich text content with c
 
 The `contentlayer-source-notion` uses [`@notion-render/client`](https://www.npmjs.com/package/@notion-render/client) under the hood to transform your Rich text content (Rich Text properties and pages content) into HTML that you can then use and style in your app.
 
-## Use own instance of the renderer
-
-If you want to configure the renderer, you have to provide your own instance (by defaults one is generated for you).
-
-### Install `@notion-render/client`
+## Install `@notion-render/client`
 
 Run the following command to add `@notion-render/client` to your dependencies:
 
 ```text
 npm install @notion-render/client
-```
-
-### Pass the renderer to the source plugin
-
-```js
-// contentlayer.config.js
-import { makeSource } from 'contentlayer-source-notion'
-import * as notion from '@notionhq/client'
-import { NotionRenderer } from '@notion-render/client'
-
-const client = new notion.Client({ auth: process.env.NOTION_TOKEN })
-const renderer = new NotionRenderer({ client })
-
-export default makeSource({
-  client,
-  renderer,
-})
 ```
 
 ## Configure the renderer
@@ -67,12 +46,15 @@ const paragraphRenderer = createBlockRenderer<ParagraphBlockObjectResponse>('par
 You can add your block renderers directly in the constructor parameters or with the method `addBlockRenderer`.
 
 ```typescript
-import { NotionRenderer } from '@syneki/notion-render'
-
-const renderer = new NotionRenderer({
-  renderers: [paragraphRenderer],
-})
+import { makeSource } from 'contentlayer-source-notion'
 
 // or
 renderer.addBlockRenderer(paragraphRenderer)
+
+export default makeSource({
+  client,
+  renderer: {
+    renderers: [paragraphRenderer],
+  },
+})
 ```
