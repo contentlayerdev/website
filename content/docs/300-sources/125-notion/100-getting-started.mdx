@@ -81,7 +81,7 @@ const client = new Client({ auth: process.env.NOTION_TOKEN })
 
 export default makeSource({
   client,
-  documentTypes: [],
+  databaseTypes: [],
 })
 ```
 
@@ -129,7 +129,7 @@ export const Post = defineDatabase(() => ({
 
 export default makeSource({
   client,
-  documentTypes: [Post],
+  databaseTypes: [Post],
 })
 ```
 
