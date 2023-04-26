@@ -1,0 +1,37 @@
+---
+title: Stackbit
+excerpt: Stackbit is a composable visual editor that supports multiple content sources and site frameworks.
+label: Experimental
+collapsible: true
+collapsed: true
+show_child_cards: true
+---
+
+Stackbit is a composable visual editor that supports multiple content sources and site frameworks.
+
+![Visual Editing with Stackbit](/images/stackbit-visual-editing.gif)
+
+Contentlayer can be used in sites that are Stackbit-enabled to ease the process for developers working with content in their components and pages.
+
+Contentlayer provides a method for [transforming Stackbit configuration into Contentlayer configuration](/docs/integrations/stackbit/config), so you only have to define the shape of your content in one place.
+
+## How it Works
+
+With the appropriate packages installed, the process works like this:
+
+1. Define the shape of your documents using [Stackbit's `models` property](https://docs.stackbit.com/reference/config/content-modeling/models).
+1. Import Stackbit config object into the Contentlayer configuration file.
+1. Extend any necessary properties to support your code.
+1. Configure the Contentlayer source.
+
+See below for an example, and also view [the API reference](/docs/integrations/stackbit/config) for specific usage details.
+
+## Example Project
+
+If you'd like to see this in process, check out [this example project](https://github.com/stackbit-themes/stackbit-examples/tree/main/contentlayer), which integrates Stackbit and Contentlayer in a Next.js site.
+
+The README file has setup information, but we recommend reading through the tutorial below to understand how the pieces fit together.
+
+## Stackbit Guides
+
+The following docs will get you started integrating Stackbit and Contentlayer into your Next.js project.
