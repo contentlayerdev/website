@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 3001 & local-ssl-proxy --source 3000 --target 3001",
-    "build": "next build",
-    "postbuild": "next-sitemap",
+    "build": "contentlayer build && next build && next-sitemap",
     "start": "next start",
     "check-links": "blc \"http://localhost:3001\" -roe"
   },
