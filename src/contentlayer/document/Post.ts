@@ -1,4 +1,4 @@
-import { defineDocumentType, defineNestedType } from 'contentlayer/source-files'
+import { defineDocumentType, defineNestedType } from '@contentlayer/source-files'
 import type * as unified from 'unified'
 import { mdxToMarkdown } from 'mdast-util-mdx'
 import { toMarkdown } from 'mdast-util-to-markdown'
