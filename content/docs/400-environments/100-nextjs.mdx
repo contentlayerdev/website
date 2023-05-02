@@ -58,8 +58,8 @@ Content live reload should work out-of-the-box with Next.js when using the `next
 However, in some cases (due to a bug in Next.js) you might need to add the following hook to your app/page components:
 
 ```tsx
-import { useLiveReload } from 'next-contentlayer/hooks';
-import { allPosts } from 'contentlayer/generated';
+import { useLiveReload } from 'next-contentlayer/hooks'
+import { allPosts } from 'contentlayer/generated'
 
 export function MyPage() {
   useLiveReload() // this only runs during development and has no impact on production
