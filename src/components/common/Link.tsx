@@ -8,7 +8,7 @@ export const Link: FC<{ href: string; children: ReactNode }> = ({ href, children
   return (
     <NextLink href={href}>
       <a
-        className="inline-flex items-center space-x-1"
+        className="inline-flex items-center m-0 space-x-1"
         target={isExternalUrl ? '_blank' : undefined}
         rel={isExternalUrl ? 'noreferrer' : undefined}
       >

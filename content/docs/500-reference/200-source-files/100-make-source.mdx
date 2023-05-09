@@ -12,7 +12,7 @@ The code calling `makeSource` should be placed in `contentlayer.config.js`.
 ```ts
 // contentlayer.config.js
 
-import { makeSource } from 'contentlayer/source-files'
+import { makeSource } from '@contentlayer/source-files'
 
 export default makeSource({
   /* options */
@@ -23,9 +23,9 @@ export default makeSource({
 
 <OptionsTable>
   <OptionTitle>
-    ### `contentDirPath` 
+    ### `contentDirPath`
     (required)
-    
+
   </OptionTitle>
   <OptionDescription>
     Path to where the content lives, relative to the root of your project.
@@ -101,7 +101,7 @@ export default makeSource({
 
   </OptionDescription>
   <OptionTitle>
-    ### `documentTypes` 
+    ### `documentTypes`
     (required)
 
   </OptionTitle>
@@ -126,7 +126,7 @@ export default makeSource({
     Here's an example that adds syntax highlighting with [highlight.js](https://highlightjs.org/usage/) (don't forget to add the css file somewhere e.g. from CDN).
 
     ```js
-    import { makeSource } from 'contentlayer/source-files'
+    import { makeSource } from '@contentlayer/source-files'
     import highlight from 'rehype-highlight'
 
     export default makeSource({
@@ -134,11 +134,11 @@ export default makeSource({
       markdown: { rehypePlugins: [highlight] },
     })
     ```
-    
+
     **Taking over the remark pipeline**
-    
+
     [Under the hood](https://github.com/contentlayerdev/contentlayer/blob/2588c02e266289b8ef0a7ceccdeb804b045ad21a/packages/%40contentlayer/core/src/markdown/markdown.ts#L45), Contentlayer uses its own remark/rehype pipeline, and the plugins specified above are added after the preset plugins (for remark: `remarkFrontmatter`, `remarkParse`, and `remark2rehype`, and for rehype: `rehypeStringify`). However, if you need full control of the pipeline (e.g. [to add `allowDangerousHtml` to the `remark2rehype` plugin so that HTML is not stripped from markdown](https://github.com/contentlayerdev/contentlayer/issues/413), you can specify a function instead of an object:
-    
+
     ```js
     export default makeSource({
       // ...
@@ -170,7 +170,7 @@ export default makeSource({
     **Example:**
 
     ```js
-    import { makeSource } from 'contentlayer/source-files'
+    import { makeSource } from '@contentlayer/source-files'
     import highlight from 'rehype-highlight'
 
     export default makeSource({

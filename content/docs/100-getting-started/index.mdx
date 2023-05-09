@@ -24,120 +24,111 @@ The blog will include a list of posts with a title, body, and date, rendered wit
 
 Just to demonstrate how quickly we can start working, let's start with a new blank Next.js project.
 
-### New Next.js App
-
-Create a new Next.js project.
-
 ```txt
-npx create-next-app contentlayer-example
+npx create-next-app@latest --typescript --tailwind --experimental-app --eslint contentlayer-example
 ```
 
-That command will place the project in a `contentlayer-example` directory. Change into that directory.
+Answer any prompts that appear, then change into the new `contentlayer-example` directory.
 
 ```txt
 cd contentlayer-example
 ```
 
-### Add Tailwind
+### Install Dependencies
 
-If you'd like to see some styling as we go without much extra effort, [follow these instructions](https://tailwindcss.com/docs/guides/nextjs) to add Tailwind to your project.
-
-## 2. Install Contentlayer
-
-Install Contentlayer and the Next.js plugin.
+Install Contentlayer and the Next.js plugin, along with a helper package for dates.
 
 ```txt
-npm install contentlayer next-contentlayer
+npm install contentlayer next-contentlayer date-fns
 ```
+
+### Next.js Configuration
 
 To hook Contentlayer into the `next dev` and `next build` processes, you'll want to wrap the Next.js configuration using the `withContentlayer` method.
 
-Create a new file called `next.config.js` in the root of your project, and add the following content.
-
 ```js
 // next.config.js
-
-const { withContentlayer } = require("next-contentlayer")
+const { withContentlayer } = require('next-contentlayer')
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-  swcMinify: true,
-  // Optionally, add any other Next.js config below
-  ...
-}
+const nextConfig = { reactStrictMode: true, swcMinify: true }
 
 module.exports = withContentlayer(nextConfig)
 ```
 
+### TypeScript Configuration
+
 Then add the following lines to your `tsconfig.json` or `jsconfig.json` file:
 
 ```json
+// tsconfig.json
 {
   "compilerOptions": {
     "baseUrl": ".",
+    //  ^^^^^^^^^^^
     "paths": {
       "contentlayer/generated": ["./.contentlayer/generated"]
-      // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     }
   },
-  "include": ["next-env.d.ts", "**/*.tsx", "**/*.ts", ".contentlayer/generated"]
-  //                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".contentlayer/generated"
+    // ^^^^^^^^^^^^^^^^^^^^^^
+  ]
 }
 ```
 
-Contentlayer generates files in the `.contentlayer/generated` directory. This tells JavaScript (or TypeScript) to create an alias of `contentlayer/generated` to the generated files directory.
+This configures the Next.js build process and your editor to know where to look for generated files, and to make it easier to import them into your code.
 
-Finally, add the `.contentlayer` directory into your `.gitignore` file to ensure each build of your app will have the latest generated data and you do not run into issues with Git.
+### Ignore Build Output
 
-## 3. Define Post Schema
+Add the `.contentlayer` directory into your `.gitignore` file to ensure each build of your app will have the latest generated data and you do not run into issues with Git.
 
-Now that we have everything installed, we can begin to define our document schema. A document is an individual piece of content that Contentlayer transforms into data you can use in your components.
+```bash
+# .gitignore
 
-Because we're building a simple blog site, let's define a single document type called `Post`. Create a file `contentlayer.config.js` in the root of your project, and add the following content.
+# ...
+
+# contentlayer
+.contentlayer
+```
+
+## 2. Define Content Schema
+
+Let's get our content schema defined and add some content to our site.
+
+### Add Contentlayer Config
+
+Because we're building a simple blog site, let's define a single document type called `Post`. Create a file `contentlayer.config.ts` in the root of your project, and add the following content.
 
 ```js
-// contentlayer.config.js
-
-import { defineDocumentType, makeSource } from 'contentlayer/source-files'
+// contentlayer.config.ts
+import { defineDocumentType, makeSource } from '@contentlayer/source-files'
 
 export const Post = defineDocumentType(() => ({
   name: 'Post',
   filePathPattern: `**/*.md`,
   fields: {
-    title: {
-      type: 'string',
-      description: 'The title of the post',
-      required: true,
-    },
-    date: {
-      type: 'date',
-      description: 'The date of the post',
-      required: true,
-    },
+    title: { type: 'string', required: true },
+    date: { type: 'date', required: true },
   },
   computedFields: {
-    url: {
-      type: 'string',
-      resolve: (post) => `/posts/${post._raw.flattenedPath}`,
-    },
+    url: { type: 'string', resolve: (post) => `/posts/${post._raw.flattenedPath}` },
   },
 }))
 
-export default makeSource({
-  contentDirPath: 'posts',
-  documentTypes: [Post],
-})
+export default makeSource({ contentDirPath: 'posts', documentTypes: [Post] })
 ```
 
-This configuration specifies a single document type called `Post`. These documents are expected to be `.md` files that live within a `posts` directory in your project. And data objects generated from these files will have the following properties:
+This configuration specifies a single document type called `Post`. These documents are expected to be Markdown files that live within a `posts` directory in your project.
 
-- `title`: String pulled from the file's frontmatter.
-- `date`: JavaScript `Date` object, pulled from the file's frontmatter.
-- `body`: An object that contains the `raw` content from the markdown file and the converted `html` string. (This is built into Contentlayer by default and does not have to be defined.)
-- `url`: A string that takes the name of the file (without the extension) and prepends `/posts/` to it, thus defining that path at which that content will be available on your site. (More on this soon.)
+Any data objects generated from these files will contain the fields specified above, along with a `body` field that contains the raw and HTML content of the file. The `url` field is a special computed field that gets automatically added to all post documents, based on meta properties from the source file.
 
-## 4. Add Post Content
+### Add Post Content
 
 Create a few markdown files in a `posts` directory and add some content to those files.
 
@@ -145,21 +136,11 @@ Here's an example of what a post file at `posts/post-01.md` might look like:
 
 ```txt
 ---
-title: Lorem Ipsum
+title: My First Post
 date: 2021-12-24
 ---
 
-Ullamco et nostrud magna commodo nostrud occaecat quis pariatur id ipsum. Ipsum
-consequat enim id excepteur consequat nostrud esse esse fugiat dolore.
-Reprehenderit occaecat exercitation non cupidatat in eiusmod laborum ex eu
-fugiat aute culpa pariatur. Irure elit proident consequat veniam minim ipsum ex
-pariatur.
-
-Mollit nisi cillum exercitation minim officia velit laborum non Lorem
-adipisicing dolore. Labore commodo consectetur commodo velit adipisicing irure
-dolore dolor reprehenderit aliquip. Reprehenderit cillum mollit eiusmod
-excepteur elit ipsum aute pariatur in. Cupidatat ex culpa velit culpa ad non
-labore exercitation irure laborum.
+Ullamco et nostrud magna commodo nostrud ...
 ```
 
 The examples to follow will have three posts in this structure:
@@ -171,61 +152,42 @@ posts/
 └── post-03.md
 ```
 
-## 5. Add Post Feed
+## 3. Add Site Code
 
 Now we can tie it all together by bringing the data into our pages.
-
-### Date Formatting Helper
-
-Before we get into the pages, add a library to help us with formatting the date.
-
-```txt
-npm install date-fns
-```
 
 ### Replace Home Page
 
 Replace the default home page (`pages/index.js`) with a listing of all the posts and links to the individual post pages.
 
 ```jsx
-// pages/index.js
-
-import Head from 'next/head'
+// app/page.tsx
 import Link from 'next/link'
 import { compareDesc, format, parseISO } from 'date-fns'
-import { allPosts } from 'contentlayer/generated'
+import { allPosts, Post } from 'contentlayer/generated'
 
-export async function getStaticProps() {
-  const posts = allPosts.sort((a, b) => {
-    return compareDesc(new Date(a.date), new Date(b.date))
-  })
-  return { props: { posts } }
-}
-
-function PostCard(post) {
+function PostCard(post: Post) {
   return (
-    <div className="mb-6">
-      <time dateTime={post.date} className="block text-sm text-slate-600">
-        {format(parseISO(post.date), 'LLLL d, yyyy')}
-      </time>
-      <h2 className="text-lg">
-        <Link href={post.url}>
-          <a className="text-blue-700 hover:text-blue-900">{post.title}</a>
+    <div className="mb-8">
+      <h2 className="mb-1 text-xl">
+        <Link href={post.url} className="text-blue-700 hover:text-blue-900 dark:text-blue-400">
+          {post.title}
         </Link>
       </h2>
+      <time dateTime={post.date} className="mb-2 block text-xs text-gray-600">
+        {format(parseISO(post.date), 'LLLL d, yyyy')}
+      </time>
+      <div className="text-sm [&>*]:mb-3 [&>*:last-child]:mb-0" dangerouslySetInnerHTML={{ __html: post.body.html }} />
     </div>
   )
 }
 
-export default function Home({ posts }) {
+export default function Home() {
+  const posts = allPosts.sort((a, b) => compareDesc(new Date(a.date), new Date(b.date)))
+
   return (
-    <div className="mx-auto max-w-2xl py-16 text-center">
-      <Head>
-        <title>Contentlayer Blog Example</title>
-      </Head>
-
-      <h1 className="mb-8 text-3xl font-bold">Contentlayer Blog Example</h1>
-
+    <div className="mx-auto max-w-xl py-8">
+      <h1 className="mb-8 text-center text-2xl font-black">Next.js + Contentlayer Example</h1>
       {posts.map((post, idx) => (
         <PostCard key={idx} {...post} />
       ))}
@@ -234,89 +196,62 @@ export default function Home({ posts }) {
 }
 ```
 
-Notice that the data was already available to us as `allPosts`, coming from `contentlayer/generated`. We used `allPosts` to sort the post in reverse chronological order, and then sent the posts to the home page as props.
-
-The home page then used the post data to map through the individual posts and render `PostCard` components. As your site grows, you'll want to break these components out into their own files. We're showing everything in the same file here to keep things simple.
+Notice that we imported the process post data directly into the page component. We then sorted `allPosts` to sort the post in reverse chronological order, and rendered a series of card components.
 
 ### Run the App
 
-Now you're ready to take it for a spin. Fire up the Next.js dev server.
+Run the Next.js development server.
 
 ```txt
 npm run dev
 ```
 
-And visit localhost:3000 in your browser. You should see a listing of the posts you added to the `posts` directory!
+And visit localhost:3000 to see the post feed on the home page.
 
-![Post Feed](/images/post-feed.png)
+### Add Post Layout
 
-## 6. Add Post Layout
-
-Notice that if you click on individual posts, you get a 404 error. That's because we haven't created the pages for these posts. Let's do that!
+Right now, clicking on a post leads to a 404 error. Let's fix that!
 
 Create the page at `pages/posts/[slug].js` and add the following code.
 
 ```jsx
-// pages/posts/[slug].js
-
-import Head from 'next/head'
-import Link from 'next/link'
+// app/posts/[slug]/page.tsx
 import { format, parseISO } from 'date-fns'
 import { allPosts } from 'contentlayer/generated'
 
-export async function getStaticPaths() {
-  const paths = allPosts.map((post) => post.url)
-  return {
-    paths,
-    fallback: false,
-  }
-}
+export const generateStaticParams = async () => allPosts.map((post) => ({ slug: post._raw.flattenedPath }))
 
-export async function getStaticProps({ params }) {
+export const generateMetadata = ({ params }: { params: { slug: string } }) => {
   const post = allPosts.find((post) => post._raw.flattenedPath === params.slug)
-  return {
-    props: {
-      post,
-    },
-  }
+  if (!post) throw new Error(`Post not found for slug: ${params.slug}`)
+  return { title: post.title }
 }
 
-const PostLayout = ({ post }) => {
+const PostLayout = ({ params }: { params: { slug: string } }) => {
+  const post = allPosts.find((post) => post._raw.flattenedPath === params.slug)
+  if (!post) throw new Error(`Post not found for slug: ${params.slug}`)
+
   return (
-    <>
-      <Head>
-        <title>{post.title}</title>
-      </Head>
-      <article className="mx-auto max-w-2xl py-16">
-        <div className="mb-6 text-center">
-          <Link href="/">
-            <a className="text-center text-sm font-bold uppercase text-blue-700">Home</a>
-          </Link>
-        </div>
-        <div className="mb-6 text-center">
-          <h1 className="mb-1 text-3xl font-bold">{post.title}</h1>
-          <time dateTime={post.date} className="text-sm text-slate-600">
-            {format(parseISO(post.date), 'LLLL d, yyyy')}
-          </time>
-        </div>
-        <div className="cl-post-body" dangerouslySetInnerHTML={{ __html: post.body.html }} />
-      </article>
-    </>
+    <article className="mx-auto max-w-xl py-8">
+      <div className="mb-8 text-center">
+        <time dateTime={post.date} className="mb-1 text-xs text-gray-600">
+          {format(parseISO(post.date), 'LLLL d, yyyy')}
+        </time>
+        <h1 className="text-3xl font-bold">{post.title}</h1>
+      </div>
+      <div className="[&>*]:mb-3 [&>*:last-child]:mb-0" dangerouslySetInnerHTML={{ __html: post.body.html }} />
+    </article>
   )
 }
 
 export default PostLayout
 ```
 
-Notice again that we're importing data from `contentlayer/generated`. This is the beauty of Contentlayer. It has already loaded and shaped our date and keeps the logic in `getStaticPaths()` and `getStaticProps()` nice and simple.
-
-Now clicking on a post link from the home page should lead you to a working post page.
-
-![Post Layout](/images/post-layout.png)
+Notice again that we're importing data from `contentlayer/generated`. This is the beauty of Contentlayer. Now clicking on a post link from the home page should lead you to a working post page.
 
 ## Next Steps
 
-You now have a simple blog site with Next.js and Contentlayer! 🎉
+You now have a simple blog site with Next.js and Contentlayer!
 
 This is just the beginning. Now you can dig in and add all the bells and whistles necessary to build a site with great content using Contentlayer. Here are a few suggestions:
 
