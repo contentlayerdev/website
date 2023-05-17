@@ -15,6 +15,11 @@ export const Doc = defineDocumentType(() => ({
   filePathPattern: `docs/**/*.mdx`,
   contentType: 'mdx',
   fields: {
+    id: {
+      type: 'string',
+      description: 'Random ID to uniquely identify this doc, even after it moves',
+      required: true,
+    },
     title: {
       type: 'string',
       description: 'The title of the page',
