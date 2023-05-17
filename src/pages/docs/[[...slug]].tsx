@@ -24,7 +24,6 @@ import { useRouter } from 'next/router'
 
 export const getStaticPaths = async () => {
   const paths = allDocs.map((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join('/')).map(toParams)
-  console.log(paths)
   return { paths, fallback: false }
 }
 
@@ -32,7 +31,6 @@ export const getStaticProps = defineStaticProps(async (context) => {
   const params = context.params as any
   const pagePath = params.slug?.join('/') ?? ''
   const doc = allDocs.find((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join('/') === pagePath)!
-  console.log({ doc })
   let slugs = params.slug ? ['', ...params.slug] : []
   let path = ''
   let breadcrumbs: any = []
