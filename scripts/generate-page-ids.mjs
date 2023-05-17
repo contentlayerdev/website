@@ -4,8 +4,14 @@ import fs from 'fs'
 
 const pages = glob.sync('./content/docs/**/*.md*')
 
-pages.forEach((pagePath) => {
+function generateId() {
   const id = crypto.randomBytes(4).toString('hex')
+  if (id.match(/^\d/)) return generateId()
+  return id
+}
+
+pages.forEach((pagePath) => {
+  const id = generateId()
   const content = fs.readFileSync(pagePath, 'utf8')
   if (content.match(/^---\nid: /)) {
     console.log(`[Notice] ${pagePath} already has an id`)
