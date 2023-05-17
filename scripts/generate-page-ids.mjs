@@ -10,11 +10,14 @@ function generateId() {
   return id
 }
 
+const skipped = []
+
 pages.forEach((pagePath) => {
   const id = generateId()
   const content = fs.readFileSync(pagePath, 'utf8')
   if (content.match(/^---\nid: /)) {
-    console.log(`[Notice] ${pagePath} already has an id`)
+    skipped.push(pagePath)
+    return
   }
   if (!content.startsWith('---\n')) {
     throw new Error(`[Error] ${pagePath} does not have frontmatter`)
@@ -22,4 +25,9 @@ pages.forEach((pagePath) => {
 
   const newContent = content.replace(/^---\n/, `---\nid: ${id}\n`)
   fs.writeFileSync(pagePath, newContent)
+  console.log(`[New ID] ${pagePath} -> ${id}`)
 })
+
+if (skipped.length) {
+  console.log(`[Skipped] ${skipped.length} with existing ids`)
+}
