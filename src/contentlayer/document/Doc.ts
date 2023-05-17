@@ -65,7 +65,7 @@ export const Doc = defineDocumentType(() => ({
         urlFromFilePath(doc)
           .split('/')
           // skip `/docs` prefix
-          .slice(1)
+          .slice(2)
           .map((dirName) => {
             const re = /^((\d+)-)?(.*)$/
             const [, , orderStr, pathName] = dirName.match(re) ?? []
