@@ -5,7 +5,9 @@ import path from 'node:path'
 export const contentDirPath = 'content'
 
 export const urlFromFilePath = (doc: DocumentGen): string => {
-  return doc._raw.flattenedPath.replace(/pages\/?/, '')
+  let urlPath = doc._raw.flattenedPath.replace(/pages\/?/, '')
+  if ('id' in doc) urlPath += `-${doc.id}`
+  return urlPath
 }
 
 export const getLastEditedDate = async (doc: DocumentGen): Promise<Date> => {
