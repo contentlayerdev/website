@@ -62,7 +62,7 @@ export const Doc = defineDocumentType(() => ({
     pathSegments: {
       type: 'json',
       resolve: (doc) =>
-        doc._raw.flattenedPath
+        urlFromFilePath(doc)
           .split('/')
           // skip `/docs` prefix
           .slice(1)

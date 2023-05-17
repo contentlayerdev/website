@@ -5,8 +5,14 @@ import path from 'node:path'
 export const contentDirPath = 'content'
 
 export const urlFromFilePath = (doc: DocumentGen): string => {
-  let urlPath = doc._raw.flattenedPath.replace(/pages\/?/, '')
+  let urlPath = doc._raw.flattenedPath.replace(/^pages\/?/, '/')
+  if (!urlPath.startsWith('/')) urlPath = `/${urlPath}`
   if ('id' in doc) urlPath += `-${doc.id}`
+  // Remove preceding indexes from path segments
+  urlPath = urlPath
+    .split('/')
+    .map((segment) => segment.replace(/^\d\d\d\-/, ''))
+    .join('/')
   return urlPath
 }
 
