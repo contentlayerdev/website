@@ -1,11 +1,11 @@
-import type { InferGetStaticPropsType } from 'next'
+import type { InferGetServerSidePropsType } from 'next'
 // TODO remove eslint-disable when fixed https://github.com/import-js/eslint-plugin-import/issues/1810
 // eslint-disable-next-line import/no-unresolved
 import { useLiveReload, useMDXComponent } from 'next-contentlayer/hooks'
 import type { FC } from 'react'
-import { allDocs } from 'contentlayer/generated'
+import { allDocs, Doc } from 'contentlayer/generated'
 import { Container } from '../../components/common/Container'
-import { defineStaticProps, toParams } from '../../utils/next'
+import { defineServerSideProps, toParams } from '../../utils/next'
 import { DocsNavigation } from 'src/components/docs/DocsNavigation'
 import { Callout } from '../../components/common/Callout'
 import { DocsCard as Card } from 'src/components/docs/DocsCard'
@@ -22,49 +22,67 @@ import { H2, H3, H4 } from 'src/components/common/Headings'
 import { OptionsTable, OptionTitle, OptionDescription } from 'src/components/docs/OptionsTable'
 import { useRouter } from 'next/router'
 
-export const getStaticPaths = async () => {
-  const pathsWithId = allDocs.map((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join('/')) as string[]
-  const pathsWithoutId = pathsWithId.map((_) => _.slice(0, -9))
-
-  const paths = [...pathsWithoutId, ...pathsWithId].map(toParams)
-  console.log(paths.map((_) => _.params.slug))
-  return { paths, fallback: false }
-}
-
-export const getStaticProps = defineStaticProps(async (context) => {
-  const params = context.params as any
-  const pagePath = params.slug?.join('/') ?? ''
-  // Doc matches with global content ID
-  let doc = allDocs.find((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join('/') === pagePath)!
-  let urlHasId = true
-  // Content id is missing in url
-  if (!doc) {
-    doc = allDocs.find((_) => {
-      let docUrlPath = _.pathSegments.map((_: PathSegment) => _.pathName).join('/')
-      const docUrlPathWithoutId = docUrlPath.slice(0, -9)
-      return docUrlPathWithoutId === pagePath
-    })!
-    return { redirect: { destination: doc.url_path, permanent: true } }
-  }
-  // console.log({ doc })
-  let slugs = params.slug ? ['', ...params.slug] : []
+function getSupportingProps(doc: Doc, params: any) {
+  let slugs = params.slug ? ['docs', ...params.slug] : []
   let path = ''
   let breadcrumbs: any = []
   for (const slug of slugs) {
-    path += path == '' ? slug : '/' + slug
-    const navTitle = allDocs.find(
-      (_) => _.pathSegments.map((_: PathSegment) => _.pathName).join('/') === path,
-    )?.nav_title
-    const title = allDocs.find((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join('/') === path)?.title
-    breadcrumbs.push({ path: '/docs/' + path, slug, title: navTitle || title })
+    path += `/${slug}`
+    const breadcrumbDoc = allDocs.find((_) => _.url_path === path || _.url_path_without_id === path)
+    if (!breadcrumbDoc) continue
+    breadcrumbs.push({ path: breadcrumbDoc.url_path, title: breadcrumbDoc?.nav_title || breadcrumbDoc?.title })
   }
   const tree = buildDocsTree(allDocs)
   const childrenTree = buildDocsTree(
     allDocs,
     doc.pathSegments.map((_: PathSegment) => _.pathName),
   )
+  return { tree, breadcrumbs, childrenTree }
+}
 
-  return { props: { doc, tree, breadcrumbs, childrenTree } }
+export const getServerSideProps = defineServerSideProps(async (context) => {
+  const params = context.params as any
+  const pagePath = params.slug?.join('/') ?? ''
+  let doc
+  // If on the index page, we don't worry about the global_id
+  if (pagePath === '') {
+    doc = allDocs.find((_) => _.url_path === '/docs')
+    if (!doc) return { notFound: true }
+    return { props: { doc, ...getSupportingProps(doc, params) } }
+  }
+  // Identify the global content ID as the last part of the page path following
+  // the last slash. It should be an 8-digit number.
+  const globalContentId: string = pagePath.split('/').filter(Boolean).pop().split('-').pop()
+  // If there is a global content ID, find the corresponding document.
+  if (globalContentId && globalContentId.length === 8) {
+    doc = allDocs.find((_) => _.global_id === globalContentId)
+  }
+  // If we found the doc by the global content ID, but the URL path isn't the
+  // correct one, redirect to the proper URL path.
+  const urlPath = doc?.pathSegments.map((_: PathSegment) => _.pathName).join('/')
+  if (doc && urlPath !== pagePath) {
+    return { redirect: { destination: doc.url_path, permanent: true } }
+  }
+  // If there is no global content ID, or if we couldn't find the doc by the
+  // global content ID, try finding the doc by the page path.
+  if (!globalContentId || !doc) {
+    doc = allDocs.find((_) => {
+      const segments = _.pathSegments
+        .map((_: PathSegment) => _.pathName)
+        .join('/')
+        .replace(new RegExp(`\-${_.global_id}$`, 'g'), '') // Remove global content ID from url
+      return segments === pagePath
+    })
+    // If doc exists, but global content ID is missing in url, redirect to url
+    // with global content ID
+    if (doc) {
+      return { redirect: { destination: doc.url_path, permanent: true } }
+    }
+    // Otherwise, throw a 404 error.
+    return { notFound: true }
+  }
+  // Return the doc and supporting props.
+  return { props: { doc, ...getSupportingProps(doc, params) } }
 })
 
 const mdxComponents = {
@@ -83,7 +101,7 @@ const mdxComponents = {
   OptionDescription,
 }
 
-const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ doc, tree, breadcrumbs, childrenTree }) => {
+const Page: FC<InferGetServerSidePropsType<typeof getServerSideProps>> = ({ doc, tree, breadcrumbs, childrenTree }) => {
   const router = useRouter()
   useLiveReload()
   const MDXContent = useMDXComponent(doc.body.code || '')
@@ -110,7 +128,7 @@ const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ doc, tree, b
               <>
                 <hr />
                 <div className="grid grid-cols-1 gap-6 mt-12 md:grid-cols-2">
-                  {childrenTree.map((card, index) => (
+                  {childrenTree.map((card: any, index: number) => (
                     <div key={index} onClick={() => router.push(card.urlPath)} className="cursor-pointer">
                       <ChildCard className="h-full p-6 py-4 hover:border-violet-100 hover:bg-violet-50 dark:hover:border-violet-900/50 dark:hover:bg-violet-900/20">
                         <h3 className="mt-0 no-underline">{card.title}</h3>

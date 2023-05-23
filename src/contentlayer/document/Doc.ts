@@ -15,7 +15,7 @@ export const Doc = defineDocumentType(() => ({
   filePathPattern: `docs/**/*.mdx`,
   contentType: 'mdx',
   fields: {
-    id: {
+    global_id: {
       type: 'string',
       description: 'Random ID to uniquely identify this doc, even after it moves',
       required: true,
@@ -57,7 +57,16 @@ export const Doc = defineDocumentType(() => ({
       type: 'string',
       description:
         'The URL path of this page relative to site root. For example, the site root page would be "/", and doc page would be "docs/getting-started/"',
-      resolve: urlFromFilePath,
+      resolve: (doc) => {
+        if (doc._id.startsWith('docs/index.md')) return '/docs'
+        return urlFromFilePath(doc)
+      },
+    },
+    url_path_without_id: {
+      type: 'string',
+      description:
+        'The URL path of this page relative to site root. For example, the site root page would be "/", and doc page would be "docs/getting-started/"',
+      resolve: (doc) => urlFromFilePath(doc).replace(new RegExp(`-${doc.global_id}$`), ''),
     },
     pathSegments: {
       type: 'json',
