@@ -15,7 +15,7 @@ The `contentlayer-source-notion` uses [`@notion-render/client`](https://www.npmj
 Run the following command to add `@notion-render/client` to your dependencies:
 
 ```text
-npm install @notion-render/client
+npm install @notionhq/client @notion-render/client
 ```
 
 ## Configure the renderer
@@ -26,7 +26,35 @@ Each block has its own renderer called `block renderer` that takes in input the 
 
 You can find the list of block types on the [Official Notion API documentation](https://developers.notion.com/reference/block).
 
-### Create block renderer
+### Use plugins
+
+There are multiple plugins available for `@notion-client/render`:
+
+- `@notion-render/hljs-plugin`: Use [Highlight.js](https://highlightjs.org/) to colorize your Code blocks.
+- `@notion-render/bookmark-plugin`: Improve bookmark blocks by gathering the targeted website metadata.
+
+```typescript
+import { makeSource } from 'contentlayer-source-notion'
+import { NotionRenderer } from '@notion-render/client'
+import { Client } from '@notionhq/client'
+import hljs from '@notion-render/hljs-plugin'
+import bookmark from '@notion-render/bookmark-plugin'
+
+const client = new Client({ auth: process.env.NOTION_TOKEN })
+const renderer = new NotionRenderer({ client })
+
+renderer.use(bookmark)
+renderer.use(hljs)
+
+export default makeSource({
+  client,
+  renderer,
+})
+```
+
+### Custom block renderer
+
+#### Create the block renderer
 
 You can create a block renderer by using the `createBlockRenderer` function.
 The first parameter is the type of block, the second is the function used to render this type of block.
@@ -41,20 +69,22 @@ const paragraphRenderer = createBlockRenderer<ParagraphBlockObjectResponse>('par
 })
 ```
 
-### Add the block renderer
+#### Add the block renderer
 
 You can add your block renderers directly in the constructor parameters or with the method `addBlockRenderer`.
 
 ```typescript
 import { makeSource } from 'contentlayer-source-notion'
+import { NotionRenderer } from '@notion-render/client'
+import { Client } from '@notionhq/client'
 
-// or
+const client = new Client({ auth: process.env.NOTION_TOKEN })
+const renderer = new NotionRenderer({ client })
+
 renderer.addBlockRenderer(paragraphRenderer)
 
 export default makeSource({
   client,
-  renderer: {
-    renderers: [paragraphRenderer],
-  },
+  renderer,
 })
 ```

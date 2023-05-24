@@ -99,4 +99,29 @@ export default makeSource({
     ```
 
   </OptionDescription>
+  <OptionTitle>
+    ### `dev`
+
+  </OptionTitle>
+  <OptionDescription>
+    Provides the ability to configure the development server when running `contentlayer dev` or `next dev` (with `next-contentlayer`).
+
+    **Options:**
+
+    - `polling` (default: `5000`): Delay in ms between each check for updated pages (can be set to `false` to disable).
+
+    **Example:**
+
+    ```js
+    export default makeSource({
+      dev: {
+        polling: 10_000
+      },
+    })
+    ```
+    <div className="rounded-md border border-yellow-100 bg-yellow-50 px-6 dark:border-orange-500/50 dark:bg-orange-500/20">
+      ⚠ Currently it does not update the schema, only your pages content and properties values.
+    </div>
+
+  </OptionDescription>
 </OptionsTable>
