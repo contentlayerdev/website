@@ -38,6 +38,7 @@
     "autoprefixer": "^10.4.4",
     "broken-link-checker": "^0.7.8",
     "contentlayer": "^0.3.0",
+    "contentlayer-source-notion": "^0.0.1-alpha.26",
     "eslint": "8.13.0",
     "eslint-config-next": "12.1.5",
     "eslint-plugin-import": "^2.26.0",
