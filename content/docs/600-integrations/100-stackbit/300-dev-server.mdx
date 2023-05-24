@@ -1,0 +1,28 @@
+---
+title: Stackbit Development Server
+nav_title: Development Server
+excerpt: Hook the Stackbit development server into Next.js and Contentlayer.
+---
+
+The Stackbit development server is run using [the `stackbit dev` command](https://docs.stackbit.com/reference/stackbit-cli#dev).
+
+[`experimental-next-stackbit`](https://npmjs.com/package/experimental-next-stackbit) can be used in conjunction with [`next-contentlayer`](/docs/reference/next-contentlayer) to hook the [`contentlayer dev`](/docs/reference/cli#dev) and [`stackbit dev`](https://docs.stackbit.com/reference/stackbit-cli#dev) commands into the Next.js development server (`next dev`). See below for usage.
+
+## `withStackbit`
+
+Next.js configuration, along with the [`withContentlayer` hook](/docs/reference/next-contentlayer#withcontentlayer) should be wrapped in the `withStackbit` method.
+
+```js
+// next.config.js
+
+const { withContentlayer } = require('next-contentlayer')
+const { withStackbit } = require('experimental-next-stackbit')
+
+module.exports = withStackbit(
+  withContentlayer({
+    reactStrictMode: true,
+  }),
+)
+```
+
+This function will automatically detect if you are in production (when `process.env.NODE_ENV` is `production`) and skip running the Stackbit development server.

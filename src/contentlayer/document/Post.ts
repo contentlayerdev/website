@@ -1,4 +1,4 @@
-import { defineDocumentType, defineNestedType } from 'contentlayer/source-files'
+import { defineDocumentType, defineNestedType } from '@contentlayer/source-files'
 import type * as unified from 'unified'
 import { mdxToMarkdown } from 'mdast-util-mdx'
 import { toMarkdown } from 'mdast-util-to-markdown'
@@ -30,7 +30,6 @@ const Author = defineNestedType(() => ({
   fields: {
     name: { type: 'string', required: true },
     handle: { type: 'string', required: true },
-    link: { type: 'string', required: true },
     avatar: { type: 'string', required: true },
   },
 }))

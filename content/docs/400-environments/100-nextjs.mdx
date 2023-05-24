@@ -21,6 +21,31 @@ import { withContentlayer } from 'next-contentlayer'
 export default withContentlayer({})
 ```
 
+## App Directory
+
+Contentlayer is now optimized for use with React server components (RSC) within the `app` directory, which was introduced in Next 13. Learn more in [the Next beta docs](https://nextjs.org/docs/app/api-reference/file-conventions/metadata).
+
+### Server vs Client components
+
+At this time, we recommend using Contentlayer with server components.
+
+Using Contentlayer data with [client components](https://nextjs.org/docs/getting-started/react-essentials#client-components) is likely to require users to download data from the entire page. Unless solving a specific need that requires Contentlayer, we recommend using server components.
+
+### Contentlayer Beta
+
+Both Contentlayer and Next.js 13 are currently in beta. This means that there are likely edge cases that we have not yet accounted for. If you run into any issues, please [open an issue](https://github.com/contentlayerdev/contentlayer/issues/new).
+
+We recommend using the latest beta versions of both packages to stay upstream of any resolved issues.
+
+[Join the Discord community](https://discord.gg/rytFErsARm) to discuss any issues you run into and to stay up to date on the latest developments and releases.
+
+### Known Issues
+
+There are a few known issues with using Contentlayer in the `app` directory:
+
+- Infinite looping issue when calling `cache()` in client components. [See here](https://github.com/vercel/next.js/issues/42180#issuecomment-1303451294)
+- Build failure when using Yarn PnP. [See here](https://github.com/vercel/next.js/issues/42427)
+
 ## Working with Images
 
 Image processing with Contentlayer is not currently supported, although we're planning on it. The current recommendation is to place images in the `public` directory, and then use a `string` field to store the path to that image.
@@ -34,14 +59,14 @@ If you want to use `next/image` to render your images, create a component to wra
 For example, say we have an `Image` component in our project that wraps the `next/image`.
 
 ```jsx
-import Image as NextImage from 'next/image'
+import NextImage from 'next/image'
 
 const Image = (props) => {
   return <NextImage /* ... */ />
 }
 ```
 
-You content should then call this component directly.
+Your content should then call this component directly.
 
 ```md
 Other markdown content ...
@@ -58,8 +83,8 @@ Content live reload should work out-of-the-box with Next.js when using the `next
 However, in some cases (due to a bug in Next.js) you might need to add the following hook to your app/page components:
 
 ```tsx
-import { useLiveReload } from 'next-contentlayer/hooks';
-import { allPosts } from 'contentlayer/generated';
+import { useLiveReload } from 'next-contentlayer/hooks'
+import { allPosts } from 'contentlayer/generated'
 
 export function MyPage() {
   useLiveReload() // this only runs during development and has no impact on production

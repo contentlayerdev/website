@@ -72,8 +72,8 @@ To configure the Notion Source plugin you need to create an instance of `@notion
 import { makeSource, defineDatabase } from 'contentlayer-source-notion'
 
 export default makeSource({
-  client: { auth: process.env.NOTION_TOKEN },
-  documentTypes: [],
+  client,
+  databaseTypes: [],
 })
 ```
 
@@ -91,6 +91,8 @@ In our case we want to:
 // contentlayer.config.js
 
 import { makeSource, defineDatabase } from 'contentlayer-source-notion'
+
+const client = new notion.Client({ auth: process.env.NOTION_TOKEN })
 
 export const Post = defineDatabase(() => ({
   name: 'Post',
@@ -117,8 +119,8 @@ export const Post = defineDatabase(() => ({
 }))
 
 export default makeSource({
-  client: { auth: process.env.NOTION_TOKEN },
-  documentTypes: [Post],
+  client,
+  databaseTypes: [Post],
 })
 ```
 

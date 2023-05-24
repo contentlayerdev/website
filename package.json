@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 3001 & local-ssl-proxy --source 3000 --target 3001",
-    "build": "next build",
-    "postbuild": "next-sitemap",
+    "build": "contentlayer build && next build && next-sitemap",
     "start": "next start",
     "check-links": "blc \"http://localhost:3001\" -roe"
   },
@@ -37,7 +36,7 @@
     "@types/react-helmet": "^6.1.5",
     "autoprefixer": "^10.4.4",
     "broken-link-checker": "^0.7.8",
-    "contentlayer": "^0.3.0",
+    "contentlayer": "^0.3.2",
     "contentlayer-source-notion": "^0.0.1-alpha.26",
     "eslint": "8.13.0",
     "eslint-config-next": "12.1.5",
@@ -45,7 +44,7 @@
     "local-ssl-proxy": "^1.3.0",
     "mdast-util-mdx": "^2.0.0",
     "mdast-util-to-markdown": "^1.3.0",
-    "next-contentlayer": "^0.3.0",
+    "next-contentlayer": "^0.3.2",
     "postcss": "^8.4.12",
     "postcss-import": "^14.1.0",
     "prettier": "^2.6.2",
