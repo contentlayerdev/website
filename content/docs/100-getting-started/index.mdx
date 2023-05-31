@@ -158,7 +158,7 @@ Now we can tie it all together by bringing the data into our pages.
 
 ### Replace Home Page
 
-Replace the default home page (`pages/index.js`) with a listing of all the posts and links to the individual post pages.
+Replace the default home page (`app/page.tsx`) with a listing of all the posts and links to the individual post pages.
 
 ```jsx
 // app/page.tsx
@@ -212,7 +212,7 @@ And visit localhost:3000 to see the post feed on the home page.
 
 Right now, clicking on a post leads to a 404 error. Let's fix that!
 
-Create the page at `pages/posts/[slug].js` and add the following code.
+Create the page at `app/posts/[slug]/page.tsx` and add the following code.
 
 ```jsx
 // app/posts/[slug]/page.tsx
