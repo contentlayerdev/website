@@ -32,13 +32,13 @@ const NavLink: FC<{
       )}
     >
       <Link href={url}>
-        <a className="flex h-full grow items-center space-x-2">
+        <a className="flex items-center h-full space-x-2 grow">
           <span>{title}</span>
           {label && <Label text={label} />}
         </a>
       </Link>
       {collapsible && (
-        <button aria-label="Toggle children" onClick={toggleCollapsed} className="mr-2 shrink-0 px-2 py-1">
+        <button aria-label="Toggle children" onClick={toggleCollapsed} className="px-2 py-1 mr-2 shrink-0">
           <span className={`block w-2.5 ${collapsed ? '-rotate-90 transform' : ''}`}>
             <Icon name="chevron-down" />
           </span>

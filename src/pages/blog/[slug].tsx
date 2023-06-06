@@ -13,7 +13,6 @@ import NextImage from 'next/image'
 import { ChevronLink } from '../../components/common/ChevronLink'
 import { Label } from '../../components/common/Label'
 import { BlogHeader } from 'src/components/blog/BlogHeader'
-import { sluggifyTitle, getNodeText } from 'src/utils/sluggify'
 import { Playground } from 'src/components/blog/Playground'
 import { RelatedPosts } from 'src/components/blog/RelatedPosts'
 import { TLDR } from 'src/components/blog/TLDR'
@@ -31,7 +30,6 @@ import { promiseAllProperties } from 'src/utils/object'
 import { useColorScheme } from 'src/components/ColorSchemeContext'
 import { htmlForCodeSnippets, PreprocessedCodeSnippets } from '..'
 import { H2, H3, H4 } from 'src/components/common/Headings'
-import { BlogDetails } from 'src/components/blog/BlogDetails'
 import { Author } from 'src/components/common/Author'
 import { Dashed } from 'src/components/landing-page/Dashed'
 
@@ -165,7 +163,7 @@ const Post: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ post, betaSn
       imagePath={post.seo?.imagePath ?? null}
       urlPath={`/${post.url_path}`}
     >
-      <div className="relative mx-auto max-w-screen-2xl px-4 py-8 md:px-8 md:py-16 lg:px-0">
+      <div className="relative px-4 py-8 mx-auto max-w-screen-2xl md:px-8 md:py-16 lg:px-0">
         <BlogHeader post={post} />
         <div className="blog prose prose-lg prose-slate prose-violet relative mx-auto w-full max-w-full prose-headings:mt-16 prose-headings:font-semibold prose-a:font-normal prose-code:font-normal prose-code:before:content-none prose-code:after:content-none prose-hr:border-gray-200 dark:prose-invert dark:prose-a:text-violet-400 dark:prose-hr:border-gray-800 lg:max-w-[994px] lg:px-16">
           {MDXContent && <MDXContent components={{ ...(mdxComponents as any), BetaCodeWindow }} />}

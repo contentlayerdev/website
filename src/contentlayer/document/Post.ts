@@ -82,7 +82,7 @@ export const Post = defineDocumentType(() => ({
     },
     slug: {
       type: 'string',
-      resolve: (post) => urlFromFilePath(post).replace('blog/', ''),
+      resolve: (post) => urlFromFilePath(post).replace(/^\/blog\//, ''),
     },
     headings: {
       type: 'json',

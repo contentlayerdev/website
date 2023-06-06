@@ -1,4 +1,5 @@
 ---
+global_id: a5ba4922
 title: makeSource
 excerpt: makeSource provides Contentlayer with the schema and configuration when using local files as the content source.
 ---
@@ -212,6 +213,27 @@ export default makeSource({
     Specify date options. Currently only supports:
 
     - `timezone`: Specify the timezone when parsing dates. Based on [@marsnusw/date-fns-tz](https://github.com/marnusw/date-fns-tz#zonedtimetoutc).
+
+  </OptionDescription>
+  <OptionTitle>
+    ### `onSuccess`
+
+  </OptionTitle>
+  <OptionDescription>
+    Callback to run after a build completes successfully. It has access to all the content through the provided asynchronous `importData` method.
+
+    **Example:**
+
+    ```ts
+    import { makeSource } from '@contentlayer/source-files'
+
+    export default makeSource({
+      onSuccess: async (importData) => {
+        const { allDocuments } = await importData()
+        console.log('allDocuments', allDocuments.length)
+      }
+    })
+    ```
 
   </OptionDescription>
 </OptionsTable>
