@@ -227,8 +227,8 @@ export const notionStep2DataTransformation = {
     data: {
       url: '/images/notion-contentlayer-source.png',
       alt: 'Notion Contentlayer source',
-      width: 1367,
-      height: 561,
+      width: 1628,
+      height: 1035,
     },
   },
   to: {
