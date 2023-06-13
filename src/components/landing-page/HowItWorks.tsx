@@ -258,11 +258,6 @@ const content = {
       ],
     },
     {
-      title: 'Contentful',
-      active: false,
-      steps: [],
-    },
-    {
       title: 'Notion',
       active: false,
       steps: [],
