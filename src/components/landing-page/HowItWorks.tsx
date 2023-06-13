@@ -1,12 +1,11 @@
-import { IconName } from '../common/Icon'
-import { FC } from 'react'
-import { Button } from '../common/Button'
-import { CodeWindow } from './CodeWindow'
-import { DataTransformation } from './DataTransformation'
 import * as Tabs from '@radix-ui/react-tabs'
 import * as Tooltip from '@radix-ui/react-tooltip'
+import { FC } from 'react'
+import { Button } from '../common/Button'
+import { IconName } from '../common/Icon'
+import { CodeWindow } from './CodeWindow'
+import { DataTransformation } from './DataTransformation'
 import { Heading } from './Heading'
-import { Paragraph } from './Paragraph'
 
 export const codeSnippets = {
   howItWorksStep1: [
@@ -88,11 +87,42 @@ export default function Post({ post }: { post: Post }) {
 `,
     },
   ],
+  howNotionWorksStep1: [
+    {
+      file: 'contentlayer.config.ts',
+      lines: 23,
+      content: `\
+import { makeSource, defineDatabase } from 'contentlayer-source-notion'
+import * as notion from '@notionhq/client'
+
+const client = new notion.Client({ auth: process.env.NOTION_TOKEN })
+
+export const Post = defineDatabase(() => ({
+  name: 'Post',
+  databaseId: process.env.NOTION_DATABASE_ID,
+  query: {
+    filter: {
+      property: 'Status',
+      status: { equals: 'Published' },
+    },
+  },
+  properties: {
+    date: { name: 'Created time' },
+  },
+  computedFields: {
+    url: { type: 'string', resolve: (post) => \`/posts/\${post._id}\` },
+  },
+}))
+
+export default makeSource({ client, databaseTypes: [Post] })
+`,
+    },
+  ],
 } as const
 
 export type CodeSnippets = typeof codeSnippets
 
-const codesnippetKey = (k: keyof CodeSnippets) => k
+const codeSnippetKey = (k: keyof CodeSnippets) => k
 
 export const localStep2DataTransformation = {
   from: {
@@ -212,7 +242,7 @@ const content = {
             icon: 'github' as IconName,
             url: 'https://github.com/contentlayerdev/next-contentlayer-example',
           },
-          codeSnippetsKey: codesnippetKey('howItWorksStep1'),
+          codeSnippetsKey: codeSnippetKey('howItWorksStep1'),
         },
         {
           heading: 'Your content is transformed into data',
@@ -253,14 +283,31 @@ const content = {
               </p>
             </>
           ),
-          codeSnippetsKey: codesnippetKey('howItWorksStep3'),
+          codeSnippetsKey: codeSnippetKey('howItWorksStep3'),
         },
       ],
     },
     {
       title: 'Notion',
-      active: false,
-      steps: [],
+      active: true,
+      steps: [
+        {
+          heading: 'Configure your content source',
+          text: (
+            <p>
+              Tell Contentlayer how to filter database content, which properties to include, and add any additional
+              computed properties.
+            </p>
+          ),
+          cta: {
+            label: 'Follow Tutorial',
+            theme: 'primary',
+            icon: 'notion' as IconName,
+            url: '/docs/sources/notion/getting-started-a47597e1',
+          },
+          codeSnippetsKey: codeSnippetKey('howNotionWorksStep1'),
+        },
+      ],
     },
   ],
 }
