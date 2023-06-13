@@ -67,7 +67,7 @@ type: Page
 
 Note that regardless of whether or not you are explicitly defining the type on individual documents, you should still stay true to the `filePathPattern` option for that document type's definition.
 
-Following the example above, if you've specified the `filePathPattern` as `posts/**/*.mdx` and the type as `Post`, you don't want to place a document of type `Post` in a directory outside `posts` or without an `.mdx` file extension. If you do, Contentlayer may process the file.
+Following the example above, if you've specified the `filePathPattern` as `posts/**/*.mdx` and the type as `Post`, you don't want to place a document of type `Post` in a directory outside `posts` or without an `.mdx` file extension. If you do, Contentlayer may not process the file.
 
 ```txt
 /
