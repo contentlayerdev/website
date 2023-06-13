@@ -11,7 +11,7 @@ export const codeSnippets = {
   howItWorksStep1: [
     {
       file: 'contentlayer.config.ts',
-      lines: 16,
+      lines: 19,
       content: `\
 import { defineDocumentType, makeSource } from 'contentlayer/source-files'
 
@@ -21,6 +21,9 @@ const Post = defineDocumentType(() => ({
   fields: {
     title: { type: 'string', required: true },
     date: { type: 'date', required: true }
+  },
+  computedFields: {
+    url: { type: 'string', resolve: (post) => \`/posts/\${post._raw.flattenedPath}\` },
   },
 }))
 
@@ -34,21 +37,17 @@ export default makeSource({
   ],
   howItWorksStep3: [
     {
-      file: 'pages/posts/index.tsx',
-      lines: 20,
+      file: 'app/posts/page.tsx',
+      lines: 16,
       content: `\
-import { allPosts, type Post } from './assets/contentlayer-generated'
+import { allPosts } from './assets/contentlayer-generated'
 
-export function getStaticProps() {
-  return { props: { posts: allPosts } }
-}
-
-export default function Home({ posts }: { posts: Post[] }) {
+export default function Home() {
   return (
     <div>
       <h1>All posts</h1>
       <ul>
-        {posts.map((post) => (
+        {allPosts.map((post) => (
           <li key={post.url}>
             <a href={post.url}>{post.title}</a>
           </li>
@@ -60,23 +59,17 @@ export default function Home({ posts }: { posts: Post[] }) {
 `,
     },
     {
-      file: 'pages/posts/[slug].tsx',
-      lines: 21,
+      file: 'app/posts/[slug]/page.tsx',
+      lines: 15,
       content: `\
-import { allPosts, type Post } from './assets/contentlayer-generated'
+import { allPosts } from './assets/contentlayer-generated'
 
-export function getStaticPaths() {
-  const paths = allPosts.map((post) => post.url)
-  return { paths }
-}
+export const generateStaticParams = async () => allPosts.map((post) => ({ slug: post.url }))
 
-export function getStaticProps({ params }) {
+export default function Post({ params }: { params: { slug: string } }) {
   const post = allPosts.find((post) => post.url === params.slug)
+  if (!post) throw new Error(\`Post not found for slug: \${params.slug}\`)
 
-  return { props: { post } }
-}
-
-export default function Post({ post }: { post: Post }) {
   return (
     <div>
       <h1>{post.title}</h1>
