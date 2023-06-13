@@ -221,6 +221,61 @@ export const localStep2DataTransformation = {
   },
 }
 
+export const notionStep2DataTransformation = {
+  from: {
+    type: 'image',
+    data: {
+      url: '/images/notion-contentlayer-source.png',
+      alt: 'Notion Contentlayer source',
+      width: 1367,
+      height: 561,
+    },
+  },
+  to: {
+    type: 'fileTree',
+    data: {
+      type: 'folder',
+      name: '.contentlayer/generated/',
+      children: [
+        {
+          type: 'folder',
+          name: 'Post/',
+          children: [
+            {
+              type: 'file',
+              name: 'content-is-king.json',
+              comment: '',
+              tooltip: 'Transformed data object representing the post content.',
+            },
+            {
+              type: 'file',
+              name: 'content-is-hard.json',
+              comment: '',
+              tooltip: 'Transformed data object representing the post content.',
+            },
+            {
+              type: 'file',
+              name: 'what-is-contentlayer.md.json',
+              comment: '',
+              tooltip: 'Transformed data object representing the post content.',
+            },
+          ],
+        },
+        {
+          type: 'file',
+          name: 'index.d.ts',
+          tooltip: 'Type definitions for Post are exported from this file.',
+        },
+        {
+          type: 'file',
+          name: 'index.mjs',
+          tooltip: 'The primary manifest file that exports all transformed data objects.',
+        },
+      ],
+    },
+  },
+}
+
 const content = {
   heading: 'How Contentlayer works with...',
   tabs: [
@@ -248,7 +303,7 @@ const content = {
           heading: 'Your content is transformed into data',
           text: (
             <>
-              <p>
+              <p className="mb-4">
                 Run Contentlayer to process your content. Do this as part of the Next.js dev server, or using the
                 Contentlayer CLI.
               </p>
@@ -273,7 +328,7 @@ const content = {
           heading: 'Import data into your application',
           text: (
             <>
-              <p>
+              <p className="mb-4">
                 Import the data just like you would any other JavaScript library. Use it to render pages, and pass down
                 as props to the components on those pages.
               </p>
@@ -306,6 +361,38 @@ const content = {
             url: '/docs/sources/notion/getting-started-a47597e1',
           },
           codeSnippetsKey: codeSnippetKey('howNotionWorksStep1'),
+        },
+        {
+          heading: 'Your content is transformed into data',
+          text: (
+            <>
+              <p className="mb-4">
+                Run Contentlayer to process your content. Do this as part of the framework server, or using the
+                Contentlayer CLI.
+              </p>
+              <p>
+                This validates the content from notion, then generates types definitions and outputs data objects ready
+                to be imported as a ESM module.
+              </p>
+            </>
+          ),
+          dataTransformation: notionStep2DataTransformation,
+        },
+        {
+          heading: 'Import data into your application',
+          text: (
+            <>
+              <p className="mb-4">
+                Import the data just like you would any other JavaScript library. Use it to render pages, and pass down
+                as props to the components on those pages.
+              </p>
+              <p>
+                Keep the development bundle small with tree-shaking and improve the development experience by using the
+                generated type definitions.
+              </p>
+            </>
+          ),
+          codeSnippetsKey: codeSnippetKey('howItWorksStep3'),
         },
       ],
     },
