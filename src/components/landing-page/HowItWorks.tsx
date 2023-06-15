@@ -1,18 +1,17 @@
-import { IconName } from '../common/Icon'
-import { FC } from 'react'
-import { Button } from '../common/Button'
-import { CodeWindow } from './CodeWindow'
-import { DataTransformation } from './DataTransformation'
 import * as Tabs from '@radix-ui/react-tabs'
 import * as Tooltip from '@radix-ui/react-tooltip'
+import { FC } from 'react'
+import { Button } from '../common/Button'
+import { IconName } from '../common/Icon'
+import { CodeWindow } from './CodeWindow'
+import { DataTransformation } from './DataTransformation'
 import { Heading } from './Heading'
-import { Paragraph } from './Paragraph'
 
 export const codeSnippets = {
   howItWorksStep1: [
     {
       file: 'contentlayer.config.ts',
-      lines: 16,
+      lines: 19,
       content: `\
 import { defineDocumentType, makeSource } from 'contentlayer/source-files'
 
@@ -22,6 +21,9 @@ const Post = defineDocumentType(() => ({
   fields: {
     title: { type: 'string', required: true },
     date: { type: 'date', required: true }
+  },
+  computedFields: {
+    url: { type: 'string', resolve: (post) => \`/posts/\${post._raw.flattenedPath}\` },
   },
 }))
 
@@ -35,21 +37,17 @@ export default makeSource({
   ],
   howItWorksStep3: [
     {
-      file: 'pages/posts/index.tsx',
-      lines: 20,
+      file: 'app/posts/page.tsx',
+      lines: 16,
       content: `\
-import { allPosts, type Post } from './assets/contentlayer-generated'
+import { allPosts } from './assets/contentlayer-generated'
 
-export function getStaticProps() {
-  return { props: { posts: allPosts } }
-}
-
-export default function Home({ posts }: { posts: Post[] }) {
+export default function Home() {
   return (
     <div>
       <h1>All posts</h1>
       <ul>
-        {posts.map((post) => (
+        {allPosts.map((post) => (
           <li key={post.url}>
             <a href={post.url}>{post.title}</a>
           </li>
@@ -61,23 +59,17 @@ export default function Home({ posts }: { posts: Post[] }) {
 `,
     },
     {
-      file: 'pages/posts/[slug].tsx',
-      lines: 21,
+      file: 'app/posts/[slug]/page.tsx',
+      lines: 15,
       content: `\
-import { allPosts, type Post } from './assets/contentlayer-generated'
+import { allPosts } from './assets/contentlayer-generated'
 
-export function getStaticPaths() {
-  const paths = allPosts.map((post) => post.url)
-  return { paths }
-}
+export const generateStaticParams = async () => allPosts.map((post) => ({ slug: post.url }))
 
-export function getStaticProps({ params }) {
+export default function Post({ params }: { params: { slug: string } }) {
   const post = allPosts.find((post) => post.url === params.slug)
+  if (!post) throw new Error(\`Post not found for slug: \${params.slug}\`)
 
-  return { props: { post } }
-}
-
-export default function Post({ post }: { post: Post }) {
   return (
     <div>
       <h1>{post.title}</h1>
@@ -88,11 +80,42 @@ export default function Post({ post }: { post: Post }) {
 `,
     },
   ],
+  howNotionWorksStep1: [
+    {
+      file: 'contentlayer.config.ts',
+      lines: 23,
+      content: `\
+import { makeSource, defineDatabase } from 'contentlayer-source-notion'
+import * as notion from '@notionhq/client'
+
+const client = new notion.Client({ auth: process.env.NOTION_TOKEN })
+
+export const Post = defineDatabase(() => ({
+  name: 'Post',
+  databaseId: process.env.NOTION_DATABASE_ID,
+  query: {
+    filter: {
+      property: 'Status',
+      status: { equals: 'Published' },
+    },
+  },
+  properties: {
+    date: { name: 'Created time' },
+  },
+  computedFields: {
+    url: { type: 'string', resolve: (post) => \`/posts/\${post._id}\` },
+  },
+}))
+
+export default makeSource({ client, databaseTypes: [Post] })
+`,
+    },
+  ],
 } as const
 
 export type CodeSnippets = typeof codeSnippets
 
-const codesnippetKey = (k: keyof CodeSnippets) => k
+const codeSnippetKey = (k: keyof CodeSnippets) => k
 
 export const localStep2DataTransformation = {
   from: {
@@ -191,6 +214,61 @@ export const localStep2DataTransformation = {
   },
 }
 
+export const notionStep2DataTransformation = {
+  from: {
+    type: 'image',
+    data: {
+      url: '/images/notion-contentlayer-source.png',
+      alt: 'Notion Contentlayer source',
+      width: 1628,
+      height: 1035,
+    },
+  },
+  to: {
+    type: 'fileTree',
+    data: {
+      type: 'folder',
+      name: '.contentlayer/generated/',
+      children: [
+        {
+          type: 'folder',
+          name: 'Post/',
+          children: [
+            {
+              type: 'file',
+              name: 'content-is-king.json',
+              comment: '',
+              tooltip: 'Transformed data object representing the post content.',
+            },
+            {
+              type: 'file',
+              name: 'content-is-hard.json',
+              comment: '',
+              tooltip: 'Transformed data object representing the post content.',
+            },
+            {
+              type: 'file',
+              name: 'what-is-contentlayer.md.json',
+              comment: '',
+              tooltip: 'Transformed data object representing the post content.',
+            },
+          ],
+        },
+        {
+          type: 'file',
+          name: 'index.d.ts',
+          tooltip: 'Type definitions for Post are exported from this file.',
+        },
+        {
+          type: 'file',
+          name: 'index.mjs',
+          tooltip: 'The primary manifest file that exports all transformed data objects.',
+        },
+      ],
+    },
+  },
+}
+
 const content = {
   heading: 'How Contentlayer works with...',
   tabs: [
@@ -212,13 +290,13 @@ const content = {
             icon: 'github' as IconName,
             url: 'https://github.com/contentlayerdev/next-contentlayer-example',
           },
-          codeSnippetsKey: codesnippetKey('howItWorksStep1'),
+          codeSnippetsKey: codeSnippetKey('howItWorksStep1'),
         },
         {
           heading: 'Your content is transformed into data',
           text: (
             <>
-              <p>
+              <p className="mb-4">
                 Run Contentlayer to process your content. Do this as part of the Next.js dev server, or using the
                 Contentlayer CLI.
               </p>
@@ -243,7 +321,7 @@ const content = {
           heading: 'Import data into your application',
           text: (
             <>
-              <p>
+              <p className="mb-4">
                 Import the data just like you would any other JavaScript library. Use it to render pages, and pass down
                 as props to the components on those pages.
               </p>
@@ -253,19 +331,63 @@ const content = {
               </p>
             </>
           ),
-          codeSnippetsKey: codesnippetKey('howItWorksStep3'),
+          codeSnippetsKey: codeSnippetKey('howItWorksStep3'),
         },
       ],
     },
     {
-      title: 'Contentful',
-      active: false,
-      steps: [],
-    },
-    {
       title: 'Notion',
-      active: false,
-      steps: [],
+      active: true,
+      steps: [
+        {
+          heading: 'Configure your content source',
+          text: (
+            <p>
+              Tell Contentlayer how to filter database content, which properties to include, and add any additional
+              computed properties.
+            </p>
+          ),
+          cta: {
+            label: 'Follow Tutorial',
+            theme: 'primary',
+            icon: 'notion' as IconName,
+            url: '/docs/sources/notion/getting-started-a47597e1',
+          },
+          codeSnippetsKey: codeSnippetKey('howNotionWorksStep1'),
+        },
+        {
+          heading: 'Your content is transformed into data',
+          text: (
+            <>
+              <p className="mb-4">
+                Run Contentlayer to process your content. Do this as part of the framework server, or using the
+                Contentlayer CLI.
+              </p>
+              <p>
+                This validates the content from notion, then generates types definitions and outputs data objects ready
+                to be imported as a ESM module.
+              </p>
+            </>
+          ),
+          dataTransformation: notionStep2DataTransformation,
+        },
+        {
+          heading: 'Import data into your application',
+          text: (
+            <>
+              <p className="mb-4">
+                Import the data just like you would any other JavaScript library. Use it to render pages, and pass down
+                as props to the components on those pages.
+              </p>
+              <p>
+                Keep the development bundle small with tree-shaking and improve the development experience by using the
+                generated type definitions.
+              </p>
+            </>
+          ),
+          codeSnippetsKey: codeSnippetKey('howItWorksStep3'),
+        },
+      ],
     },
   ],
 }
