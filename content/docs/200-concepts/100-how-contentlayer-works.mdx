@@ -18,26 +18,26 @@ Other frameworks like Next.js take no stance on content, and leave it up to you.
 
 There are three main uses for Contentlayer, each revolving around the primary purpose of transforming your content into data that can be easily consumed by your code. These pieces are:
 
-- Transformation Content into Data
+- Transforming Content into Data
 - Structuring Loose Data
 - Defining Data Types
 
-## Transformation Content into Data
+## Transforming Content into Data
 
-Regardless of the source of the data or how the data will be used in the code, the primary purpose for Contentlayer is to transform content in to data that your code can use.
+Regardless of the source of the data or how the data will be used in the code, the primary purpose for Contentlayer is to transform content into data that your code can use.
 
-This process occurs by reading data from the data source, whether that source is external or a series of local files, and converting it into a format that your code can understand, as importable JavaScript files.
+This process occurs by reading data from the data source, whether that source is external or a series of local files, and converting it into a format that your code can understand, as importable JavaScript modules.
 
-This provides an array of benefits, but perhaps the greatest is that your content is suddenly treated as just more code, making it trivial for frameworks like Next.js to recognize when you've updated content and refresh the DOM almost immediately using hot module reloading (HMR).
+This provides an array of benefits, but perhaps the greatest is that your content is suddenly treated as just more code, making it trivial for frameworks like Next.js to recognize when you've updated content and refresh the DOM almost immediately using hot module replacement (HMR).
 
 ## Structuring Loose Data
 
-When data is defined in an external data source, that system (almost) always requires that the data has some _schema_ attached to it. That means that the structure of the data is predictable. So when your content source is external, Contentlayer already knows what that structure should be, and it responds accordingly.
+When data is defined in an external data source, that system (almost) always requires that the data has some _schema_ attached to it. This allows the structure of the data to be predictable. So, when the source of your content is external, Contentlayer already knows what the structure should be, and it responds accordingly.
 
-But when you're working with local files, there is no inherent structure to bind these files to your code. Thus, if you change the content with a file, you could quite easily break your site's code.
+However, when you're working with local files, there is no inherent structure to bind these files to your code. Thus, if you change the content of a file, you could quite easily break your site's code.
 
 When using local files as your data source, Contentlayer provides the ability to define the schema of those files. That way you can be confident in the shape of the data, and can write more solid code reflecting that shape.
 
 ## Defining Data Types
 
-Contentlayer's _cherry on top_ is for all you TypeScript fans. When Contentlayer transforms content into data, it also creates type definitions for that data. That means you can introspect the structure of content in your code. This can provide you with a level of confidence that could really only be matched by writing programmatic tests.
+Contentlayer's _cherry on top_ is for all you TypeScript fans. When Contentlayer transforms content into data, it also creates type definitions for that data. That means you can introspect the structure of your content within your code. This can provide you with a level of confidence that could really only be matched by writing programmatic tests.
