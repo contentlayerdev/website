@@ -14,10 +14,11 @@ To enable it, add the following to your `next.config.js` file:
 
 ```js
 // next.config.js
+const { withContentlayer } = require("next-contentlayer");
+/** @type {import('next').NextConfig} */
+const nextConfig = {}
 
-import { withContentlayer } from 'next-contentlayer'
-
-export default withContentlayer({})
+export default withContentlayer(nextConfig)
 ```
 
 ## `useMDXComponent`
