@@ -18,31 +18,36 @@ const content = {
         logo: { file: 'remix.svg', width: 28, height: 32 },
         label: 'Remix',
         url: '/docs/environments/remix',
-        supported: false,
+        supported: 'Considering to add support',
       },
       {
         logo: { file: 'vite.svg', width: 36, height: 36 },
         label: 'Vite',
         url: '/docs/environments/vite',
-        supported: false,
+        supported: 'Considering to add support',
       },
       {
         logo: { file: 'astro.svg', width: 26, height: 40 },
         label: 'Astro',
         url: '/docs/environments/astro',
-        supported: false,
+        supported: 'Considering to add support',
       },
     ],
   },
   contentSources: {
     label: 'Supported Content Sources',
     items: [
-      // TODO add links to docs
       {
         logo: { file: 'mdx.svg', width: 77, height: 32 },
         label: 'MDX',
         url: '/docs/sources/files',
         supported: true,
+      },
+      {
+        logo: { file: 'notion.svg', width: 39, height: 38 },
+        label: 'Notion',
+        url: '/docs/sources/notion',
+        supported: 'Experimental',
       },
       {
         logo: { file: 'contentful.svg', width: 33, height: 38 },
@@ -51,16 +56,10 @@ const content = {
         supported: 'Planned',
       },
       {
-        logo: { file: 'notion.svg', width: 39, height: 38 },
-        label: 'Notion',
-        url: '/docs/sources/notion',
-        supported: false,
-      },
-      {
         logo: { file: 'sanity.svg', width: 135, height: 28 },
         label: 'Sanity',
         url: '/docs/sources/sanity',
-        supported: false,
+        supported: 'Considering to add support',
       },
     ],
   },
@@ -90,7 +89,7 @@ export const Support: FC = () => {
                       sideOffset={10}
                       className="rounded bg-gray-800 px-3 py-1.5 text-sm text-slate-100 shadow-xl shadow-white dark:bg-violet-200 dark:text-violet-900 dark:shadow-black"
                     >
-                      {`${label}${supported ? '' : ' – Considering to add support.'}`}
+                      {`${label}${supported === true ? '' : ` – ${supported}`}`}
                       <Tooltip.Arrow className="mx-1 fill-current text-gray-800 dark:text-violet-200" />
                     </Tooltip.Content>
                   </Tooltip.Root>
@@ -121,13 +120,7 @@ export const Support: FC = () => {
                       sideOffset={10}
                       className="rounded bg-gray-800 px-3 py-1.5 text-sm text-slate-100 shadow-xl shadow-white dark:bg-violet-200 dark:text-violet-900 dark:shadow-black"
                     >
-                      {`${label}${
-                        supported === true
-                          ? ''
-                          : supported === 'Planned'
-                          ? ' – Planned'
-                          : ' – Considering to add support.'
-                      }`}
+                      {`${label}${supported === true ? '' : ` – ${supported}`}`}
                       <Tooltip.Arrow className="mx-1 fill-current text-gray-800 dark:text-violet-200" />
                     </Tooltip.Content>
                   </Tooltip.Root>
