@@ -82,7 +82,7 @@ export const Support: FC = () => {
                         alt={label}
                         width={logo.width}
                         height={logo.height}
-                        className={`${supported ? 'opacity-100' : 'opacity-25'}`}
+                        className={`${supported === true ? 'opacity-100' : 'opacity-25'}`}
                       />
                     </Tooltip.Trigger>
                     <Tooltip.Content
@@ -113,7 +113,7 @@ export const Support: FC = () => {
                         alt={label}
                         width={logo.width}
                         height={logo.height}
-                        className={`${supported ? 'opacity-100' : 'opacity-25'}`}
+                        className={`${supported === true ? 'opacity-100' : 'opacity-25'}`}
                       />
                     </Tooltip.TooltipTrigger>
                     <Tooltip.Content
