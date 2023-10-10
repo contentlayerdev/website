@@ -15,9 +15,9 @@ To enable it, add the following to your `next.config.js` file:
 ```js
 // next.config.js
 
-import { withContentlayer } from 'next-contentlayer'
+const { withContentlayer } = require("next-contentlayer");
 
-export default withContentlayer({})
+module.exports = withContentlayer(nextConfig);
 ```
 
 ## `useMDXComponent`
