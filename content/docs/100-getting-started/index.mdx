@@ -57,6 +57,19 @@ const nextConfig = { reactStrictMode: true, swcMinify: true }
 module.exports = withContentlayer(nextConfig)
 ```
 
+If your project uses TypeScript, you'll also want to run `contentlayer build` prior to `next build`.
+
+```json
+// package.json
+{
+  "scripts": {
+    "build": "contentlayer build && next build"
+  }
+}
+```
+
+See the [Next.js documentation](/docs/environments/nextjs) for more details on why this is required.
+
 ### TypeScript Configuration
 
 Then add the following lines to your `tsconfig.json` or `jsconfig.json` file:
