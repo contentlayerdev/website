@@ -37,7 +37,7 @@ const content = {
   primaryAction: { label: 'Get started', url: '/docs/getting-started' },
   secondaryAction: { label: 'Why Contentlayer?', url: '/blog/working-with-content-is-hard-for-developers' },
   video: {
-    thumbnail: { url: 'https://i.imgur.com/5IKJALH.png', alt: 'Intro to Contentlayer Video Thumbnail' },
+    thumbnail: { url: '/images/contentlayer-in-five-minutes.png', alt: 'Intro to Contentlayer Video Thumbnail' },
     youtubeId: '58Pj4a4Us7A',
   },
 }
@@ -46,7 +46,7 @@ export const Hero: FC = () => {
   const router = useRouter()
 
   return (
-    <div className="w-full pt-8 space-y-12 md:space-y-20 md:pt-16 lg:pt-20">
+    <div className="w-full space-y-12 pt-8 md:space-y-20 md:pt-16 lg:pt-20">
       {/* <div className="flex justify-start w-full px-4 md:justify-center">
         <div className="flex items-center space-x-2.5 rounded-md border border-slate-200 bg-slate-50 py-3 px-4 dark:border-slate-700 dark:bg-slate-900">
           <div className="rounded-md bg-purple-500 py-1 px-1.5 text-xs font-semibold uppercase text-white dark:bg-purple-800">
@@ -57,7 +57,7 @@ export const Hero: FC = () => {
           </Link>
         </div>
       </div> */}
-      <div className="grid w-full max-w-screen-xl grid-cols-1 gap-16 px-4 mx-auto md:grid-cols-2 md:px-8 ">
+      <div className="mx-auto grid w-full max-w-screen-xl grid-cols-1 gap-16 px-4 md:grid-cols-2 md:px-8 ">
         <div className="space-y-8 sm:max-w-md">
           <Heading level={1}>{content.heading}</Heading>
           <Paragraph className="text-lg">{content.text}</Paragraph>
@@ -67,7 +67,7 @@ export const Hero: FC = () => {
             <Button label={content.secondaryAction.label} href={content.secondaryAction.url} theme="secondary" />
           </div>
         </div>
-        <div className="relative flex items-center w-full">
+        <div className="relative flex w-full items-center">
           {/* TODO don't use image as thumbnail if possible */}
           <Video thumbnail={content.video.thumbnail} videoId={content.video.youtubeId} />
         </div>
