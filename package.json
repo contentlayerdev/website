@@ -31,7 +31,7 @@
     "tailwindcss-radix": "^1.6.0"
   },
   "devDependencies": {
-    "@netlify/plugin-nextjs": "^4.2.7",
+    "@netlify/plugin-nextjs": "^4.41.3",
     "@types/eslint": "^8.4.1",
     "@types/postcss-import": "^14.0.0",
     "@types/react": "^18.0.3",
