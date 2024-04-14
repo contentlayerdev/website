@@ -8,18 +8,58 @@ Contentlayer has full support for Next.js projects, including live reloading (if
 
 ## Installation & Configuration
 
+### Updating `next.config.js`
+
 Using Contentlayer in a Next.js project is easiest if you use the [`next-contentlayer`](/docs/reference/next-contentlayer) plugin. Install the plugin:
 
 ```txt
 npm install next-contentlayer
 ```
 
-Then wrap your next configuration object in the [`withContentlayer` utility](/docs/reference/next-contentlayer#withcontentlayer).
+Then wrap your `next.config.js` configuration object in the [`withContentlayer` utility](/docs/reference/next-contentlayer#withcontentlayer). This starts the contentlayer dev server along with the Next.js dev server.
 
 ```js
 // next.config.js
-import { withContentlayer } from 'next-contentlayer'
+const { withContentlayer } = require('next-contentlayer')
 export default withContentlayer({})
+```
+
+### Building for Production
+
+If your project uses TypeScript, you must run `contentlayer build` prior to `next build`.
+
+```json
+// package.json
+{
+  "scripts": {
+    "build": "contentlayer build && next build"
+  }
+}
+```
+
+This is necessary because Next.js does not always runs Typescript type-checking (`tsc`) prior to plugins specified in `next.config.ts`. If you don't run `contentlayer build` first, type-checking will fail in typical CI environments.
+
+**Note**: This actually runs contentlayer to twice: once from `contentlayer build` and once from `next build`. To further optimize this, you could add logic to `next.config.js` to run contentlayer only in the dev server.
+
+```js
+// next.config.js
+const { withContentlayer } = require('next-contentlayer')
+const { PHASE_DEVELOPMENT_SERVER } = require('next/constants')
+
+const nextConfig = {
+  // Your config goes here...
+}
+
+module.exports = (phase) => {
+  if (phase === PHASE_DEVELOPMENT_SERVER) {
+    // Only run contentlayer in dev server
+    // Skip contentlayer in production builds since it is already run by `contentlayer build` prior to `next build`.
+    // PHASE_DEVELOPMENT_SERVER is not documented in Next.js docs, but you can find it in various sources such as https://github.com/vercel/next.js/issues/37269.
+    return withContentlayer(nextConfig)
+  }
+
+  return nextConfig
+}
 ```
 
 ## App Directory

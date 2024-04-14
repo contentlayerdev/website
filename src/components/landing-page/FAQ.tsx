@@ -25,7 +25,7 @@ const content = {
   primaryAction: { label: 'Read more in docs', url: '/docs/other/faq' },
   secondaryAction: {
     label: 'Ask a question',
-    url: 'https://github.com/contentlayerdev/contentlayer/issues/new',
+    url: 'https://discord.gg/rytFErsARm',
     icon: 'external-link' as IconName,
   },
 }
