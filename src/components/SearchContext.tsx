@@ -117,7 +117,7 @@ export const SearchProvider: FC<{ children: ReactNode }> = ({ children }) => {
   return (
     <KBarProvider actions={actions}>
       <KBarPortal>
-        <KBarPositioner className="bg-gray-300/50 p-4 backdrop-blur backdrop-filter dark:bg-black/50">
+        <KBarPositioner className="bg-gray-300/50 p-4 backdrop-blur backdrop-filter dark:bg-black/50 z-20">
           <KBarAnimator className="w-full max-w-xl">
             <Card>
               <div className="flex items-center space-x-4 p-4">
